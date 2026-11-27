@@ -1,0 +1,2 @@
+000000024ad49cc0 T _ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi
+000000024ad4edee t _ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi.cold

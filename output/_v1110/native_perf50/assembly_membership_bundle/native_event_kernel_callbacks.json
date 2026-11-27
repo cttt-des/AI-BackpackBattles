@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "291d58514d69e9bdf8eb30b875a133bcfa7d8a2af357d95fb92773c9ebff851d",
+  "output": "Native/generic event chains matched: appended and replaced listeners, bound arguments, nested emissions, and same-frame terminal interruption\n",
+  "compiled_against_candidate_headers": true
+}

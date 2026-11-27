@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "fixture_only_repair": "Compare representation of the same persistent sets[112+i] value; separate temporary GdVal objects can carry different inactive/padding bytes",
+  "old_fixture_sha256": "369966870a365bfedff8ab5eb0797f6931007ca0be37a6c7c1ce1a999a8f0517",
+  "new_fixture_sha256": "8305c22ea10dc85121aae5592c629843b19cbdf661cbe50eedfaf7de81247c95",
+  "all229376_cases_retained": true,
+  "no_candidate_cpp_or_dll_change": true,
+  "dll_sha256": "73e57a3c451b8e47323a9be565c710079c5cac07da604bb0d135a3cdaed404d9",
+  "preserved_baseline_failure_log_sha256": "0c9d1ef60b4611b465914db817eb9352e6abc95a065224ab4811758967fd0b6f"
+}

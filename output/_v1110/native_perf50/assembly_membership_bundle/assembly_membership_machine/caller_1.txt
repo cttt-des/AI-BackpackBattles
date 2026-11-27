@@ -1,0 +1,15 @@
+
+bundle.dll:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+000000024ad4edee <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi.cold>:
+   24ad4edee:	mov    0x38(%rsp),%rax
+   24ad4edf3:	xor    %ecx,%ecx
+   24ad4edf5:	movb   $0x0,0xb0(%rsp)
+   24ad4edfd:	mov    %rcx,0xb8(%rsp)
+   24ad4ee05:	cmpb   $0x0,0xd0(%rax)
+   24ad4ee0c:	jne    24ad4bcff <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x203f>
+   24ad4ee12:	jmp    24ad4bc95 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1fd5>
+   24ad4ee17:	nop

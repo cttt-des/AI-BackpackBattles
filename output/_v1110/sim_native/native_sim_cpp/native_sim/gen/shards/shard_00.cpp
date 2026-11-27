@@ -1,3 +1,4 @@
+#include "../../native_assembly_membership.hpp"
 #include "native_private_snapshots.hpp"
 #include "../hdrs/Gd__gd_core__CoreItemData.hpp"
 #include <cmath>
@@ -5342,7 +5343,7 @@ gd::GdVal Gd__gd_core__CoreItem::fn_onItemAdded(const gd::GdVal* args, int argc)
     for (int color = 0; color < color_count; ++color) {
         const gd::GdVal query[] = {item, gd::GdVal::from_int(color)};
         const auto current = gd::native_array_index(ctx, this->f_currentAffectedItems, query[1]);
-        if (!gd::native_scalar_truth(gd::gd_in(item, current))) {
+        if (!gd::assembly_membership::object_set_contains(item, current)) {
             affected[color] = affected_query(query);
         }
     }

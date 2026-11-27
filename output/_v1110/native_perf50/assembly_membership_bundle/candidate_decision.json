@@ -1,0 +1,9 @@
+{
+  "selected_assessment": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\assembly_membership_bundle\\ab_assessment_32.json",
+  "assessment_sha256": "84fec46c8e342406690281aefb1aa6721e1a51197934ad78f9c96b0ff1a34e6f",
+  "candidate_dll_sha256": "291d58514d69e9bdf8eb30b875a133bcfa7d8a2af357d95fb92773c9ebff851d",
+  "status": "positive_combined_evidence",
+  "original24_retained": true,
+  "no_more_same_source_groups": true,
+  "not_deployed": true
+}

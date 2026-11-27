@@ -1,0 +1,26 @@
+Measured actual baseline/candidate base and derived layout sizes and offsets
+401 enum lookup and 9 full constructor cases matched baseline
+1624 Buff scan state/callback and40 cooldown-flag cases matched baseline
+AddSpeed diagnostic and fallback differential cases matched baseline
+{"new_method_symbols":16,"unknown_receiver_payload_rng_bind_cases":1344,"null_and_existing_cache_preserved":true,"generated_fast_path_and_bad_row_audit":true}
+
+{"type_predicates":454276,"original_fused_initializations":1348,"graph_fields":210938,"boundaries":2039,"aliases_payloads_rng_ids_order_checked":true}
+
+{"classes":674,"field_cases":289476,"field_bindings":13158,"aliases":13158,"boundary_cases":24,"rng_ids_payload_metadata_unchanged":true,"explicit_bad_row_audit_caught":true}
+
+{"checks":43,"core_item_size":2112,"derived_item_size":4288,"weapon_size":4288,"alignment":64,"timers_offset":1856,"gems_offset":1880,"cooldown_active_offset":1968,"timer_length_offset":1912,"bridge_gems_length_offset":1944}
+
+{"exact_allocations":1348,"rng_unchanged":true}
+
+1034 variant differential cases; null/empty/default/mixed-key/numeric-alias/NaN, container mutation visibility, one static callback/false Null, forwarded static dispatch, new constructor, object override and disabled path passed
+
+Cached/uncached exact dispatch, generated/C++ overrides, single fallback, copy/slicing, audit-before-row-read, null/array/dictionary/disabled paths, return payload bits and512 RNG comparisons passed
+
+34 builtin differential checks; missing/nonstring argument, C++ override/shared metadata, FuncRef original Null, rebound custom FuncRef, ID order/epoch/wrap and disabled path passed
+
+841 equality/inequality pairs and 78 write cases; NaN, signed zero, mixed large ints/floats, container equality, custom setter calls and overwritten receiver aliases passed
+
+512 RNG bitwise/state comparisons, 32 timer ticks, new-slot C++ override fallback and exact-type audit passed
+
+280 index differential cases; boundary, null, mixed key, object getter count and reference alias checks passed
+

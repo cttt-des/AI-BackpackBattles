@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\resume_assembly_membership_after_pause.py", line 75, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\resume_assembly_membership_after_pause.py", line 59, in main
+    assert archived==p.read_bytes(),filename;fixture_hashes[filename]=sha(p)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: test_native_dict_indices.cpp

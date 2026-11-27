@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "all_remaining_prechecks_passed": true,
+  "first24_completed_once": true,
+  "dll_sha256": "291d58514d69e9bdf8eb30b875a133bcfa7d8a2af357d95fb92773c9ebff851d",
+  "source_manifest_sha256": "dfeb522198d10a5a04bc6307543bf07d47aa850c874cbcb1c3bc147254b0aa7f",
+  "ab_assessment_sha256": "39583378b27822a582cb868c5d80f75a0e8e19fcd0c4222b72193f2b37ed494f"
+}

@@ -1,0 +1,116 @@
+{
+  "passed": true,
+  "reason": "User requested finishing the current interrupted optimization before a potion ordering audit",
+  "dll_sha256": "291d58514d69e9bdf8eb30b875a133bcfa7d8a2af357d95fb92773c9ebff851d",
+  "source_manifest_sha256": "dfeb522198d10a5a04bc6307543bf07d47aa850c874cbcb1c3bc147254b0aa7f",
+  "all20_objects_unchanged": true,
+  "no_AB_samples_observed_before_pause": true,
+  "fixture_sha256": {
+    "test_native_hot_coverage.cpp": {
+      "local_sha256": "8f3dc0a4290857dae0bfad977835b4c7c37162256c55ce4b250f7417f326475c",
+      "archive_sha256": "8f3dc0a4290857dae0bfad977835b4c7c37162256c55ce4b250f7417f326475c",
+      "equal_after_CRLF_normalization": true
+    },
+    "test_native_type_constructor.cpp": {
+      "local_sha256": "faa5e41c34aa198bee743a61a0be592b6a0b751a834bcfbfe300fbab82ef624c",
+      "archive_sha256": "faa5e41c34aa198bee743a61a0be592b6a0b751a834bcfbfe300fbab82ef624c",
+      "equal_after_CRLF_normalization": true
+    },
+    "test_native_properties.cpp": {
+      "local_sha256": "93e0ce70556c8d0008e5922ec229821dd9b55effc54fd0b012969ff0738d9ecd",
+      "archive_sha256": "93e0ce70556c8d0008e5922ec229821dd9b55effc54fd0b012969ff0738d9ecd",
+      "equal_after_CRLF_normalization": true
+    },
+    "test_native_item_locality.cpp": {
+      "local_sha256": "92f8a02bdfe3712549f148626c5b5af00bd34d795fe10e0c6009f727736b0388",
+      "archive_sha256": "92f8a02bdfe3712549f148626c5b5af00bd34d795fe10e0c6009f727736b0388",
+      "equal_after_CRLF_normalization": true
+    },
+    "test_native_eager_rows.cpp": {
+      "local_sha256": "3bc786b2ac98fbb7658010add05d5083c691178182d4b1e5262644dc07d746c3",
+      "archive_sha256": "3bc786b2ac98fbb7658010add05d5083c691178182d4b1e5262644dc07d746c3",
+      "equal_after_CRLF_normalization": true
+    },
+    "test_native_variant_inline.cpp": {
+      "local_sha256": "8cdc3eeb58482227ba80d3ec39660f0f71139e90839d8e3a155ac302d46cb2e8",
+      "archive_sha256": "8cdc3eeb58482227ba80d3ec39660f0f71139e90839d8e3a155ac302d46cb2e8",
+      "equal_after_CRLF_normalization": true
+    },
+    "test_native_inline_dispatch.cpp": {
+      "local_sha256": "d561313e1cd43587086d7a409a6d8f39121f31f5326f8748e392d1228e724cce",
+      "archive_sha256": "d561313e1cd43587086d7a409a6d8f39121f31f5326f8748e392d1228e724cce",
+      "equal_after_CRLF_normalization": true
+    },
+    "test_native_builtin_dispatch.cpp": {
+      "local_sha256": "77c92c0139f891e19fd1722499d42af5f3896a6ad027607894dd2b0a74e4ce9f",
+      "archive_sha256": "77c92c0139f891e19fd1722499d42af5f3896a6ad027607894dd2b0a74e4ce9f",
+      "equal_after_CRLF_normalization": true
+    },
+    "test_native_scalar_array.cpp": {
+      "local_sha256": "02c256426ddb9e4560af394a3cd557e991f56e1e20dc042bc2ede97ffb375774",
+      "archive_sha256": "02c256426ddb9e4560af394a3cd557e991f56e1e20dc042bc2ede97ffb375774",
+      "equal_after_CRLF_normalization": true
+    },
+    "test_native_expanded_dispatch.cpp": {
+      "local_sha256": "723a02975da418add9792c9a534489f0e382fe1189b15310c33e9f5413736ccc",
+      "archive_sha256": "723a02975da418add9792c9a534489f0e382fe1189b15310c33e9f5413736ccc",
+      "equal_after_CRLF_normalization": true
+    },
+    "test_native_array_index.cpp": {
+      "local_sha256": "b6a5176817a14a340c321b38505950d55582d5a8520d2f991dc7649b2f7d4743",
+      "archive_sha256": "b6a5176817a14a340c321b38505950d55582d5a8520d2f991dc7649b2f7d4743",
+      "equal_after_CRLF_normalization": true
+    },
+    "test_native_resolved_dispatch.cpp": {
+      "local_sha256": "e001e794c095ffc032740b18ece86b86135ef828000e9aacd0971921324410b2",
+      "archive_sha256": "e001e794c095ffc032740b18ece86b86135ef828000e9aacd0971921324410b2",
+      "equal_after_CRLF_normalization": true
+    },
+    "test_native_arena_split.cpp": {
+      "local_sha256": "9cb593b59e9f9898680b04110bc2d8cfe825aebaee91a4d0ca9372e0175d41b9",
+      "archive_sha256": "9cb593b59e9f9898680b04110bc2d8cfe825aebaee91a4d0ca9372e0175d41b9",
+      "equal_after_CRLF_normalization": true
+    },
+    "test_native_dict_indices.cpp": {
+      "local_sha256": "ec56c11ca97c5bbfa658d4bdf5b2c05ca7857433808dde9b7fb32577d8d1acfb",
+      "archive_sha256": "49aabc481a1bc92ac7f6619662b2d603f85eade59af2bc5d78318d85ec2d859f",
+      "equal_after_CRLF_normalization": true
+    },
+    "test_native_label_ranges.cpp": {
+      "local_sha256": "e8fce5690ac8297e16fc8da77eb6becde738491c62372f156a486e7bf8182874",
+      "archive_sha256": "e8fce5690ac8297e16fc8da77eb6becde738491c62372f156a486e7bf8182874",
+      "equal_after_CRLF_normalization": true
+    },
+    "test_native_event_kernel.cpp": {
+      "local_sha256": "d570f8f058060740aed3f9a7927096e3c87e283e0ff4da9949b5c69172840d86",
+      "archive_sha256": "d570f8f058060740aed3f9a7927096e3c87e283e0ff4da9949b5c69172840d86",
+      "equal_after_CRLF_normalization": true
+    },
+    "test_native_integer_ranges.cpp": {
+      "local_sha256": "b8ac649018782f2825430d48b4b9fd343ddc841ee281784b5af27b1e76da2dfb",
+      "archive_sha256": "b8ac649018782f2825430d48b4b9fd343ddc841ee281784b5af27b1e76da2dfb",
+      "equal_after_CRLF_normalization": true
+    },
+    "test_native_inline_timers.cpp": {
+      "local_sha256": "e94893d5bc01f40c8bdc4d76518b5c82bcdc4a16167227c5f4bde72edd72bf88",
+      "archive_sha256": "e94893d5bc01f40c8bdc4d76518b5c82bcdc4a16167227c5f4bde72edd72bf88",
+      "equal_after_CRLF_normalization": true
+    },
+    "test_native_timer_dispatch.cpp": {
+      "local_sha256": "f5733d0d38bb344e39a8f37690b0fe80c0435145d212dbc5ea01a248a19d57bc",
+      "archive_sha256": "f5733d0d38bb344e39a8f37690b0fe80c0435145d212dbc5ea01a248a19d57bc",
+      "equal_after_CRLF_normalization": true
+    },
+    "test_native_item_prefetch.cpp": {
+      "local_sha256": "7dd0390dda9a18914e14ddab613648b67706e5f1c4b619e0e85b7db6d3dd2636",
+      "archive_sha256": "7dd0390dda9a18914e14ddab613648b67706e5f1c4b619e0e85b7db6d3dd2636",
+      "equal_after_CRLF_normalization": true
+    },
+    "test_native_noop_snapshots.cpp": {
+      "local_sha256": "759922bdec480902988a197169d349373f7109381e5852e4e9d8ae6ca40422e5",
+      "archive_sha256": "759922bdec480902988a197169d349373f7109381e5852e4e9d8ae6ca40422e5",
+      "equal_after_CRLF_normalization": true
+    }
+  },
+  "original_verify_log_sha256": "a29abfeeae893995fea887437e7519da3084845b9a525155eb431da981cfcd7c"
+}

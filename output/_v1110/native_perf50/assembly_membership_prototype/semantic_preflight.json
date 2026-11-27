@@ -1,0 +1,64 @@
+{
+  "passed": true,
+  "cases": 1047808,
+  "dll_sha256": "73e57a3c451b8e47323a9be565c710079c5cac07da604bb0d135a3cdaed404d9",
+  "retained_cases": 682304,
+  "retained_reports": {
+    "helpers": {
+      "cases": 204288,
+      "report": "typed_helper_tests.json",
+      "sha256": "97f8b8475c48df3fcff2f8239e79b3405a6c9eafa8f8e96ac567d061efe2ea87"
+    },
+    "methods": {
+      "cases": 14112,
+      "report": "buff_integer_methods_tests.json",
+      "sha256": "8a142f9b61368ae5d2292e970d786ba2333f7721148087f30d166d2fc53dfe89"
+    },
+    "builtins": {
+      "cases": 128128,
+      "report": "container_builtins_tests.json",
+      "sha256": "62b45c5eb73baa053a87a7eb52944fb05a02c86a76d008c2bac012460813d9bf"
+    },
+    "truth": {
+      "cases": 34400,
+      "report": "scalar_truth_tests.json",
+      "sha256": "2e800684660bfb4559a979bcf69b610dc78933bd09f446cb3435e2578fc45576"
+    },
+    "private": {
+      "cases": 234880,
+      "report": "private_tests.json",
+      "sha256": "35e38344a9684140eb0b27176515e1875cef8a6b6a3bc4eb3118a48733e028e3"
+    },
+    "display": {
+      "cases": 21888,
+      "report": "retained_display.json",
+      "sha256": "54f4d0ba4d0778ef9d70b063eb08c7f4303acc403bb08f5f0f667bd211c862fd"
+    },
+    "control": {
+      "cases": 44608,
+      "report": "retained_control.json",
+      "sha256": "0ca7c2f9d0b75e321045909752ebd27acf5a9eed3ab6eccb32730c0b20f2ec62"
+    }
+  },
+  "matched_normal_chain_cases": 136128,
+  "matched_normal_diagnostic_sha256": "4ad85f396d8b91921233e28367e732e2ea1cb2387586173965e2de6bbbea9479",
+  "production_chain_comparison_passed": false,
+  "normal_vs_production_difference_cases": {
+    "case_hashes": 56,
+    "legacy_counter_hashes": 0
+  },
+  "assembly_membership_cases": 229376,
+  "assembly_membership_tests_sha256": "3305303c987865bf1ce5e44f81be7f3642dc7bb18d424dc8983d996a597a5528",
+  "requires_actual_production_pgo_comparison_before_timing": true,
+  "fixture_only_failure_and_repair_retained": true,
+  "completed_passed_retained_tests_not_repeated": true,
+  "source_projection": {
+    "passed": true,
+    "exact_inverse_matches_retained_source": true,
+    "all674_object_headers_and_all_layouts_unchanged": true,
+    "full_original_bodies_retained": true,
+    "all_prior_optimizations_retained": true,
+    "formal_full20_fresh18_pgo_required": true
+  },
+  "no_speed_claim": true
+}

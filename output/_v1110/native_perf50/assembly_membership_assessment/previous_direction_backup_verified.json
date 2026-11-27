@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "remote_verified_commit": "f03dec6f9937ac6c829a8d277ca981917c1f9e32",
+  "production_dll_sha256": "d2064b3f17d8168cf87a2e9f46e9fb336ffe4aaf6581c27d93350b2c41477a57",
+  "full_production_manifest_files": 713,
+  "archive_files_verified": 3429,
+  "first_direction_negative_closure_sha256": "fc8fa2758a54ba8bc2cf85e4c7af1d273905a16ef1348494c8ba1afe7a017389",
+  "all_protected_files_unchanged": true,
+  "head_and_staged_contents_unchanged": true,
+  "no_new_branches": true,
+  "second_direction_can_begin": true
+}

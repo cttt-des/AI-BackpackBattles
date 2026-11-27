@@ -1,0 +1,175 @@
+{
+  "passed": true,
+  "dll_sha256": "291d58514d69e9bdf8eb30b875a133bcfa7d8a2af357d95fb92773c9ebff851d",
+  "private_helper_has_no_emitted_out_of_line_function": true,
+  "exact_header_sha256": "610174f1832ecaabdb8216dea8298c604603c985afe9dec69ca3e35e616beb1f",
+  "caller_instructions": [
+    {
+      "symbol": "_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi",
+      "assembly_sha256": "6a27738930256d39f2933c4ea568ad95d4139cb88acaadb7d85b22f91260f1dd",
+      "static_direct_call_sites": [
+        [
+          "_ZN2gd5gd_eqERKNS_5GdValES2_",
+          22
+        ],
+        [
+          "_ZN2gd11BattleArena16alloc_raw_lockedEyy.constprop.0",
+          6
+        ],
+        [
+          "_ZN2gd11BattleArena14alloc_raw_slowEyy.constprop.0",
+          6
+        ],
+        [
+          "_ZN2gd5GdArr6createERNS_11BattleArenaEj",
+          5
+        ],
+        [
+          "_ZN2gd5GdArr9push_backERNS_11BattleArenaERKNS_5GdValE",
+          5
+        ],
+        [
+          "_ZN2gd11BattleArena14alloc_raw_slowEyy",
+          5
+        ],
+        [
+          "_ZN2gd11BattleArena16alloc_raw_lockedEyy",
+          5
+        ],
+        [
+          "__emutls_get_address",
+          3
+        ],
+        [
+          "_ZN2gd8gd_truthERKNS_5GdValE",
+          3
+        ],
+        [
+          "_ZN2gd19NativeTimerMutationC1EPNS_16NativeTimerWatchE",
+          3
+        ],
+        [
+          "_ZN2gd27native_timer_observe_objectERNS_9BattleCtxEPKNS_5GdObjE.part.0",
+          2
+        ],
+        [
+          "_ZNK2gd6GdDict10find_indexERKNS_5GdValEy",
+          2
+        ],
+        [
+          "_ZN2gd8sym_nameEj",
+          2
+        ],
+        [
+          "strlen",
+          2
+        ],
+        [
+          "_ZNK2gd6GdEnum3getESt17basic_string_viewIcSt11char_traitsIcEERx",
+          2
+        ],
+        [
+          "_ZN2gdL25native_resolved_exact_rowEPKNS_5GdObjE.lto_priv.0",
+          2
+        ],
+        [
+          "_ZN2gd26native_timer_observe_classERNS_9BattleCtxEPKNS_11GdClassMetaE.part.0",
+          2
+        ],
+        [
+          "_ZN21Gd__gd_core__CoreItem18fn_canAffect_colorEPKN2gd5GdValEi",
+          1
+        ],
+        [
+          "_ZN21Gd__gd_core__CoreItem37fn_getAffectedCellsInInventory_cachedEPKN2gd5GdValEi",
+          1
+        ],
+        [
+          "_ZN2gd28try_native_resolved_propertyERNS_9BattleCtxEPNS_5GdObjEjRNS_5GdValE",
+          1
+        ],
+        [
+          "_ZN2gd5gd_inERKNS_5GdValES2_",
+          1
+        ],
+        [
+          "_ZN2gd6GdDict3setERNS_11BattleArenaERKNS_5GdValES5_",
+          1
+        ],
+        [
+          "_ZN2gd11call_methodERNS_9BattleCtxERKNS_5GdValEjPS3_i",
+          1
+        ],
+        [
+          "memchr",
+          1
+        ],
+        [
+          "_ZN2gd11gd_val_hashERKNS_5GdValE",
+          1
+        ],
+        [
+          "_ZN2gd8get_propERNS_9BattleCtxERKNS_5GdValEj",
+          1
+        ],
+        [
+          "_ZNK2gd6GdDict4keysERNS_11BattleArenaE",
+          1
+        ],
+        [
+          "_ZNK2gd6GdEnum8keys_arrERNS_11BattleArenaE",
+          1
+        ],
+        [
+          "_ZN2gd8make_strERNS_11BattleArenaEPKcj",
+          1
+        ],
+        [
+          "_ZNK2gd6GdDict3getERKNS_5GdValES3_",
+          1
+        ],
+        [
+          "memcmp",
+          1
+        ],
+        [
+          "_ZN2gd19NativeTimerMutationC1EPNS_16NativeTimerWatchE.part.0.lto_priv.0",
+          1
+        ],
+        [
+          "_ZN2gd19NativeTimerMutationD1Ev",
+          1
+        ],
+        [
+          "_ZN2gd11call_methodERNS_9BattleCtxERKNS_5GdValEjPS3_i.constprop.0",
+          1
+        ],
+        [
+          "_ZN2gd25native_inline_variant_hitEj.part.0",
+          1
+        ],
+        [
+          "_ZN2gd10intern_symESt17basic_string_viewIcSt11char_traitsIcEE",
+          1
+        ]
+      ]
+    },
+    {
+      "symbol": "_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi.cold",
+      "assembly_sha256": "b5e3517321309559916898dc153a670d2e8521d45c5e24cae9bec25dd85c1b76",
+      "static_direct_call_sites": []
+    }
+  ],
+  "diagnostic_counts_sha256": "5e3ea06c322a777e5f82ac975fab6e998d5aa1da023963bbfcc8f8a47dea1acd",
+  "all_original_query_commit_and_callback_positions_retained": true,
+  "mechanism": "Inlined Obj/unindexed-empty checks return a primitive false before pointer hashing and boxed gd_in return; nonempty dictionaries call original has and other containers retain gd_in",
+  "source_projection": {
+    "passed": true,
+    "exact_inverse_matches_retained_source": true,
+    "all674_object_headers_and_all_layouts_unchanged": true,
+    "full_original_bodies_retained": true,
+    "all_prior_optimizations_retained": true,
+    "formal_full20_fresh18_pgo_required": true
+  },
+  "static_sites_and_diagnostic_frequencies_not_runtime_cost_or_speed_gain": true
+}

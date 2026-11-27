@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\probe_native_assembly_membership.py", line 95, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\probe_native_assembly_membership.py", line 54, in main
+    assert text.count(a)==1;text=text.replace(a,b,1)
+           ^^^^^^^^^^^^^^^^
+AssertionError

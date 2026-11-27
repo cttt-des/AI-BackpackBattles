@@ -1,0 +1,108 @@
+Starting one raw24 run
+bundle.dll: 24 batches, median 197.03 replays/s, minimum 140.63; 2e74b45caa87
+Starting one controlled load-calibration24 run
+Warming controlled load for 30 seconds
+bundle.dll: 24 batches, median 150.41 replays/s, minimum 105.69; 2e74b45caa87
+{
+  "dll_sha256": "291d58514d69e9bdf8eb30b875a133bcfa7d8a2af357d95fb92773c9ebff851d",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "workers": 1,
+  "samples": 24,
+  "fights_per_sample": 200,
+  "load_field": "background_load_pct",
+  "power_source_ac": true,
+  "minimum_load_pct": 11.120549176388366,
+  "maximum_load_pct": 46.51403804706333,
+  "log_wall_seconds_intercept": -0.0655331394354996,
+  "log_wall_seconds_per_load_point": 0.015138238122919466,
+  "r_squared_log_wall_time": 0.9228593191060512,
+  "reference_load_pct": 20.0,
+  "reference_is_extrapolation": false,
+  "reference_distance_outside_observed_range_pct_points": 0,
+  "estimate_method": "log(wall_seconds) = intercept + slope * background_load_pct",
+  "sample_normalization_formula": "fps_at_reference = observed_fps * exp(slope * (observed_load - reference_load))",
+  "interpretation": "Empirical load-normalized estimate; coverage is reported, not a deployment gate. Code gains require paired A/B evidence.",
+  "fitted_fights_per_second_at_reference_load": 157.7617121266394,
+  "fitted_wall_time_change_per_ten_load_points": 0.16344145120833847,
+  "validation": {
+    "median_absolute_relative_time_error": 0.032678900171167424,
+    "p90_absolute_relative_time_error": 0.08388205622264393,
+    "constant_median_absolute_relative_time_error": 0.1716454133058864
+  },
+  "estimated_fights_per_second_at_reference_load_by_sample": [
+    146.6004434936409,
+    154.62999792458353,
+    163.55654278293858,
+    162.61857707873526,
+    165.77027028855701,
+    172.71332824627518,
+    160.8950893255645,
+    157.04668492635935,
+    156.60313408470617,
+    152.67986846417736,
+    155.51469019417402,
+    157.77590428862754,
+    155.61520197586916,
+    156.01664532470448,
+    159.6180375848245,
+    157.89331999924846,
+    150.55282897779114,
+    162.43748276685284,
+    144.38596929634426,
+    163.78985154056855,
+    148.3858299581891,
+    153.03650396436527,
+    158.99035837722218,
+    172.80610227277162
+  ],
+  "background_calibration": {
+    "workers": 2,
+    "priority": "below_normal",
+    "period_seconds": 0.02,
+    "busy_fractions": [
+      0.2,
+      0.85
+    ],
+    "phase_seconds": 10,
+    "maximum_duration_seconds": 120,
+    "elapsed_seconds": 71.77490509999916,
+    "warmup_seconds": 30.0
+  }
+}
+{
+  "dll_sha256": "291d58514d69e9bdf8eb30b875a133bcfa7d8a2af357d95fb92773c9ebff851d",
+  "serial": {
+    "median_fights_per_second": 197.02840980950307,
+    "minimum_fights_per_second": 140.62605030062517,
+    "maximum_fights_per_second": 207.1769836340878,
+    "background_load_range_pct": [
+      7.691762193478883,
+      29.57761867504332
+    ],
+    "on_ac_all": true
+  },
+  "load_calibration": {
+    "median_fights_per_second": 150.41160269074612,
+    "minimum_fights_per_second": 105.69354199839292,
+    "maximum_fights_per_second": 184.4010538515034,
+    "background_load_range_pct": [
+      11.120549176388366,
+      46.51403804706333
+    ],
+    "on_ac_all": true
+  },
+  "fitted_fights_per_second_at20": 157.7617121266394,
+  "r_squared_log_wall_time": 0.9228593191060512,
+  "fit_validation": {
+    "median_absolute_relative_time_error": 0.032678900171167424,
+    "p90_absolute_relative_time_error": 0.08388205622264393,
+    "constant_median_absolute_relative_time_error": 0.1716454133058864
+  },
+  "report_sha256": {
+    "bundle_serial.json": "e8c461ab6619483ea67fb9d66522d08ad19909144e50fad741bad7385cebb348",
+    "bundle_load_calibration.json": "8b8a7250ec0c25aa469050a315356504c406a87527a7c0df68e99c1fe50d5ed2",
+    "bundle_load20.json": "922efd1ee9e456007c1e96514b027e38a9505d40762c184796eabf93dc54c0c8"
+  },
+  "single_run_all_samples_retained": true,
+  "raw24_gate_passed": true
+}

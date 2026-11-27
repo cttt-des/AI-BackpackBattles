@@ -1,0 +1,2242 @@
+
+bundle.dll:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+000000024ad49cc0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi>:
+   24ad49cc0:	push   %r15
+   24ad49cc2:	push   %r14
+   24ad49cc4:	push   %r13
+   24ad49cc6:	push   %r12
+   24ad49cc8:	push   %rbp
+   24ad49cc9:	push   %rdi
+   24ad49cca:	push   %rsi
+   24ad49ccb:	push   %rbx
+   24ad49ccc:	sub    $0x1b8,%rsp
+   24ad49cd3:	vmovaps %xmm6,0x1a0(%rsp)
+   24ad49cdc:	mov    0x8(%rdx),%rdi
+   24ad49ce0:	mov    %rcx,%rbx
+   24ad49ce3:	mov    %rdx,%r12
+   24ad49ce6:	mov    %rdi,0x38(%rsp)
+   24ad49ceb:	test   %r9d,%r9d
+   24ad49cee:	jle    24ad4edee <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi.cold>
+   24ad49cf4:	vmovdqu (%r8),%xmm0
+   24ad49cf9:	mov    0x10(%r8),%rax
+   24ad49cfd:	cmpb   $0x0,0xd0(%rdi)
+   24ad49d04:	mov    %rax,0xc0(%rsp)
+   24ad49d0c:	vmovdqa %xmm0,0xb0(%rsp)
+   24ad49d15:	je     24ad4bc95 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1fd5>
+   24ad49d1b:	cmpb   $0x9,0xb0(%rsp)
+   24ad49d23:	jne    24ad4bcff <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x203f>
+   24ad49d29:	mov    0xb8(%rsp),%rdx
+   24ad49d31:	test   %rdx,%rdx
+   24ad49d34:	je     24ad4bc95 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1fd5>
+   24ad49d3a:	mov    0x28(%rdx),%rsi
+   24ad49d3e:	test   %rsi,%rsi
+   24ad49d41:	je     24ad4bc95 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1fd5>
+   24ad49d47:	cmpb   $0x0,0xd1(%rdi)
+   24ad49d4e:	jne    24ad4bccb <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x200b>
+   24ad49d54:	mov    0x1a0(%rsi),%rax
+   24ad49d5b:	test   %rax,%rax
+   24ad49d5e:	je     24ad4bc95 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1fd5>
+   24ad49d64:	mov    0x38(%rsp),%rdi
+   24ad49d69:	cmpb   $0x0,0xd2(%rdi)
+   24ad49d70:	jne    24ad4bcba <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1ffa>
+   24ad49d76:	lea    0x4593(%rip),%rcx        # 24ad4e310 <_ZN2gd22native_resolved_invokeI21Gd__gd_core__CoreItemXadL_ZNS1_8fn_isBagEPKNS_5GdValEiEEEES2_PNS_5GdObjES4_i>
+   24ad49d7d:	cmp    %rcx,%rax
+   24ad49d80:	jne    24ad4a343 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x683>
+   24ad49d86:	movl   $0x0,0xac(%rsp)
+   24ad49d91:	xor    %r13d,%r13d
+   24ad49d94:	movq   $0x0,0x40(%rsp)
+   24ad49d9d:	mov    %rbx,0x200(%rsp)
+   24ad49da5:	mov    0xc0(%rsp),%rax
+   24ad49dad:	vmovdqa 0xb0(%rsp),%xmm0
+   24ad49db6:	movb   $0x2,0x188(%rsp)
+   24ad49dbe:	mov    %r13,0x190(%rsp)
+   24ad49dc6:	mov    %rax,0x180(%rsp)
+   24ad49dce:	movzbl 0x638(%r12),%eax
+   24ad49dd7:	vmovdqa %xmm0,0x170(%rsp)
+   24ad49de0:	cmp    $0x7,%al
+   24ad49de2:	jne    24ad4a008 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x348>
+   24ad49de8:	mov    0x640(%r12),%rdx
+   24ad49df0:	test   %rdx,%rdx
+   24ad49df3:	je     24ad4a1b0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x4f0>
+   24ad49df9:	mov    0x8(%rdx),%eax
+   24ad49dfc:	cmp    %rax,%r13
+   24ad49dff:	jae    24ad4a1b0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x4f0>
+   24ad49e05:	mov    (%rdx),%r14
+   24ad49e08:	lea    0x0(%r13,%r13,2),%rax
+   24ad49e0d:	lea    (%r14,%rax,8),%rax
+   24ad49e11:	vmovdqu (%rax),%xmm3
+   24ad49e15:	movzbl (%rax),%edx
+   24ad49e18:	mov    0x10(%rax),%rax
+   24ad49e1c:	vmovdqa %xmm3,0xd0(%rsp)
+   24ad49e25:	mov    %rax,0xe0(%rsp)
+   24ad49e2d:	cmp    $0x8,%dl
+   24ad49e30:	jne    24ad4a1c3 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x503>
+   24ad49e36:	mov    0xd8(%rsp),%rsi
+   24ad49e3e:	test   %rsi,%rsi
+   24ad49e41:	je     24ad4a1c3 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x503>
+   24ad49e47:	cmpb   $0x9,0xb0(%rsp)
+   24ad49e4f:	jne    24ad4ad11 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1051>
+   24ad49e55:	mov    0x8(%rsi),%ebx
+   24ad49e58:	test   %ebx,%ebx
+   24ad49e5a:	jne    24ad4ad11 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1051>
+   24ad49e60:	cmpq   $0x0,0x10(%rsi)
+   24ad49e65:	jne    24ad4ad07 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1047>
+   24ad49e6b:	lea    0x150(%rsp),%rsi
+   24ad49e73:	mov    $0x2,%r9d
+   24ad49e79:	lea    0x170(%rsp),%r8
+   24ad49e81:	mov    %r12,%rdx
+   24ad49e84:	mov    %rsi,%rcx
+   24ad49e87:	call   24ad4e350 <_ZN21Gd__gd_core__CoreItem18fn_canAffect_colorEPKN2gd5GdValEi>
+   24ad49e8c:	movzbl 0x150(%rsp),%eax
+   24ad49e94:	cmp    $0x1,%al
+   24ad49e96:	jne    24ad4b59b <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x18db>
+   24ad49e9c:	movzbl 0x158(%rsp),%eax
+   24ad49ea4:	test   %al,%al
+   24ad49ea6:	je     24ad49fe2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x322>
+   24ad49eac:	cmpb   $0x8,0x620(%r12)
+   24ad49eb5:	mov    0x628(%r12),%rdi
+   24ad49ebd:	jne    24ad49ec8 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x208>
+   24ad49ebf:	test   %rdi,%rdi
+   24ad49ec2:	jne    24ad4a3a0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x6e0>
+   24ad49ec8:	lea    0xf0(%rsp),%rcx
+   24ad49ed0:	mov    $0x1,%r9d
+   24ad49ed6:	lea    0x188(%rsp),%r8
+   24ad49ede:	mov    %r12,%rdx
+   24ad49ee1:	call   24ad477f0 <_ZN21Gd__gd_core__CoreItem37fn_getAffectedCellsInInventory_cachedEPKN2gd5GdValEi>
+   24ad49ee6:	movzbl 0xf0(%rsp),%r14d
+   24ad49eef:	mov    0xf8(%rsp),%rdi
+   24ad49ef7:	cmp    $0x7,%r14b
+   24ad49efb:	je     24ad4a476 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x7b6>
+   24ad49f01:	mov    0x38(%rsp),%rcx
+   24ad49f06:	movzbl 0xb0(%rsp),%eax
+   24ad49f0e:	cmpb   $0x0,0xd0(%rcx)
+   24ad49f15:	je     24ad4a0e8 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x428>
+   24ad49f1b:	cmp    $0x9,%al
+   24ad49f1d:	je     24ad4a090 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x3d0>
+   24ad49f23:	cmp    $0x9,%al
+   24ad49f25:	jbe    24ad4b355 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1695>
+   24ad49f2b:	cmp    $0xa,%al
+   24ad49f2d:	jne    24ad4ad5c <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x109c>
+   24ad49f33:	mov    0xb8(%rsp),%rdx
+   24ad49f3b:	test   %rdx,%rdx
+   24ad49f3e:	je     24ad4a137 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x477>
+   24ad49f44:	mov    0x30(%rdx),%rax
+   24ad49f48:	test   %rax,%rax
+   24ad49f4b:	je     24ad4a137 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x477>
+   24ad49f51:	mov    0x38(%rsp),%rcx
+   24ad49f56:	cmpb   $0x0,0x117(%rcx)
+   24ad49f5d:	je     24ad4be11 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2151>
+   24ad49f63:	movb   $0x0,0x150(%rsp)
+   24ad49f6b:	mov    %rsi,%rdx
+   24ad49f6e:	mov    $0x99,%ecx
+   24ad49f73:	movq   $0x0,0x158(%rsp)
+   24ad49f7f:	call   *%rax
+   24ad49f81:	test   %al,%al
+   24ad49f83:	je     24ad4a137 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x477>
+   24ad49f89:	mov    0x160(%rsp),%rax
+   24ad49f91:	vmovdqa 0x150(%rsp),%xmm0
+   24ad49f9a:	mov    %rax,0x120(%rsp)
+   24ad49fa2:	movzbl 0x150(%rsp),%eax
+   24ad49faa:	vmovdqa %xmm0,0x110(%rsp)
+   24ad49fb3:	cmp    $0xb,%al
+   24ad49fb5:	ja     24ad4a137 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x477>
+   24ad49fbb:	lea    0x31e2ee(%rip),%rcx        # 24b0682b0 <.rdata+0x90>
+   24ad49fc2:	movzbl %al,%edx
+   24ad49fc5:	movslq (%rcx,%rdx,4),%rdx
+   24ad49fc9:	add    %rcx,%rdx
+   24ad49fcc:	jmp    *%rdx
+   24ad49fce:	xchg   %ax,%ax
+   24ad49fd0:	add    $0x18,%rbx
+   24ad49fd4:	cmp    %rbp,%rbx
+   24ad49fd7:	jne    24ad49fd0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x310>
+   24ad49fd9:	nopl   0x0(%rax)
+   24ad49fe0:	xor    %eax,%eax
+   24ad49fe2:	mov    %al,0xac(%rsp,%r13,1)
+   24ad49fea:	inc    %r13
+   24ad49fed:	cmp    $0x4,%r13
+   24ad49ff1:	je     24ad4a218 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x558>
+   24ad49ff7:	addq   $0x38,0x40(%rsp)
+   24ad49ffd:	jmp    24ad49da5 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xe5>
+   24ad4a002:	nopw   0x0(%rax,%rax,1)
+   24ad4a008:	cmp    $0x8,%al
+   24ad4a00a:	jne    24ad4a1a8 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x4e8>
+   24ad4a010:	mov    0x640(%r12),%rsi
+   24ad4a018:	test   %rsi,%rsi
+   24ad4a01b:	je     24ad4a1b0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x4f0>
+   24ad4a021:	movb   $0x0,0x150(%rsp)
+   24ad4a029:	movq   $0x0,0x158(%rsp)
+   24ad4a035:	mov    0x8(%rsi),%eax
+   24ad4a038:	mov    %rax,%rdi
+   24ad4a03b:	cmp    %rax,%r13
+   24ad4a03e:	jae    24ad4a498 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x7d8>
+   24ad4a044:	mov    (%rsi),%r8
+   24ad4a047:	mov    0x40(%rsp),%rax
+   24ad4a04c:	add    %r8,%rax
+   24ad4a04f:	cmpb   $0x2,(%rax)
+   24ad4a052:	jne    24ad4be2c <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x216c>
+   24ad4a058:	cmp    0x8(%rax),%r13
+   24ad4a05c:	jne    24ad4be2c <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x216c>
+   24ad4a062:	vmovdqu 0x18(%rax),%xmm0
+   24ad4a067:	mov    0x28(%rax),%rax
+   24ad4a06b:	mov    %rax,0xe0(%rsp)
+   24ad4a073:	vmovdqa %xmm0,0xd0(%rsp)
+   24ad4a07c:	cmpb   $0x8,0xd0(%rsp)
+   24ad4a084:	je     24ad49e36 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x176>
+   24ad4a08a:	jmp    24ad4a1c3 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x503>
+   24ad4a08f:	nop
+   24ad4a090:	mov    0xb8(%rsp),%rdx
+   24ad4a098:	test   %rdx,%rdx
+   24ad4a09b:	je     24ad4a137 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x477>
+   24ad4a0a1:	mov    0x28(%rdx),%rbp
+   24ad4a0a5:	test   %rbp,%rbp
+   24ad4a0a8:	jne    24ad4ac9c <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xfdc>
+   24ad4a0ae:	mov    0x38(%rsp),%rcx
+   24ad4a0b3:	mov    %rsi,%r9
+   24ad4a0b6:	mov    $0x99,%r8d
+   24ad4a0bc:	movb   $0x0,0x150(%rsp)
+   24ad4a0c4:	movq   $0x0,0x158(%rsp)
+   24ad4a0d0:	call   24ae1aeb0 <_ZN2gd28try_native_resolved_propertyERNS_9BattleCtxEPNS_5GdObjEjRNS_5GdValE>
+   24ad4a0d5:	test   %al,%al
+   24ad4a0d7:	jne    24ad4b311 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1651>
+   24ad4a0dd:	movzbl 0xb0(%rsp),%eax
+   24ad4a0e5:	nopl   (%rax)
+   24ad4a0e8:	cmp    $0x9,%al
+   24ad4a0ea:	jne    24ad49f23 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x263>
+   24ad4a0f0:	mov    0xb8(%rsp),%rcx
+   24ad4a0f8:	test   %rcx,%rcx
+   24ad4a0fb:	je     24ad4a137 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x477>
+   24ad4a0fd:	mov    0x38(%rsp),%rax
+   24ad4a102:	cmpb   $0x0,0x117(%rax)
+   24ad4a109:	je     24ad4ab46 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xe86>
+   24ad4a10f:	movb   $0x0,0x150(%rsp)
+   24ad4a117:	movq   $0x0,0x158(%rsp)
+   24ad4a123:	mov    (%rcx),%rax
+   24ad4a126:	mov    0x20(%rax),%rax
+   24ad4a12a:	cmp    0x35e63f(%rip),%rax        # 24b0a8770 <.refptr._ZNK50Gd__gd_core__CoreItem__INNER__CoreElectricalCharge8get_propEjRN2gd5GdValE>
+   24ad4a131:	jne    24ad4ab88 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xec8>
+   24ad4a137:	mov    0x38(%rsp),%rax
+   24ad4a13c:	cmpq   $0x0,0x28(%rax)
+   24ad4a141:	jne    24ad4bc60 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1fa0>
+   24ad4a147:	mov    0x38(%rsp),%rax
+   24ad4a14c:	movabs $0xaaaaaaaaaaaaaaab,%r8
+   24ad4a156:	mov    0x8(%rax),%rcx
+   24ad4a15a:	mov    0x20(%rax),%rdx
+   24ad4a15e:	mov    0x10(%rax),%rax
+   24ad4a162:	mov    %rax,0x48(%rsp)
+   24ad4a167:	sub    %rcx,%rax
+   24ad4a16a:	sar    $0x3,%rax
+   24ad4a16e:	imul   %r8,%rax
+   24ad4a172:	cmp    %rax,%rdx
+   24ad4a175:	jae    24ad4bf05 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2245>
+   24ad4a17b:	imul   $0x18,%rdx,%rdx
+   24ad4a17f:	add    %rdx,%rcx
+   24ad4a182:	mov    0x10(%rcx),%rax
+   24ad4a186:	add    $0x7,%rax
+   24ad4a18a:	and    $0xfffffffffffffff8,%rax
+   24ad4a18e:	lea    0x20(%rax),%rdx
+   24ad4a192:	cmp    %rdx,0x8(%rcx)
+   24ad4a196:	jb     24ad4bf05 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2245>
+   24ad4a19c:	mov    %rdx,0x10(%rcx)
+   24ad4a1a0:	add    (%rcx),%rax
+   24ad4a1a3:	jmp    24ad4bc6d <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1fad>
+   24ad4a1a8:	cmp    $0x6,%al
+   24ad4a1aa:	je     24ad4bf70 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x22b0>
+   24ad4a1b0:	xor    %r15d,%r15d
+   24ad4a1b3:	movb   $0x0,0xd0(%rsp)
+   24ad4a1bb:	mov    %r15,0xd8(%rsp)
+   24ad4a1c3:	lea    0x150(%rsp),%rsi
+   24ad4a1cb:	lea    0xb0(%rsp),%rdx
+   24ad4a1d3:	lea    0xd0(%rsp),%r8
+   24ad4a1db:	mov    %rsi,%rcx
+   24ad4a1de:	call   24ad4db10 <_ZN2gd5gd_inERKNS_5GdValES2_>
+   24ad4a1e3:	movzbl 0x150(%rsp),%edx
+   24ad4a1eb:	movzbl 0x158(%rsp),%eax
+   24ad4a1f3:	cmp    $0x1,%dl
+   24ad4a1f6:	jne    24ad4b847 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1b87>
+   24ad4a1fc:	test   %al,%al
+   24ad4a1fe:	je     24ad49e73 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1b3>
+   24ad4a204:	inc    %r13
+   24ad4a207:	cmp    $0x4,%r13
+   24ad4a20b:	jne    24ad49ff7 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x337>
+   24ad4a211:	nopl   0x0(%rax)
+   24ad4a218:	xor    %esi,%esi
+   24ad4a21a:	xor    %edi,%edi
+   24ad4a21c:	mov    0x200(%rsp),%rbx
+   24ad4a224:	cmpb   $0x0,0xac(%rsp,%rsi,1)
+   24ad4a22c:	jne    24ad4a249 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x589>
+   24ad4a22e:	inc    %rsi
+   24ad4a231:	cmp    $0x4,%rsi
+   24ad4a235:	je     24ad4a374 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x6b4>
+   24ad4a23b:	add    $0x18,%rdi
+   24ad4a23f:	cmpb   $0x0,0xac(%rsp,%rsi,1)
+   24ad4a247:	je     24ad4a22e <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x56e>
+   24ad4a249:	mov    0xc0(%rsp),%rax
+   24ad4a251:	vmovdqa 0xb0(%rsp),%xmm0
+   24ad4a25a:	movb   $0x2,0x188(%rsp)
+   24ad4a262:	mov    %rsi,0x190(%rsp)
+   24ad4a26a:	mov    %rax,0x180(%rsp)
+   24ad4a272:	movzbl 0x638(%r12),%eax
+   24ad4a27b:	vmovdqa %xmm0,0x170(%rsp)
+   24ad4a284:	cmp    $0x7,%al
+   24ad4a286:	jne    24ad4b6cc <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1a0c>
+   24ad4a28c:	mov    0x640(%r12),%rax
+   24ad4a294:	test   %rax,%rax
+   24ad4a297:	je     24ad4b99b <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1cdb>
+   24ad4a29d:	mov    0x8(%rax),%edx
+   24ad4a2a0:	cmp    %rdx,%rsi
+   24ad4a2a3:	jae    24ad4b99b <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1cdb>
+   24ad4a2a9:	mov    (%rax),%rcx
+   24ad4a2ac:	lea    0x150(%rsp),%r13
+   24ad4a2b4:	add    %rdi,%rcx
+   24ad4a2b7:	movzbl (%rcx),%edx
+   24ad4a2ba:	mov    0x8(%rcx),%rbp
+   24ad4a2be:	movb   $0x1,0x150(%rsp)
+   24ad4a2c6:	movq   $0x1,0x158(%rsp)
+   24ad4a2d2:	cmp    $0x7,%dl
+   24ad4a2d5:	je     24ad4b658 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1998>
+   24ad4a2db:	cmp    $0x8,%dl
+   24ad4a2de:	jne    24ad4c091 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x23d1>
+   24ad4a2e4:	test   %rbp,%rbp
+   24ad4a2e7:	je     24ad4a301 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x641>
+   24ad4a2e9:	mov    0x38(%rsp),%rdx
+   24ad4a2ee:	mov    %r13,%r9
+   24ad4a2f1:	lea    0xb0(%rsp),%r8
+   24ad4a2f9:	mov    %rbp,%rcx
+   24ad4a2fc:	call   24ad05680 <_ZN2gd6GdDict3setERNS_11BattleArenaERKNS_5GdValES5_>
+   24ad4a301:	lea    0x170(%rsp),%rax
+   24ad4a309:	movl   $0x2,0x28(%rsp)
+   24ad4a311:	mov    0x38(%rsp),%rdx
+   24ad4a316:	lea    0x70(%rsp),%rcx
+   24ad4a31b:	mov    %rax,0x20(%rsp)
+   24ad4a320:	mov    $0x218,%r9d
+   24ad4a326:	mov    %r13,%r8
+   24ad4a329:	movb   $0x9,0x150(%rsp)
+   24ad4a331:	mov    %r12,0x158(%rsp)
+   24ad4a339:	call   24acfb130 <_ZN2gd11call_methodERNS_9BattleCtxERKNS_5GdValEjPS3_i>
+   24ad4a33e:	jmp    24ad4a22e <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x56e>
+   24ad4a343:	lea    0x170(%rsp),%rcx
+   24ad4a34b:	xor    %r9d,%r9d
+   24ad4a34e:	xor    %r8d,%r8d
+   24ad4a351:	call   *%rax
+   24ad4a353:	movzbl 0x170(%rsp),%edx
+   24ad4a35b:	movzbl 0x178(%rsp),%eax
+   24ad4a363:	cmp    $0x1,%dl
+   24ad4a366:	jne    24ad4b72d <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1a6d>
+   24ad4a36c:	test   %al,%al
+   24ad4a36e:	je     24ad49d86 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xc6>
+   24ad4a374:	movb   $0x0,(%rbx)
+   24ad4a377:	mov    %rbx,%rax
+   24ad4a37a:	movq   $0x0,0x8(%rbx)
+   24ad4a382:	vmovaps 0x1a0(%rsp),%xmm6
+   24ad4a38b:	add    $0x1b8,%rsp
+   24ad4a392:	pop    %rbx
+   24ad4a393:	pop    %rsi
+   24ad4a394:	pop    %rdi
+   24ad4a395:	pop    %rbp
+   24ad4a396:	pop    %r12
+   24ad4a398:	pop    %r13
+   24ad4a39a:	pop    %r14
+   24ad4a39c:	pop    %r15
+   24ad4a39e:	ret
+   24ad4a39f:	nop
+   24ad4a3a0:	movabs $0x9e3779b97f4a7c15,%rax
+   24ad4a3aa:	movabs $0x278dde6e5,%rdx
+   24ad4a3b4:	mov    0x10(%rdi),%r14
+   24ad4a3b8:	add    %r13,%rax
+   24ad4a3bb:	xor    %rdx,%rax
+   24ad4a3be:	movabs $0xbf58476d1ce4e5b9,%rdx
+   24ad4a3c8:	imul   %rdx,%rax
+   24ad4a3cc:	mov    %rax,%rdx
+   24ad4a3cf:	shr    $0x1b,%rdx
+   24ad4a3d3:	xor    %rdx,%rax
+   24ad4a3d6:	movabs $0x94d049bb133111eb,%rdx
+   24ad4a3e0:	imul   %rdx,%rax
+   24ad4a3e4:	mov    %rax,%rbp
+   24ad4a3e7:	shr    $0x1f,%rbp
+   24ad4a3eb:	xor    %rax,%rbp
+   24ad4a3ee:	test   %r14,%r14
+   24ad4a3f1:	je     24ad4a55a <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x89a>
+   24ad4a3f7:	mov    0x18(%rdi),%r15d
+   24ad4a3fb:	test   %r15d,%r15d
+   24ad4a3fe:	je     24ad4a55a <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x89a>
+   24ad4a404:	js     24ad4b74d <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1a8d>
+   24ad4a40a:	dec    %r15d
+   24ad4a40d:	mov    %r15d,%r8d
+   24ad4a410:	and    %ebp,%r8d
+   24ad4a413:	mov    %r8d,%eax
+   24ad4a416:	mov    (%r14,%rax,4),%eax
+   24ad4a41a:	test   %eax,%eax
+   24ad4a41c:	js     24ad49fe0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x320>
+   24ad4a422:	imul   $0x38,%rax,%rax
+   24ad4a426:	mov    (%rdi),%r9
+   24ad4a429:	lea    (%r9,%rax,1),%rbx
+   24ad4a42d:	cmp    0x30(%rbx),%rbp
+   24ad4a431:	jne    24ad4b421 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1761>
+   24ad4a437:	lea    0x188(%rsp),%rdx
+   24ad4a43f:	mov    %rbx,%rcx
+   24ad4a442:	mov    %r9,0x50(%rsp)
+   24ad4a447:	mov    %r8d,0x48(%rsp)
+   24ad4a44c:	call   24acffd70 <_ZN2gd5gd_eqERKNS_5GdValES2_>
+   24ad4a451:	mov    0x48(%rsp),%r8d
+   24ad4a456:	mov    0x50(%rsp),%r9
+   24ad4a45b:	test   %al,%al
+   24ad4a45d:	je     24ad4b421 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1761>
+   24ad4a463:	movzbl 0x18(%rbx),%r14d
+   24ad4a468:	mov    0x20(%rbx),%rdi
+   24ad4a46c:	cmp    $0x7,%r14b
+   24ad4a470:	jne    24ad49f01 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x241>
+   24ad4a476:	test   %rdi,%rdi
+   24ad4a479:	je     24ad4a488 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x7c8>
+   24ad4a47b:	mov    0x8(%rdi),%r11d
+   24ad4a47f:	test   %r11d,%r11d
+   24ad4a482:	je     24ad49fe0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x320>
+   24ad4a488:	mov    $0x7,%r14d
+   24ad4a48e:	jmp    24ad49f01 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x241>
+   24ad4a493:	nopl   0x0(%rax,%rax,1)
+   24ad4a498:	movabs $0x9e3779b97f4a7c15,%rax
+   24ad4a4a2:	movabs $0x278dde6e5,%rdx
+   24ad4a4ac:	mov    0x10(%rsi),%r14
+   24ad4a4b0:	add    %r13,%rax
+   24ad4a4b3:	xor    %rdx,%rax
+   24ad4a4b6:	movabs $0xbf58476d1ce4e5b9,%rdx
+   24ad4a4c0:	imul   %rdx,%rax
+   24ad4a4c4:	mov    %rax,%rdx
+   24ad4a4c7:	shr    $0x1b,%rdx
+   24ad4a4cb:	xor    %rdx,%rax
+   24ad4a4ce:	movabs $0x94d049bb133111eb,%rdx
+   24ad4a4d8:	imul   %rdx,%rax
+   24ad4a4dc:	mov    %rax,%rbp
+   24ad4a4df:	shr    $0x1f,%rbp
+   24ad4a4e3:	xor    %rax,%rbp
+   24ad4a4e6:	test   %r14,%r14
+   24ad4a4e9:	jne    24ad4ac2d <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xf6d>
+   24ad4a4ef:	test   %edi,%edi
+   24ad4a4f1:	je     24ad4a534 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x874>
+   24ad4a4f3:	mov    (%rsi),%r8
+   24ad4a4f6:	cmp    0x30(%r8),%rbp
+   24ad4a4fa:	je     24ad4b2e8 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1628>
+   24ad4a500:	cmp    $0x1,%edi
+   24ad4a503:	je     24ad4a534 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x874>
+   24ad4a505:	cmp    0x68(%r8),%rbp
+   24ad4a509:	je     24ad4b5c2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1902>
+   24ad4a50f:	cmp    $0x2,%edi
+   24ad4a512:	je     24ad4a534 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x874>
+   24ad4a514:	lea    0x70(%r8),%r15
+   24ad4a518:	mov    $0x2,%r14d
+   24ad4a51e:	cmp    %rbp,0x30(%r15)
+   24ad4a522:	je     24ad4b54c <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x188c>
+   24ad4a528:	inc    %r14d
+   24ad4a52b:	add    $0x38,%r15
+   24ad4a52f:	cmp    %r14d,%edi
+   24ad4a532:	jne    24ad4a51e <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x85e>
+   24ad4a534:	lea    0x150(%rsp),%rax
+   24ad4a53c:	vmovdqu (%rax),%xmm0
+   24ad4a540:	mov    0x10(%rax),%rax
+   24ad4a544:	vmovdqa %xmm0,0xd0(%rsp)
+   24ad4a54d:	mov    %rax,0xe0(%rsp)
+   24ad4a555:	jmp    24ad4a07c <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x3bc>
+   24ad4a55a:	mov    0x8(%rdi),%ebx
+   24ad4a55d:	test   %ebx,%ebx
+   24ad4a55f:	je     24ad49fe0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x320>
+   24ad4a565:	mov    (%rdi),%r14
+   24ad4a568:	cmp    0x30(%r14),%rbp
+   24ad4a56c:	je     24ad4b49c <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x17dc>
+   24ad4a572:	cmp    $0x1,%ebx
+   24ad4a575:	je     24ad49fe0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x320>
+   24ad4a57b:	cmp    0x68(%r14),%rbp
+   24ad4a57f:	je     24ad4b578 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x18b8>
+   24ad4a585:	cmp    $0x2,%ebx
+   24ad4a588:	je     24ad49fe0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x320>
+   24ad4a58e:	add    $0x70,%r14
+   24ad4a592:	mov    $0x2,%r15d
+   24ad4a598:	cmp    %rbp,0x30(%r14)
+   24ad4a59c:	je     24ad4b50f <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x184f>
+   24ad4a5a2:	inc    %r15d
+   24ad4a5a5:	add    $0x38,%r14
+   24ad4a5a9:	cmp    %ebx,%r15d
+   24ad4a5ac:	jne    24ad4a598 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x8d8>
+   24ad4a5ae:	xor    %eax,%eax
+   24ad4a5b0:	jmp    24ad49fe2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x322>
+   24ad4a5b5:	nopl   (%rax)
+   24ad4a5b8:	movb   $0x7,0x110(%rsp)
+   24ad4a5c0:	mov    0x120(%rsp),%rax
+   24ad4a5c8:	mov    %rax,0x160(%rsp)
+   24ad4a5d0:	vmovdqa 0x110(%rsp),%xmm0
+   24ad4a5d9:	vmovdqa %xmm0,0x150(%rsp)
+   24ad4a5e2:	mov    0x158(%rsp),%rdx
+   24ad4a5ea:	test   %rdx,%rdx
+   24ad4a5ed:	je     24ad49fe0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x320>
+   24ad4a5f3:	mov    0x8(%rdx),%eax
+   24ad4a5f6:	test   %eax,%eax
+   24ad4a5f8:	je     24ad49fe0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x320>
+   24ad4a5fe:	mov    (%rdx),%rbx
+   24ad4a601:	lea    (%rax,%rax,2),%rax
+   24ad4a605:	lea    (%rbx,%rax,8),%rbp
+   24ad4a609:	cmp    $0x7,%r14b
+   24ad4a60d:	jne    24ad4a7e1 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xb21>
+   24ad4a613:	test   %rdi,%rdi
+   24ad4a616:	je     24ad4bdfa <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x213a>
+   24ad4a61c:	mov    0x8(%rdi),%esi
+   24ad4a61f:	test   %esi,%esi
+   24ad4a621:	je     24ad49fd0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x310>
+   24ad4a627:	mov    (%rdi),%r15
+   24ad4a62a:	mov    %rbx,%rdx
+   24ad4a62d:	mov    %r15,%rcx
+   24ad4a630:	call   24acffd70 <_ZN2gd5gd_eqERKNS_5GdValES2_>
+   24ad4a635:	test   %al,%al
+   24ad4a637:	jne    24ad49fe2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x322>
+   24ad4a63d:	cmp    $0x1,%esi
+   24ad4a640:	je     24ad4aa20 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xd60>
+   24ad4a646:	lea    0x18(%r15),%rcx
+   24ad4a64a:	mov    %rbx,%rdx
+   24ad4a64d:	call   24acffd70 <_ZN2gd5gd_eqERKNS_5GdValES2_>
+   24ad4a652:	test   %al,%al
+   24ad4a654:	jne    24ad49fe2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x322>
+   24ad4a65a:	cmp    $0x2,%esi
+   24ad4a65d:	je     24ad4aa20 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xd60>
+   24ad4a663:	lea    0x30(%r15),%rcx
+   24ad4a667:	mov    %rbx,%rdx
+   24ad4a66a:	call   24acffd70 <_ZN2gd5gd_eqERKNS_5GdValES2_>
+   24ad4a66f:	test   %al,%al
+   24ad4a671:	jne    24ad49fe2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x322>
+   24ad4a677:	cmp    $0x3,%esi
+   24ad4a67a:	je     24ad4aa20 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xd60>
+   24ad4a680:	lea    -0x4(%rsi),%eax
+   24ad4a683:	lea    (%rax,%rax,2),%rax
+   24ad4a687:	lea    0x60(%r15,%rax,8),%rsi
+   24ad4a68c:	add    $0x48,%r15
+   24ad4a690:	mov    %rbx,%rdx
+   24ad4a693:	mov    %r15,%rcx
+   24ad4a696:	call   24acffd70 <_ZN2gd5gd_eqERKNS_5GdValES2_>
+   24ad4a69b:	test   %al,%al
+   24ad4a69d:	jne    24ad49fe2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x322>
+   24ad4a6a3:	add    $0x18,%r15
+   24ad4a6a7:	cmp    %r15,%rsi
+   24ad4a6aa:	jne    24ad4a690 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x9d0>
+   24ad4a6ac:	add    $0x18,%rbx
+   24ad4a6b0:	cmp    %rbp,%rbx
+   24ad4a6b3:	je     24ad49fe0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x320>
+   24ad4a6b9:	cmp    $0x7,%r14b
+   24ad4a6bd:	je     24ad4a613 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x953>
+   24ad4a6c3:	test   %rdi,%rdi
+   24ad4a6c6:	je     24ad4bde7 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2127>
+   24ad4a6cc:	mov    0x10(%rdi),%r15
+   24ad4a6d0:	movzbl (%rbx),%edx
+   24ad4a6d3:	cmp    $0xb,%dl
+   24ad4a6d6:	ja     24ad4abe0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xf20>
+   24ad4a6dc:	lea    0x31dbfd(%rip),%rcx        # 24b0682e0 <.rdata+0xc0>
+   24ad4a6e3:	movzbl %dl,%eax
+   24ad4a6e6:	movslq (%rcx,%rax,4),%rax
+   24ad4a6ea:	add    %rcx,%rax
+   24ad4a6ed:	jmp    *%rax
+   24ad4a6ef:	movabs $0x9e3779b97f4a7c15,%rax
+   24ad4a6f9:	add    0x8(%rbx),%rax
+   24ad4a6fd:	mov    %rax,%rdx
+   24ad4a700:	movabs $0x94d049bb133111eb,%rcx
+   24ad4a70a:	shr    $0x1e,%rdx
+   24ad4a70e:	xor    %rax,%rdx
+   24ad4a711:	movabs $0xbf58476d1ce4e5b9,%rax
+   24ad4a71b:	imul   %rax,%rdx
+   24ad4a71f:	mov    %rdx,%rax
+   24ad4a722:	shr    $0x1b,%rax
+   24ad4a726:	xor    %rdx,%rax
+   24ad4a729:	imul   %rcx,%rax
+   24ad4a72d:	mov    %rax,%rsi
+   24ad4a730:	shr    $0x1f,%rsi
+   24ad4a734:	xor    %rax,%rsi
+   24ad4a737:	test   %r15,%r15
+   24ad4a73a:	jne    24ad4aa38 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xd78>
+   24ad4a740:	mov    0x8(%rdi),%r10d
+   24ad4a744:	test   %r10d,%r10d
+   24ad4a747:	je     24ad4ab20 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xe60>
+   24ad4a74d:	mov    (%rdi),%r8
+   24ad4a750:	cmp    %rsi,0x30(%r8)
+   24ad4a754:	je     24ad4ae60 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x11a0>
+   24ad4a75a:	cmp    $0x1,%r10d
+   24ad4a75e:	je     24ad4ab20 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xe60>
+   24ad4a764:	cmp    0x68(%r8),%rsi
+   24ad4a768:	je     24ad4aec0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1200>
+   24ad4a76e:	cmp    $0x2,%r10d
+   24ad4a772:	je     24ad4ad40 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1080>
+   24ad4a778:	add    $0x70,%r8
+   24ad4a77c:	mov    $0x2,%r11d
+   24ad4a782:	mov    %r10d,%r15d
+   24ad4a785:	cmp    %rsi,0x30(%r8)
+   24ad4a789:	je     24ad4a7a1 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xae1>
+   24ad4a78b:	inc    %r11d
+   24ad4a78e:	cmp    %r11d,%r15d
+   24ad4a791:	je     24ad4a6ac <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x9ec>
+   24ad4a797:	add    $0x38,%r8
+   24ad4a79b:	cmp    %rsi,0x30(%r8)
+   24ad4a79f:	jne    24ad4a78b <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xacb>
+   24ad4a7a1:	mov    %r8,%rcx
+   24ad4a7a4:	mov    %rbx,%rdx
+   24ad4a7a7:	mov    %r11d,0x50(%rsp)
+   24ad4a7ac:	mov    %r8,0x48(%rsp)
+   24ad4a7b1:	call   24acffd70 <_ZN2gd5gd_eqERKNS_5GdValES2_>
+   24ad4a7b6:	mov    0x48(%rsp),%r8
+   24ad4a7bb:	mov    0x50(%rsp),%r11d
+   24ad4a7c0:	test   %al,%al
+   24ad4a7c2:	je     24ad4a78b <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xacb>
+   24ad4a7c4:	mov    %r11d,%eax
+   24ad4a7c7:	not    %eax
+   24ad4a7c9:	shr    $0x1f,%eax
+   24ad4a7cc:	test   %al,%al
+   24ad4a7ce:	jne    24ad49fe2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x322>
+   24ad4a7d4:	add    $0x18,%rbx
+   24ad4a7d8:	cmp    %rbp,%rbx
+   24ad4a7db:	je     24ad49fe2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x322>
+   24ad4a7e1:	cmp    $0x8,%r14b
+   24ad4a7e5:	je     24ad4a6c3 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xa03>
+   24ad4a7eb:	cmp    $0x6,%r14b
+   24ad4a7ef:	jne    24ad4b824 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1b64>
+   24ad4a7f5:	cmpb   $0x6,(%rbx)
+   24ad4a7f8:	jne    24ad4b810 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1b50>
+   24ad4a7fe:	test   %rdi,%rdi
+   24ad4a801:	je     24ad4b810 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1b50>
+   24ad4a807:	mov    0x8(%rbx),%rdx
+   24ad4a80b:	test   %rdx,%rdx
+   24ad4a80e:	je     24ad4b810 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1b50>
+   24ad4a814:	mov    0x8(%rdx),%esi
+   24ad4a817:	mov    0x8(%rdi),%eax
+   24ad4a81a:	mov    (%rdi),%r11
+   24ad4a81d:	mov    (%rdx),%rdx
+   24ad4a820:	test   %rsi,%rsi
+   24ad4a823:	je     24ad4aa0f <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xd4f>
+   24ad4a829:	test   %rax,%rax
+   24ad4a82c:	je     24ad4b810 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1b50>
+   24ad4a832:	movsbl (%rdx),%r9d
+   24ad4a836:	mov    $0x1,%r8d
+   24ad4a83c:	mov    %r11,0x60(%rsp)
+   24ad4a841:	lea    (%r11,%rax,1),%r15
+   24ad4a845:	sub    %rsi,%r8
+   24ad4a848:	mov    %r13,0x48(%rsp)
+   24ad4a84d:	mov    %r11,%rcx
+   24ad4a850:	mov    %rdx,%r13
+   24ad4a853:	mov    %r8,0x50(%rsp)
+   24ad4a858:	mov    %r9d,0x58(%rsp)
+   24ad4a85d:	cmp    %rsi,%rax
+   24ad4a860:	jb     24ad4a881 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xbc1>
+   24ad4a862:	mov    0x50(%rsp),%r8
+   24ad4a867:	add    %rax,%r8
+   24ad4a86a:	je     24ad4a881 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xbc1>
+   24ad4a86c:	mov    0x58(%rsp),%edx
+   24ad4a870:	call   24acdc620 <memchr>
+   24ad4a875:	mov    %rax,%rcx
+   24ad4a878:	test   %rax,%rax
+   24ad4a87b:	jne    24ad4b9c6 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1d06>
+   24ad4a881:	mov    0x48(%rsp),%r13
+   24ad4a886:	mov    $0xffffffffffffffff,%rcx
+   24ad4a88d:	inc    %rcx
+   24ad4a890:	setne  %al
+   24ad4a893:	jmp    24ad4a7cc <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xb0c>
+   24ad4a898:	nopl   0x0(%rax,%rax,1)
+   24ad4a8a0:	mov    0x8(%rbx),%rax
+   24ad4a8a4:	test   %rax,%rax
+   24ad4a8a7:	je     24ad4be0a <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x214a>
+   24ad4a8ad:	mov    0xc(%rax),%eax
+   24ad4a8b0:	movabs $0x9e3779b97f4a7c15,%rcx
+   24ad4a8ba:	add    %rcx,%rax
+   24ad4a8bd:	jmp    24ad4a6fd <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xa3d>
+   24ad4a8c2:	mov    $0x1234567,%esi
+   24ad4a8c7:	test   %r15,%r15
+   24ad4a8ca:	je     24ad4a740 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xa80>
+   24ad4a8d0:	mov    0x18(%rdi),%eax
+   24ad4a8d3:	test   %eax,%eax
+   24ad4a8d5:	je     24ad4a740 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xa80>
+   24ad4a8db:	jns    24ad4aa49 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xd89>
+   24ad4a8e1:	cmp    $0x4,%dl
+   24ad4a8e4:	jne    24ad4beaf <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x21ef>
+   24ad4a8ea:	mov    0x8(%rbx),%rdx
+   24ad4a8ee:	movabs $0x7fffffffffffffff,%rax
+   24ad4a8f8:	mov    %rdx,%rcx
+   24ad4a8fb:	and    %rax,%rcx
+   24ad4a8fe:	je     24ad4bbd9 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1f19>
+   24ad4a904:	shr    $0x34,%rcx
+   24ad4a908:	je     24ad4bc41 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1f81>
+   24ad4a90e:	cmp    $0x7ff,%rcx
+   24ad4a915:	je     24ad4bc41 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1f81>
+   24ad4a91b:	test   %rdx,%rdx
+   24ad4a91e:	js     24ad4bc33 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1f73>
+   24ad4a924:	lea    -0x3ff(%rcx),%eax
+   24ad4a92a:	cmp    $0x3,%eax
+   24ad4a92d:	ja     24ad4bc26 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1f66>
+   24ad4a933:	mov    $0x433,%eax
+   24ad4a938:	sub    %ecx,%eax
+   24ad4a93a:	movabs $0xfffffffffffff,%rcx
+   24ad4a944:	and    %rcx,%rdx
+   24ad4a947:	bts    $0x34,%rdx
+   24ad4a94c:	bzhi   %rax,%rdx,%rcx
+   24ad4a951:	test   %rcx,%rcx
+   24ad4a954:	jne    24ad4bc04 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1f44>
+   24ad4a95a:	mov    $0x1,%r8d
+   24ad4a960:	shrx   %rax,%rdx,%rdx
+   24ad4a965:	mov    0x10(%rbx),%rcx
+   24ad4a969:	mov    %rcx,%rax
+   24ad4a96c:	btr    $0x3f,%rax
+   24ad4a971:	test   %rax,%rax
+   24ad4a974:	je     24ad4bbf3 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1f33>
+   24ad4a97a:	shr    $0x34,%rax
+   24ad4a97e:	je     24ad4beaf <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x21ef>
+   24ad4a984:	cmp    $0x7ff,%rax
+   24ad4a98a:	je     24ad4beaf <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x21ef>
+   24ad4a990:	test   %rcx,%rcx
+   24ad4a993:	js     24ad4ab0e <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xe4e>
+   24ad4a999:	lea    -0x3ff(%rax),%r9d
+   24ad4a9a0:	cmp    $0x3,%r9d
+   24ad4a9a4:	ja     24ad4ab0e <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xe4e>
+   24ad4a9aa:	mov    $0x433,%r9d
+   24ad4a9b0:	sub    %eax,%r9d
+   24ad4a9b3:	movabs $0xfffffffffffff,%rax
+   24ad4a9bd:	and    %rcx,%rax
+   24ad4a9c0:	bts    $0x34,%rax
+   24ad4a9c5:	bzhi   %r9,%rax,%rcx
+   24ad4a9ca:	test   %rcx,%rcx
+   24ad4a9cd:	jne    24ad4ab0e <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xe4e>
+   24ad4a9d3:	test   %r8d,%r8d
+   24ad4a9d6:	je     24ad4beaf <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x21ef>
+   24ad4a9dc:	cmp    $0x2,%r8d
+   24ad4a9e0:	je     24ad4ab20 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xe60>
+   24ad4a9e6:	shrx   %r9,%rax,%rax
+   24ad4a9eb:	shl    $0x4,%eax
+   24ad4a9ee:	add    %edx,%eax
+   24ad4a9f0:	mov    %eax,%eax
+   24ad4a9f2:	mov    (%r15,%rax,4),%eax
+   24ad4a9f6:	test   %eax,%eax
+   24ad4a9f8:	js     24ad4ad40 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1080>
+   24ad4a9fe:	imul   $0x38,%rax,%rax
+   24ad4aa02:	add    (%rdi),%rax
+   24ad4aa05:	cmp    %rsi,0x30(%rax)
+   24ad4aa09:	jne    24ad4ab20 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xe60>
+   24ad4aa0f:	mov    $0x1,%eax
+   24ad4aa14:	jmp    24ad49fe2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x322>
+   24ad4aa19:	nopl   0x0(%rax)
+   24ad4aa20:	add    $0x18,%rbx
+   24ad4aa24:	cmp    %rbp,%rbx
+   24ad4aa27:	jne    24ad4a61c <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x95c>
+   24ad4aa2d:	jmp    24ad49fe2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x322>
+   24ad4aa32:	nopw   0x0(%rax,%rax,1)
+   24ad4aa38:	mov    0x18(%rdi),%eax
+   24ad4aa3b:	test   %eax,%eax
+   24ad4aa3d:	je     24ad4a740 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xa80>
+   24ad4aa43:	js     24ad4beaf <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x21ef>
+   24ad4aa49:	lea    -0x1(%rax),%r8d
+   24ad4aa4d:	mov    %r8d,%r10d
+   24ad4aa50:	and    %esi,%r10d
+   24ad4aa53:	mov    %r10d,%eax
+   24ad4aa56:	mov    (%r15,%rax,4),%eax
+   24ad4aa5a:	test   %eax,%eax
+   24ad4aa5c:	js     24ad4ab20 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xe60>
+   24ad4aa62:	mov    %eax,%ecx
+   24ad4aa64:	mov    (%rdi),%r11
+   24ad4aa67:	imul   $0x38,%rcx,%rcx
+   24ad4aa6b:	add    %r11,%rcx
+   24ad4aa6e:	cmp    0x30(%rcx),%rsi
+   24ad4aa72:	jne    24ad4aaa2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xde2>
+   24ad4aa74:	mov    %rbx,%rdx
+   24ad4aa77:	mov    %r11,0x58(%rsp)
+   24ad4aa7c:	mov    %r8d,0x50(%rsp)
+   24ad4aa81:	mov    %r10d,0x48(%rsp)
+   24ad4aa86:	call   24acffd70 <_ZN2gd5gd_eqERKNS_5GdValES2_>
+   24ad4aa8b:	mov    0x48(%rsp),%r10d
+   24ad4aa90:	mov    0x50(%rsp),%r8d
+   24ad4aa95:	test   %al,%al
+   24ad4aa97:	mov    0x58(%rsp),%r11
+   24ad4aa9c:	jne    24ad49fe2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x322>
+   24ad4aaa2:	inc    %r10d
+   24ad4aaa5:	and    %r8d,%r10d
+   24ad4aaa8:	mov    %r10d,%eax
+   24ad4aaab:	mov    (%r15,%rax,4),%eax
+   24ad4aaaf:	test   %eax,%eax
+   24ad4aab1:	js     24ad4ad40 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1080>
+   24ad4aab7:	mov    %rdi,0x48(%rsp)
+   24ad4aabc:	mov    %r10d,%edi
+   24ad4aabf:	mov    %rbp,0x50(%rsp)
+   24ad4aac4:	mov    %r13,%rbp
+   24ad4aac7:	mov    %r15,%r13
+   24ad4aaca:	mov    %rbx,%r15
+   24ad4aacd:	mov    %r12,0x208(%rsp)
+   24ad4aad5:	mov    %r11,%rbx
+   24ad4aad8:	mov    %r8d,%r12d
+   24ad4aadb:	mov    %eax,%ecx
+   24ad4aadd:	imul   $0x38,%rcx,%rcx
+   24ad4aae1:	add    %rbx,%rcx
+   24ad4aae4:	cmp    %rsi,0x30(%rcx)
+   24ad4aae8:	jne    24ad4b3f0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1730>
+   24ad4aaee:	mov    %r15,%rdx
+   24ad4aaf1:	call   24acffd70 <_ZN2gd5gd_eqERKNS_5GdValES2_>
+   24ad4aaf6:	test   %al,%al
+   24ad4aaf8:	je     24ad4b3f0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1730>
+   24ad4aafe:	mov    0x208(%rsp),%r12
+   24ad4ab06:	mov    %rbp,%r13
+   24ad4ab09:	jmp    24ad49fe2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x322>
+   24ad4ab0e:	test   %r8d,%r8d
+   24ad4ab11:	je     24ad4beaf <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x21ef>
+   24ad4ab17:	nopw   0x0(%rax,%rax,1)
+   24ad4ab20:	add    $0x18,%rbx
+   24ad4ab24:	cmp    %rbp,%rbx
+   24ad4ab27:	je     24ad49fe0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x320>
+   24ad4ab2d:	cmp    $0x7,%r14b
+   24ad4ab31:	je     24ad4a61c <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x95c>
+   24ad4ab37:	cmp    $0x8,%r14b
+   24ad4ab3b:	je     24ad4a6d0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xa10>
+   24ad4ab41:	jmp    24ad4a7eb <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xb2b>
+   24ad4ab46:	mov    %rcx,%rdx
+   24ad4ab49:	mov    0x38(%rsp),%rcx
+   24ad4ab4e:	call   24a310460 <_ZN2gd27native_timer_observe_objectERNS_9BattleCtxEPKNS_5GdObjE.part.0>
+   24ad4ab53:	movb   $0x0,0x150(%rsp)
+   24ad4ab5b:	mov    0xb8(%rsp),%rcx
+   24ad4ab63:	xor    %r10d,%r10d
+   24ad4ab66:	mov    %r10,0x158(%rsp)
+   24ad4ab6e:	lea    0x1250bb(%rip),%rdx        # 24ae6fc30 <_ZNK50Gd__gd_core__CoreItem__INNER__CoreElectricalCharge8get_propEjRN2gd5GdValE>
+   24ad4ab75:	mov    (%rcx),%rax
+   24ad4ab78:	mov    0x20(%rax),%rax
+   24ad4ab7c:	cmp    %rdx,%rax
+   24ad4ab7f:	je     24ad4a137 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x477>
+   24ad4ab85:	nopl   (%rax)
+   24ad4ab88:	mov    %rsi,%r8
+   24ad4ab8b:	mov    $0x99,%edx
+   24ad4ab90:	call   *%rax
+   24ad4ab92:	test   %al,%al
+   24ad4ab94:	je     24ad4a137 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x477>
+   24ad4ab9a:	mov    0x160(%rsp),%rax
+   24ad4aba2:	vmovdqa 0x150(%rsp),%xmm0
+   24ad4abab:	mov    %rax,0x120(%rsp)
+   24ad4abb3:	movzbl 0x150(%rsp),%eax
+   24ad4abbb:	vmovdqa %xmm0,0x110(%rsp)
+   24ad4abc4:	cmp    $0xb,%al
+   24ad4abc6:	ja     24ad4a137 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x477>
+   24ad4abcc:	lea    0x31d73d(%rip),%rcx        # 24b068310 <.rdata+0xf0>
+   24ad4abd3:	movzbl %al,%edx
+   24ad4abd6:	movslq (%rcx,%rdx,4),%rdx
+   24ad4abda:	add    %rcx,%rdx
+   24ad4abdd:	jmp    *%rdx
+   24ad4abdf:	nop
+   24ad4abe0:	movabs $0x9e3779b97f4a7c15,%rax
+   24ad4abea:	add    0x8(%rbx),%rax
+   24ad4abee:	mov    %rax,%rcx
+   24ad4abf1:	shr    $0x1e,%rcx
+   24ad4abf5:	xor    %rax,%rcx
+   24ad4abf8:	movabs $0xbf58476d1ce4e5b9,%rax
+   24ad4ac02:	imul   %rax,%rcx
+   24ad4ac06:	mov    %rcx,%rax
+   24ad4ac09:	shr    $0x1b,%rax
+   24ad4ac0d:	xor    %rcx,%rax
+   24ad4ac10:	movabs $0x94d049bb133111eb,%rcx
+   24ad4ac1a:	imul   %rcx,%rax
+   24ad4ac1e:	mov    %rax,%rsi
+   24ad4ac21:	shr    $0x1f,%rsi
+   24ad4ac25:	xor    %rax,%rsi
+   24ad4ac28:	jmp    24ad4a8c7 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xc07>
+   24ad4ac2d:	mov    0x18(%rsi),%r15d
+   24ad4ac31:	test   %r15d,%r15d
+   24ad4ac34:	je     24ad4a4ef <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x82f>
+   24ad4ac3a:	test   %r15d,%r15d
+   24ad4ac3d:	js     24ad4b631 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1971>
+   24ad4ac43:	dec    %r15d
+   24ad4ac46:	mov    %r15d,%ebx
+   24ad4ac49:	and    %ebp,%ebx
+   24ad4ac4b:	mov    %ebx,%eax
+   24ad4ac4d:	mov    (%r14,%rax,4),%edi
+   24ad4ac51:	test   %edi,%edi
+   24ad4ac53:	js     24ad4a534 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x874>
+   24ad4ac59:	imul   $0x38,%rdi,%rcx
+   24ad4ac5d:	mov    (%rsi),%r9
+   24ad4ac60:	add    %r9,%rcx
+   24ad4ac63:	cmp    0x30(%rcx),%rbp
+   24ad4ac67:	jne    24ad4b4b8 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x17f8>
+   24ad4ac6d:	lea    0x188(%rsp),%rdx
+   24ad4ac75:	mov    %r9,0x48(%rsp)
+   24ad4ac7a:	call   24acffd70 <_ZN2gd5gd_eqERKNS_5GdValES2_>
+   24ad4ac7f:	mov    0x48(%rsp),%r9
+   24ad4ac84:	test   %al,%al
+   24ad4ac86:	je     24ad4b4b8 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x17f8>
+   24ad4ac8c:	imul   $0x38,%rdi,%rdi
+   24ad4ac90:	add    (%rsi),%rdi
+   24ad4ac93:	lea    0x18(%rdi),%rax
+   24ad4ac97:	jmp    24ad4a53c <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x87c>
+   24ad4ac9c:	cmpb   $0x0,0xd1(%rcx)
+   24ad4aca3:	jne    24ad4af08 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1248>
+   24ad4aca9:	mov    0x38(%rsp),%rcx
+   24ad4acae:	mov    0x8(%rbp),%rax
+   24ad4acb2:	movzbl 0xd2(%rcx),%edx
+   24ad4acb9:	test   %rax,%rax
+   24ad4acbc:	je     24ad4af26 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1266>
+   24ad4acc2:	mov    0x88(%rax),%rbp
+   24ad4acc9:	cmp    $0xffffffffffffffff,%rbp
+   24ad4accd:	je     24ad4af26 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1266>
+   24ad4acd3:	test   %dl,%dl
+   24ad4acd5:	jne    24ad4b538 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1878>
+   24ad4acdb:	mov    0xb8(%rsp),%rax
+   24ad4ace3:	add    %rbp,%rax
+   24ad4ace6:	vmovdqu (%rax),%xmm0
+   24ad4acea:	mov    0x10(%rax),%rdx
+   24ad4acee:	movzbl (%rax),%eax
+   24ad4acf1:	mov    %rdx,0x120(%rsp)
+   24ad4acf9:	vmovdqa %xmm0,0x110(%rsp)
+   24ad4ad02:	jmp    24ad49fb3 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2f3>
+   24ad4ad07:	cmpl   $0x0,0x18(%rsi)
+   24ad4ad0b:	je     24ad49e6b <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1ab>
+   24ad4ad11:	lea    0xb0(%rsp),%rcx
+   24ad4ad19:	call   24ad06350 <_ZN2gd11gd_val_hashERKNS_5GdValE>
+   24ad4ad1e:	lea    0xb0(%rsp),%rdx
+   24ad4ad26:	mov    %rsi,%rcx
+   24ad4ad29:	mov    %rax,%r8
+   24ad4ad2c:	call   24ad06550 <_ZNK2gd6GdDict10find_indexERKNS_5GdValEy>
+   24ad4ad31:	test   %eax,%eax
+   24ad4ad33:	js     24ad49e6b <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1ab>
+   24ad4ad39:	jmp    24ad4a204 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x544>
+   24ad4ad3e:	xchg   %ax,%ax
+   24ad4ad40:	add    $0x18,%rbx
+   24ad4ad44:	cmp    %rbp,%rbx
+   24ad4ad47:	je     24ad49fe0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x320>
+   24ad4ad4d:	cmp    $0x7,%r14b
+   24ad4ad51:	je     24ad4a61c <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x95c>
+   24ad4ad57:	jmp    24ad4a6c3 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xa03>
+   24ad4ad5c:	cmp    $0xb,%al
+   24ad4ad5e:	jne    24ad4a137 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x477>
+   24ad4ad64:	mov    0xb8(%rsp),%rbp
+   24ad4ad6c:	test   %rbp,%rbp
+   24ad4ad6f:	je     24ad4a137 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x477>
+   24ad4ad75:	mov    $0x99,%ecx
+   24ad4ad7a:	movq   $0x0,0x150(%rsp)
+   24ad4ad86:	call   24ad00790 <_ZN2gd8sym_nameEj>
+   24ad4ad8b:	mov    %rax,%rcx
+   24ad4ad8e:	mov    %rax,%r15
+   24ad4ad91:	call   24acdc550 <strlen>
+   24ad4ad96:	lea    0x90(%rsp),%rdx
+   24ad4ad9e:	mov    %rsi,%r8
+   24ad4ada1:	mov    %rbp,%rcx
+   24ad4ada4:	mov    %rax,0x90(%rsp)
+   24ad4adac:	mov    %r15,0x98(%rsp)
+   24ad4adb4:	call   24ad00920 <_ZNK2gd6GdEnum3getESt17basic_string_viewIcSt11char_traitsIcEERx>
+   24ad4adb9:	test   %al,%al
+   24ad4adbb:	je     24ad4a137 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x477>
+   24ad4adc1:	mov    0x150(%rsp),%rax
+   24ad4adc9:	mov    %rax,0x118(%rsp)
+   24ad4add1:	mov    %rax,%rbp
+   24ad4add4:	test   %rbp,%rbp
+   24ad4add7:	jle    24ad4b3de <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x171e>
+   24ad4addd:	mov    0x38(%rsp),%rbx
+   24ad4ade2:	mov    %ebp,%edx
+   24ad4ade4:	mov    $0x1,%r15d
+   24ad4adea:	mov    %rbx,%rcx
+   24ad4aded:	call   24acf5f40 <_ZN2gd5GdArr6createERNS_11BattleArenaEj>
+   24ad4adf2:	mov    %rsi,%r8
+   24ad4adf5:	mov    %rbx,%rdx
+   24ad4adf8:	movb   $0x2,0x150(%rsp)
+   24ad4ae00:	mov    %rax,%rcx
+   24ad4ae03:	mov    %rax,0x48(%rsp)
+   24ad4ae08:	movq   $0x0,0x158(%rsp)
+   24ad4ae14:	call   24ad03d90 <_ZN2gd5GdArr9push_backERNS_11BattleArenaERKNS_5GdValE>
+   24ad4ae19:	cmp    $0x1,%rbp
+   24ad4ae1d:	mov    0x48(%rsp),%rax
+   24ad4ae22:	je     24ad4b0eb <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x142b>
+   24ad4ae28:	mov    %rax,%rbx
+   24ad4ae2b:	mov    0x38(%rsp),%rdx
+   24ad4ae30:	mov    %r15,0x158(%rsp)
+   24ad4ae38:	mov    %rsi,%r8
+   24ad4ae3b:	mov    %rbx,%rcx
+   24ad4ae3e:	inc    %r15
+   24ad4ae41:	movb   $0x2,0x150(%rsp)
+   24ad4ae49:	call   24ad03d90 <_ZN2gd5GdArr9push_backERNS_11BattleArenaERKNS_5GdValE>
+   24ad4ae4e:	cmp    %r15,%rbp
+   24ad4ae51:	jne    24ad4ae2b <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x116b>
+   24ad4ae53:	mov    %rbx,%rax
+   24ad4ae56:	jmp    24ad4b0eb <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x142b>
+   24ad4ae5b:	nopl   0x0(%rax,%rax,1)
+   24ad4ae60:	mov    %r8,%rcx
+   24ad4ae63:	mov    %rbx,%rdx
+   24ad4ae66:	mov    %r10d,0x50(%rsp)
+   24ad4ae6b:	mov    %r8,0x48(%rsp)
+   24ad4ae70:	call   24acffd70 <_ZN2gd5gd_eqERKNS_5GdValES2_>
+   24ad4ae75:	mov    0x48(%rsp),%r8
+   24ad4ae7a:	mov    0x50(%rsp),%r10d
+   24ad4ae7f:	test   %al,%al
+   24ad4ae81:	jne    24ad49fe2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x322>
+   24ad4ae87:	cmp    $0x1,%r10d
+   24ad4ae8b:	jne    24ad4a764 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xaa4>
+   24ad4ae91:	add    $0x18,%rbx
+   24ad4ae95:	cmp    %rbp,%rbx
+   24ad4ae98:	je     24ad49fe2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x322>
+   24ad4ae9e:	cmp    $0x7,%r14b
+   24ad4aea2:	je     24ad4a61c <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x95c>
+   24ad4aea8:	cmp    $0x8,%r14b
+   24ad4aeac:	je     24ad4a6cc <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xa0c>
+   24ad4aeb2:	jmp    24ad4a7eb <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xb2b>
+   24ad4aeb7:	nopw   0x0(%rax,%rax,1)
+   24ad4aec0:	lea    0x38(%r8),%rcx
+   24ad4aec4:	mov    %rbx,%rdx
+   24ad4aec7:	mov    %r10d,0x50(%rsp)
+   24ad4aecc:	mov    %r8,0x48(%rsp)
+   24ad4aed1:	call   24acffd70 <_ZN2gd5gd_eqERKNS_5GdValES2_>
+   24ad4aed6:	mov    0x48(%rsp),%r8
+   24ad4aedb:	mov    0x50(%rsp),%r10d
+   24ad4aee0:	test   %al,%al
+   24ad4aee2:	jne    24ad49fe2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x322>
+   24ad4aee8:	cmp    $0x2,%r10d
+   24ad4aeec:	jne    24ad4a778 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xab8>
+   24ad4aef2:	add    $0x18,%rbx
+   24ad4aef6:	cmp    %rbp,%rbx
+   24ad4aef9:	jne    24ad4ad4d <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x108d>
+   24ad4aeff:	jmp    24ad49fe2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x322>
+   24ad4af04:	nopl   0x0(%rax)
+   24ad4af08:	mov    %rdx,%rcx
+   24ad4af0b:	call   24ae1b200 <_ZN2gdL25native_resolved_exact_rowEPKNS_5GdObjE.lto_priv.0>
+   24ad4af10:	cmp    %rax,%rbp
+   24ad4af13:	je     24ad4aca9 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xfe9>
+   24ad4af19:	mov    0xb8(%rsp),%rdx
+   24ad4af21:	jmp    24ad4a0ae <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x3ee>
+   24ad4af26:	test   %dl,%dl
+   24ad4af28:	jne    24ad4b340 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1680>
+   24ad4af2e:	mov    0x38(%rsp),%rdx
+   24ad4af33:	lea    0x110(%rsp),%rcx
+   24ad4af3b:	mov    $0x99,%r9d
+   24ad4af41:	lea    0xb0(%rsp),%r8
+   24ad4af49:	call   24ad00040 <_ZN2gd8get_propERNS_9BattleCtxERKNS_5GdValEj>
+   24ad4af4e:	movzbl 0x110(%rsp),%eax
+   24ad4af56:	jmp    24ad49fb3 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2f3>
+   24ad4af5b:	cmp    $0x2,%al
+   24ad4af5d:	jne    24ad4c1ae <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x24ee>
+   24ad4af63:	mov    0x118(%rsp),%rbp
+   24ad4af6b:	jmp    24ad4add4 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1114>
+   24ad4af70:	mov    0x8(%rbx),%rcx
+   24ad4af74:	vxorpd %xmm0,%xmm0,%xmm0
+   24ad4af78:	vmovq  %rcx,%xmm2
+   24ad4af7d:	vucomisd %xmm0,%xmm2
+   24ad4af81:	jp     24ad4af8c <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x12cc>
+   24ad4af83:	vmovq  %xmm0,%rax
+   24ad4af88:	cmove  %rax,%rcx
+   24ad4af8c:	mov    0x10(%rbx),%rax
+   24ad4af90:	vxorpd %xmm0,%xmm0,%xmm0
+   24ad4af94:	vmovq  %rax,%xmm5
+   24ad4af99:	vucomisd %xmm0,%xmm5
+   24ad4af9d:	jp     24ad4afa8 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x12e8>
+   24ad4af9f:	vmovq  %xmm0,%rsi
+   24ad4afa4:	cmove  %rsi,%rax
+   24ad4afa8:	movabs $0x9e3779b97f4a7c15,%r8
+   24ad4afb2:	movabs $0xbf58476d1ce4e5b9,%r11
+   24ad4afbc:	add    %r8,%rax
+   24ad4afbf:	add    %r8,%rcx
+   24ad4afc2:	mov    %rcx,%r9
+   24ad4afc5:	mov    %rax,%r10
+   24ad4afc8:	shr    $0x1e,%r9
+   24ad4afcc:	shr    $0x1e,%r10
+   24ad4afd0:	xor    %r9,%rcx
+   24ad4afd3:	xor    %rax,%r10
+   24ad4afd6:	imul   %r11,%rcx
+   24ad4afda:	imul   %r11,%r10
+   24ad4afde:	mov    %rcx,%r9
+   24ad4afe1:	mov    %r10,%rax
+   24ad4afe4:	shr    $0x1b,%r9
+   24ad4afe8:	shr    $0x1b,%rax
+   24ad4afec:	xor    %r9,%rcx
+   24ad4afef:	movabs $0x94d049bb133111eb,%r9
+   24ad4aff9:	xor    %r10,%rax
+   24ad4affc:	imul   %r9,%rcx
+   24ad4b000:	imul   %r9,%rax
+   24ad4b004:	mov    %rax,%rsi
+   24ad4b007:	shr    $0x1f,%rsi
+   24ad4b00b:	xor    %rax,%rsi
+   24ad4b00e:	mov    %rcx,%rax
+   24ad4b011:	imul   %r8,%rsi
+   24ad4b015:	shr    $0x1f,%rax
+   24ad4b019:	xor    %rcx,%rax
+   24ad4b01c:	xor    %rax,%rsi
+   24ad4b01f:	jmp    24ad4a8c7 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xc07>
+   24ad4b024:	movzbl 0x8(%rbx),%eax
+   24ad4b028:	movabs $0x9e3779b97f4a7c15,%rcx
+   24ad4b032:	add    %rcx,%rax
+   24ad4b035:	movabs $0x278dde6e5,%rcx
+   24ad4b03f:	xor    %rcx,%rax
+   24ad4b042:	movabs $0xbf58476d1ce4e5b9,%rcx
+   24ad4b04c:	imul   %rcx,%rax
+   24ad4b050:	mov    %rax,%rcx
+   24ad4b053:	shr    $0x1b,%rcx
+   24ad4b057:	jmp    24ad4ac0d <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xf4d>
+   24ad4b05c:	vmovsd 0x8(%rbx),%xmm0
+   24ad4b061:	vmovsd 0x31e017(%rip),%xmm2        # 24b069080 <_ZN12_GLOBAL__N_1L22battle_string_literalsE.lto_priv.7+0x760>
+   24ad4b069:	vandpd 0x31dfff(%rip),%xmm0,%xmm1        # 24b069070 <_ZN12_GLOBAL__N_1L22battle_string_literalsE.lto_priv.7+0x750>
+   24ad4b071:	vucomisd %xmm1,%xmm2
+   24ad4b075:	jb     24ad4c14a <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x248a>
+   24ad4b07b:	vcomisd 0x31e005(%rip),%xmm0        # 24b069088 <_ZN12_GLOBAL__N_1L22battle_string_literalsE.lto_priv.7+0x768>
+   24ad4b083:	jb     24ad4c167 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x24a7>
+   24ad4b089:	vmovsd 0x31dfff(%rip),%xmm1        # 24b069090 <_ZN12_GLOBAL__N_1L22battle_string_literalsE.lto_priv.7+0x770>
+   24ad4b091:	vcomisd %xmm0,%xmm1
+   24ad4b095:	jb     24ad4c167 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x24a7>
+   24ad4b09b:	vcvttsd2si %xmm0,%rax
+   24ad4b0a0:	vxorpd %xmm5,%xmm5,%xmm5
+   24ad4b0a4:	vcvtsi2sd %rax,%xmm5,%xmm1
+   24ad4b0a9:	vucomisd %xmm1,%xmm0
+   24ad4b0ad:	jp     24ad4c14a <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x248a>
+   24ad4b0b3:	jne    24ad4c14a <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x248a>
+   24ad4b0b9:	movabs $0x9e3779b97f4a7c15,%rcx
+   24ad4b0c3:	add    %rcx,%rax
+   24ad4b0c6:	jmp    24ad4abee <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xf2e>
+   24ad4b0cb:	nopl   0x0(%rax,%rax,1)
+   24ad4b0d0:	mov    0x118(%rsp),%rcx
+   24ad4b0d8:	test   %rcx,%rcx
+   24ad4b0db:	je     24ad4a137 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x477>
+   24ad4b0e1:	mov    0x38(%rsp),%rdx
+   24ad4b0e6:	call   24ad59fc0 <_ZNK2gd6GdDict4keysERNS_11BattleArenaE>
+   24ad4b0eb:	mov    %rax,0x158(%rsp)
+   24ad4b0f3:	mov    %rax,%rdx
+   24ad4b0f6:	test   %rax,%rax
+   24ad4b0f9:	jne    24ad4a5f3 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x933>
+   24ad4b0ff:	xor    %eax,%eax
+   24ad4b101:	jmp    24ad49fe2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x322>
+   24ad4b106:	vmovsd 0x118(%rsp),%xmm0
+   24ad4b10f:	vxorpd %xmm1,%xmm1,%xmm1
+   24ad4b113:	vcomisd %xmm1,%xmm0
+   24ad4b117:	jbe    24ad4bbb2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1ef2>
+   24ad4b11d:	vroundsd $0xa,%xmm0,%xmm0,%xmm0
+   24ad4b123:	vcvttsd2si %xmm0,%r15
+   24ad4b128:	xor    %edx,%edx
+   24ad4b12a:	test   %r15,%r15
+   24ad4b12d:	cmovg  %r15d,%edx
+   24ad4b131:	mov    0x38(%rsp),%rcx
+   24ad4b136:	xor    %ebp,%ebp
+   24ad4b138:	call   24acf5f40 <_ZN2gd5GdArr6createERNS_11BattleArenaEj>
+   24ad4b13d:	mov    %rax,%rbx
+   24ad4b140:	cmp    %r15,%rbp
+   24ad4b143:	jge    24ad4ae53 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1193>
+   24ad4b149:	mov    0x38(%rsp),%rdx
+   24ad4b14e:	mov    %rsi,%r8
+   24ad4b151:	mov    %rbx,%rcx
+   24ad4b154:	mov    %rbp,0x158(%rsp)
+   24ad4b15c:	movb   $0x2,0x150(%rsp)
+   24ad4b164:	inc    %rbp
+   24ad4b167:	call   24ad03d90 <_ZN2gd5GdArr9push_backERNS_11BattleArenaERKNS_5GdValE>
+   24ad4b16c:	jmp    24ad4b140 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1480>
+   24ad4b16e:	mov    0x118(%rsp),%rbp
+   24ad4b176:	test   %rbp,%rbp
+   24ad4b179:	je     24ad4a137 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x477>
+   24ad4b17f:	mov    0x38(%rsp),%rbx
+   24ad4b184:	mov    0x8(%rbp),%edx
+   24ad4b187:	xor    %r15d,%r15d
+   24ad4b18a:	mov    %rbx,%rcx
+   24ad4b18d:	call   24acf5f40 <_ZN2gd5GdArr6createERNS_11BattleArenaEj>
+   24ad4b192:	mov    %rdi,0x50(%rsp)
+   24ad4b197:	mov    %r12,0x208(%rsp)
+   24ad4b19f:	mov    %r13,0x48(%rsp)
+   24ad4b1a4:	mov    %rax,%r13
+   24ad4b1a7:	cmp    0x8(%rbp),%r15d
+   24ad4b1ab:	jae    24ad4c130 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2470>
+   24ad4b1b1:	cmpq   $0x0,0x28(%rbx)
+   24ad4b1b6:	mov    0x0(%rbp),%r12
+   24ad4b1ba:	jne    24ad4c11b <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x245b>
+   24ad4b1c0:	mov    0x8(%rbx),%rax
+   24ad4b1c4:	mov    0x10(%rbx),%rdx
+   24ad4b1c8:	movabs $0xaaaaaaaaaaaaaaab,%rdi
+   24ad4b1d2:	mov    0x20(%rbx),%rcx
+   24ad4b1d6:	sub    %rax,%rdx
+   24ad4b1d9:	sar    $0x3,%rdx
+   24ad4b1dd:	imul   %rdi,%rdx
+   24ad4b1e1:	cmp    %rdx,%rcx
+   24ad4b1e4:	jae    24ad4c199 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x24d9>
+   24ad4b1ea:	imul   $0x18,%rcx,%rcx
+   24ad4b1ee:	add    %rcx,%rax
+   24ad4b1f1:	mov    0x10(%rax),%rdi
+   24ad4b1f5:	lea    0x7(%rdi),%r9
+   24ad4b1f9:	and    $0xfffffffffffffff8,%r9
+   24ad4b1fd:	lea    0x10(%r9),%rdx
+   24ad4b201:	cmp    %rdx,0x8(%rax)
+   24ad4b205:	jb     24ad4c199 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x24d9>
+   24ad4b20b:	mov    (%rax),%rdi
+   24ad4b20e:	mov    %rdx,0x10(%rax)
+   24ad4b212:	add    %r9,%rdi
+   24ad4b215:	xor    %ecx,%ecx
+   24ad4b217:	cmpq   $0x0,0x28(%rbx)
+   24ad4b21c:	mov    %rcx,(%rdi)
+   24ad4b21f:	mov    %rcx,0x8(%rdi)
+   24ad4b223:	jne    24ad4c181 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x24c1>
+   24ad4b229:	mov    0x8(%rbx),%rdx
+   24ad4b22d:	mov    0x10(%rbx),%rax
+   24ad4b231:	movabs $0xaaaaaaaaaaaaaaab,%r11
+   24ad4b23b:	mov    0x20(%rbx),%rcx
+   24ad4b23f:	sub    %rdx,%rax
+   24ad4b242:	sar    $0x3,%rax
+   24ad4b246:	imul   %r11,%rax
+   24ad4b24a:	cmp    %rax,%rcx
+   24ad4b24d:	jae    24ad4ba75 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1db5>
+   24ad4b253:	imul   $0x18,%rcx,%rcx
+   24ad4b257:	add    %rcx,%rdx
+   24ad4b25a:	mov    0x10(%rdx),%rax
+   24ad4b25e:	lea    0x2(%rax),%rcx
+   24ad4b262:	cmp    %rcx,0x8(%rdx)
+   24ad4b266:	jb     24ad4ba75 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1db5>
+   24ad4b26c:	mov    %rcx,0x10(%rdx)
+   24ad4b270:	add    (%rdx),%rax
+   24ad4b273:	mov    %r15d,%edx
+   24ad4b276:	mov    %rsi,%r8
+   24ad4b279:	mov    %r13,%rcx
+   24ad4b27c:	inc    %r15d
+   24ad4b27f:	movzbl (%r12,%rdx,1),%edx
+   24ad4b284:	movb   $0x0,0x1(%rax)
+   24ad4b288:	mov    %dl,(%rax)
+   24ad4b28a:	mov    %rbx,%rdx
+   24ad4b28d:	mov    %rax,(%rdi)
+   24ad4b290:	movl   $0x1,0x8(%rdi)
+   24ad4b297:	movzbl (%rax),%eax
+   24ad4b29a:	xor    $0x811c9dc5,%eax
+   24ad4b29f:	imul   $0x1000193,%eax,%eax
+   24ad4b2a5:	mov    %eax,0xc(%rdi)
+   24ad4b2a8:	movb   $0x6,0x150(%rsp)
+   24ad4b2b0:	mov    %rdi,0x158(%rsp)
+   24ad4b2b8:	call   24ad03d90 <_ZN2gd5GdArr9push_backERNS_11BattleArenaERKNS_5GdValE>
+   24ad4b2bd:	jmp    24ad4b1a7 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x14e7>
+   24ad4b2c2:	mov    0x118(%rsp),%rcx
+   24ad4b2ca:	test   %rcx,%rcx
+   24ad4b2cd:	je     24ad4a137 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x477>
+   24ad4b2d3:	mov    0x38(%rsp),%rdx
+   24ad4b2d8:	call   24ad03870 <_ZNK2gd6GdEnum8keys_arrERNS_11BattleArenaE>
+   24ad4b2dd:	jmp    24ad4b0eb <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x142b>
+   24ad4b2e2:	nopw   0x0(%rax,%rax,1)
+   24ad4b2e8:	mov    %r8,%rcx
+   24ad4b2eb:	lea    0x188(%rsp),%rdx
+   24ad4b2f3:	mov    %r8,0x48(%rsp)
+   24ad4b2f8:	call   24acffd70 <_ZN2gd5gd_eqERKNS_5GdValES2_>
+   24ad4b2fd:	mov    0x48(%rsp),%r8
+   24ad4b302:	test   %al,%al
+   24ad4b304:	je     24ad4a500 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x840>
+   24ad4b30a:	xor    %edi,%edi
+   24ad4b30c:	jmp    24ad4ac8c <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xfcc>
+   24ad4b311:	vmovdqa 0x150(%rsp),%xmm0
+   24ad4b31a:	mov    0x160(%rsp),%rdx
+   24ad4b322:	movzbl 0x150(%rsp),%eax
+   24ad4b32a:	mov    %rdx,0x120(%rsp)
+   24ad4b332:	vmovdqa %xmm0,0x110(%rsp)
+   24ad4b33b:	jmp    24ad49fb3 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2f3>
+   24ad4b340:	mov    0x362bc9(%rip),%rcx        # 24b0adf10 <.refptr.__emutls_v._ZN2gdL22native_property_countsE.lto_priv.0>
+   24ad4b347:	call   24acd5e30 <__emutls_get_address>
+   24ad4b34c:	incq   0x8(%rax)
+   24ad4b350:	jmp    24ad4af2e <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x126e>
+   24ad4b355:	cmp    $0x8,%al
+   24ad4b357:	jne    24ad4a137 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x477>
+   24ad4b35d:	mov    0xb8(%rsp),%r15
+   24ad4b365:	test   %r15,%r15
+   24ad4b368:	je     24ad4a137 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x477>
+   24ad4b36e:	xor    %r9d,%r9d
+   24ad4b371:	mov    $0x99,%ecx
+   24ad4b376:	movb   $0x0,0x150(%rsp)
+   24ad4b37e:	mov    %r9,0x158(%rsp)
+   24ad4b386:	call   24ad00790 <_ZN2gd8sym_nameEj>
+   24ad4b38b:	mov    %rax,%rcx
+   24ad4b38e:	mov    %rax,%rbp
+   24ad4b391:	call   24acdc550 <strlen>
+   24ad4b396:	mov    0x38(%rsp),%rcx
+   24ad4b39b:	mov    %rbp,%rdx
+   24ad4b39e:	mov    %eax,%r8d
+   24ad4b3a1:	call   24acf5410 <_ZN2gd8make_strERNS_11BattleArenaEPKcj>
+   24ad4b3a6:	lea    0x110(%rsp),%rcx
+   24ad4b3ae:	mov    %rsi,%r9
+   24ad4b3b1:	lea    0x130(%rsp),%r8
+   24ad4b3b9:	mov    %r15,%rdx
+   24ad4b3bc:	mov    %rax,0x138(%rsp)
+   24ad4b3c4:	movb   $0x6,0x130(%rsp)
+   24ad4b3cc:	call   24ad19650 <_ZNK2gd6GdDict3getERKNS_5GdValES3_>
+   24ad4b3d1:	movzbl 0x110(%rsp),%eax
+   24ad4b3d9:	jmp    24ad49fb3 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2f3>
+   24ad4b3de:	mov    0x38(%rsp),%rcx
+   24ad4b3e3:	xor    %edx,%edx
+   24ad4b3e5:	call   24acf5f40 <_ZN2gd5GdArr6createERNS_11BattleArenaEj>
+   24ad4b3ea:	jmp    24ad4b0eb <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x142b>
+   24ad4b3ef:	nop
+   24ad4b3f0:	inc    %edi
+   24ad4b3f2:	and    %r12d,%edi
+   24ad4b3f5:	mov    %edi,%eax
+   24ad4b3f7:	mov    0x0(%r13,%rax,4),%eax
+   24ad4b3fc:	test   %eax,%eax
+   24ad4b3fe:	jns    24ad4aadb <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xe1b>
+   24ad4b404:	mov    %rbp,%r13
+   24ad4b407:	mov    0x48(%rsp),%rdi
+   24ad4b40c:	mov    0x50(%rsp),%rbp
+   24ad4b411:	mov    %r15,%rbx
+   24ad4b414:	mov    0x208(%rsp),%r12
+   24ad4b41c:	jmp    24ad4a6ac <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x9ec>
+   24ad4b421:	inc    %r8d
+   24ad4b424:	and    %r15d,%r8d
+   24ad4b427:	mov    %r8d,%eax
+   24ad4b42a:	mov    (%r14,%rax,4),%eax
+   24ad4b42e:	test   %eax,%eax
+   24ad4b430:	js     24ad49fe0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x320>
+   24ad4b436:	mov    %rsi,0x48(%rsp)
+   24ad4b43b:	mov    %r8d,%ebx
+   24ad4b43e:	mov    %r12,0x208(%rsp)
+   24ad4b446:	mov    %rdi,%r12
+   24ad4b449:	mov    %r9,%rdi
+   24ad4b44c:	mov    %eax,%esi
+   24ad4b44e:	imul   $0x38,%rsi,%rcx
+   24ad4b452:	add    %rdi,%rcx
+   24ad4b455:	cmp    %rbp,0x30(%rcx)
+   24ad4b459:	jne    24ad4b5ef <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x192f>
+   24ad4b45f:	lea    0x188(%rsp),%rdx
+   24ad4b467:	call   24acffd70 <_ZN2gd5gd_eqERKNS_5GdValES2_>
+   24ad4b46c:	test   %al,%al
+   24ad4b46e:	je     24ad4b5ef <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x192f>
+   24ad4b474:	mov    %r12,%rdi
+   24ad4b477:	mov    %rsi,%rbx
+   24ad4b47a:	mov    0x208(%rsp),%r12
+   24ad4b482:	mov    0x48(%rsp),%rsi
+   24ad4b487:	imul   $0x38,%rbx,%rax
+   24ad4b48b:	add    (%rdi),%rax
+   24ad4b48e:	movzbl 0x18(%rax),%r14d
+   24ad4b493:	mov    0x20(%rax),%rdi
+   24ad4b497:	jmp    24ad4a46c <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x7ac>
+   24ad4b49c:	lea    0x188(%rsp),%rdx
+   24ad4b4a4:	mov    %r14,%rcx
+   24ad4b4a7:	call   24acffd70 <_ZN2gd5gd_eqERKNS_5GdValES2_>
+   24ad4b4ac:	test   %al,%al
+   24ad4b4ae:	je     24ad4a572 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x8b2>
+   24ad4b4b4:	xor    %ebx,%ebx
+   24ad4b4b6:	jmp    24ad4b487 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x17c7>
+   24ad4b4b8:	inc    %ebx
+   24ad4b4ba:	and    %r15d,%ebx
+   24ad4b4bd:	mov    %ebx,%eax
+   24ad4b4bf:	mov    (%r14,%rax,4),%edi
+   24ad4b4c3:	test   %edi,%edi
+   24ad4b4c5:	js     24ad4a534 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x874>
+   24ad4b4cb:	mov    %r12,0x208(%rsp)
+   24ad4b4d3:	mov    %rsi,%r12
+   24ad4b4d6:	mov    %r9,%rsi
+   24ad4b4d9:	imul   $0x38,%rdi,%rcx
+   24ad4b4dd:	add    %rsi,%rcx
+   24ad4b4e0:	cmp    %rbp,0x30(%rcx)
+   24ad4b4e4:	jne    24ad4b611 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1951>
+   24ad4b4ea:	lea    0x188(%rsp),%rdx
+   24ad4b4f2:	call   24acffd70 <_ZN2gd5gd_eqERKNS_5GdValES2_>
+   24ad4b4f7:	test   %al,%al
+   24ad4b4f9:	je     24ad4b611 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1951>
+   24ad4b4ff:	mov    %r12,%rsi
+   24ad4b502:	mov    0x208(%rsp),%r12
+   24ad4b50a:	jmp    24ad4ac8c <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xfcc>
+   24ad4b50f:	lea    0x188(%rsp),%rdx
+   24ad4b517:	mov    %r14,%rcx
+   24ad4b51a:	call   24acffd70 <_ZN2gd5gd_eqERKNS_5GdValES2_>
+   24ad4b51f:	test   %al,%al
+   24ad4b521:	je     24ad4a5a2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x8e2>
+   24ad4b527:	test   %r15d,%r15d
+   24ad4b52a:	js     24ad49fe0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x320>
+   24ad4b530:	mov    %r15d,%ebx
+   24ad4b533:	jmp    24ad4b487 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x17c7>
+   24ad4b538:	mov    0x3629d1(%rip),%rcx        # 24b0adf10 <.refptr.__emutls_v._ZN2gdL22native_property_countsE.lto_priv.0>
+   24ad4b53f:	call   24acd5e30 <__emutls_get_address>
+   24ad4b544:	incq   (%rax)
+   24ad4b547:	jmp    24ad4acdb <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x101b>
+   24ad4b54c:	lea    0x188(%rsp),%rdx
+   24ad4b554:	mov    %r15,%rcx
+   24ad4b557:	call   24acffd70 <_ZN2gd5gd_eqERKNS_5GdValES2_>
+   24ad4b55c:	test   %al,%al
+   24ad4b55e:	je     24ad4a528 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x868>
+   24ad4b564:	mov    %r14d,%edi
+   24ad4b567:	test   %edi,%edi
+   24ad4b569:	jns    24ad4ac8c <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xfcc>
+   24ad4b56f:	jmp    24ad4a534 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x874>
+   24ad4b574:	nopl   0x0(%rax)
+   24ad4b578:	lea    0x188(%rsp),%rdx
+   24ad4b580:	lea    0x38(%r14),%rcx
+   24ad4b584:	call   24acffd70 <_ZN2gd5gd_eqERKNS_5GdValES2_>
+   24ad4b589:	test   %al,%al
+   24ad4b58b:	je     24ad4a585 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x8c5>
+   24ad4b591:	mov    $0x1,%ebx
+   24ad4b596:	jmp    24ad4b487 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x17c7>
+   24ad4b59b:	jbe    24ad49fe0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x320>
+   24ad4b5a1:	cmp    $0x2,%al
+   24ad4b5a3:	jne    24ad4b773 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1ab3>
+   24ad4b5a9:	cmpq   $0x0,0x158(%rsp)
+   24ad4b5b2:	setne  %al
+   24ad4b5b5:	test   %al,%al
+   24ad4b5b7:	jne    24ad49eac <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1ec>
+   24ad4b5bd:	jmp    24ad49fe2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x322>
+   24ad4b5c2:	lea    0x38(%r8),%rcx
+   24ad4b5c6:	lea    0x188(%rsp),%rdx
+   24ad4b5ce:	mov    %r8,0x48(%rsp)
+   24ad4b5d3:	call   24acffd70 <_ZN2gd5gd_eqERKNS_5GdValES2_>
+   24ad4b5d8:	mov    0x48(%rsp),%r8
+   24ad4b5dd:	test   %al,%al
+   24ad4b5df:	je     24ad4a50f <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x84f>
+   24ad4b5e5:	mov    $0x1,%edi
+   24ad4b5ea:	jmp    24ad4ac8c <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xfcc>
+   24ad4b5ef:	inc    %ebx
+   24ad4b5f1:	and    %r15d,%ebx
+   24ad4b5f4:	mov    %ebx,%eax
+   24ad4b5f6:	mov    (%r14,%rax,4),%eax
+   24ad4b5fa:	test   %eax,%eax
+   24ad4b5fc:	jns    24ad4b44c <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x178c>
+   24ad4b602:	mov    0x208(%rsp),%r12
+   24ad4b60a:	xor    %eax,%eax
+   24ad4b60c:	jmp    24ad49fe2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x322>
+   24ad4b611:	inc    %ebx
+   24ad4b613:	and    %r15d,%ebx
+   24ad4b616:	mov    %ebx,%eax
+   24ad4b618:	mov    (%r14,%rax,4),%edi
+   24ad4b61c:	test   %edi,%edi
+   24ad4b61e:	jns    24ad4b4d9 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1819>
+   24ad4b624:	mov    0x208(%rsp),%r12
+   24ad4b62c:	jmp    24ad4a534 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x874>
+   24ad4b631:	xor    %r14d,%r14d
+   24ad4b634:	cmp    %edi,%r14d
+   24ad4b637:	jae    24ad4a534 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x874>
+   24ad4b63d:	imul   $0x38,%r14,%rcx
+   24ad4b641:	add    (%rsi),%rcx
+   24ad4b644:	cmp    %rbp,0x30(%rcx)
+   24ad4b648:	je     24ad4be95 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x21d5>
+   24ad4b64e:	inc    %r14
+   24ad4b651:	jmp    24ad4b634 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1974>
+   24ad4b653:	nopl   0x0(%rax,%rax,1)
+   24ad4b658:	test   %rbp,%rbp
+   24ad4b65b:	je     24ad4a301 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x641>
+   24ad4b661:	movzbl 0xb0(%rsp),%eax
+   24ad4b669:	cmp    $0x2,%al
+   24ad4b66b:	jne    24ad4bb0c <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1e4c>
+   24ad4b671:	mov    0xb8(%rsp),%rax
+   24ad4b679:	mov    0x8(%rbp),%edx
+   24ad4b67c:	test   %rax,%rax
+   24ad4b67f:	js     24ad4bafe <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1e3e>
+   24ad4b685:	cmp    %rdx,%rax
+   24ad4b688:	jae    24ad4a301 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x641>
+   24ad4b68e:	mov    0x18(%rbp),%r14
+   24ad4b692:	lea    (%rax,%rax,2),%r15
+   24ad4b696:	movb   $0x0,0x138(%rsp)
+   24ad4b69e:	test   %r14,%r14
+   24ad4b6a1:	jne    24ad4ba8d <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1dcd>
+   24ad4b6a7:	mov    0x0(%rbp),%rax
+   24ad4b6ab:	vmovdqa 0x150(%rsp),%xmm0
+   24ad4b6b4:	vmovdqu %xmm0,(%rax,%r15,8)
+   24ad4b6ba:	mov    0x160(%rsp),%rdx
+   24ad4b6c2:	mov    %rdx,0x10(%rax,%r15,8)
+   24ad4b6c7:	jmp    24ad4a301 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x641>
+   24ad4b6cc:	cmp    $0x8,%al
+   24ad4b6ce:	jne    24ad4b881 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1bc1>
+   24ad4b6d4:	mov    0x640(%r12),%rbp
+   24ad4b6dc:	test   %rbp,%rbp
+   24ad4b6df:	je     24ad4b99b <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1cdb>
+   24ad4b6e5:	movb   $0x0,0x150(%rsp)
+   24ad4b6ed:	movq   $0x0,0x158(%rsp)
+   24ad4b6f9:	mov    0x8(%rbp),%eax
+   24ad4b6fc:	cmp    %rax,%rsi
+   24ad4b6ff:	jae    24ad4b788 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1ac8>
+   24ad4b705:	imul   $0x38,%rsi,%rax
+   24ad4b709:	add    0x0(%rbp),%rax
+   24ad4b70d:	cmpb   $0x2,(%rax)
+   24ad4b710:	jne    24ad4b788 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1ac8>
+   24ad4b712:	cmp    0x8(%rax),%rsi
+   24ad4b716:	jne    24ad4b788 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1ac8>
+   24ad4b718:	movzbl 0x18(%rax),%edx
+   24ad4b71c:	mov    0x20(%rax),%rbp
+   24ad4b720:	lea    0x150(%rsp),%r13
+   24ad4b728:	jmp    24ad4a2be <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x5fe>
+   24ad4b72d:	jbe    24ad49d86 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xc6>
+   24ad4b733:	cmp    $0x2,%dl
+   24ad4b736:	jne    24ad4beee <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x222e>
+   24ad4b73c:	cmpq   $0x0,0x178(%rsp)
+   24ad4b745:	setne  %al
+   24ad4b748:	jmp    24ad4a36c <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x6ac>
+   24ad4b74d:	xor    %r15d,%r15d
+   24ad4b750:	cmp    0x8(%rdi),%r15d
+   24ad4b754:	jae    24ad49fe0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x320>
+   24ad4b75a:	mov    %r15d,%ecx
+   24ad4b75d:	imul   $0x38,%rcx,%rcx
+   24ad4b761:	add    (%rdi),%rcx
+   24ad4b764:	cmp    %rbp,0x30(%rcx)
+   24ad4b768:	je     24ad4b867 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1ba7>
+   24ad4b76e:	inc    %r15d
+   24ad4b771:	jmp    24ad4b750 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1a90>
+   24ad4b773:	cmp    $0x3,%al
+   24ad4b775:	je     24ad4bbbc <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1efc>
+   24ad4b77b:	mov    %rsi,%rcx
+   24ad4b77e:	call   24ad13410 <_ZN2gd8gd_truthERKNS_5GdValE>
+   24ad4b783:	jmp    24ad4b5b5 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x18f5>
+   24ad4b788:	movabs $0x9e3779b97f4a7c15,%rax
+   24ad4b792:	movabs $0x278dde6e5,%rdx
+   24ad4b79c:	mov    %rbp,%rcx
+   24ad4b79f:	add    %rsi,%rax
+   24ad4b7a2:	xor    %rdx,%rax
+   24ad4b7a5:	movabs $0xbf58476d1ce4e5b9,%rdx
+   24ad4b7af:	imul   %rdx,%rax
+   24ad4b7b3:	mov    %rax,%rdx
+   24ad4b7b6:	shr    $0x1b,%rdx
+   24ad4b7ba:	xor    %rdx,%rax
+   24ad4b7bd:	movabs $0x94d049bb133111eb,%rdx
+   24ad4b7c7:	imul   %rdx,%rax
+   24ad4b7cb:	lea    0x188(%rsp),%rdx
+   24ad4b7d3:	mov    %rax,%r8
+   24ad4b7d6:	shr    $0x1f,%r8
+   24ad4b7da:	xor    %rax,%r8
+   24ad4b7dd:	call   24ad06550 <_ZNK2gd6GdDict10find_indexERKNS_5GdValEy>
+   24ad4b7e2:	test   %eax,%eax
+   24ad4b7e4:	js     24ad4bede <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x221e>
+   24ad4b7ea:	mov    %eax,%eax
+   24ad4b7ec:	lea    0x150(%rsp),%r13
+   24ad4b7f4:	imul   $0x38,%rax,%rax
+   24ad4b7f8:	add    0x0(%rbp),%rax
+   24ad4b7fc:	add    $0x18,%rax
+   24ad4b800:	movzbl (%rax),%edx
+   24ad4b803:	mov    0x8(%rax),%rbp
+   24ad4b807:	jmp    24ad4a2be <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x5fe>
+   24ad4b80c:	nopl   0x0(%rax)
+   24ad4b810:	add    $0x18,%rbx
+   24ad4b814:	cmp    %rbp,%rbx
+   24ad4b817:	jne    24ad4a7f5 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xb35>
+   24ad4b81d:	xor    %eax,%eax
+   24ad4b81f:	jmp    24ad49fe2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x322>
+   24ad4b824:	cmp    $0xb,%r14b
+   24ad4b828:	je     24ad4b9a8 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1ce8>
+   24ad4b82e:	add    $0x18,%rbx
+   24ad4b832:	cmp    %rbp,%rbx
+   24ad4b835:	je     24ad49fe0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x320>
+   24ad4b83b:	cmp    $0x7,%r14b
+   24ad4b83f:	je     24ad4a613 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x953>
+   24ad4b845:	jmp    24ad4b824 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1b64>
+   24ad4b847:	jbe    24ad49e73 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1b3>
+   24ad4b84d:	cmp    $0x2,%dl
+   24ad4b850:	jne    24ad4b9ee <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1d2e>
+   24ad4b856:	cmpq   $0x0,0x158(%rsp)
+   24ad4b85f:	setne  %al
+   24ad4b862:	jmp    24ad4a1fc <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x53c>
+   24ad4b867:	lea    0x188(%rsp),%rdx
+   24ad4b86f:	call   24acffd70 <_ZN2gd5gd_eqERKNS_5GdValES2_>
+   24ad4b874:	test   %al,%al
+   24ad4b876:	je     24ad4b76e <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1aae>
+   24ad4b87c:	jmp    24ad4b527 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1867>
+   24ad4b881:	lea    0x150(%rsp),%r13
+   24ad4b889:	cmp    $0x6,%al
+   24ad4b88b:	jne    24ad4a301 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x641>
+   24ad4b891:	mov    0x640(%r12),%rax
+   24ad4b899:	test   %rax,%rax
+   24ad4b89c:	je     24ad4a301 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x641>
+   24ad4b8a2:	mov    0x38(%rsp),%rcx
+   24ad4b8a7:	mov    0x28(%rcx),%rdx
+   24ad4b8ab:	cmp    0x8(%rax),%esi
+   24ad4b8ae:	jb     24ad4c25e <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x259e>
+   24ad4b8b4:	test   %rdx,%rdx
+   24ad4b8b7:	jne    24ad4c247 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2587>
+   24ad4b8bd:	mov    0x38(%rsp),%rdx
+   24ad4b8c2:	movabs $0xaaaaaaaaaaaaaaab,%r8
+   24ad4b8cc:	mov    0x8(%rdx),%rax
+   24ad4b8d0:	mov    0x20(%rdx),%rcx
+   24ad4b8d4:	mov    0x10(%rdx),%rdx
+   24ad4b8d8:	mov    %rdx,0x40(%rsp)
+   24ad4b8dd:	sub    %rax,%rdx
+   24ad4b8e0:	sar    $0x3,%rdx
+   24ad4b8e4:	imul   %r8,%rdx
+   24ad4b8e8:	cmp    %rdx,%rcx
+   24ad4b8eb:	jae    24ad4c230 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2570>
+   24ad4b8f1:	imul   $0x18,%rcx,%rcx
+   24ad4b8f5:	add    %rcx,%rax
+   24ad4b8f8:	mov    0x10(%rax),%rcx
+   24ad4b8fc:	lea    0x7(%rcx),%rbp
+   24ad4b900:	and    $0xfffffffffffffff8,%rbp
+   24ad4b904:	lea    0x10(%rbp),%rdx
+   24ad4b908:	cmp    %rdx,0x8(%rax)
+   24ad4b90c:	jb     24ad4c230 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2570>
+   24ad4b912:	mov    %rdx,0x10(%rax)
+   24ad4b916:	add    (%rax),%rbp
+   24ad4b919:	xor    %eax,%eax
+   24ad4b91b:	mov    %rax,0x0(%rbp)
+   24ad4b91f:	mov    %rax,0x8(%rbp)
+   24ad4b923:	mov    0x38(%rsp),%rax
+   24ad4b928:	cmpq   $0x0,0x28(%rax)
+   24ad4b92d:	jne    24ad4c218 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2558>
+   24ad4b933:	mov    0x38(%rsp),%rax
+   24ad4b938:	movabs $0xaaaaaaaaaaaaaaab,%r8
+   24ad4b942:	mov    0x8(%rax),%rdx
+   24ad4b946:	mov    0x20(%rax),%rcx
+   24ad4b94a:	mov    0x10(%rax),%rax
+   24ad4b94e:	mov    %rax,0x40(%rsp)
+   24ad4b953:	sub    %rdx,%rax
+   24ad4b956:	sar    $0x3,%rax
+   24ad4b95a:	imul   %r8,%rax
+   24ad4b95e:	cmp    %rax,%rcx
+   24ad4b961:	jae    24ad4c1fe <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x253e>
+   24ad4b967:	imul   $0x18,%rcx,%rcx
+   24ad4b96b:	add    %rcx,%rdx
+   24ad4b96e:	mov    0x10(%rdx),%rax
+   24ad4b972:	lea    0x1(%rax),%rcx
+   24ad4b976:	cmp    %rcx,0x8(%rdx)
+   24ad4b97a:	jb     24ad4c1fe <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x253e>
+   24ad4b980:	mov    %rcx,0x10(%rdx)
+   24ad4b984:	add    (%rdx),%rax
+   24ad4b987:	movb   $0x0,(%rax)
+   24ad4b98a:	mov    %rax,0x0(%rbp)
+   24ad4b98e:	mov    $0x811c9dc5,%eax
+   24ad4b993:	shl    $0x20,%rax
+   24ad4b997:	mov    %rax,0x8(%rbp)
+   24ad4b99b:	lea    0x150(%rsp),%r13
+   24ad4b9a3:	jmp    24ad4a301 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x641>
+   24ad4b9a8:	test   %rdi,%rdi
+   24ad4b9ab:	je     24ad4ba67 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1da7>
+   24ad4b9b1:	cmpb   $0x6,(%rbx)
+   24ad4b9b4:	je     24ad4ba2b <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1d6b>
+   24ad4b9b6:	add    $0x18,%rbx
+   24ad4b9ba:	cmp    %rbp,%rbx
+   24ad4b9bd:	jne    24ad4b9a8 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1ce8>
+   24ad4b9bf:	xor    %eax,%eax
+   24ad4b9c1:	jmp    24ad49fe2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x322>
+   24ad4b9c6:	mov    %rsi,%r8
+   24ad4b9c9:	mov    %r13,%rdx
+   24ad4b9cc:	mov    %rax,0x68(%rsp)
+   24ad4b9d1:	call   24acdc628 <memcmp>
+   24ad4b9d6:	mov    0x68(%rsp),%rcx
+   24ad4b9db:	test   %eax,%eax
+   24ad4b9dd:	jne    24ad4ba00 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1d40>
+   24ad4b9df:	mov    0x48(%rsp),%r13
+   24ad4b9e4:	sub    0x60(%rsp),%rcx
+   24ad4b9e9:	jmp    24ad4a88d <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xbcd>
+   24ad4b9ee:	cmp    $0x3,%dl
+   24ad4b9f1:	je     24ad4ba0e <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1d4e>
+   24ad4b9f3:	mov    %rsi,%rcx
+   24ad4b9f6:	call   24ad13410 <_ZN2gd8gd_truthERKNS_5GdValE>
+   24ad4b9fb:	jmp    24ad4a1fc <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x53c>
+   24ad4ba00:	inc    %rcx
+   24ad4ba03:	mov    %r15,%rax
+   24ad4ba06:	sub    %rcx,%rax
+   24ad4ba09:	jmp    24ad4a85d <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xb9d>
+   24ad4ba0e:	vxorpd %xmm0,%xmm0,%xmm0
+   24ad4ba12:	mov    $0x1,%edx
+   24ad4ba17:	vucomisd 0x158(%rsp),%xmm0
+   24ad4ba20:	setp   %al
+   24ad4ba23:	cmovne %edx,%eax
+   24ad4ba26:	jmp    24ad4a1fc <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x53c>
+   24ad4ba2b:	mov    0x8(%rbx),%rax
+   24ad4ba2f:	test   %rax,%rax
+   24ad4ba32:	je     24ad4b9b6 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1cf6>
+   24ad4ba34:	mov    0x8(%rax),%edx
+   24ad4ba37:	mov    (%rax),%rax
+   24ad4ba3a:	lea    0x130(%rsp),%r8
+   24ad4ba42:	mov    %rdi,%rcx
+   24ad4ba45:	mov    %rdx,0x90(%rsp)
+   24ad4ba4d:	lea    0x90(%rsp),%rdx
+   24ad4ba55:	mov    %rax,0x98(%rsp)
+   24ad4ba5d:	call   24ad00920 <_ZNK2gd6GdEnum3getESt17basic_string_viewIcSt11char_traitsIcEERx>
+   24ad4ba62:	jmp    24ad4a7cc <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xb0c>
+   24ad4ba67:	add    $0x18,%rbx
+   24ad4ba6b:	cmp    %rbp,%rbx
+   24ad4ba6e:	jne    24ad4ba67 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1da7>
+   24ad4ba70:	jmp    24ad49fe0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x320>
+   24ad4ba75:	mov    $0x1,%r8d
+   24ad4ba7b:	mov    $0x2,%edx
+   24ad4ba80:	mov    %rbx,%rcx
+   24ad4ba83:	call   24acf3570 <_ZN2gd11BattleArena14alloc_raw_slowEyy>
+   24ad4ba88:	jmp    24ad4b273 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x15b3>
+   24ad4ba8d:	mov    %r14,%rdx
+   24ad4ba90:	lea    0x130(%rsp),%rcx
+   24ad4ba98:	call   24a312090 <_ZN2gd19NativeTimerMutationC1EPNS_16NativeTimerWatchE.part.0.lto_priv.0>
+   24ad4ba9d:	mov    0x0(%rbp),%rax
+   24ad4baa1:	vmovdqa 0x150(%rsp),%xmm0
+   24ad4baaa:	cmpb   $0x0,0x138(%rsp)
+   24ad4bab2:	vmovdqu %xmm0,(%rax,%r15,8)
+   24ad4bab8:	mov    0x160(%rsp),%rdx
+   24ad4bac0:	mov    %rdx,0x10(%rax,%r15,8)
+   24ad4bac5:	je     24ad4bacb <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1e0b>
+   24ad4bac7:	decl   0x8(%r14)
+   24ad4bacb:	mov    (%r14),%rax
+   24ad4bace:	cmp    $0xffffffffffffffff,%rax
+   24ad4bad2:	je     24ad4bba8 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1ee8>
+   24ad4bad8:	inc    %rax
+   24ad4badb:	cmpb   $0x0,0xe(%r14)
+   24ad4bae0:	mov    %rax,(%r14)
+   24ad4bae3:	je     24ad4a301 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x641>
+   24ad4bae9:	mov    0x362440(%rip),%rcx        # 24b0adf30 <.refptr.__emutls_v._ZN2gdL25native_timer_index_countsE.lto_priv.0>
+   24ad4baf0:	call   24acd5e30 <__emutls_get_address>
+   24ad4baf5:	incq   0x30(%rax)
+   24ad4baf9:	jmp    24ad4a301 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x641>
+   24ad4bafe:	add    %rdx,%rax
+   24ad4bb01:	jns    24ad4b685 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x19c5>
+   24ad4bb07:	jmp    24ad4a301 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x641>
+   24ad4bb0c:	mov    0x18(%rbp),%rdx
+   24ad4bb10:	cmp    $0x3,%al
+   24ad4bb12:	je     24ad4bb7f <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1ebf>
+   24ad4bb14:	dec    %al
+   24ad4bb16:	je     24ad4bb61 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1ea1>
+   24ad4bb18:	lea    0x130(%rsp),%r15
+   24ad4bb20:	xor    %r14d,%r14d
+   24ad4bb23:	mov    %r15,%rcx
+   24ad4bb26:	call   24ad040d0 <_ZN2gd19NativeTimerMutationC1EPNS_16NativeTimerWatchE>
+   24ad4bb2b:	mov    0x8(%rbp),%eax
+   24ad4bb2e:	cmp    %rax,%r14
+   24ad4bb31:	jae    24ad4bb54 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1e94>
+   24ad4bb33:	imul   $0x18,%r14,%rax
+   24ad4bb37:	vmovdqa 0x150(%rsp),%xmm0
+   24ad4bb40:	add    0x0(%rbp),%rax
+   24ad4bb44:	vmovdqu %xmm0,(%rax)
+   24ad4bb48:	mov    0x160(%rsp),%rdx
+   24ad4bb50:	mov    %rdx,0x10(%rax)
+   24ad4bb54:	mov    %r15,%rcx
+   24ad4bb57:	call   24ad040f0 <_ZN2gd19NativeTimerMutationD1Ev>
+   24ad4bb5c:	jmp    24ad4a301 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x641>
+   24ad4bb61:	lea    0x130(%rsp),%r15
+   24ad4bb69:	movzbl 0xb8(%rsp),%r14d
+   24ad4bb72:	mov    %r15,%rcx
+   24ad4bb75:	call   24ad040d0 <_ZN2gd19NativeTimerMutationC1EPNS_16NativeTimerWatchE>
+   24ad4bb7a:	mov    0x8(%rbp),%eax
+   24ad4bb7d:	jmp    24ad4bb2e <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1e6e>
+   24ad4bb7f:	vcvttsd2si 0xb8(%rsp),%r14
+   24ad4bb89:	lea    0x130(%rsp),%r15
+   24ad4bb91:	mov    %r15,%rcx
+   24ad4bb94:	call   24ad040d0 <_ZN2gd19NativeTimerMutationC1EPNS_16NativeTimerWatchE>
+   24ad4bb99:	mov    0x8(%rbp),%eax
+   24ad4bb9c:	test   %r14,%r14
+   24ad4bb9f:	jns    24ad4bb2e <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1e6e>
+   24ad4bba1:	add    %rax,%r14
+   24ad4bba4:	jns    24ad4bb2e <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1e6e>
+   24ad4bba6:	jmp    24ad4bb54 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1e94>
+   24ad4bba8:	movb   $0x0,0xd(%r14)
+   24ad4bbad:	jmp    24ad4a301 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x641>
+   24ad4bbb2:	xor    %r15d,%r15d
+   24ad4bbb5:	xor    %edx,%edx
+   24ad4bbb7:	jmp    24ad4b131 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1471>
+   24ad4bbbc:	vxorpd %xmm0,%xmm0,%xmm0
+   24ad4bbc0:	mov    $0x1,%edx
+   24ad4bbc5:	vucomisd 0x158(%rsp),%xmm0
+   24ad4bbce:	setp   %al
+   24ad4bbd1:	cmovne %edx,%eax
+   24ad4bbd4:	jmp    24ad4b5b5 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x18f5>
+   24ad4bbd9:	mov    0x10(%rbx),%rcx
+   24ad4bbdd:	and    %rcx,%rax
+   24ad4bbe0:	je     24ad4bc7d <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1fbd>
+   24ad4bbe6:	mov    $0x1,%r8d
+   24ad4bbec:	xor    %edx,%edx
+   24ad4bbee:	jmp    24ad4a97a <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xcba>
+   24ad4bbf3:	xor    %eax,%eax
+   24ad4bbf5:	cmp    $0x2,%r8d
+   24ad4bbf9:	jne    24ad4a9eb <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xd2b>
+   24ad4bbff:	jmp    24ad4ab20 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xe60>
+   24ad4bc04:	mov    0x10(%rbx),%rcx
+   24ad4bc08:	mov    %rcx,%rax
+   24ad4bc0b:	btr    $0x3f,%rax
+   24ad4bc10:	test   %rax,%rax
+   24ad4bc13:	je     24ad4ab20 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xe60>
+   24ad4bc19:	mov    $0x2,%r8d
+   24ad4bc1f:	xor    %edx,%edx
+   24ad4bc21:	jmp    24ad4a97a <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xcba>
+   24ad4bc26:	xor    %edx,%edx
+   24ad4bc28:	mov    $0x2,%r8d
+   24ad4bc2e:	jmp    24ad4a965 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xca5>
+   24ad4bc33:	mov    0x10(%rbx),%rcx
+   24ad4bc37:	and    %rcx,%rax
+   24ad4bc3a:	jne    24ad4bc19 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1f59>
+   24ad4bc3c:	jmp    24ad4ab20 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xe60>
+   24ad4bc41:	mov    0x10(%rbx),%rcx
+   24ad4bc45:	mov    %rcx,%rax
+   24ad4bc48:	btr    $0x3f,%rax
+   24ad4bc4d:	test   %rax,%rax
+   24ad4bc50:	je     24ad4beaf <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x21ef>
+   24ad4bc56:	xor    %r8d,%r8d
+   24ad4bc59:	xor    %edx,%edx
+   24ad4bc5b:	jmp    24ad4a97a <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xcba>
+   24ad4bc60:	mov    $0x20,%edx
+   24ad4bc65:	mov    %rax,%rcx
+   24ad4bc68:	call   24acf3250 <_ZN2gd11BattleArena16alloc_raw_lockedEyy.constprop.0>
+   24ad4bc6d:	vpxor  %xmm0,%xmm0,%xmm0
+   24ad4bc71:	vmovdqu %ymm0,(%rax)
+   24ad4bc75:	vzeroupper
+   24ad4bc78:	jmp    24ad4b0eb <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x142b>
+   24ad4bc7d:	xor    %edx,%edx
+   24ad4bc7f:	xor    %eax,%eax
+   24ad4bc81:	jmp    24ad4a9eb <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xd2b>
+   24ad4bc86:	cmpq   $0x0,0xb8(%rsp)
+   24ad4bc8f:	je     24ad49d86 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xc6>
+   24ad4bc95:	mov    0x38(%rsp),%rdx
+   24ad4bc9a:	lea    0x170(%rsp),%rcx
+   24ad4bca2:	mov    $0xb8,%r9d
+   24ad4bca8:	lea    0xb0(%rsp),%r8
+   24ad4bcb0:	call   24acf94e0 <_ZN2gd11call_methodERNS_9BattleCtxERKNS_5GdValEjPS3_i.constprop.0>
+   24ad4bcb5:	jmp    24ad4a353 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x693>
+   24ad4bcba:	mov    0x38(%rsp),%rdi
+   24ad4bcbf:	incq   0xd8(%rdi)
+   24ad4bcc6:	jmp    24ad49d76 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xb6>
+   24ad4bccb:	mov    %rdx,%rcx
+   24ad4bcce:	call   24ae1b200 <_ZN2gdL25native_resolved_exact_rowEPKNS_5GdObjE.lto_priv.0>
+   24ad4bcd3:	cmp    %rax,%rsi
+   24ad4bcd6:	jne    24ad4bcf1 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2031>
+   24ad4bcd8:	mov    0x1a0(%rsi),%rax
+   24ad4bcdf:	test   %rax,%rax
+   24ad4bce2:	je     24ad4bcf1 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2031>
+   24ad4bce4:	mov    0xb8(%rsp),%rdx
+   24ad4bcec:	jmp    24ad49d64 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xa4>
+   24ad4bcf1:	mov    0x38(%rsp),%rax
+   24ad4bcf6:	cmpb   $0x0,0xd0(%rax)
+   24ad4bcfd:	je     24ad4bc95 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1fd5>
+   24ad4bcff:	movzbl 0xb0(%rsp),%eax
+   24ad4bd07:	cmp    $0x7,%al
+   24ad4bd09:	je     24ad4bc86 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1fc6>
+   24ad4bd0f:	cmp    $0x8,%al
+   24ad4bd11:	je     24ad4bc86 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1fc6>
+   24ad4bd17:	cmp    $0xb,%al
+   24ad4bd19:	je     24ad4bc86 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1fc6>
+   24ad4bd1f:	cmp    $0xa,%al
+   24ad4bd21:	jne    24ad4bc95 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1fd5>
+   24ad4bd27:	mov    0x38(%rsp),%rax
+   24ad4bd2c:	cmpb   $0x0,0xd2(%rax)
+   24ad4bd33:	je     24ad4bd3f <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x207f>
+   24ad4bd35:	mov    $0x9,%ecx
+   24ad4bd3a:	call   24a7a53b0 <_ZN2gd25native_inline_variant_hitEj.part.0>
+   24ad4bd3f:	mov    0xb8(%rsp),%rax
+   24ad4bd47:	test   %rax,%rax
+   24ad4bd4a:	je     24ad49d86 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xc6>
+   24ad4bd50:	cmpq   $0x0,0x38(%rax)
+   24ad4bd55:	je     24ad49d86 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xc6>
+   24ad4bd5b:	mov    0x38(%rsp),%rdi
+   24ad4bd60:	cmpb   $0x0,0x117(%rdi)
+   24ad4bd67:	jne    24ad4bd7c <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x20bc>
+   24ad4bd69:	mov    %rax,%rdx
+   24ad4bd6c:	mov    %rdi,%rcx
+   24ad4bd6f:	call   24a30e260 <_ZN2gd26native_timer_observe_classERNS_9BattleCtxEPKNS_11GdClassMetaE.part.0>
+   24ad4bd74:	mov    0xb8(%rsp),%rax
+   24ad4bd7c:	xor    %edx,%edx
+   24ad4bd7e:	movb   $0x0,0x150(%rsp)
+   24ad4bd86:	mov    0x38(%rsp),%rcx
+   24ad4bd8b:	xor    %r9d,%r9d
+   24ad4bd8e:	mov    %rdx,0x158(%rsp)
+   24ad4bd96:	lea    0x150(%rsp),%rdx
+   24ad4bd9e:	xor    %r8d,%r8d
+   24ad4bda1:	mov    %rdx,0x20(%rsp)
+   24ad4bda6:	mov    $0xb8,%edx
+   24ad4bdab:	call   *0x38(%rax)
+   24ad4bdae:	test   %al,%al
+   24ad4bdb0:	je     24ad49d86 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xc6>
+   24ad4bdb6:	vmovdqa 0x150(%rsp),%xmm0
+   24ad4bdbf:	mov    0x160(%rsp),%rax
+   24ad4bdc7:	vmovdqa %xmm0,0x170(%rsp)
+   24ad4bdd0:	mov    %rax,0x180(%rsp)
+   24ad4bdd8:	jmp    24ad4a353 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x693>
+   24ad4bddd:	cmp    $0x8,%r14b
+   24ad4bde1:	jne    24ad4a7eb <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xb2b>
+   24ad4bde7:	add    $0x18,%rbx
+   24ad4bdeb:	cmp    %rbp,%rbx
+   24ad4bdee:	je     24ad49fe0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x320>
+   24ad4bdf4:	cmp    $0x7,%r14b
+   24ad4bdf8:	jne    24ad4bddd <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x211d>
+   24ad4bdfa:	add    $0x18,%rbx
+   24ad4bdfe:	cmp    %rbp,%rbx
+   24ad4be01:	jne    24ad4bdfa <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x213a>
+   24ad4be03:	xor    %eax,%eax
+   24ad4be05:	jmp    24ad49fe2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x322>
+   24ad4be0a:	xor    %esi,%esi
+   24ad4be0c:	jmp    24ad4a8c7 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xc07>
+   24ad4be11:	mov    0x38(%rsp),%rcx
+   24ad4be16:	call   24a30e260 <_ZN2gd26native_timer_observe_classERNS_9BattleCtxEPKNS_11GdClassMetaE.part.0>
+   24ad4be1b:	mov    0xb8(%rsp),%rax
+   24ad4be23:	mov    0x30(%rax),%rax
+   24ad4be27:	jmp    24ad49f63 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2a3>
+   24ad4be2c:	movabs $0x9e3779b97f4a7c15,%rax
+   24ad4be36:	movabs $0x278dde6e5,%rdx
+   24ad4be40:	mov    0x10(%rsi),%r14
+   24ad4be44:	add    %r13,%rax
+   24ad4be47:	xor    %rdx,%rax
+   24ad4be4a:	movabs $0xbf58476d1ce4e5b9,%rdx
+   24ad4be54:	imul   %rdx,%rax
+   24ad4be58:	mov    %rax,%rdx
+   24ad4be5b:	shr    $0x1b,%rdx
+   24ad4be5f:	xor    %rdx,%rax
+   24ad4be62:	movabs $0x94d049bb133111eb,%rdx
+   24ad4be6c:	imul   %rdx,%rax
+   24ad4be70:	mov    %rax,%rbp
+   24ad4be73:	shr    $0x1f,%rbp
+   24ad4be77:	xor    %rax,%rbp
+   24ad4be7a:	test   %r14,%r14
+   24ad4be7d:	je     24ad4a4f6 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x836>
+   24ad4be83:	mov    0x18(%rsi),%r15d
+   24ad4be87:	test   %r15d,%r15d
+   24ad4be8a:	jne    24ad4ac3a <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xf7a>
+   24ad4be90:	jmp    24ad4a4f6 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x836>
+   24ad4be95:	lea    0x188(%rsp),%rdx
+   24ad4be9d:	call   24acffd70 <_ZN2gd5gd_eqERKNS_5GdValES2_>
+   24ad4bea2:	test   %al,%al
+   24ad4bea4:	je     24ad4b64e <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x198e>
+   24ad4beaa:	jmp    24ad4b564 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x18a4>
+   24ad4beaf:	mov    0x8(%rdi),%r10d
+   24ad4beb3:	mov    %r12,0x208(%rsp)
+   24ad4bebb:	xor    %r15d,%r15d
+   24ad4bebe:	mov    %rbp,%r12
+   24ad4bec1:	mov    %rbx,%rbp
+   24ad4bec4:	mov    %r10d,%ebx
+   24ad4bec7:	cmp    %ebx,%r15d
+   24ad4beca:	jae    24ad4bf40 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2280>
+   24ad4becc:	imul   $0x38,%r15,%rcx
+   24ad4bed0:	add    (%rdi),%rcx
+   24ad4bed3:	cmp    %rsi,0x30(%rcx)
+   24ad4bed7:	je     24ad4bf19 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2259>
+   24ad4bed9:	inc    %r15
+   24ad4bedc:	jmp    24ad4bec7 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2207>
+   24ad4bede:	lea    0x150(%rsp),%r13
+   24ad4bee6:	mov    %r13,%rax
+   24ad4bee9:	jmp    24ad4b800 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1b40>
+   24ad4beee:	cmp    $0x3,%dl
+   24ad4bef1:	je     24ad4bf53 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2293>
+   24ad4bef3:	lea    0x170(%rsp),%rcx
+   24ad4befb:	call   24ad13410 <_ZN2gd8gd_truthERKNS_5GdValE>
+   24ad4bf00:	jmp    24ad4a36c <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x6ac>
+   24ad4bf05:	mov    0x38(%rsp),%rcx
+   24ad4bf0a:	mov    $0x20,%edx
+   24ad4bf0f:	call   24acf3320 <_ZN2gd11BattleArena14alloc_raw_slowEyy.constprop.0>
+   24ad4bf14:	jmp    24ad4bc6d <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1fad>
+   24ad4bf19:	mov    %rbp,%rdx
+   24ad4bf1c:	call   24acffd70 <_ZN2gd5gd_eqERKNS_5GdValES2_>
+   24ad4bf21:	test   %al,%al
+   24ad4bf23:	je     24ad4bed9 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2219>
+   24ad4bf25:	mov    %r15d,%eax
+   24ad4bf28:	mov    %rbp,%rbx
+   24ad4bf2b:	mov    %r12,%rbp
+   24ad4bf2e:	mov    0x208(%rsp),%r12
+   24ad4bf36:	not    %eax
+   24ad4bf38:	shr    $0x1f,%eax
+   24ad4bf3b:	jmp    24ad4a7cc <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xb0c>
+   24ad4bf40:	mov    %rbp,%rbx
+   24ad4bf43:	mov    %r12,%rbp
+   24ad4bf46:	mov    0x208(%rsp),%r12
+   24ad4bf4e:	jmp    24ad4a6ac <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x9ec>
+   24ad4bf53:	vxorpd %xmm0,%xmm0,%xmm0
+   24ad4bf57:	mov    $0x1,%edx
+   24ad4bf5c:	vucomisd 0x178(%rsp),%xmm0
+   24ad4bf65:	setp   %al
+   24ad4bf68:	cmovne %edx,%eax
+   24ad4bf6b:	jmp    24ad4a36c <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x6ac>
+   24ad4bf70:	mov    0x640(%r12),%rax
+   24ad4bf78:	test   %rax,%rax
+   24ad4bf7b:	je     24ad4a1b0 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x4f0>
+   24ad4bf81:	mov    0x38(%rsp),%rdi
+   24ad4bf86:	mov    0x28(%rdi),%rdx
+   24ad4bf8a:	cmp    0x8(%rax),%r13d
+   24ad4bf8e:	jb     24ad4c3c9 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2709>
+   24ad4bf94:	test   %rdx,%rdx
+   24ad4bf97:	jne    24ad4c3b2 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x26f2>
+   24ad4bf9d:	mov    0x38(%rsp),%rdi
+   24ad4bfa2:	movabs $0xaaaaaaaaaaaaaaab,%r8
+   24ad4bfac:	mov    0x8(%rdi),%rax
+   24ad4bfb0:	mov    0x20(%rdi),%rcx
+   24ad4bfb4:	mov    0x10(%rdi),%rdi
+   24ad4bfb8:	mov    %rdi,%rdx
+   24ad4bfbb:	mov    %rdi,0x48(%rsp)
+   24ad4bfc0:	sub    %rax,%rdx
+   24ad4bfc3:	sar    $0x3,%rdx
+   24ad4bfc7:	imul   %r8,%rdx
+   24ad4bfcb:	cmp    %rdx,%rcx
+   24ad4bfce:	jae    24ad4c39b <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x26db>
+   24ad4bfd4:	imul   $0x18,%rcx,%rcx
+   24ad4bfd8:	add    %rcx,%rax
+   24ad4bfdb:	mov    0x10(%rax),%rdi
+   24ad4bfdf:	lea    0x7(%rdi),%rsi
+   24ad4bfe3:	and    $0xfffffffffffffff8,%rsi
+   24ad4bfe7:	lea    0x10(%rsi),%rdx
+   24ad4bfeb:	cmp    %rdx,0x8(%rax)
+   24ad4bfef:	jb     24ad4c39b <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x26db>
+   24ad4bff5:	mov    %rdx,0x10(%rax)
+   24ad4bff9:	add    (%rax),%rsi
+   24ad4bffc:	mov    0x38(%rsp),%rax
+   24ad4c001:	xor    %edi,%edi
+   24ad4c003:	mov    %rdi,(%rsi)
+   24ad4c006:	cmpq   $0x0,0x28(%rax)
+   24ad4c00b:	mov    %rdi,0x8(%rsi)
+   24ad4c00f:	jne    24ad4c383 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x26c3>
+   24ad4c015:	mov    0x38(%rsp),%rax
+   24ad4c01a:	movabs $0xaaaaaaaaaaaaaaab,%r8
+   24ad4c024:	mov    0x8(%rax),%rdx
+   24ad4c028:	mov    0x20(%rax),%rcx
+   24ad4c02c:	mov    0x10(%rax),%rax
+   24ad4c030:	mov    %rax,0x48(%rsp)
+   24ad4c035:	sub    %rdx,%rax
+   24ad4c038:	sar    $0x3,%rax
+   24ad4c03c:	imul   %r8,%rax
+   24ad4c040:	cmp    %rax,%rcx
+   24ad4c043:	jae    24ad4c369 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x26a9>
+   24ad4c049:	imul   $0x18,%rcx,%rcx
+   24ad4c04d:	add    %rcx,%rdx
+   24ad4c050:	mov    0x10(%rdx),%rax
+   24ad4c054:	lea    0x1(%rax),%rcx
+   24ad4c058:	cmp    %rcx,0x8(%rdx)
+   24ad4c05c:	jb     24ad4c369 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x26a9>
+   24ad4c062:	mov    %rcx,0x10(%rdx)
+   24ad4c066:	add    (%rdx),%rax
+   24ad4c069:	movb   $0x0,(%rax)
+   24ad4c06c:	mov    %rax,(%rsi)
+   24ad4c06f:	mov    $0x811c9dc5,%eax
+   24ad4c074:	shl    $0x20,%rax
+   24ad4c078:	movb   $0x6,0xd0(%rsp)
+   24ad4c080:	mov    %rax,0x8(%rsi)
+   24ad4c084:	mov    %rsi,0xd8(%rsp)
+   24ad4c08c:	jmp    24ad4a1c3 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x503>
+   24ad4c091:	cmp    $0x9,%dl
+   24ad4c094:	jne    24ad4a301 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x641>
+   24ad4c09a:	test   %rbp,%rbp
+   24ad4c09d:	je     24ad4a301 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x641>
+   24ad4c0a3:	cmpb   $0x6,0xb0(%rsp)
+   24ad4c0ab:	jne    24ad4a301 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x641>
+   24ad4c0b1:	mov    0xb8(%rsp),%rax
+   24ad4c0b9:	test   %rax,%rax
+   24ad4c0bc:	je     24ad4a301 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x641>
+   24ad4c0c2:	mov    0x8(%rax),%edx
+   24ad4c0c5:	mov    (%rax),%rax
+   24ad4c0c8:	lea    0x90(%rsp),%rcx
+   24ad4c0d0:	mov    %rdx,0x90(%rsp)
+   24ad4c0d8:	mov    %rax,0x98(%rsp)
+   24ad4c0e0:	call   24acf4120 <_ZN2gd10intern_symESt17basic_string_viewIcSt11char_traitsIcEE>
+   24ad4c0e5:	mov    %eax,%r14d
+   24ad4c0e8:	mov    0x38(%rsp),%rax
+   24ad4c0ed:	cmpb   $0x0,0x117(%rax)
+   24ad4c0f4:	jne    24ad4c101 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2441>
+   24ad4c0f6:	mov    %rbp,%rdx
+   24ad4c0f9:	mov    %rax,%rcx
+   24ad4c0fc:	call   24a310460 <_ZN2gd27native_timer_observe_objectERNS_9BattleCtxEPKNS_5GdObjE.part.0>
+   24ad4c101:	mov    0x0(%rbp),%rax
+   24ad4c105:	mov    0x38(%rsp),%rdx
+   24ad4c10a:	mov    %r13,%r9
+   24ad4c10d:	mov    %r14d,%r8d
+   24ad4c110:	mov    %rbp,%rcx
+   24ad4c113:	call   *0x28(%rax)
+   24ad4c116:	jmp    24ad4a301 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x641>
+   24ad4c11b:	mov    $0x10,%edx
+   24ad4c120:	mov    %rbx,%rcx
+   24ad4c123:	call   24acf3250 <_ZN2gd11BattleArena16alloc_raw_lockedEyy.constprop.0>
+   24ad4c128:	mov    %rax,%rdi
+   24ad4c12b:	jmp    24ad4b215 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1555>
+   24ad4c130:	mov    %r13,%rax
+   24ad4c133:	mov    0x50(%rsp),%rdi
+   24ad4c138:	mov    0x48(%rsp),%r13
+   24ad4c13d:	mov    0x208(%rsp),%r12
+   24ad4c145:	jmp    24ad4b0eb <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x142b>
+   24ad4c14a:	vxorpd %xmm1,%xmm1,%xmm1
+   24ad4c14e:	vucomisd %xmm1,%xmm0
+   24ad4c152:	jp     24ad4c167 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x24a7>
+   24ad4c154:	vmovq  %xmm0,%rax
+   24ad4c159:	vmovq  %xmm1,%rcx
+   24ad4c15e:	cmove  %rcx,%rax
+   24ad4c162:	vmovq  %rax,%xmm0
+   24ad4c167:	movabs $0x9e3779b97f4a7c15,%rax
+   24ad4c171:	vmovq  %xmm0,%rcx
+   24ad4c176:	add    %rax,%rcx
+   24ad4c179:	mov    %rcx,%rax
+   24ad4c17c:	jmp    24ad4abf1 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0xf31>
+   24ad4c181:	mov    $0x1,%r8d
+   24ad4c187:	mov    $0x2,%edx
+   24ad4c18c:	mov    %rbx,%rcx
+   24ad4c18f:	call   24acf32b0 <_ZN2gd11BattleArena16alloc_raw_lockedEyy>
+   24ad4c194:	jmp    24ad4b273 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x15b3>
+   24ad4c199:	mov    $0x10,%edx
+   24ad4c19e:	mov    %rbx,%rcx
+   24ad4c1a1:	call   24acf3320 <_ZN2gd11BattleArena14alloc_raw_slowEyy.constprop.0>
+   24ad4c1a6:	mov    %rax,%rdi
+   24ad4c1a9:	jmp    24ad4b215 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1555>
+   24ad4c1ae:	cmpb   $0x0,0x118(%rsp)
+   24ad4c1b6:	je     24ad4b3de <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x171e>
+   24ad4c1bc:	mov    0x38(%rsp),%rbx
+   24ad4c1c1:	mov    $0x1,%edx
+   24ad4c1c6:	mov    %rbx,%rcx
+   24ad4c1c9:	call   24acf5f40 <_ZN2gd5GdArr6createERNS_11BattleArenaEj>
+   24ad4c1ce:	xor    %r8d,%r8d
+   24ad4c1d1:	mov    %rbx,%rdx
+   24ad4c1d4:	movb   $0x2,0x150(%rsp)
+   24ad4c1dc:	mov    %r8,0x158(%rsp)
+   24ad4c1e4:	mov    %rax,%rcx
+   24ad4c1e7:	mov    %rsi,%r8
+   24ad4c1ea:	mov    %rax,0x48(%rsp)
+   24ad4c1ef:	call   24ad03d90 <_ZN2gd5GdArr9push_backERNS_11BattleArenaERKNS_5GdValE>
+   24ad4c1f4:	mov    0x48(%rsp),%rax
+   24ad4c1f9:	jmp    24ad4b0eb <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x142b>
+   24ad4c1fe:	mov    0x38(%rsp),%rcx
+   24ad4c203:	mov    $0x1,%r8d
+   24ad4c209:	mov    $0x1,%edx
+   24ad4c20e:	call   24acf3570 <_ZN2gd11BattleArena14alloc_raw_slowEyy>
+   24ad4c213:	jmp    24ad4b987 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1cc7>
+   24ad4c218:	mov    $0x1,%r8d
+   24ad4c21e:	mov    $0x1,%edx
+   24ad4c223:	mov    %rax,%rcx
+   24ad4c226:	call   24acf32b0 <_ZN2gd11BattleArena16alloc_raw_lockedEyy>
+   24ad4c22b:	jmp    24ad4b987 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1cc7>
+   24ad4c230:	mov    0x38(%rsp),%rcx
+   24ad4c235:	mov    $0x10,%edx
+   24ad4c23a:	call   24acf3320 <_ZN2gd11BattleArena14alloc_raw_slowEyy.constprop.0>
+   24ad4c23f:	mov    %rax,%rbp
+   24ad4c242:	jmp    24ad4b919 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1c59>
+   24ad4c247:	mov    0x38(%rsp),%rcx
+   24ad4c24c:	mov    $0x10,%edx
+   24ad4c251:	call   24acf3250 <_ZN2gd11BattleArena16alloc_raw_lockedEyy.constprop.0>
+   24ad4c256:	mov    %rax,%rbp
+   24ad4c259:	jmp    24ad4b919 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x1c59>
+   24ad4c25e:	mov    (%rax),%r13
+   24ad4c261:	test   %rdx,%rdx
+   24ad4c264:	jne    24ad4c522 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2862>
+   24ad4c26a:	mov    0x38(%rsp),%rdx
+   24ad4c26f:	movabs $0xaaaaaaaaaaaaaaab,%r8
+   24ad4c279:	mov    0x8(%rdx),%rax
+   24ad4c27d:	mov    0x20(%rdx),%rcx
+   24ad4c281:	mov    0x10(%rdx),%rdx
+   24ad4c285:	mov    %rdx,0x40(%rsp)
+   24ad4c28a:	sub    %rax,%rdx
+   24ad4c28d:	sar    $0x3,%rdx
+   24ad4c291:	imul   %r8,%rdx
+   24ad4c295:	cmp    %rdx,%rcx
+   24ad4c298:	jae    24ad4c50b <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x284b>
+   24ad4c29e:	imul   $0x18,%rcx,%rcx
+   24ad4c2a2:	add    %rcx,%rax
+   24ad4c2a5:	mov    0x10(%rax),%rcx
+   24ad4c2a9:	lea    0x7(%rcx),%rbp
+   24ad4c2ad:	and    $0xfffffffffffffff8,%rbp
+   24ad4c2b1:	lea    0x10(%rbp),%rdx
+   24ad4c2b5:	cmp    %rdx,0x8(%rax)
+   24ad4c2b9:	jb     24ad4c50b <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x284b>
+   24ad4c2bf:	mov    %rdx,0x10(%rax)
+   24ad4c2c3:	add    (%rax),%rbp
+   24ad4c2c6:	mov    0x38(%rsp),%rax
+   24ad4c2cb:	xor    %edx,%edx
+   24ad4c2cd:	mov    %rdx,0x0(%rbp)
+   24ad4c2d1:	cmpq   $0x0,0x28(%rax)
+   24ad4c2d6:	mov    %rdx,0x8(%rbp)
+   24ad4c2da:	jne    24ad4c4f3 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2833>
+   24ad4c2e0:	mov    0x38(%rsp),%rax
+   24ad4c2e5:	movabs $0xaaaaaaaaaaaaaaab,%r8
+   24ad4c2ef:	mov    0x8(%rax),%rdx
+   24ad4c2f3:	mov    0x20(%rax),%rcx
+   24ad4c2f7:	mov    0x10(%rax),%rax
+   24ad4c2fb:	mov    %rax,0x40(%rsp)
+   24ad4c300:	sub    %rdx,%rax
+   24ad4c303:	sar    $0x3,%rax
+   24ad4c307:	imul   %r8,%rax
+   24ad4c30b:	cmp    %rax,%rcx
+   24ad4c30e:	jae    24ad4c4d9 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2819>
+   24ad4c314:	imul   $0x18,%rcx,%rcx
+   24ad4c318:	add    %rcx,%rdx
+   24ad4c31b:	mov    0x10(%rdx),%rax
+   24ad4c31f:	lea    0x2(%rax),%rcx
+   24ad4c323:	cmp    %rcx,0x8(%rdx)
+   24ad4c327:	jb     24ad4c4d9 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2819>
+   24ad4c32d:	mov    %rcx,0x10(%rdx)
+   24ad4c331:	add    (%rdx),%rax
+   24ad4c334:	movzbl 0x0(%r13,%rsi,1),%edx
+   24ad4c33a:	movb   $0x0,0x1(%rax)
+   24ad4c33e:	lea    0x150(%rsp),%r13
+   24ad4c346:	mov    %dl,(%rax)
+   24ad4c348:	mov    %rax,0x0(%rbp)
+   24ad4c34c:	movl   $0x1,0x8(%rbp)
+   24ad4c353:	movzbl (%rax),%eax
+   24ad4c356:	xor    $0x811c9dc5,%eax
+   24ad4c35b:	imul   $0x1000193,%eax,%eax
+   24ad4c361:	mov    %eax,0xc(%rbp)
+   24ad4c364:	jmp    24ad4a301 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x641>
+   24ad4c369:	mov    0x38(%rsp),%rcx
+   24ad4c36e:	mov    $0x1,%r8d
+   24ad4c374:	mov    $0x1,%edx
+   24ad4c379:	call   24acf3570 <_ZN2gd11BattleArena14alloc_raw_slowEyy>
+   24ad4c37e:	jmp    24ad4c069 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x23a9>
+   24ad4c383:	mov    $0x1,%r8d
+   24ad4c389:	mov    $0x1,%edx
+   24ad4c38e:	mov    %rax,%rcx
+   24ad4c391:	call   24acf32b0 <_ZN2gd11BattleArena16alloc_raw_lockedEyy>
+   24ad4c396:	jmp    24ad4c069 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x23a9>
+   24ad4c39b:	mov    0x38(%rsp),%rcx
+   24ad4c3a0:	mov    $0x10,%edx
+   24ad4c3a5:	call   24acf3320 <_ZN2gd11BattleArena14alloc_raw_slowEyy.constprop.0>
+   24ad4c3aa:	mov    %rax,%rsi
+   24ad4c3ad:	jmp    24ad4bffc <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x233c>
+   24ad4c3b2:	mov    0x38(%rsp),%rcx
+   24ad4c3b7:	mov    $0x10,%edx
+   24ad4c3bc:	call   24acf3250 <_ZN2gd11BattleArena16alloc_raw_lockedEyy.constprop.0>
+   24ad4c3c1:	mov    %rax,%rsi
+   24ad4c3c4:	jmp    24ad4bffc <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x233c>
+   24ad4c3c9:	mov    (%rax),%rdi
+   24ad4c3cc:	test   %rdx,%rdx
+   24ad4c3cf:	jne    24ad4c57d <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x28bd>
+   24ad4c3d5:	mov    0x38(%rsp),%rdx
+   24ad4c3da:	movabs $0xaaaaaaaaaaaaaaab,%r8
+   24ad4c3e4:	mov    0x8(%rdx),%rax
+   24ad4c3e8:	mov    0x20(%rdx),%rcx
+   24ad4c3ec:	mov    0x10(%rdx),%rdx
+   24ad4c3f0:	mov    %rdx,0x48(%rsp)
+   24ad4c3f5:	sub    %rax,%rdx
+   24ad4c3f8:	sar    $0x3,%rdx
+   24ad4c3fc:	imul   %r8,%rdx
+   24ad4c400:	cmp    %rdx,%rcx
+   24ad4c403:	jae    24ad4c566 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x28a6>
+   24ad4c409:	imul   $0x18,%rcx,%rcx
+   24ad4c40d:	add    %rcx,%rax
+   24ad4c410:	mov    0x10(%rax),%rcx
+   24ad4c414:	lea    0x7(%rcx),%rsi
+   24ad4c418:	and    $0xfffffffffffffff8,%rsi
+   24ad4c41c:	lea    0x10(%rsi),%rdx
+   24ad4c420:	cmp    %rdx,0x8(%rax)
+   24ad4c424:	jb     24ad4c566 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x28a6>
+   24ad4c42a:	mov    %rdx,0x10(%rax)
+   24ad4c42e:	add    (%rax),%rsi
+   24ad4c431:	mov    0x38(%rsp),%rax
+   24ad4c436:	xor    %ebp,%ebp
+   24ad4c438:	mov    %rbp,(%rsi)
+   24ad4c43b:	cmpq   $0x0,0x28(%rax)
+   24ad4c440:	mov    %rbp,0x8(%rsi)
+   24ad4c444:	jne    24ad4c54e <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x288e>
+   24ad4c44a:	mov    0x38(%rsp),%rax
+   24ad4c44f:	movabs $0xaaaaaaaaaaaaaaab,%r8
+   24ad4c459:	mov    0x8(%rax),%rdx
+   24ad4c45d:	mov    0x20(%rax),%rcx
+   24ad4c461:	mov    0x10(%rax),%rax
+   24ad4c465:	mov    %rax,0x48(%rsp)
+   24ad4c46a:	sub    %rdx,%rax
+   24ad4c46d:	sar    $0x3,%rax
+   24ad4c471:	imul   %r8,%rax
+   24ad4c475:	cmp    %rax,%rcx
+   24ad4c478:	jae    24ad4c534 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2874>
+   24ad4c47e:	imul   $0x18,%rcx,%rcx
+   24ad4c482:	add    %rcx,%rdx
+   24ad4c485:	mov    0x10(%rdx),%rax
+   24ad4c489:	lea    0x2(%rax),%rcx
+   24ad4c48d:	cmp    %rcx,0x8(%rdx)
+   24ad4c491:	jb     24ad4c534 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2874>
+   24ad4c497:	mov    %rcx,0x10(%rdx)
+   24ad4c49b:	add    (%rdx),%rax
+   24ad4c49e:	movzbl (%rdi,%r13,1),%edx
+   24ad4c4a3:	movb   $0x0,0x1(%rax)
+   24ad4c4a7:	movb   $0x6,0xd0(%rsp)
+   24ad4c4af:	mov    %dl,(%rax)
+   24ad4c4b1:	mov    %rax,(%rsi)
+   24ad4c4b4:	movl   $0x1,0x8(%rsi)
+   24ad4c4bb:	mov    %rsi,0xd8(%rsp)
+   24ad4c4c3:	movzbl (%rax),%eax
+   24ad4c4c6:	xor    $0x811c9dc5,%eax
+   24ad4c4cb:	imul   $0x1000193,%eax,%eax
+   24ad4c4d1:	mov    %eax,0xc(%rsi)
+   24ad4c4d4:	jmp    24ad4a1c3 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x503>
+   24ad4c4d9:	mov    0x38(%rsp),%rcx
+   24ad4c4de:	mov    $0x1,%r8d
+   24ad4c4e4:	mov    $0x2,%edx
+   24ad4c4e9:	call   24acf3570 <_ZN2gd11BattleArena14alloc_raw_slowEyy>
+   24ad4c4ee:	jmp    24ad4c334 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2674>
+   24ad4c4f3:	mov    $0x1,%r8d
+   24ad4c4f9:	mov    $0x2,%edx
+   24ad4c4fe:	mov    %rax,%rcx
+   24ad4c501:	call   24acf32b0 <_ZN2gd11BattleArena16alloc_raw_lockedEyy>
+   24ad4c506:	jmp    24ad4c334 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2674>
+   24ad4c50b:	mov    0x38(%rsp),%rcx
+   24ad4c510:	mov    $0x10,%edx
+   24ad4c515:	call   24acf3320 <_ZN2gd11BattleArena14alloc_raw_slowEyy.constprop.0>
+   24ad4c51a:	mov    %rax,%rbp
+   24ad4c51d:	jmp    24ad4c2c6 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2606>
+   24ad4c522:	mov    $0x10,%edx
+   24ad4c527:	call   24acf3250 <_ZN2gd11BattleArena16alloc_raw_lockedEyy.constprop.0>
+   24ad4c52c:	mov    %rax,%rbp
+   24ad4c52f:	jmp    24ad4c2c6 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2606>
+   24ad4c534:	mov    0x38(%rsp),%rcx
+   24ad4c539:	mov    $0x1,%r8d
+   24ad4c53f:	mov    $0x2,%edx
+   24ad4c544:	call   24acf3570 <_ZN2gd11BattleArena14alloc_raw_slowEyy>
+   24ad4c549:	jmp    24ad4c49e <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x27de>
+   24ad4c54e:	mov    $0x1,%r8d
+   24ad4c554:	mov    $0x2,%edx
+   24ad4c559:	mov    %rax,%rcx
+   24ad4c55c:	call   24acf32b0 <_ZN2gd11BattleArena16alloc_raw_lockedEyy>
+   24ad4c561:	jmp    24ad4c49e <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x27de>
+   24ad4c566:	mov    0x38(%rsp),%rcx
+   24ad4c56b:	mov    $0x10,%edx
+   24ad4c570:	call   24acf3320 <_ZN2gd11BattleArena14alloc_raw_slowEyy.constprop.0>
+   24ad4c575:	mov    %rax,%rsi
+   24ad4c578:	jmp    24ad4c431 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2771>
+   24ad4c57d:	mov    0x38(%rsp),%rcx
+   24ad4c582:	mov    $0x10,%edx
+   24ad4c587:	call   24acf3250 <_ZN2gd11BattleArena16alloc_raw_lockedEyy.constprop.0>
+   24ad4c58c:	mov    %rax,%rsi
+   24ad4c58f:	jmp    24ad4c431 <_ZN21Gd__gd_core__CoreItem14fn_onItemAddedEPKN2gd5GdValEi+0x2771>
+   24ad4c594:	nop
+   24ad4c595:	data16 cs nopw 0x0(%rax,%rax,1)

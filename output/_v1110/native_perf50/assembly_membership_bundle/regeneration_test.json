@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "source_inventory_verified": 709,
+  "transform_files": 30,
+  "matches_compiled_candidate": true,
+  "idempotent_bytes_and_mtime": true,
+  "untouched_header_changes_rejected_before_writes": true
+}

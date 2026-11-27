@@ -1,0 +1,11 @@
+Starting verify_resolved_remaining_after_pause.py
+Passed verify_resolved_remaining_after_pause.py
+Starting inspect_variant.py
+Passed inspect_variant.py
+Starting test_regeneration_guards.py
+Passed test_regeneration_guards.py
+Starting test_full_regeneration.py
+Passed test_full_regeneration.py
+Starting run_comparison.py
+Passed run_comparison.py
+Current optimization qualification finished
