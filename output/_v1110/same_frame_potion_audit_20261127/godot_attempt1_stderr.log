@@ -1,0 +1,4 @@
+SCRIPT ERROR: Parse Error: The identifier "Game" isn't declared in the current scope.
+          at: GDScript::reload (res://EventBus.gd:58)
+SCRIPT ERROR: Parse Error: Couldn't fully load the singleton script "EventBus" (possible cyclic reference or parse error).
+          at: GDScript::reload (res://test.gd:35)

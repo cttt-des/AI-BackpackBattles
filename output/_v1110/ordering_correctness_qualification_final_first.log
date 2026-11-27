@@ -1,0 +1,37 @@
+Waiting for the identified full20/fresh18 build
+Starting original_ordering
+Passed original_ordering
+Starting original_potion_chains
+Passed original_potion_chains
+Starting generate_property_tests
+Passed generate_property_tests
+Starting generate_type_constructor_tests
+Passed generate_type_constructor_tests
+Starting verify_event_identity
+Passed verify_event_identity
+Starting verify_lazy_diagnostics
+Passed verify_lazy_diagnostics
+Starting verify_components
+Passed verify_components
+Starting verify_static_collections
+Passed verify_static_collections
+Starting verify_static_setup
+Passed verify_static_setup
+Starting verify_dispatch_chain
+Passed verify_dispatch_chain
+Starting verify_spatial
+Passed verify_spatial
+Starting verify_motion_indices
+Passed verify_motion_indices
+Starting verify_targeted_timers
+Passed verify_targeted_timers
+Starting verify_active_cooldowns
+Passed verify_active_cooldowns
+Starting verify_buff_integer
+Passed verify_buff_integer
+Starting verify_container_builtins
+Passed verify_container_builtins
+Starting verify_scalar_truth
+Passed verify_scalar_truth
+Starting verify_private_snapshots
+Gate failed verify_private_snapshots; original log retained: D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\ordering_correctness_bundle\verify_private_snapshots_qualification_attempt1.log

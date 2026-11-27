@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "dll_sha256": "02fda77681361a6ddc721aa9ea75950126fa0f82df787b83ac3ca97144192d52",
+  "previous_dll_sha256": "291d58514d69e9bdf8eb30b875a133bcfa7d8a2af357d95fb92773c9ebff851d",
+  "runtime": "dist\\native_1_1_10",
+  "backup_runtime": "dist\\native_1_1_10_before_ordering_correctness_20261127",
+  "changed_files": [
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gd_rt.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/native_godot_sort.hpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gen/shards/shard_12.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/libgdcore.dll",
+    "native_sim_cpp/native_sim/gd_rt.cpp",
+    "native_sim_cpp/native_sim/native_godot_sort.hpp",
+    "native_sim_cpp/tools/gd_to_cpp.py",
+    "output/_v1110/sim_native/native_sim_cpp/tools/gd_to_cpp.py",
+    "output/_v1110/optimize_native_event_bus.py",
+    "output/_v1110/optimize_native_verified_bundle.py",
+    "gd_core_py/_rt.py",
+    "gd_core_py/_rt.pyd",
+    "output/_v1110/test_native_event_kernel_godot.cpp",
+    "native_sim_cpp/native_sim/gen/shards/shard_11.cpp"
+  ],
+  "correctness_deployment_without_performance_win_requirement": true,
+  "all_other_optimization_work_paused": true,
+  "new_branches_created": 0,
+  "post_install_verification_sha256": "0bcf0dbf1b8cda76e09c82d3bc274ee0431129590058b960d6f63a17467f5c71"
+}

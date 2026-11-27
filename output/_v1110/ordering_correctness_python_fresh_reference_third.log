@@ -1,0 +1,1 @@
+{"passed": true, "fights": 30, "original": "Fresh real Godot kernel, combat/item sources unchanged", "boundary_adapters_updated": true, "sorting_fix_not_applied_to_Godot_reference": true, "original_lineups_sha256": "ab28b76528bb8932aeddbb476385037096b5cab41bf0fa93ca9d13ab399c448c", "old_cached_reference_had_zero_rows": true, "baseline_matches": 0, "candidate_matches": 30}

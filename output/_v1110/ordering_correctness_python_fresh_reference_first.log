@@ -1,0 +1,40 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\rebuild_ordering_python_battle_reference.py", line 93, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\rebuild_ordering_python_battle_reference.py", line 50, in main
+    fixture='extends Reference\nclass_name LineupFixture\nconst ITEMS = '+literal(items)+'\nconst LINEUPS = '+literal(lineups)+'\n'
+                                                                                                              ~~~~~~~^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\rebuild_ordering_python_battle_reference.py", line 19, in literal
+    if isinstance(x,dict):return '{'+','.join(literal(k)+':'+literal(v) for k,v in x.items())+'}'
+                                     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\rebuild_ordering_python_battle_reference.py", line 19, in <genexpr>
+    if isinstance(x,dict):return '{'+','.join(literal(k)+':'+literal(v) for k,v in x.items())+'}'
+                                                             ~~~~~~~^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\rebuild_ordering_python_battle_reference.py", line 19, in literal
+    if isinstance(x,dict):return '{'+','.join(literal(k)+':'+literal(v) for k,v in x.items())+'}'
+                                     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\rebuild_ordering_python_battle_reference.py", line 19, in <genexpr>
+    if isinstance(x,dict):return '{'+','.join(literal(k)+':'+literal(v) for k,v in x.items())+'}'
+                                                             ~~~~~~~^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\rebuild_ordering_python_battle_reference.py", line 18, in literal
+    if isinstance(x,list):return '['+','.join(literal(v) for v in x)+']'
+                                     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\rebuild_ordering_python_battle_reference.py", line 18, in <genexpr>
+    if isinstance(x,list):return '['+','.join(literal(v) for v in x)+']'
+                                              ~~~~~~~^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\rebuild_ordering_python_battle_reference.py", line 19, in literal
+    if isinstance(x,dict):return '{'+','.join(literal(k)+':'+literal(v) for k,v in x.items())+'}'
+                                     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\rebuild_ordering_python_battle_reference.py", line 19, in <genexpr>
+    if isinstance(x,dict):return '{'+','.join(literal(k)+':'+literal(v) for k,v in x.items())+'}'
+                                                             ~~~~~~~^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\rebuild_ordering_python_battle_reference.py", line 18, in literal
+    if isinstance(x,list):return '['+','.join(literal(v) for v in x)+']'
+                                     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\rebuild_ordering_python_battle_reference.py", line 18, in <genexpr>
+    if isinstance(x,list):return '['+','.join(literal(v) for v in x)+']'
+                                              ~~~~~~~^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\rebuild_ordering_python_battle_reference.py", line 20, in literal
+    raise TypeError(type(x))
+TypeError: <class 'tuple'>

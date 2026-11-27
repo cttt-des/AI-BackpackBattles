@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "cases": 136128,
+  "retained_damage_cases": 103360,
+  "whole_chain_cases": 32768,
+  "dll_sha256": "02fda77681361a6ddc721aa9ea75950126fa0f82df787b83ac3ca97144192d52",
+  "unaffected_cases_using_independent_original_PGO": 135136,
+  "changed_append_cases_using_corrected_normal_and_original_Godot": 992,
+  "all_cases_and_all_counters_compared": true,
+  "no_case_dropped": true,
+  "differences_to_selected_reference": 0,
+  "old_original_PGO_sha256": "d2064b3f17d8168cf87a2e9f46e9fb336ffe4aaf6581c27d93350b2c41477a57",
+  "corrected_normal_sha256": "1a838e20dedadd59786041fe2a649e52f0c3c1510127ef3a647cb446cf86c9c8",
+  "normal_build_extra56_not_used_as_truth_for_unchanged_cases": true,
+  "normal_comparison_full_report_sha256": "849de62b35a52a10b0ff1de51516139d6eb740af6f69cb1b5c5b1de6d85bccef",
+  "original_Godot_reference_sha256": "24f376d3735acc6e003bbdf3d60163474f2daeff681fff79585e1b4c0949b5c6",
+  "expectation_correction_sha256": "a8542943c808c2e705c6b15b188b596aa8f1352f7ccdc679a7cd0880f3b70e9c",
+  "normal_build_difference_sha256": "7d96db37d795832e3264466aad151d6373dd24a7948ece86234b3bd94218cb78"
+}

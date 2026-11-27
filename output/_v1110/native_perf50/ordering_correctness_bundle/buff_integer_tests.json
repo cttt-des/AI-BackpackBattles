@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "cases": 218400,
+  "dll_sha256": "02fda77681361a6ddc721aa9ea75950126fa0f82df787b83ac3ca97144192d52",
+  "helper_cases": 204288,
+  "method_cases": 14112
+}

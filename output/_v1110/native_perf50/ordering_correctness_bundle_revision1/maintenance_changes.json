@@ -1,0 +1,42 @@
+{
+  "native_sim_cpp/native_sim/gd_rt.cpp": {
+    "before_sha256": "89969f3ec4022cca5304b99f2fb645b5a34bf61b0e9fa66d79a85877dfcaee97",
+    "after_sha256": "f43f1af34261ee8fbad0ec7183bdae2128b7c9a722c325402335c81c5e588fb7"
+  },
+  "native_sim_cpp/native_sim/native_godot_sort.hpp": {
+    "before_sha256": null,
+    "after_sha256": "4571b1a1b44d913b5bd1c03b7e11940e142d1fda63f8c06d7c8c1d17b262ba6b"
+  },
+  "native_sim_cpp/tools/gd_to_cpp.py": {
+    "before_sha256": "30e53ed223ba89e36ab66ba154581d00a2784b08e295bc19c90fc0500d3c6144",
+    "after_sha256": "a6d1b8193837cf85260d31c28da46f5239ff82451a1c141c09e98fa796878661"
+  },
+  "output/_v1110/sim_native/native_sim_cpp/tools/gd_to_cpp.py": {
+    "before_sha256": "b9cb8248ea1c722d788c1d5b142d309044b16612af71e89bcf5180f7259641ff",
+    "after_sha256": "fdc56fd699aca95d38eed5f7b959c3201e8da122b43bf0ec2b34895b708e8b04"
+  },
+  "output/_v1110/optimize_native_event_bus.py": {
+    "before_sha256": "9ae614602d4b8e211afbe59fa1a11574e11ab7333fab57e9a342472d11a707b8",
+    "after_sha256": "c8bed5df9b51f972edbbb9bce1df17cf107ad5e567d6447b9ac23f250cf75e6a"
+  },
+  "output/_v1110/optimize_native_verified_bundle.py": {
+    "before_sha256": "d00863ebd64028aaa1459da7ecde789dae7f0ea8cae4e5b8d0d9abd32a2f85f8",
+    "after_sha256": "3297571ac6c463dd00f5742923764991be7a60f10165f979a0be1148b060e8ec"
+  },
+  "gd_core_py/_rt.py": {
+    "before_sha256": "d9a9dc6c89c37f5007940876b4278c90408366b8a45b94d977873a894b1925fa",
+    "after_sha256": "f0b2e1ee509ff04b242d0b4e1af6f60487f39a36def5e4499b25179b00787335"
+  },
+  "gd_core_py/_rt.pyd": {
+    "before_sha256": "074727cd42636e80df7d280d00a1fed77fa0e4b9613cf8b10806cae3f41d3933",
+    "after_sha256": "69b8f5aa1834cbb9d6c742ea638b07b6332899196a2a203fe270c06dc0c1d1c4"
+  },
+  "gd_core_py/_godot_sort.py": {
+    "before_sha256": "88d3e1d9c53f1ea39b47664b825d68ec3c08570c50ec13f9d9bbd6cf945d1b62",
+    "after_sha256": "88d3e1d9c53f1ea39b47664b825d68ec3c08570c50ec13f9d9bbd6cf945d1b62"
+  },
+  "output/_v1110/test_native_event_kernel_godot.cpp": {
+    "before_sha256": null,
+    "after_sha256": "99b95c13b129910f3627d4e73339a3cb12bc017be48438f36e22ddefe629eb99"
+  }
+}

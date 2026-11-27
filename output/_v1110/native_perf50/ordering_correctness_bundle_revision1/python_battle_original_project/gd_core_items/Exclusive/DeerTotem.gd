@@ -1,0 +1,57 @@
+extends Item
+var normalTex
+
+func canAffect(item):
+	return item.hasType(CoreConst.Type.Nature)
+
+
+func onPrepare():
+	setState(false)
+	character().changeDamageResistance(getP1())
+	
+	var numNatureItems = getNumAffectedItems()
+	character().addBattleRageDuration(getP_m("dur_rage") * numNatureItems)
+	
+	connectForCombat(character(), "battle_rage_started", "onBattleRageStarted")
+	connectForCombat(character(), "battle_rage_ended", "onBattleRageEnded")
+
+
+func preCombatStart():
+	.preCombatStart()
+	deactivateCooldown()
+
+
+func onBattleRageStarted(_event):
+	setState(true)
+	activateCooldown()
+
+
+func onBattleRageEnded(_event):
+	setState(false)
+	deactivateCooldown()
+
+
+func doCooldownEffect():
+	heal()
+	giveMana(getP4())
+	
+	activate()
+
+
+func onShopEntered():
+	onStateChanged(false)
+
+
+func onStateChanged(active):
+	if active:
+		pass
+	else:
+		pass
+		
+
+func getTriggerPriority() -> int:
+	return CoreConst.Priority.Highest
+
+func _readyInit():
+	._readyInit()
+	pass

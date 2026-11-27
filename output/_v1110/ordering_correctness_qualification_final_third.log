@@ -1,0 +1,30 @@
+Retained passed original_ordering
+Retained passed original_potion_chains
+Retained passed generate_property_tests
+Retained passed generate_type_constructor_tests
+Retained passed verify_event_identity
+Retained passed verify_lazy_diagnostics
+Retained passed verify_components
+Retained passed verify_static_collections
+Retained passed verify_static_setup
+Retained passed verify_dispatch_chain
+Retained passed verify_spatial
+Retained passed verify_motion_indices
+Retained passed verify_targeted_timers
+Retained passed verify_active_cooldowns
+Retained passed verify_buff_integer
+Retained passed verify_container_builtins
+Retained passed verify_scalar_truth
+Retained passed verify_private_snapshots
+Retained passed verify_control_word
+Retained passed verify_display_storage
+Retained passed verify_integer_grid
+Retained passed verify_event_factory
+Starting verify_literal_spans
+Passed verify_literal_spans
+Starting verify_callback_dispatch
+Passed verify_callback_dispatch
+Starting verify_object_routes
+Passed verify_object_routes
+Starting verify_full_pgo_buff
+Gate failed verify_full_pgo_buff; original log retained: D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\ordering_correctness_bundle\verify_full_pgo_buff_qualification_attempt1.log

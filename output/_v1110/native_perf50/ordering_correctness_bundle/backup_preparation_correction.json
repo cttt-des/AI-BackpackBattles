@@ -1,0 +1,8 @@
+{
+  "not_uploaded": true,
+  "reason": "Add explicit root C++ oracle fixture coverage before upload",
+  "required_added_files": [
+    "test_ordering_contracts.cpp",
+    "test_ordering_potion_chains.cpp"
+  ]
+}

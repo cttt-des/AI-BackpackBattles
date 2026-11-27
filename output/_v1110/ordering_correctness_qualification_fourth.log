@@ -1,0 +1,6 @@
+Retained passed original_ordering
+Retained passed original_potion_chains
+Retained passed generate_property_tests
+Retained passed generate_type_constructor_tests
+Starting verify_event_identity
+Gate failed verify_event_identity; original log retained: D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\ordering_correctness_bundle\verify_event_identity_qualification_attempt2.log

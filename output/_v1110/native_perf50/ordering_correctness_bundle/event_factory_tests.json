@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "cases": 5120,
+  "first_differences": [],
+  "difference_count": 0,
+  "baseline_dll_sha256": "e0bedc4960077407e85763cb5e4af70175a0623cca15e923403fa89174390687",
+  "dll_sha256": "02fda77681361a6ddc721aa9ea75950126fa0f82df787b83ac3ca97144192d52",
+  "actual_independent_baseline_dll_oracle": true,
+  "constructor_defaults_coercions_aliases_growth_reinit_rng_ids_fenv_mxcsr": true,
+  "fixture_sha256": "ad04b8ed53a59f664d72bfe90a2ea7315533ee1bf2a5eeed99595d6cf5202cf8",
+  "shared_fixture_sha256": "6113e75a57b957ef8b7774b401b5b8f64a0f731ae10c4fe8b74c80e9c284612d",
+  "raw_cases_sha256": {
+    "baseline": "2025002b67a523b187bbb39eb604d84755f6809e2b9fceeb3c657a428a3ff9d0",
+    "candidate": "2025002b67a523b187bbb39eb604d84755f6809e2b9fceeb3c657a428a3ff9d0"
+  },
+  "layouts": {
+    "CoreEvent": 240,
+    "GdDict": 32,
+    "GdVal": 24,
+    "BattleCtx": 328
+  },
+  "no_throughput_claim": true
+}

@@ -1,0 +1,10 @@
+{
+  "original_test_sha256": "d570f8f058060740aed3f9a7927096e3c87e283e0ff4da9949b5c69172840d86",
+  "corrected_test_sha256": "99b95c13b129910f3627d4e73339a3cb12bc017be48438f36e22ddefe629eb99",
+  "all_scenarios_retained": true,
+  "original_Godot_oracle": "24f376d3735acc6e003bbdf3d60163474f2daeff681fff79585e1b4c0949b5c6",
+  "changed_expectations": [
+    "appended listener visible this emission",
+    "replacement plus appended tail both visited"
+  ]
+}

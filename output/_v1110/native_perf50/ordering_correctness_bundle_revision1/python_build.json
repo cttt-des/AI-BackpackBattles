@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "pid": 30064,
+  "created": 1795747191.8021262,
+  "old_rt_pyd_sha256": "074727cd42636e80df7d280d00a1fed77fa0e4b9613cf8b10806cae3f41d3933",
+  "new_rt_pyd_sha256": "69b8f5aa1834cbb9d6c742ea638b07b6332899196a2a203fe270c06dc0c1d1c4",
+  "rt_source_sha256": "f0b2e1ee509ff04b242d0b4e1af6f60487f39a36def5e4499b25179b00787335",
+  "helper_sha256": "88d3e1d9c53f1ea39b47664b825d68ec3c08570c50ec13f9d9bbd6cf945d1b62",
+  "typed_pxd_unchanged": true,
+  "backend": "MSVC O2, original floating defaults, no PGO reuse",
+  "binding_true": true,
+  "live_rt_unchanged": true
+}

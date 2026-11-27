@@ -1,0 +1,82 @@
+{
+  "passed": true,
+  "checked_hot_objects": 18,
+  "fp_contract_off_all": true,
+  "compiler_options_identical_except_profile_directory": true,
+  "no_compiler_pta": true,
+  "dll_sha256": "02fda77681361a6ddc721aa9ea75950126fa0f82df787b83ac3ca97144192d52",
+  "objects": {
+    "engine_wrapper.o": {
+      "object_sha256": "8a7d6566067580b729b0b09481f55eb49aaed8bf18074d8768465752f7e42214",
+      "options_sha256": "1532103b37b7a34ca5e67162ba6f699de0f2950503b958eedb2d7f690ba9c24a"
+    },
+    "gd_rt.o": {
+      "object_sha256": "9a15052edf88847b05f963569f571096694662041d1bf040404d6ba46dd73d90",
+      "options_sha256": "1532103b37b7a34ca5e67162ba6f699de0f2950503b958eedb2d7f690ba9c24a"
+    },
+    "shard_00.o": {
+      "object_sha256": "a7ecb3801c7ac26baf96d587600cb087e36eea75cc939c201a96fe8be9f7cd7e",
+      "options_sha256": "1532103b37b7a34ca5e67162ba6f699de0f2950503b958eedb2d7f690ba9c24a"
+    },
+    "shard_01.o": {
+      "object_sha256": "df60c8bc7bca1bd81470d24e845ba2136fc1e509e6251d1b633d2b404f0c9de9",
+      "options_sha256": "1532103b37b7a34ca5e67162ba6f699de0f2950503b958eedb2d7f690ba9c24a"
+    },
+    "shard_02.o": {
+      "object_sha256": "2b9c498fa38c2578d8be8588c1a16d3b5be7a523e2086c938012f3ab122e59b7",
+      "options_sha256": "1532103b37b7a34ca5e67162ba6f699de0f2950503b958eedb2d7f690ba9c24a"
+    },
+    "shard_03.o": {
+      "object_sha256": "9404d153ad313677dc8601c9297c02dc3730d53c22806624b1813f6813af2b0b",
+      "options_sha256": "1532103b37b7a34ca5e67162ba6f699de0f2950503b958eedb2d7f690ba9c24a"
+    },
+    "shard_04.o": {
+      "object_sha256": "ad5584182be1250842d91248e9b10c8a382c9fd0673b6f327f2357d23f884e4c",
+      "options_sha256": "1532103b37b7a34ca5e67162ba6f699de0f2950503b958eedb2d7f690ba9c24a"
+    },
+    "shard_05.o": {
+      "object_sha256": "4a9eebe1a2892194b9991c23e7f2739f737b8591fa32454e94166b21442c09af",
+      "options_sha256": "1532103b37b7a34ca5e67162ba6f699de0f2950503b958eedb2d7f690ba9c24a"
+    },
+    "shard_06.o": {
+      "object_sha256": "908fd7e23d97147080b0e1ba25c9a5e8251d7ef4772a34988ecd6d38d6857888",
+      "options_sha256": "1532103b37b7a34ca5e67162ba6f699de0f2950503b958eedb2d7f690ba9c24a"
+    },
+    "shard_07.o": {
+      "object_sha256": "b5c22f90471500ca0a9f713b6b9b6027073b6c98041a2d42a01e21e69bcee79f",
+      "options_sha256": "1532103b37b7a34ca5e67162ba6f699de0f2950503b958eedb2d7f690ba9c24a"
+    },
+    "shard_08.o": {
+      "object_sha256": "1cbba00918d539ebdfcbe65b0f2b56d460ee482a78f54638172a5ddc129945bd",
+      "options_sha256": "1532103b37b7a34ca5e67162ba6f699de0f2950503b958eedb2d7f690ba9c24a"
+    },
+    "shard_09.o": {
+      "object_sha256": "55271b402a5bba5f9944345c50f36a16f41e8348341cdf6f2f1e4cfd483b59e3",
+      "options_sha256": "1532103b37b7a34ca5e67162ba6f699de0f2950503b958eedb2d7f690ba9c24a"
+    },
+    "shard_10.o": {
+      "object_sha256": "876149f54711ab95bffbf50ba261da38e5a8ba088437c8a08c7131d2b06ce6ca",
+      "options_sha256": "1532103b37b7a34ca5e67162ba6f699de0f2950503b958eedb2d7f690ba9c24a"
+    },
+    "shard_11.o": {
+      "object_sha256": "68a03a0417c862f64935763ecbf2c284fc80de9f971ae5c70d0f449e56e16a98",
+      "options_sha256": "1532103b37b7a34ca5e67162ba6f699de0f2950503b958eedb2d7f690ba9c24a"
+    },
+    "shard_12.o": {
+      "object_sha256": "547c2e2ba06c1257adb38deeac187f26c97968a6f86f98806f55039582ba89c5",
+      "options_sha256": "1532103b37b7a34ca5e67162ba6f699de0f2950503b958eedb2d7f690ba9c24a"
+    },
+    "shard_13.o": {
+      "object_sha256": "3aed7e5701138e5618c3cf01f0cbf22b9029220e3e44ca28464d048286eaf8f5",
+      "options_sha256": "1532103b37b7a34ca5e67162ba6f699de0f2950503b958eedb2d7f690ba9c24a"
+    },
+    "shard_14.o": {
+      "object_sha256": "bdea12841b2dbe234808908f0d49e11600cdcec5897a2591879d41ef6445cb33",
+      "options_sha256": "1532103b37b7a34ca5e67162ba6f699de0f2950503b958eedb2d7f690ba9c24a"
+    },
+    "shard_15.o": {
+      "object_sha256": "a1ba63f7400e379e6a8bdad50d1b9e3cb2d39e16e33257285bcf0012bb367aad",
+      "options_sha256": "1532103b37b7a34ca5e67162ba6f699de0f2950503b958eedb2d7f690ba9c24a"
+    }
+  }
+}

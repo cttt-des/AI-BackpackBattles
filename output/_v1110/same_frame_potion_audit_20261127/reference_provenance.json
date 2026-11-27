@@ -1,0 +1,13 @@
+{
+  "source_sha256": {
+    "output/_v1110/decompiled/Items/Potion.gd": "b4c0c7026fec662f50cd159f6f363cf78ab8abcc89c20bc770a97d02ee614a1a",
+    "output/_v1110/decompiled/Items/HeroicPotion.gd": "dbef633a2b369dfe0c1d1b1ec2cc705d432586d4f03853b8b441830549e449fb",
+    "output/_v1110/decompiled/Items/HealthPotion.gd": "0b535483c8832de65ca689d42184d8d650699dd38897bf2e2c719e15edd153e6",
+    "output/_v1110/decompiled/Core/Character.gd": "d567f4b1eec5c6734d12153a2ff6e53ec4a0b2d8c7f18185959c54a61d6960eb",
+    "output/_v1110/decompiled/Utility/EventBus.gd": "ff9a8424cacd109104dc1598c4d0fee8a285f125f3c89c54fb0f11c479b4f788",
+    "output/_v1110/decompiled/Utility/Util.gd": "596e7f7a9308ea03957e5c9f6e5cb43aa1591e1e0fd13217e2f2c70368970a36"
+  },
+  "unchanged_extracted_method_bodies": true,
+  "event_bus_adaptation": "Erase four CombatEvent type annotations only; dispatch body unchanged",
+  "fixture_scope": "UI/effect services are isolated stubs; original Potion control flow, Heroic/Health conditions, useStamina and EventBus execute in real Godot"
+}

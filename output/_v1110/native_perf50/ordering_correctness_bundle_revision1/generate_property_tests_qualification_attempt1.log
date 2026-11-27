@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\ordering_correctness_bundle\generate_property_tests.py", line 30, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\ordering_correctness_bundle\generate_property_tests.py", line 9, in main
+    rows=report['property_rows'];owners=sorted({v[0] for row in rows for v in row if v})
+         ~~~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'property_rows'

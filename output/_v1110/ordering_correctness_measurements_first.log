@@ -1,0 +1,108 @@
+Starting one raw24 run
+bundle.dll: 24 batches, median 167.56 replays/s, minimum 129.40; 2e74b45caa87
+Starting one controlled load-calibration24 run
+Warming controlled load for 30 seconds
+bundle.dll: 24 batches, median 178.58 replays/s, minimum 137.26; 2e74b45caa87
+{
+  "dll_sha256": "02fda77681361a6ddc721aa9ea75950126fa0f82df787b83ac3ca97144192d52",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "workers": 1,
+  "samples": 24,
+  "fights_per_sample": 200,
+  "load_field": "background_load_pct",
+  "power_source_ac": true,
+  "minimum_load_pct": 8.865103302474337,
+  "maximum_load_pct": 36.367956005157595,
+  "log_wall_seconds_intercept": -0.1114758432310804,
+  "log_wall_seconds_per_load_point": 0.013996486146324387,
+  "r_squared_log_wall_time": 0.9480308504035019,
+  "reference_load_pct": 20.0,
+  "reference_is_extrapolation": false,
+  "reference_distance_outside_observed_range_pct_points": 0,
+  "estimate_method": "log(wall_seconds) = intercept + slope * background_load_pct",
+  "sample_normalization_formula": "fps_at_reference = observed_fps * exp(slope * (observed_load - reference_load))",
+  "interpretation": "Empirical load-normalized estimate; coverage is reported, not a deployment gate. Code gains require paired A/B evidence.",
+  "fitted_fights_per_second_at_reference_load": 168.99404656095965,
+  "fitted_wall_time_change_per_ten_load_points": 0.15023338062918937,
+  "validation": {
+    "median_absolute_relative_time_error": 0.018580420394783838,
+    "p90_absolute_relative_time_error": 0.044100163138320714,
+    "constant_median_absolute_relative_time_error": 0.11208175869335447
+  },
+  "estimated_fights_per_second_at_reference_load_by_sample": [
+    171.31109872096422,
+    164.1681169196731,
+    172.3797924425715,
+    166.26087760581612,
+    174.14875203662066,
+    172.7761062631742,
+    173.47988721459808,
+    162.80891914393663,
+    177.2537034836323,
+    166.15854735210823,
+    169.7270724861849,
+    166.8747545234825,
+    169.4109358826961,
+    173.79466199096657,
+    165.2768371592227,
+    172.60024110916876,
+    162.77977173916184,
+    157.85019777910557,
+    169.04438253029244,
+    170.11804550458206,
+    172.21450675972366,
+    170.78223336522615,
+    167.99275131139214,
+    168.01224136877545
+  ],
+  "background_calibration": {
+    "workers": 2,
+    "priority": "below_normal",
+    "period_seconds": 0.02,
+    "busy_fractions": [
+      0.2,
+      0.85
+    ],
+    "phase_seconds": 10,
+    "maximum_duration_seconds": 120,
+    "elapsed_seconds": 67.37049639999168,
+    "warmup_seconds": 30.0
+  }
+}
+{
+  "dll_sha256": "02fda77681361a6ddc721aa9ea75950126fa0f82df787b83ac3ca97144192d52",
+  "serial": {
+    "median_fights_per_second": 167.5610007863431,
+    "minimum_fights_per_second": 129.40058221373113,
+    "maximum_fights_per_second": 214.0177334985524,
+    "background_load_range_pct": [
+      6.859898427819195,
+      40.54232766139461
+    ],
+    "on_ac_all": true
+  },
+  "load_calibration": {
+    "median_fights_per_second": 178.5817767192596,
+    "minimum_fights_per_second": 137.26101142085463,
+    "maximum_fights_per_second": 190.63218207377471,
+    "background_load_range_pct": [
+      8.865103302474337,
+      36.367956005157595
+    ],
+    "on_ac_all": true
+  },
+  "fitted_fights_per_second_at20": 168.99404656095965,
+  "r_squared_log_wall_time": 0.9480308504035019,
+  "fit_validation": {
+    "median_absolute_relative_time_error": 0.018580420394783838,
+    "p90_absolute_relative_time_error": 0.044100163138320714,
+    "constant_median_absolute_relative_time_error": 0.11208175869335447
+  },
+  "report_sha256": {
+    "bundle_serial.json": "a2c28c29064cf6531b526520cd4d8633749a98d8d595fb1e54074ab4c0028ab6",
+    "bundle_load_calibration.json": "a726a7ae547ceaf07ea3782433e37108af8593dcde9aa5dba630da7ea6362771",
+    "bundle_load20.json": "eace2bd029795e195f753ca11e835f7ed929e0fa4e2ee778a07688af5ba4418e"
+  },
+  "single_run_all_samples_retained": true,
+  "raw24_gate_passed": true
+}

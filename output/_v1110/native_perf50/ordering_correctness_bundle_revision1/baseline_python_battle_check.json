@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "rt_module": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\gd_core_py\\_rt.pyd",
+  "original_godot_baseline": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\gd_core_test\\lineup_result.txt",
+  "result": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\ordering_correctness_bundle\\baseline_python_56_results.txt",
+  "exit_code": 1
+}

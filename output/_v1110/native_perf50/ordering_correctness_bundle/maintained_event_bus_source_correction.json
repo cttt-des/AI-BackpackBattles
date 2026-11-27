@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "path": "native_sim_cpp/native_sim/gen/shards/shard_11.cpp",
+  "only_declared_loop_changed": true,
+  "old_loop": "for (uint32_t _t1500 = 0; _t1500 < _len__t1500; ++_t1500) {",
+  "new_loop": "for (uint32_t _t1500 = 0; _t1499 && _t1500 < _t1499->len; ++_t1500) {",
+  "user_file_original_matches_HEAD": true
+}

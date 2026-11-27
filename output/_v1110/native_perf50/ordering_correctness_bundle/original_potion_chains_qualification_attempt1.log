@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_ordering_extra_potions.py", line 85, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_ordering_extra_potions.py", line 72, in main
+    activation=native_activation(a.dll,a.tag)
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_ordering_extra_potions.py", line 48, in native_activation
+    spec=importlib.util.spec_from_file_location('_ordering_native_binding',REPO/'dist/native_1_1_10/sim.py');binding=importlib.util.module_from_spec(spec);spec.loader.exec_module(binding)
+                                                                                                                                                           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "D:\文件资料\学习\自动背包AI\dist\native_1_1_10\sim.py", line 11, in <module>
+    from simulator.gd_core_engine import _place_of, character_stats, class_id_of, runtime_data
+ModuleNotFoundError: No module named 'simulator'

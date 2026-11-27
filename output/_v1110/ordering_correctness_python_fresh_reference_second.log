@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\rebuild_ordering_python_battle_reference.py", line 96, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\rebuild_ordering_python_battle_reference.py", line 88, in main
+    (WORK/'python_battle_original_stdout.log').write_bytes(run.stdout);(WORK/'python_battle_original_stderr.log').write_bytes(run.stderr);run.check_returncode();assert b'SCRIPT ERROR' not in run.stderr,run.stderr.decode('utf8',errors='replace')[:1500]
+                                                                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: SCRIPT ERROR: Parse Error: The method "_has_behavior_cache_get" isn't declared in the current class.
+
+          at: GDScript::reload (res://gd_core/CoreItem.gd:3880)
+
+SCRIPT ERROR: Parse Error: The class "CoreItem" couldn't be fully loaded (script error or cyclic dependency).
+
+          at: GDScript::reload (res://gd_core/CoreDamageResult.gd:97)
+
+SCRIPT ERROR: Parse Error: The class "CoreDamageResult" couldn't be fully loaded (script error or cyclic dependency).
+
+          at: GDScript::reload (res://gd_core/CoreCharacter.gd:550)
+
+SCRIPT ERROR: Parse Error: The class "CoreCharacter" couldn't be fully loaded (script error or cyclic dependency).
+
+          at: GDScript::reload (res://FreshBattle.gd:258)
+
+

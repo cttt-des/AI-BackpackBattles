@@ -1,0 +1,516 @@
+# -*- coding: utf-8 -*-
+# 自动生成，勿手改。生成器：tools/gd_to_py.py
+
+from .._rt import (  # noqa: F401
+
+    Color,
+    Dictionary,
+    EnumDict,
+    FuncRef,
+    GD_DEFAULT,
+    INF,
+    NAN,
+    Node,
+    Node2D,
+    OS_has_feature,
+    Object,
+    PCG32,
+    PI,
+    PoolStringArray,
+    RandomNumberGenerator,
+    Reference,
+    Resource,
+    Signal,
+    String,
+    TAU,
+    TYPE_VECTOR2,
+    Vector2,
+    Vector3,
+    _HoistPending,
+    _bind_battle,
+    _div,
+    _dup,
+    _erase,
+    _fill,
+    _find,
+    _gd_fmt,
+    _gd_range,
+    _gd_str,
+    _get_slice,
+    _gid,
+    _has_behavior_cache_get,
+    _has_behavior_cache_put,
+    _hash,
+    _invert,
+    _iter,
+    _join,
+    _load,
+    _mod,
+    _os_environ_get,
+    _pick_random,
+    _pop_at,
+    _resize,
+    _shuffle,
+    _sort_custom,
+    _strv,
+    _substr,
+    ceil,
+    clamp,
+    deg2rad,
+    f32,
+    floor,
+    fmod,
+    gd_round,
+    get_stack,
+    inverse_lerp,
+    is_equal_approx,
+    is_instance_valid,
+    lerp,
+    move_toward,
+    posmod,
+    pow,
+    rad2deg,
+    randomize,
+    round,
+    sign,
+    smoothstep,
+    snapped,
+    sqrt,
+    stepify,
+    tr,
+    typeof,
+    wrapf,
+    wrapi
+,
+)
+
+if "GodotObject" not in globals():
+	from .._rt import GodotObject  # 纯 py 补绑；编译态 pxd 已预绑
+
+from .. import _registry as _R
+
+
+
+
+class CoreContext(GodotObject):
+
+	resource_path = "res://gd_core/CoreContext.gd"
+
+	def _init_fields(self):
+		super()._init_fields()
+		self.rng = None
+		self.util = None
+		self.bus = None
+		self.hooks = None
+		self.combat_log = None
+		self.player = None
+		self.opponent = None
+		self.fight_ended = False
+		self.time = 0.0                # 对齐 Util.time（物理帧累加）
+		self.probe_pass = 0
+		self.frame_counter = 0         # 对齐 Util.frameCounter
+		self.combat_time = 0.0         # 对齐 CombatTimer.combatTime（供事件时间戳）
+		self.below_master = False      # 对齐 Game.isBelowLeague(Game.Leagues.Master)
+		self.label_rng_enabled = True
+		self.lobbies_mode = False      # 对齐 Game.curMode == Game.Mode.Lobbies
+		self.custom_health_multiplier = 100.0
+		self._drawseq_enabled = False
+		self.lib_fires = []
+		self.combat = None
+		self.item_book = None
+		self.sandbag_active = False
+		self.cur_mode = 0
+		self.cur_round = 0
+		self.rope_speedups = {}
+		self.cube_advanced = {}
+		self.event_type_keys = {}
+		self.class_resources = None
+		self.unhealingDamageSource = None
+		self.fatigueDamageSource = None
+		self.stealLifeDamageSource = None
+		self.out_of_stamina_count = 0  # 对齐 Game.numTimesOutOfStamina
+		self.warn_unknown_api = True
+		self._deferred = []
+		self._idle_frame_calls = []
+		self._timed = []
+		self.deferred_flush_enabled = True
+		self.eb_relay_mirrored = False
+		self.keyed_stop_clears_seen = False
+		self.keyed_cleanse_biggest_first = False
+		self._emptyGrid = None
+
+	# =============================================================================
+	# CoreContext.gd — 无头战斗内核：战斗上下文（替代全局单例）
+	# =============================================================================
+	# 原版中战斗逻辑横向依赖 6 个全局单例：Game / Util / Sound / ItemBook / EventBus / Settings。
+	# 这些单例把「战斗状态」与「渲染、场景、存档、UI」绑在一起，是耦合的主要来源。
+	# gd_core 用一个显式对象 CoreContext 承载战斗所需的全部状态，由外部注入到
+	# CoreItem / CoreCharacter / CoreBuff 中（各对象持 `ctx` 引用），
+	# 从而做到：
+	#   · 同一进程内可并行跑多场战斗（无单例）
+	#   · 可固定种子复现（rng 可注入）
+	#   · 可 deepcopy / 序列化（为后续 RL 批量推演铺路）
+	#
+	# 语义对齐表（原 → 新）：
+	#   Util.rng                     → ctx.rng            (Util.gd:6)
+	#   Util.time                    → ctx.time           (Util.gd:148-152，物理帧累加)
+	#   Util.frameCounter            → ctx.frame_counter  (Util.gd:151)
+	#   Game.fightEnded              → ctx.fight_ended    (Game.gd:3002 起)
+	#   Game.PLAYER / Game.OPPONENT  → ctx.player / ctx.opponent
+	#   Game.isBelowLeague(Master)   → ctx.below_master   (Character.gd:304, Item.gd:3807)
+	#   Game.curMode == Mode.Lobbies → ctx.lobbies_mode   (同上)
+	#   Game.combatLog               → ctx.combat_log     (CoreCombatLog：仅事件工厂 + 钩子)
+	#   EventBus                     → ctx.bus
+	#   Util.tra / Sound / 各类视觉   → ctx.hooks
+	# =============================================================================
+
+
+	# 帧率与固定步长（对齐 Godot 默认物理帧率 60Hz；原版 Item._physics_process 即此步长）
+	PHYSICS_FPS = 60.0
+	PHYSICS_DELTA = _div(1.0, 60.0)
+
+	# 对齐 Game.gd:201 `const COMBAT_DELAY = 2.5`
+	COMBAT_DELAY = 2.5
+
+	# 对齐 CombatTimer.gd:5 `const FATIGUE_TIME = 17`
+	FATIGUE_TIME = 17
+
+
+	# ★ np29fH：探针 pass 序号（harness run_case 注入；warmup/latch/selfcheck 区分，
+	#   防「同 state 两 pass 折叠」的时序不可分——§6m16 方案的持久基建）
+
+
+	# ★ np51：存档自定义规则健康倍率（对齐 CustomRules.Rules.HealthMultiplier，
+	#   范围 20..200，缺省 100）。oracle harness 逐场 fromString(player_run.customRules)
+	#   （oracle_fight.gd:591）；prepare() 按倍率给双方加**静默**临时体上限
+	#   （Character.gd:296-298，changeMaxHealthTemporary item=null 不发事件），
+	#   直接改写后续全部 max/cur 基线——不实现则该类场全链分歧（实证 run101490
+	#   系列 mult=200：Dark Lantern 自伤 oracle -130 vs gd -65）。
+	#   位流→倍率的解析在**夹具层**完成（tools/gen_fixture_from_lineup.py，python
+	#   侧 full-fidelity BitStream 语义），内核只消费数值——避免 py 转写面的
+	#   String 位操作垫片问题。缺省/缺字段 = 100.0（零回归）。
+
+	# ★ np51㊱：flicker delay 覆盖队列的消费游标（key → 已消费个数）——
+	#   ORACLE_FLK_DELAY 同 key 多值时按装配序逐实例消费（双 Burning Coal 类）。
+
+		# ★ np51㊳：ORACLE_ALIGN_DRAWSEQ=1 → CoreRng 启用全量抽计数（[GDRAW] 行）
+
+	def set_drawseq_enabled(self, v):
+		self._drawseq_enabled = v
+		self.rng.draw_seq = 0 if v else -1
+
+	# ★ np51㊳：oracle ItemLibrary 库实例 flicker 战斗窗内发火的对位调度器。
+	#   条目 [剩余秒, lo, hi]；_flushTimed 同槽递减，到点裸抽 randf_range(lo,hi)
+	#   （oracle 侧同为 Util.rng 裸调，rng_log 零痕迹）。
+
+	def lib_fires_tick(self, delta):
+		_iter__loc = _iter
+		if (not self.lib_fires):
+			return
+		keep = []
+		due = []
+		for e in (self.lib_fires if self.lib_fires.__class__ is list else _iter__loc(self.lib_fires)):
+			e[0] = e[0] - delta
+			if e[0] > 0.0:
+				keep.append(e)
+			elif not self.fight_ended:
+				due.append(e)
+		self.lib_fires = keep
+		for e in (due if due.__class__ is list else _iter__loc(due)):
+			self.rng.randf_range(float(e[1]), float(e[2]))
+
+	def set_custom_health_multiplier(self, v):
+		self.custom_health_multiplier = v
+
+	# ── 单例门面（原版 autoload → 显式对象，随 ctx 走） ──
+	#   Game.combatTimer     → ctx.combat      （ItemBook 之外的**信号发射者身份**：
+	#                                            CoreCombat 用 self 发 fatigue_start /
+	#                                            fatigue_damage_changed，与 CombatTimer.gd
+	#                                            同为「疲劳计时器」这一实体）
+	#   Game.sandbagActive   → ctx.sandbag_active
+	#   Game.curMode         → ctx.cur_mode
+	#   Game.curRound        → ctx.cur_round
+	#   ItemBook             → ctx.item_book   （描述符注册表 + 库存类型查询）
+	# 对齐 Game.gd:390 `var sandbagActive := false` + :3332 在**战斗收尾**置回 false。
+	# 一个 ctx 即一场战斗，故这里就是「本场是否已有沙袋生效」。
+	# 对齐 Game.gd:148-154 `enum Mode{Ranked=0, Unranked, Lobbies, Unselected, History}`。
+	# 无头内核不模拟局外流程，默认 Ranked（≠ History）。消费方：ChessBoard.onPrepare
+	# 只用它决定「要不要接商店信号」，而该信号连接本身属表现层（已被剥离）。
+	# 对齐 Game.curRound（局外回合数）。消费方：LevelUp.onPrepare 的
+	# `addSpeed((curRound - buyRound) * speedPerRound)` —— 装配层可按需写入。
+
+	# ── 跨回合的**战斗内运行期字典**（对齐 Game.gd:388-389） ──
+	#   Game.ropeSpeedups    → ctx.rope_speedups
+	#   Game.cubeAdvanced    → ctx.cube_advanced
+	# 二者都是「一场战斗内累积、战斗收尾清空」的状态（清空点 Game.gd:3330-3331，
+	# 由 CoreCombat.combatEndDeferred 对齐）。它们的语义各自是：
+	#   · ropeSpeedups[item] = 该物品已从绳索获得的速度总量 → Rope 用它夹住 maxSpeed
+	#     上限，并在自己的计时器到期时**按同量回收**（Util.dictSub）。
+	#   · cubeAdvanced[item] = 最后一个对该物品推进冷却的方块 → 原版据此判定
+	#     「同一物品被第二个方块推进时要乘 penaltyFactor」，即同名减益。
+	# 键是物品实例（Object），故用 Dictionary 的引用相等语义，与原版一致。
+
+	# 对齐 Game.gd:512 —— EventType 的**反查表**（枚举值 → 名字字符串），在 _init 派生。
+	# ★ 曾把 eventTypeKeys 当「纯文本渲染」剔除，那是误判：MagicRing.giveStacksFromEffect
+	#   用它把 `effect.stackType`（int）转成**参数名**（"poison"/"cold"/…），紧接着
+	#   `getP(stackName)` 取的就是战斗数值（MagicRing.gd:107-109）。它是判定链的一环。
+
+	# 对齐 Game.classResources（Game.gd:131 的职业 → 职业资源表）。
+	# 消费方：CoreCharacter.setClass / setClassResource —— 职业资源提供 health / stamina，
+	# 直接决定角色 maxHealth 与 baseMaxStamina。形如 {Classes.Ranger: {...}} 或
+	# {Classes.Ranger: Resource}，取字段统一用 .get(key)（Object.get 与 Dictionary.get 都通），
+	# 故宿主既能塞 Dictionary（纯数据/测试）也能塞真 Resource。
+
+	# ── 全局伤害源（对齐 Game.gd:2426-2433 的 _ready 构造） ──
+	#   unhealingDamageSource  origin=null  flags=unhealingFlags  (Character.gd:771)
+	#   fatigueDamageSource    origin=self  flags=CanBeBlocked    (Character.gd:1600)
+	#   stealLifeDamageSource  origin=null  flags=effectFlags
+
+	# 一次战斗的统计出口（供外部读取；不参与判定）
+
+	# ── 延迟调用队列（替代原版的 call_deferred） ──
+	# 原版散落 6 处 call_deferred（Character.gd:968 重算体力上限、Item.gd:2035 旋转落位、
+	# Item.gd:1544 等）。语义都是「当前帧末执行」。内核不依赖场景树，故用一个显式队列
+	# Godot drains nested deferred calls within the same flush.
+	# Calls queued during a flush join its FIFO tail.
+
+
+	def _init(self, _seed=0, _hooks=None):
+		_seed = int(_seed)
+		self.rng = _H_1(_seed)
+		self.util = _H_2(self.rng)
+		self.util._ctx = self
+		self.hooks = _hooks if _hooks != None else _H_7()
+		self.bus = _H_3()
+		self.bus._ctx = self
+		self.combat_log = _H_4()
+		self.combat_log._ctx = self
+		self.item_book = _H_5()
+		self.item_book._ctx = self
+
+		# 对齐 Game.gd:2426-2433
+		self.stealLifeDamageSource = self._newDamageSource(None, _H_12, 
+			_H_8)
+		self.unhealingDamageSource = self._newDamageSource(None, _H_13, 
+			_H_9)
+		self.fatigueDamageSource = self._newDamageSource(self, _H_14, 
+			_H_15)
+
+		# 对齐 Game.gd:512 `onready var eventTypeKeys = Util.invertDictionary(EventType)`
+		self.event_type_keys = _H_2.invertDictionary(_H_10)
+
+
+	# ── RNG state 直注入（转发 CoreRng.set_state） ──
+	# 用途：确定性重放把 Godot 实测的 64 位 PCG state 原样灌进内核，从中途续跑。
+	# 语义见 CoreRng.set_state 处注释（对齐 random_pcg.h:79：直接赋值，不前进不重播）。
+	def set_state(self, state):
+		state = int(state)
+		self.rng.set_state(state)
+
+
+	def _newDamageSource(self, origin, type, flags):
+		type = int(type)
+		flags = int(flags)
+		src = _H_6()
+		src._rng = self.rng
+		src.init(origin, type)
+		src.flags = flags
+		return src
+
+
+	def getCharacterFromId(self, playerId):
+		playerId = int(playerId)
+		return self.player if playerId == _H_16 else self.opponent
+
+
+	def otherCharacter(self, character):
+		return self.opponent if character == self.player else self.player
+
+
+	# ── 物理帧推进（对齐 Util.gd:148-152） ──
+	# ★ _flushTimed 不再在此处派发（阶段2 对齐）：原版 SceneTreeTimer（Util.callDelayed 系）
+	#   在 oracle_fight.gd 手动 tick 里是**步骤⑧**——物品/角色/Timer 全部推进完之后
+	#   最后派发；此前的内联 flush 等于步骤②，与物品同帧的消耗会抢在物品判定链之前。
+	#   派发点移至 CoreCombat.physicsTick 帧末（fightEnded 闸语义同 drive_delayed）。
+	def advancePhysicsFrame(self, delta=GD_DEFAULT):
+		if delta is GD_DEFAULT:
+			delta = self.PHYSICS_DELTA
+		self.frame_counter += 1
+		self.time += delta
+		# ★ kernel_r1：combat_time **不得**在此推进——原版 combatTime 只在
+		#   CombatTimer._physics_process（Util 时钟=步骤① 之后的步骤④）前进；
+		#   此前这里与 CoreCombat.physicsTick 步骤④ 双重推进，使 ctx.combat_time
+		#   在步骤③（对手物品）期间恒领先本地 combat_time 一个 dt——对手侧事件
+		#   时间戳整体 +1 tick（run577_r7 EVDBG 实证：create id=16 t=1.0833 而同刻
+		#   CoreCombat.combat_time=1.0667；神谕语料 idx15=1.0667。唯一读点=
+		#   CoreCombatLog.getTimeStamp=事件时间戳源，语义=CombatTimer）。
+		self.combat_time = self.combat_time
+
+
+	# ── 按时延迟调用（对齐 Util.callDelayed 的 `get_tree().create_timer(delay)`） ──
+	# 与下面的 _deferred（帧末）区分：这是**按时长**触发的一次性回调。
+	# 原版走 SceneTreeTimer，粒度也是帧；此处按 ctx.time（同一物理帧累加量）判到期，
+	# 故触发时刻与原版落在同一帧。到期检查放在时间推进之后、帧末队列之前 ——
+	# 原版 SceneTreeTimer 与 call_deferred 都在帧末处理，两者之间的先后不影响判定
+	# （已核：物品侧不存在同时依赖二者的同一帧路径）。
+
+
+	def callDelayed(self, obj, methodName, delay, binds=[]):
+		if obj == None:
+			return
+		# ★ kernel_r6：条目 [obj, method, **剩余秒**, binds]——oracle Util.callDelayed
+		#   登记 SceneTreeTimer、由 drive_delayed 每 tick `e[1] -= dt` 递减驱动
+		#   （oracle_fight.gd:939-953），到期即派发。此前存绝对到期时刻 + time>=due
+		#   判定，使 tick 内注册的延迟比 oracle 晚 1 tick 到期（注册 tick 不递减）。
+		self._timed.append([obj, methodName, delay, binds])
+
+
+	def _flushTimed(self):
+		# ★ kernel_r6：递减驱动语义（对齐 oracle_fight.gd drive_delayed：全部条目
+		#   -= dt，>0 保留，<=0 派发；派发处理基于快照，处理期间新登记不递减）。
+		#   帧末战斗已结束：到期条目按 oracle `if G.fightEnded: continue` 丢弃。
+		_iter__loc = _iter
+		if (not self._timed):
+			return
+		due = []
+		keep = []
+		for call in (self._timed if self._timed.__class__ is list else _iter__loc(self._timed)):
+			call[2] = call[2] - self.PHYSICS_DELTA
+			if call[2] > 0.0:
+				keep.append(call)
+			elif not self.fight_ended:
+				due.append(call)
+		if (not due):
+			self._timed = keep
+			return
+		self._timed = keep
+		for call in (due if due.__class__ is list else _iter__loc(due)):
+			call[0].callv(call[1], call[3])
+
+
+	# ── 延迟调用（对齐 Node.call_deferred） ──
+	def defer(self, obj, methodName, args=[]):
+		self._deferred.append([obj, methodName, args])
+
+
+	def hasDeferred(self):
+		return not (not self._deferred)
+
+
+	# Godot drains nested deferred calls within the same flush.
+	# ★ np24 harness：deferred_flush_enabled=false 时本函数直接返回——对位神谕
+	#   录制 harness 的 [M11] 语义（oracle_fight.gd:236-239）：阻塞 tick 循环无帧，
+	#   MessageQueue（call_deferred）在整场战斗内**从不冲刷**（跨场累积至配额退出
+	#   才帧末清）。实证：run574_r7 Deck of Cards 的 cards[0].call_deferred(
+	#   "startActivation")（oracle/Items/DeckofCards.gd:76）在语料中从未执行
+	#   ⇒ 全语料零卡链 reveal；gd 内核每 tick flush ⇒ 独有 Lovers reveal（t=1.55
+	#   damage 5）= 574 首分歧 idx45。由神谕对齐宿主置 false；其余用途
+	#   （LineupBattle 等）默认 true 不变。
+	# ★ np24：EngineerBox 接力死亡镜像——录制侧 EB 的 ChargeTimer（delay=5，MultiTimer
+	#   one_shot）仅首弹 1 次（探针 [FTDBG]/[MTDBG] 实证 t=5.033 fire ×2 侧、ts=0、
+	#   队列 1 emit/侧），后续 queue 推进从不发生 ⇒ EB 接力重发射=0；gd 侧 CoreTimer
+	#   级联递归弹光队列 ⇒ sendCharge +10（26 v 36）⇒ 主链 +20 位移 ⇒ 下游全链错位
+	#   （1160@3/582@42 stun roll 位差）。神谕对齐宿主置 true 镜像（EB onPrepare
+	#   连接环=空转）；其余用途默认 false 不变。
+	# ★ np43（2026-11-05，offpeak）：Buff 临时池清空 stop 的 seen 清除键控——语料
+	#   run986_r12 实证：6.4833 清洗清空盲池→stop 后，6.5167 同 dur(5) gain 的
+	#   start 必须走**重同步**（H 池满 5s 于 11.5333 到期=语料 idx494），不得走
+	#   eng==seen 碰撞支（left=−1 续减→当拍 fire=gd 现 FD@271 多发 TO）。机理=
+	#   录制批注册表 e[1] 在该 stop 时刻 ≠5（不可复原的录制态；静态 perm 残留
+	#   两分支均与语料 A 池 −2@6.0167 矛盾，已排除）。键控场由神谕对齐宿主置
+	#   true（CoreBuff._stopTimer 清 _timer_seen）；其余用途默认 false 零变化。
+	# ★ np44：清洗落池序键控（机理见 CoreBuff.gd loseStacks 同名注）——true=最大
+	#   层池优先，false=farthest（原语义）。神谕对齐宿主按键控表置位。
+
+	def flushDeferred(self):
+		if not self.deferred_flush_enabled:
+			return
+		while not (not self._deferred):
+			batch = self._deferred
+			self._deferred = []
+			for call in (batch if batch.__class__ is list else _iter(batch)):
+				obj = call[0]
+				if obj != None:
+					obj.callv(call[1], call[2])
+
+
+	def connectIdleFrameOnce(self, obj, methodName, args=[]):
+		for call in (self._idle_frame_calls if self._idle_frame_calls.__class__ is list else _iter(self._idle_frame_calls)):
+			if call[0] == obj and call[1] == methodName:
+				return
+		self._idle_frame_calls.append([obj, methodName, args])
+
+
+	def flushIdleFrameCalls(self):
+		if not self.deferred_flush_enabled:
+			return
+		batch = self._idle_frame_calls
+		self._idle_frame_calls = []
+		if self.fight_ended:
+			return
+		for call in (batch if batch.__class__ is list else _iter(batch)):
+			obj = call[0]
+			if obj != None:
+				obj.callv(call[1], call[2])
+
+
+	# ── 空背包回落（对齐「Game.PLAYER.INVENTORY 恒非空」） ──
+	# 原版 Item.getOwnOrPlayerInventory() 未放置时回落到 Game.PLAYER.INVENTORY，那是个
+	# autoload 上的真实节点，**永不为 null**。内核里 player 由装配层注入，在装配早期
+	# （物品尚未挂到任何角色、或纯几何查询）可能还没有 player，此时若返回 null，
+	# 调用方 .getItemsInCells(...) 会直接崩。此处提供一个共享空网格，使「查询得到空集」
+	# 这一语义与原版一致，而不是崩。
+
+
+	def emptyGrid(self):
+		if self._emptyGrid == None:
+			self._emptyGrid = _H_11(None)
+		return self._emptyGrid
+
+
+_R.reg("res://gd_core/CoreContext.gd", CoreContext)
+_R.reg("CoreContext", CoreContext)
+_R.reg("CoreContext", CoreContext)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("CoreRng")
+try:
+	_H_10 = _R.C("CoreConst").EventType
+except AttributeError as _he:
+	_H_10 = _HoistPending(_he)
+_H_11 = _R.C("CoreGrid")
+try:
+	_H_12 = _R.C("CoreDamageSource").Type.Effect
+except AttributeError as _he:
+	_H_12 = _HoistPending(_he)
+try:
+	_H_13 = _R.C("CoreDamageSource").Type.Unhealing
+except AttributeError as _he:
+	_H_13 = _HoistPending(_he)
+try:
+	_H_14 = _R.C("CoreDamageSource").Type.Fatigue
+except AttributeError as _he:
+	_H_14 = _HoistPending(_he)
+try:
+	_H_15 = _R.C("CoreDamageSource").Flags.CanBeBlocked
+except AttributeError as _he:
+	_H_15 = _HoistPending(_he)
+try:
+	_H_16 = _R.C("CoreCharacter").ID.PLAYER
+except AttributeError as _he:
+	_H_16 = _HoistPending(_he)
+_H_2 = _R.C("CoreUtil")
+_H_3 = _R.C("CoreEventBus")
+_H_4 = _R.C("CoreCombatLog")
+_H_5 = _R.C("CoreItemBook")
+_H_6 = _R.C("CoreDamageSource")
+_H_7 = _R.C("CoreHooks")
+try:
+	_H_8 = _R.C("CoreDamageSource").effectFlags
+except AttributeError as _he:
+	_H_8 = _HoistPending(_he)
+try:
+	_H_9 = _R.C("CoreDamageSource").unhealingFlags
+except AttributeError as _he:
+	_H_9 = _HoistPending(_he)

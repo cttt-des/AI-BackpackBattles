@@ -432,7 +432,7 @@ gd::GdVal Gd__gd_core__CoreEventBus::fn_emitAndLog(const gd::GdVal* _args, int _
         gd::GdVal _t1498 = gd::gd_iter_seq(gd_ctx.arena, lv__bus_list);
         gd::GdArr* _t1499 = (_t1498.kind == gd::GdVal::Kind::Arr) ? _t1498.arr : nullptr;
         uint32_t _len__t1500 = _t1499 ? _t1499->len : 0u;
-        for (uint32_t _t1500 = 0; _t1500 < _len__t1500; ++_t1500) {
+        for (uint32_t _t1500 = 0; _t1499 && _t1500 < _t1499->len; ++_t1500) {
             gd::GdVal lv__bus_pair = _t1499->data[_t1500];
             if (gd::gd_truth(gd::get_prop(gd_ctx, this->f__ctx, SYM_GEN_fight_ended_1283))) {
                 return gd::GdVal::null();

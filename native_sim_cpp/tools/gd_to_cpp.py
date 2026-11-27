@@ -1544,7 +1544,15 @@ class CppEmitter:
                 lines.append(f"{ind}    gd::GdVal {seq_t} = gd::gd_iter_seq(gd_ctx.arena, {seq_cpp});")
                 lines.append(f"{ind}    gd::GdArr* {arr_t} = ({seq_t}.kind == gd::GdVal::Kind::Arr) ? {seq_t}.arr : nullptr;")
                 lines.append(f"{ind}    uint32_t _len_{idx_t} = {arr_t} ? {arr_t}->len : 0u;")
-                lines.append(f"{ind}    for (uint32_t {idx_t} = 0; {idx_t} < _len_{idx_t}; ++{idx_t}) {{")
+                # EventBus callbacks may grow or shrink the current listener
+                # array. Godot Variant::iter_next reads its current size.
+                # Other loop contracts are audited separately, not changed here.
+                live_listeners = (ci.res_path == "res://gd_core/CoreEventBus.gd"
+                                  and isinstance(st.seq, IdentExpr) and st.seq.name == "_bus_list")
+                if live_listeners:
+                    lines.append(f"{ind}    for (uint32_t {idx_t} = 0; {arr_t} && {idx_t} < {arr_t}->len; ++{idx_t}) {{")
+                else:
+                    lines.append(f"{ind}    for (uint32_t {idx_t} = 0; {idx_t} < _len_{idx_t}; ++{idx_t}) {{")
                 sub_loc = dict(locals_)
                 sub_loc[st.var] = None
                 if st.var in locals_:

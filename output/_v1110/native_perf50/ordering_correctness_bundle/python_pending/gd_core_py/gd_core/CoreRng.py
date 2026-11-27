@@ -1,0 +1,507 @@
+# -*- coding: utf-8 -*-
+# 自动生成，勿手改。生成器：tools/gd_to_py.py
+
+from .._rt import (  # noqa: F401
+
+    Color,
+    Dictionary,
+    EnumDict,
+    FuncRef,
+    GD_DEFAULT,
+    INF,
+    NAN,
+    Node,
+    Node2D,
+    OS_has_feature,
+    Object,
+    PCG32,
+    PI,
+    PoolStringArray,
+    RandomNumberGenerator,
+    Reference,
+    Resource,
+    Signal,
+    String,
+    TAU,
+    TYPE_VECTOR2,
+    Vector2,
+    Vector3,
+    _HoistPending,
+    _bind_battle,
+    _div,
+    _dup,
+    _erase,
+    _fill,
+    _find,
+    _gd_fmt,
+    _gd_range,
+    _gd_str,
+    _get_slice,
+    _gid,
+    _has_behavior_cache_get,
+    _has_behavior_cache_put,
+    _hash,
+    _invert,
+    _iter,
+    _join,
+    _load,
+    _mod,
+    _os_environ_get,
+    _pick_random,
+    _pop_at,
+    _resize,
+    _shuffle,
+    _sort_custom,
+    _strv,
+    _substr,
+    ceil,
+    clamp,
+    deg2rad,
+    f32,
+    floor,
+    fmod,
+    gd_round,
+    get_stack,
+    inverse_lerp,
+    is_equal_approx,
+    is_instance_valid,
+    lerp,
+    move_toward,
+    posmod,
+    pow,
+    rad2deg,
+    randomize,
+    round,
+    sign,
+    smoothstep,
+    snapped,
+    sqrt,
+    stepify,
+    tr,
+    typeof,
+    wrapf,
+    wrapi
+,
+)
+
+if "GodotObject" not in globals():
+	from .._rt import GodotObject  # 纯 py 补绑；编译态 pxd 已预绑
+
+from .. import _registry as _R
+
+
+
+
+class BalancedRng(GodotObject):
+	def _init_fields(self):
+		super()._init_fields()
+		self.expectedWins = 0.0
+		self.wins = 0
+		self.balancedness = 3.0
+		self.lastResult = False
+		self.extraLuck = 0.0
+		self.lastTarget = 0.0
+		self.accChance = 0.0
+		self._rng = None
+
+
+	# 原版：`var expectedWins = Util.rng.randf_range(0.2, - 0.2)`
+	# from > to 是原版写法，randf_range 仍返回 [to, from]；保持调用形态不变。
+
+	luckBalance = 0.2
+
+
+	def _init(self, _rng_ref=None, startBias=0.0):
+		self._rng = _rng_ref
+		if self._rng != None:
+			# 走 CoreRng.randf_range 追踪包装（神谕 BalancedRandom.gd:4 =
+			# Util.rng_trace_range(0.2, -0.2)，同值同链位，仅补 trace 可见性）
+			self.expectedWins = self._rng.randf_range(0.2, - 0.2)
+		else:
+			self.expectedWins = 0.0
+		self.expectedWins += startBias
+
+	def setBias(self, bias):
+		self.expectedWins += bias
+
+	def rollPercent(self, target):
+		return self.roll(_div(target, 100.0))
+
+	def roll(self, target):
+		if target <= 0:
+			return False
+		elif target >= 1:
+			return True
+
+		chance = target
+
+		dif = self.expectedWins - self.wins
+		if dif > 0.3:
+			chance *= self.balancedness * min(1.0, dif)
+		elif dif < - 0.3:
+			chance /= self.balancedness * min(1.0, - dif)
+
+		self.expectedWins += target
+
+		if self.lastResult and target < 0.4:
+			chance *= 0.5
+		elif not self.lastResult and target > 0.6:
+			chance *= 2.0
+
+		if self._rng.oracle_trace and self._rng._stacktrace:
+			self._rng.trace_diag("BALROLL", "ch=" + str(chance), "ew=" + str(self.expectedWins) + " w=" + str(self.wins), "lr=" + str(self.lastResult))
+		result = self._rng.flip(chance)
+
+		self.lastResult = result
+
+		if result:
+			self.wins += 1
+			return True
+		else:
+			return False
+
+	# 原版保留、战斗路径未使用的两个变体，一并原样搬运以免遗漏。
+	def roll2(self, target):
+		if target <= 0:
+			return False
+		elif target >= 1:
+			return True
+
+		chance = target + self.extraLuck * 0.3
+
+		if self._rng.flip(chance):
+			self.extraLuck -= 1.0 - target
+			return True
+		else:
+			self.extraLuck += target
+			return False
+
+	def roll1(self, target):
+		if target <= 0:
+			return False
+		elif target >= 1:
+			return True
+
+		self.accChance += target - self.lastTarget
+		self.extraLuck += (0 if self.accChance < 0 else (1 if self.accChance > 1 else self.accChance)) - target
+
+		self.lastTarget = target
+
+		if self._rng.flip(self.accChance):
+			self.accChance = target - self.extraLuck
+			return True
+		else:
+			self.accChance += self.luckBalance
+			return False
+
+	# 对齐 BalancedRandom.gd:104-111
+	# 注意：原版 reset() 把 expectedWins 归零（而非重新随机）—— 保真保留。
+	def reset(self):
+		self.expectedWins = 0.0
+		self.wins = 0
+		self.lastResult = False
+
+		self.extraLuck = 0.0
+		self.accChance = 0.0
+		self.lastTarget = 0.0
+
+
+# =============================================================================
+# BalancedRange — 对齐 Utility/BalancedRange.gd（物品 damageRangeRng）
+# =============================================================================
+
+class BalancedRange(GodotObject):
+	def _init_fields(self):
+		super()._init_fields()
+		self.acc = 0.0
+		self._rng = None
+
+
+
+	def _init(self, _rng_ref=None):
+		self._rng = _rng_ref
+
+	def reset(self):
+		self.acc = 0.0
+
+	def randIntRange(self, from_, to):
+		from_ = int(from_)
+		to = int(to)
+		# ★ kernel_r5：对齐 oracle Utility/BalancedRange.gd:14 `Util.rng.randi_range`
+		#   ——**裸调不入账本**（oracle 伤害掷点在 rng_log 零痕迹）。此前走
+		#   CoreRng.randi_range 追踪版，使 gd trace 多出伤害行、与语料账本
+		#   不可直比（run862_r18 对位 walk 在 c99/c100 间虚位差 δ 实证）。
+		#   消耗面不变（同一 PCG 同参数），仅账本可见性对齐。
+		# ★ np51㊳终⑫：GDRAW 可见性补齐（ORACLE_ALIGN_DRAWSEQ=1 时逐抽打
+		#   [GDRAW] 行；对位需看见伤害掷点——oracle 侧 [BARE] 可见而 gd
+		#   此前不可见 → 窗口对位虚差一位）。默认零输出零链影响。
+		rng = self._rng.rng.randi_range(from_, to)
+		self._rng.bare_draw_seq("randi_range", from_, to, rng)
+		expected = 0.5 * (from_ + to)
+
+		dif = rng - expected
+
+		if self.acc >= 1:
+			malus = min(rng - from_, int(self.acc))
+			self.acc -= malus
+			rng -= malus
+
+		elif self.acc <= - 1:
+			bonus = min(to - rng, int(abs(self.acc)))
+			self.acc += bonus
+			rng += bonus
+
+		self.acc += dif
+
+		return rng
+
+
+class CoreRng(GodotObject):
+
+	resource_path = "res://gd_core/CoreRng.gd"
+
+	def _init_fields(self):
+		super()._init_fields()
+		self.rng = None
+		self.debug_flip_tag = ""
+		self.oracle_trace = False
+		self.oracle_trace_log = []
+		self._stacktrace = False      # ORACLE_ALIGN_STACKTRACE=1：逐抽附调用栈签名（诊断用）
+		self.draw_seq = -1  # -1=未启用；ORACLE_ALIGN_DRAWSEQ=1 时启用
+		self.globalChainOpen = False
+
+	# =============================================================================
+	# CoreRng.gd — 无头战斗内核：随机数层
+	# =============================================================================
+	# 对齐源码（decompiled_legacy/1.1.7/，v1.1.7）：
+	#   Utility/Util.gd:1007-1033      roll / flip / flipPercent / flipRound / flipWeighted
+	#   Utility/BalancedRandom.gd      BalancedRng（防连击/防连败/期望胜率平衡）
+	#   Utility/BalancedRange.gd       BalancedRange（伤害区间累积修正）
+	#
+	# 剥离内容（与判定无关）：
+	#   · 原版随机源 `Util.rng` 为全局 RandomNumberGenerator（每局 randomize）；
+	#     此处改为由 CoreContext 注入的独立 RandomNumberGenerator，便于固定种子复现。
+	#   · 其余数值比较、分支顺序、`<=`/`>=` 边界、乘除次序全部逐字保留。
+	# =============================================================================
+
+
+	# ────────────────────────── 全局随机源（对齐 Util.gd:6） ──────────────────────────
+
+
+	def _init(self, _seed=0):
+		_seed = int(_seed)
+		self.rng = RandomNumberGenerator()
+		if _seed == 0:
+			self.rng.randomize()
+		else:
+			self.rng.seed = _seed
+		self._stacktrace = _os_environ_get("ORACLE_ALIGN_STACKTRACE") != ""
+
+
+	# ── state 直注入（确定性重放用） ──
+	# 语义对齐 Godot 3.6 RandomNumberGenerator.state setter（源码存档
+	# output/godot_src/random_pcg.h:79 `RandomPCG::set_state`）：
+	#   `pcg.state = p_state` —— 直接赋值 PCG 状态，不前进、不重播，
+	#   下一次 rand() 即从该状态出发。
+	# ★ 与 `seed` setter 不同：seed 走 pcg32_srandom_r（先清零、推进两次、
+	#   再加 initstate），且会改写 current_seed；state 只改 pcg 内部状态字。
+	#   两者不可混为一谈 —— 重放「中途续跑」必须用 state 而非 seed。
+	def set_state(self, state):
+		state = int(state)
+		self.rng.state = state
+
+
+	# ────────────────────────── Util.gd:1007-1033 逐字对齐 ──────────────────────────
+
+	def roll(self, maximum=100.0):
+		# 走追踪版 randf_range（等价原版 Util.roll = rng.randf_range(0, maximum)）
+		return self.randf_range(0, maximum)
+
+
+
+	def flip(self, chance=0.5):
+		r = self.rng.randf()
+		if self.oracle_trace:
+			self._trace("randf", 0, 0, r)
+		self.bare_draw_seq("randf", 0, 0, r)
+		# ★ np51㊳终⑮ flip u 探针（GD_CHUPROBE 门控，零 rng 消耗）
+		if _os_environ_get("GD_CHUPROBE") != "" and self.debug_flip_tag != "":
+			print("[CHU] ", self.debug_flip_tag, " u=", r, " ch=", chance)
+			self.debug_flip_tag = ""
+		return r <= chance
+
+
+	def flipPercent(self, chance):
+		return self.roll() <= chance
+
+
+	def flipRound(self, chance):
+		return int(floor(chance) + int(self.flip(fmod(chance, 1.0))))
+
+
+	def flipWeighted(self, weights):
+		_iter__loc = _iter
+		sum = 0.0
+		for weight in (weights if weights.__class__ is list else _iter__loc(weights)):
+			sum += weight
+
+		# ★ np29fG：对齐 oracle Util.gd:1115 `rng_trace_range(0, sum, "flipWeighted")`——
+		#   神谕记账（tag=flipWeighted），此前 gd 走裸 rng.randf_range 不进 trace（链
+		#   消耗相同、仅账本可见性差）。Shovel/Robodog onShopEntered 用。
+		val = self.randf_range(0, sum, "flipWeighted")
+		subsum = 0.0
+		for i in _iter__loc(len(weights)):
+			subsum += weights[i]
+			if subsum >= val:
+				return i
+
+		return len(weights)
+
+
+	# ────────────────────────── 直调转发（对应原版 Util.rng.xxx 调用点） ──────────────────────────
+
+	# ── 逐抽诊断追踪（受控神谕对齐用；默认关，由宿主经 ctx.rng.oracle_trace 开启）──
+	# 格式与神谕 rng_log.txt 逐列同构：[序号, "randf_range"/"randi_range"/"randf"/"randi",
+	# from, to, 返回值]（oracle/Utility/Util.gd:757-781 的 trace 面同款）。
+
+
+	def _trace(self, kind, from_, to, r):
+		row = [len(self.oracle_trace_log), kind, from_, to, r, 0.0, "", str(self.rng.get_state())]
+		if self._stacktrace:
+			frames = []
+			st = get_stack()
+			if st != None:
+				# [0]=_trace [1]=包装器；自 [2] 起是真实调用方，取 3 层足定位
+				for i in _iter(_gd_range(2, min(5, len(st)))):
+					frames.append("%s:%d:%s" % [String(st[i]["source"]).get_file(),
+							int(st[i]["line"]), String(st[i]["function"])])
+			row.append(_join(PoolStringArray(frames), "<-"))
+		self.oracle_trace_log.append(row)
+
+
+	# ★ 事件标记（不消耗链）：CoreCombatLog.logEvent 在逐抽追踪开启时把事件类型
+	#   写进 trace，与神谕 rng_log 的 EVENT 行同构，供逐抽↔逐事件精确对位。
+	def trace_event(self, type):
+		type = int(type)
+		self.oracle_trace_log.append([len(self.oracle_trace_log), "EVENT", str(type), "", "",
+			0.0, "", str(self.rng.get_state())])
+
+
+	# ★ 诊断标记（不消耗链，np24）：镜像神谕 ORACLE_STACKTRACE 下的 ANIM/SRC/LABEL
+	#   行（oracle/Items/Item.gd:5357、oracle/Core/Buff.gd:196、oracle/Items/Item.gd:6508），
+	#   供两侧 rng 日志逐行对位时点名分歧调用方。仅 ORACLE_ALIGN_TRACE（宿主已开
+	#   oracle_trace）且 ORACLE_ALIGN_STACKTRACE 时写；正常跑批零影响。
+	def trace_diag(self, kind, a, b, c=""):
+		if self.oracle_trace and self._stacktrace:
+			self.oracle_trace_log.append([len(self.oracle_trace_log), kind, str(a), str(b), str(c)])
+
+
+	# ★ np51㊳：裸抽计数（ORACLE_ALIGN_DRAWSEQ=1 时逐抽打 [GDRAW] 行，含裸调用）。
+	#   与 oracle CountingRng 的 [DRAW] 行同构，供双侧全量抽逐笔对位。
+
+	def bare_draw_seq(self, kind, from_, to, r):
+		if self.draw_seq >= 0:
+			self.draw_seq += 1
+			print("[GDRAW] ", self.draw_seq, " ", kind, " ", str(from_), " ", str(to), " => ", str(r), " st=", str(self.rng.get_state()))
+
+	def bare_randf_range(self, from_, to):
+		r = self.rng.randf_range(from_, to)
+		self.bare_draw_seq("randf_range", from_, to, r)
+		return r
+
+	def bare_randf(self):
+		r = self.rng.randf()
+		self.bare_draw_seq("randf", 0, 0, r)
+		return r
+
+	def bare_randi_range(self, from_, to):
+		from_ = int(from_)
+		to = int(to)
+		r = self.rng.randi_range(from_, to)
+		self.bare_draw_seq("randi_range", from_, to, r)
+		return r
+
+	def randf_range(self, from_, to, tag="randf_range"):
+		r = self.rng.randf_range(from_, to)
+		if self.oracle_trace:
+			self._trace(tag, from_, to, r)
+		self.bare_draw_seq(tag, from_, to, r)
+		return r
+
+
+	def randi_range(self, from_, to, tag="randi_range"):
+		from_ = int(from_)
+		to = int(to)
+		r = self.rng.randi_range(from_, to)
+		if self.oracle_trace:
+			self._trace(tag, from_, to, r)
+		self.bare_draw_seq(tag, from_, to, r)
+		return r
+
+
+	# 对齐 Util.pickRandomElement（Util.gd:452-453 = array[rng.randi_range(0, size-1)]；
+	# 神谕插桩 oracle/Utility/Util.gd:457 走 rng_trace_irange(…, "pickRandomElement")）。
+	# ★ 此前走裸 rng.randi_range——链消耗正确但不进 oracle_trace，逐抽对位时呈现
+	#   为「神谕多一抽」的假分歧（run1122_r11 逐抽对位 326 行后首见）。
+	def pickRandomElement(self, array):
+		return array[self.randi_range(0, len(array) - 1, "pickRandomElement")]
+
+
+	# 洗牌（对齐 Godot 3 `Array.shuffle()` 的交换模式：i 与 [i, n) 内随机位置交换）
+	# 原版由 Godot 全局 RNG（Math::rand）驱动，跨实现无法位对齐；此处改用注入随机源，
+	# 仍然是零假设均匀洗牌。洗牌唯一的判定影响是「同 TriggerPriority 物品的同帧触发次序」。
+	def shuffle(self, array):
+		n = len(array)
+		if n < 2:
+			return array
+		for i in _iter(_gd_range(n - 1)):
+			r = self.rng.randi()
+			if self.oracle_trace:
+				self._trace("randi", 0, 0, r)
+			j = _mod(int(abs(r)), n - i)
+			tmp = array[i]
+			array[i] = array[i + j]
+			array[i + j] = tmp
+		return array
+
+
+	# ── r1_0 全局链台账：引擎全局链直通 + 台账追踪 ──
+	# 物品脚本裸 Array.shuffle()/pick_random() 消费 Godot **引擎全局链**
+	# （docs/rng_truth.md §1.4-1/§1.4-2，与本类 rng（Util.rng 替身）相互独立）。
+	# 全局链真身不在本类：gd 侧 = 真 Godot 进程全局链（受控神谕对齐路径的宿主
+	# OracleAlignBattle.activation_order 已做 seed(S)→shuffle×2，起跑位与神谕装配段
+	# 逐位同态）；py 侧 = _rt._math_rng()（对齐分支 gd_core_engine _bind_battle+补两条）。
+	# 本两方法只是 builder r1_0 pass 改道后的统一入口：
+	#   1) 两态都直调引擎原生方法本体 —— 消耗恒落在真全局链上，这正是
+	#      「preordered 开账后与原版引擎链同链位逐位等价」的机制本身；
+	#   2) 开账（globalChainOpen=true）且 oracle_trace 时写 Gshuffle/Gpick 行入
+	#      oracle_trace_log（不消耗链；行型同 trace_diag，tag 列 = decomp 源文件:行号，
+	#      供逐抽对位点名全局链消耗位）；
+	#   3) 未开账 = 与旧树裸调用同链同效（LineupBattle 基线零回归）。
+	# 开账点：CoreCombat.startBattle(preordered=true)（受控神谕对齐路径）。
+
+
+	def shuffleEngine(self, array, tag="Gshuffle"):
+		_shuffle(array)
+		if self.globalChainOpen and self.oracle_trace:
+			self.oracle_trace_log.append([len(self.oracle_trace_log), "Gshuffle", tag, len(array), ""])
+
+
+	def pickRandomEngine(self, array, tag="Gpick"):
+		v = _pick_random(array)
+		if self.globalChainOpen and self.oracle_trace:
+			self.oracle_trace_log.append([len(self.oracle_trace_log), "Gpick", tag, len(array), ""])
+		return v
+
+
+	# =============================================================================
+	# BalancedRng — 对齐 Utility/BalancedRandom.gd
+	# 用于 accuracyRng / critRng / critResistanceRng / stunResistanceRng 与物品 chanceRng
+	# =============================================================================
+	BalancedRng = BalancedRng
+	BalancedRange = BalancedRange
+
+
+_R.reg("res://gd_core/CoreRng.gd", CoreRng)
+_R.reg("CoreRng", CoreRng)
+_R.reg("CoreRng", CoreRng)

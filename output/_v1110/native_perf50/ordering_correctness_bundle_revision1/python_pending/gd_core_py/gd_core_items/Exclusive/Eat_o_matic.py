@@ -1,0 +1,225 @@
+# -*- coding: utf-8 -*-
+# 自动生成，勿手改。生成器：tools/gd_to_py.py
+
+from ..._rt import (  # noqa: F401
+
+    Color,
+    Dictionary,
+    EnumDict,
+    FuncRef,
+    GD_DEFAULT,
+    INF,
+    NAN,
+    Node,
+    Node2D,
+    OS_has_feature,
+    Object,
+    PCG32,
+    PI,
+    PoolStringArray,
+    RandomNumberGenerator,
+    Reference,
+    Resource,
+    Signal,
+    String,
+    TAU,
+    TYPE_VECTOR2,
+    Vector2,
+    Vector3,
+    _HoistPending,
+    _bind_battle,
+    _div,
+    _dup,
+    _erase,
+    _fill,
+    _find,
+    _gd_fmt,
+    _gd_range,
+    _gd_str,
+    _get_slice,
+    _gid,
+    _has_behavior_cache_get,
+    _has_behavior_cache_put,
+    _hash,
+    _invert,
+    _iter,
+    _join,
+    _load,
+    _mod,
+    _os_environ_get,
+    _pick_random,
+    _pop_at,
+    _resize,
+    _shuffle,
+    _sort_custom,
+    _strv,
+    _substr,
+    ceil,
+    clamp,
+    deg2rad,
+    f32,
+    floor,
+    fmod,
+    gd_round,
+    get_stack,
+    inverse_lerp,
+    is_equal_approx,
+    is_instance_valid,
+    lerp,
+    move_toward,
+    posmod,
+    pow,
+    rad2deg,
+    randomize,
+    round,
+    sign,
+    smoothstep,
+    snapped,
+    sqrt,
+    stepify,
+    tr,
+    typeof,
+    wrapf,
+    wrapi
+,
+)
+
+if "GodotObject" not in globals():
+	from ..._rt import GodotObject  # 纯 py 补绑；编译态 pxd 已预绑
+
+from ... import _registry as _R
+if "_base_cls_Exclusive__Eat_o_matic" not in globals():
+	from ..Item import Item_2 as _base_cls_Exclusive__Eat_o_matic
+
+
+
+
+
+class Exclusive__Eat_o_matic(_base_cls_Exclusive__Eat_o_matic):
+
+	resource_path = "res://gd_core_items/Exclusive/Eat-o-matic.gd"
+
+	ArmState = EnumDict("ArmState", {"Off": 0, "Slow": 1, "Fast": 2})
+
+
+
+	def _init_fields(self):
+		super()._init_fields()
+		self.affectedFood = None
+		self.otherFood = []
+		self.armTween = None
+		self._armState = 0
+		self.foodSpeed = None
+		self.chargedSpeed = None
+		self.otherSpeed = None
+		self.arm = None
+		self.armAnimation = None
+
+	@property
+	def armState(self):
+		return self._armState
+	@armState.setter
+	def armState(self, v):
+		self._armState = int(v)
+	SLOW_SPEED = 0.2
+	FAST_SPEED = 1.0
+
+	def canAffect(self, item):
+		return item.hasType(_H_1)
+
+
+	def canAffect_global(self, item):
+		if not item.hasType(_H_1):
+			return False
+		if item in self.currentAffectedItems[_H_2]:
+			return False
+
+		return True
+
+
+	def onPrepare(self):
+		self.setState(self.ArmState.Off)
+		self.affectedFood = self.getFirstAffectedItem()
+		if self.affectedFood != None:
+			self.affectedFood.addSpeed(self.foodSpeed)
+
+		self.otherFood.clear()
+		for item in _iter(self.inventory.getItems()):
+			if self.canAffect_global(item) and item != self.affectedFood:
+				self.otherFood.append(item)
+
+
+
+	def combatStart(self):
+		super().combatStart()
+		if self.armState != self.ArmState.Fast:
+			self.setState(self.ArmState.Slow)
+
+
+	def onChargeReceived(self, _charge):
+		if self.numCharges == 1:
+			self.setState(self.ArmState.Fast)
+			if self.affectedFood != None:
+				self.affectedFood.addSpeed(self.chargedSpeed - self.foodSpeed)
+			for food in (self.otherFood if self.otherFood.__class__ is list else _iter(self.otherFood)):
+				food.addSpeed(self.otherSpeed)
+
+
+	def onChargeLeft(self, _charge):
+		if self.numCharges == 0:
+			self.setState(self.ArmState.Slow)
+			if self.affectedFood != None:
+				self.affectedFood.reduceSpeed(self.chargedSpeed - self.foodSpeed)
+			for food in (self.otherFood if self.otherFood.__class__ is list else _iter(self.otherFood)):
+				food.reduceSpeed(self.otherSpeed)
+
+
+	def onCombatEnd(self):
+		self.setState(self.ArmState.Off)
+
+
+	def onShopEntered(self):
+		self.onStateChanged(self.ArmState.Off)
+
+
+	def stopArmAni(self):
+		pass
+
+
+	def onStateChanged(self, _armState):
+		_armState = int(_armState)
+		self.armState = _armState
+		if self.armState == self.ArmState.Off:
+			pass
+
+
+		else:
+
+			if self.armState == self.ArmState.Slow:
+				pass
+			else:
+				pass
+
+
+
+	def _readyInit(self):
+		_div__loc = _div
+		super()._readyInit()
+		self.foodSpeed = _div__loc(self.getP('speed'), 100.0)
+		self.chargedSpeed = _div__loc(self.getP('speed2'), 100.0)
+		self.otherSpeed = _div__loc(self.getP('speed3'), 100.0)
+
+
+_R.reg("res://gd_core_items/Exclusive/Eat-o-matic.gd", Exclusive__Eat_o_matic)
+_R.reg("Eat-o-matic", Exclusive__Eat_o_matic)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+	_H_1 = _R.C("CoreConst").Type.Food
+except AttributeError as _he:
+	_H_1 = _HoistPending(_he)
+try:
+	_H_2 = _R.C("CoreConst").Affected.Primary
+except AttributeError as _he:
+	_H_2 = _HoistPending(_he)

@@ -1,0 +1,10 @@
+{
+  "dll_sha256": "02fda77681361a6ddc721aa9ea75950126fa0f82df787b83ac3ca97144192d52",
+  "verifier_exit_code": 0,
+  "coverage": {
+    "fast_identities": 138995,
+    "fallbacks": 0,
+    "fast_emissions": 386180,
+    "emission_fallbacks": 0
+  }
+}

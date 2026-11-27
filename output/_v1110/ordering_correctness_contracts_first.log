@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_ordering_contracts.py", line 72, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_ordering_contracts.py", line 71, in main
+    oracle=reference();native(args.dll,args.source,args.tag,oracle)
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_ordering_contracts.py", line 39, in reference
+    data=json.loads(next(line.split('=',1)[1] for line in run.stdout.decode('utf8').splitlines() if line.startswith('ORDERING_REFERENCE=')))
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\json\__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\json\decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\json\decoder.py", line 361, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ~~~~~~~~~~~~~~^^^^^^^^
+json.decoder.JSONDecodeError: Expecting ',' delimiter: line 1 column 16365 (char 16364)

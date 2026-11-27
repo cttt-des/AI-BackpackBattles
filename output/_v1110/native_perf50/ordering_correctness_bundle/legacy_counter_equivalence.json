@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "baseline": {
+    "generic_hits": 146278076,
+    "funcref_hits": 2143020,
+    "lazy_resolutions": 952008,
+    "unsupported_types": 2601,
+    "audit_mismatch": 0,
+    "selected_fallback": 4123200
+  },
+  "candidate": {
+    "generic_hits": 146278076,
+    "funcref_hits": 2143020,
+    "lazy_resolutions": 952008,
+    "unsupported_types": 2601,
+    "audit_mismatch": 0,
+    "selected_fallback": 4123200
+  }
+}

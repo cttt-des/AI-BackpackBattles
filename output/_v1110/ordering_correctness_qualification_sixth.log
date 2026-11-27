@@ -1,0 +1,22 @@
+Retained passed original_ordering
+Retained passed original_potion_chains
+Retained passed generate_property_tests
+Retained passed generate_type_constructor_tests
+Starting verify_event_identity
+Passed verify_event_identity
+Starting verify_lazy_diagnostics
+Passed verify_lazy_diagnostics
+Starting verify_components
+Passed verify_components
+Starting verify_static_collections
+Passed verify_static_collections
+Starting verify_static_setup
+Passed verify_static_setup
+Starting verify_dispatch_chain
+Passed verify_dispatch_chain
+Starting verify_spatial
+Passed verify_spatial
+Starting verify_motion_indices
+Passed verify_motion_indices
+Starting verify_targeted_timers
+Gate failed verify_targeted_timers; original log retained: D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\ordering_correctness_bundle\verify_targeted_timers_qualification_attempt1.log

@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "dll_sha256": "02fda77681361a6ddc721aa9ea75950126fa0f82df787b83ac3ca97144192d52",
+  "source_manifest_sha256": "da2948488dcb5cf6c2632116137062f23f3e2a57435ca2d262053abe6455e498",
+  "all_declared_steps": 32,
+  "retained_checks_and_original_Godot_contracts_passed": true,
+  "full2604_original_events_verified": true,
+  "original_input_corpus_unchanged": true,
+  "no_performance_win_gate_for_correctness_fix": true,
+  "not_deployed_yet": true
+}

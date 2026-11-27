@@ -1,0 +1,1 @@
+{"generic":{"trace":["potion_triggered:A","activated:A","potion_emptied:A"],"full":[false,true]},"specialized":{"trace":["potion_triggered:B","activated:B","potion_emptied:B"],"full":[true,false]}}

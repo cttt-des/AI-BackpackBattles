@@ -1,0 +1,3 @@
+@echo off
+chcp 65001 >nul
+call "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvars64.bat" >nul 2>&1 && cl /O2  /LD /MD /nologo   /I "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Include" gd_core_py\_rt.c /Fo"D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\ordering_correctness_bundle\python_pending\build\cython_objs\gd_core_py__rt.obj" /Fd"D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\ordering_correctness_bundle\python_pending\build\cython_objs\gd_core_py__rt.pdb" /link  /IMPLIB:"D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\ordering_correctness_bundle\python_pending\build\cython_objs\gd_core_py__rt.lib" /LIBPATH:"C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\libs" python314.lib /OUT:gd_core_py\_rt.pyd

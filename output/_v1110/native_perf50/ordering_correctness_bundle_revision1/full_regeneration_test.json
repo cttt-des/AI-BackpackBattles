@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "full_gdscript_and_performance_pipeline": true,
+  "pending_generator_and_event_optimizer_used": true,
+  "source_files_matching_compiled_candidate": 710,
+  "repeat_bytes_and_mtime_idempotent": true,
+  "compiler_invoked": false,
+  "unknown_edits_rejected_before_writes": true,
+  "raw_source_inverse_checks_passed": true,
+  "isolated_directory": "C:\\Users\\Windows\\AppData\\Local\\Temp\\ordering-source-regeneration-iiu9ssc2"
+}

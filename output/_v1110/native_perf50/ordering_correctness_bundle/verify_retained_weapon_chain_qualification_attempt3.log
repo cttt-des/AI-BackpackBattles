@@ -1,0 +1,2 @@
+All old unaffected cases retained and changed append cases verified: {'case_hashes': 992, 'legacy_counter_hashes': 224}
+All136128 weapon cases passed their applicable reference;992 corrected append cases,135136 unchanged original-PGO cases; all56 unrelated normal-build differences preserved

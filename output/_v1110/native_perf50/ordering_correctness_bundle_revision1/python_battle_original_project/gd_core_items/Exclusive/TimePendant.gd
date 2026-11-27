@@ -1,0 +1,16 @@
+extends Item
+var cdAdvance
+
+func canAffect(item):
+	return item.hasCooldown()
+
+
+func doCooldownEffect():
+	var item = getFirstAffectedItem()
+	if item != null and item.isCooldownActive():
+		item.advanceCooldownSeconds(cdAdvance)
+	activate()
+
+func _readyInit():
+	._readyInit()
+	cdAdvance = getP("cdadvance")

@@ -1,6 +1,7 @@
 #pragma STDC FP_CONTRACT OFF
 
 #include "gd_rt.hpp"
+#include "native_godot_sort.hpp"
 #include "native_integer_grid.hpp"
 
 #include <algorithm>
@@ -1485,16 +1486,26 @@ void godot_sort_custom_items(BattleCtx& ctx, GdArr* arr) {
     for (uint32_t i = 0; i < n; ++i) arr->data[i] = pairs[i].val;
 }
 
+// Preserve this exported symbol for existing callers; its behavior is now
+// Godot 3.6 SortArray, including equal-key order and comparator call sequence.
 void sort_custom_stable(BattleCtx& ctx, GdArr* arr, GdObj* obj, SymId method) {
     NativeTimerMutation native_mutation(arr?arr->timer_watch:nullptr);
     if (!arr || arr->len < 2 || !obj) return;
-    std::stable_sort(arr->data, arr->data + arr->len, [&](const GdVal& a, const GdVal& b) {
-        GdVal args[2] = {a, b};
-        GdVal out = GdVal::null();
-        native_timer_observe_object(ctx,obj);
-        obj->call_method(ctx, method, args, 2, out);
-        return gd_truth(out);
-    });
+    struct CustomComparator {
+        BattleCtx* ctx;
+        GdObj* obj;
+        SymId method;
+        bool operator()(const GdVal& a, const GdVal& b) const {
+            GdVal args[2] = {a, b};
+            GdVal out = GdVal::null();
+            native_timer_observe_object(*ctx,obj);
+            obj->call_method(*ctx, method, args, 2, out);
+            return gd_truth(out);
+        }
+    };
+    godot36::SortArray<GdVal, CustomComparator> sorter;
+    sorter.compare = {&ctx,obj,method};
+    sorter.sort(arr->data,static_cast<int>(arr->len));
 }
 
 // ─────────────────────────── Property, Index & Method Dispatch ───────────────────────────

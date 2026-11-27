@@ -1,0 +1,10 @@
+config_version=4
+[application]
+config/name="Same frame ordering audit"
+run/main_scene="res://test.tscn"
+run/main_scene="res://test.tscn"
+run/main_scene="res://test.tscn"
+[autoload]
+Game="*res://Game.gd"
+Util="*res://Util.gd"
+EventBus="*res://EventBus.gd"

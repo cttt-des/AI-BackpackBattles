@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "result": {
+    "order": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "comparisons": [
+      1,
+      0,
+      1,
+      0,
+      2,
+      0,
+      2,
+      1,
+      3,
+      0,
+      3,
+      2,
+      4,
+      0,
+      4,
+      3,
+      5,
+      0,
+      5,
+      4,
+      6,
+      0,
+      6,
+      5,
+      7,
+      0,
+      7,
+      6
+    ]
+  },
+  "godot_sha256": "aa19acae5bbc67bd7b79e20328ae2d7e2c2bb8589a2934c43c9126d742f60c97",
+  "script": "extends SceneTree\nvar comparisons = []\nfunc compare(a,b):\n    comparisons.append(a)\n    comparisons.append(b)\n    return null\nfunc _init():\n    var items = range(8)\n    items.sort_custom(self,\"compare\")\n    var file = File.new()\n    file.open(\"res://result.json\",File.WRITE)\n    file.store_string(JSON.print({\"order\":items,\"comparisons\":comparisons}))\n    file.close()\n    quit()\n"
+}

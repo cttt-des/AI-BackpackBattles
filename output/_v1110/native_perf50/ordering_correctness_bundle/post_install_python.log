@@ -1,0 +1,7 @@
+{"passed": true, "pure_rt": false, "rt_module": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\gd_core_py\\_rt.pyd", "compiled_rt_loaded": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\gd_core_py\\_rt.pyd", "sort_cases": 256, "event_scenarios": 18, "same_comparison_call_sequence_as_original": true, "helper_module": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\gd_core_py\\_godot_sort.py", "typed_abi_existing_compiled_event_bus_compatible": true}
+{"passed": true, "pure_rt": true, "rt_module": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\gd_core_py\\_rt.py", "compiled_rt_loaded": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\gd_core_py\\_rt.pyd", "sort_cases": 256, "event_scenarios": 18, "same_comparison_call_sequence_as_original": true, "helper_module": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\gd_core_py\\_godot_sort.py", "typed_abi_existing_compiled_event_bus_compatible": true}
+{"rt_module": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\gd_core_py\\_rt.pyd", "primitive_cases": 46702, "primitive_and_rng_sha256": "5c5d34fb40eabd470a00d09b31c908ab348a816f211fc8ef7d34a7a322199605", "sort_intentionally_excluded": true}
+CHECK_GDCORE_ENGINE: 已跑 30 局
+基准 30 局 / 本次 30 局 / 可比 30 局
+  ✓ 全部 30 局逐字符一致（赢家 / 时长 / 双方血量 / 激活·伤害·治疗·宝石·疲劳·眩晕 计数）
+CHECK_GDCORE_ENGINE: PASS

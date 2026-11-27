@@ -1,0 +1,4 @@
+CHECK_GDCORE_ENGINE: 已跑 30 局
+基准 0 局 / 本次 30 局 / 可比 0 局
+CHECK_GDCORE_ENGINE: FAIL  本次有而基准无的对局 30 个：['p3_learned_run5066_A0.525 vs trained_0_history-07-run5153_A0.965', 'p3_learned_run5066_A0.525 vs trained_1_history-07-run5030_A0.725', 'p3_learned_run5066_A0.525 vs trained_2_history-07-run5066_A0.540']
+CHECK_GDCORE_ENGINE: FAIL (1 项)

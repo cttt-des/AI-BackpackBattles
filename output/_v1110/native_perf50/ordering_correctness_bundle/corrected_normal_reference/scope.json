@@ -1,0 +1,5 @@
+{
+  "dll_sha256": "1a838e20dedadd59786041fe2a649e52f0c3c1510127ef3a647cb446cf86c9c8",
+  "scope": "Normal compilation of the source-corrected candidate. Used only for declared changed-case regression expectations, not as original-game truth.",
+  "original_Godot_contract_sha256": "24f376d3735acc6e003bbdf3d60163474f2daeff681fff79585e1b4c0949b5c6"
+}

@@ -727,25 +727,10 @@ def _resize(arr, n):
 
 
 def _sort_custom(coll, obj, method):
-    """`Array.sort_custom(instance, "method")`：比较器返回 True 表示 a 排在 b 前。
-
-    ★ 已知偏差（待双引擎归因）：Godot 3 的 SortArray 是**不稳定**排序，本实现
-      经 cmp_to_key 后继承 Python 的**稳定**排序。对优先级相等的物品，两者的
-      相对次序可能不同。项目里 3 处调用点的比较器都是严格不等判定
-      （`a.getTriggerPriority() > b.getTriggerPriority()`），相等时返回 False。
-    """
-    import functools
+    """Godot SortArray, including equal-key order and comparator calls."""
+    from ._godot_sort import sort_custom
     fn = getattr(obj, method) if isinstance(method, str) else method
-
-    def _cmp(a, b):
-        if fn(a, b):
-            return -1
-        if fn(b, a):
-            return 1
-        return 0
-
-    coll.sort(key=functools.cmp_to_key(_cmp))
-    return coll
+    return sort_custom(coll, fn)
 
 
 def _shuffle(arr):

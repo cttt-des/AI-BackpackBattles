@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "fights": 30,
+  "rt_sha256": "69b8f5aa1834cbb9d6c742ea638b07b6332899196a2a203fe270c06dc0c1d1c4",
+  "original_Godot_reference_sha256": "5e9a8e7867d78c19570230060ac2a3360261c1c0d9cb6351755379517c1a864a",
+  "actual_sha256": "5e9a8e7867d78c19570230060ac2a3360261c1c0d9cb6351755379517c1a864a",
+  "winner_time_health_and_all_probe_summaries_exact": true
+}

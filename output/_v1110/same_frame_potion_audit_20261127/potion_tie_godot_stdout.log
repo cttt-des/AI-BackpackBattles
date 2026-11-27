@@ -1,0 +1,6 @@
+
+Godot Engine v3.6.stable.official.de2f0f147 - https://godotengine.org
+OpenGL ES 3.0 Renderer: NVIDIA GeForce MX130/PCIe/SSE2
+Async. shader compilation: OFF
+ 
+TIE_RESULT={"trace":["potion_triggered:B","activated:B","potion_emptied:B"],"full":[true,false]}

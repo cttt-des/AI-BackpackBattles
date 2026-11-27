@@ -89,7 +89,14 @@ def optimize(native):
         raise ValueError("Event-bus diagnostic lookup may invoke a user method")
     for name, expected_hash in BODIES.items():
         match = re.search(rf"^gd::GdVal {OWNER}::fn_{name}\([^\n]*\n.*?^\}}\n", source, re.M | re.S)
-        if not match or hashlib.sha256(match[0].encode()).hexdigest() != expected_hash:
+        checked = match[0] if match else ""
+        if name == "emitAndLog":
+            fixed = "for (uint32_t _t1646 = 0; _t1645 && _t1646 < _t1645->len; ++_t1646) {"
+            original = "for (uint32_t _t1646 = 0; _t1646 < _len__t1646; ++_t1646) {"
+            if checked.count(fixed) != 1:
+                raise ValueError("EventBus requires the Godot live-listener generator")
+            checked = checked.replace(fixed, original, 1)
+        if not match or hashlib.sha256(checked.encode()).hexdigest() != expected_hash:
             raise ValueError(f"Unexpected generated body for {OWNER}::{name}")
         source = source[:match.start()] + lower_body(match[0], name) + source[match.end():]
     path.write_text(source, encoding="utf8", newline="\n")

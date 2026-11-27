@@ -1,0 +1,9 @@
+{
+  "incomplete_candidate_directory": "output\\_v1110\\native_perf50\\ordering_correctness_bundle_revision1",
+  "not_deployed": true,
+  "reason": "Copied literal-argument fast path retained its own snapshot loop",
+  "previous_dll_sha256": "4765e642498a4dab4aa76a55d11e5ed80988e794b09fca12f234fd5ff3cffc93",
+  "previous_source_manifest_sha256": "fc8e57c5ff9adcc12e420ea552d280a1044a79e8c2ac7e4258647a6c19497e91",
+  "all_previous_failures_and_receipts_preserved": true,
+  "extra_changed_source_only": "gen/shards/shard_12.cpp"
+}

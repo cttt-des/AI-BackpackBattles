@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_ordering_contracts.py", line 86, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_ordering_contracts.py", line 85, in main
+    oracle=reference();native(args.dll,args.source,args.tag,oracle)
+                       ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_ordering_contracts.py", line 63, in native
+    subprocess.run(['D:/mingw64/bin/g++.exe','-static','-O2','-std=c++20','-ffp-contract=off','-I',str(source),str(root/'test_ordering_contracts.cpp'),str(root/'libgdcore.dll'),'-o',str(root/'check.exe')],stdout=log,stderr=subprocess.STDOUT,check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['D:/mingw64/bin/g++.exe', '-static', '-O2', '-std=c++20', '-ffp-contract=off', '-I', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\ordering_correctness_bundle\\bundle_src', 'C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\ordering-contracts-i5ey1b4a\\test_ordering_contracts.cpp', 'C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\ordering-contracts-i5ey1b4a\\libgdcore.dll', '-o', 'C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\ordering-contracts-i5ey1b4a\\check.exe']' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\run_ordering_final_build.py", line 17, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\run_ordering_final_build.py", line 15, in main
+    subprocess.run([sys.executable,'-u','-X','utf8',str(STAGE/'verify_ordering_contracts.py'),'--dll',str(WORK/'prototype.dll'),'--source',str(WORK/'bundle_src'),'--tag','prototype'],check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe', '-u', '-X', 'utf8', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\verify_ordering_contracts.py', '--dll', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\ordering_correctness_bundle\\prototype.dll', '--source', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\ordering_correctness_bundle\\bundle_src', '--tag', 'prototype']' returned non-zero exit status 1.

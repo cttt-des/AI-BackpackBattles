@@ -546,7 +546,7 @@ gd::GdVal gd_native_emit_literal_body(Gd__gd_core__CoreEventBus* bus,const gd::G
         gd::GdVal _t1644 = gd::gd_iter_seq(gd_ctx.arena, lv__bus_list);
         gd::GdArr* _t1645 = (_t1644.kind == gd::GdVal::Kind::Arr) ? _t1644.arr : nullptr;
         uint32_t _len__t1646 = _t1645 ? _t1645->len : 0u;
-        for (uint32_t _t1646 = 0; _t1646 < _len__t1646; ++_t1646) {
+        for (uint32_t _t1646 = 0; _t1645 && _t1646 < _t1645->len; ++_t1646) {
             gd::GdVal lv__bus_pair = _t1645->data[_t1646];
             if (gd::native_scalar_truth(native_event_get<Gd__gd_core__CoreContext, &Gd__gd_core__CoreContext::f_fight_ended>(gd_ctx, bus->f__ctx, SYM_GEN_fight_ended_1305))) {
                 return gd::GdVal::null();
@@ -637,7 +637,7 @@ gd::GdVal Gd__gd_core__CoreEventBus::fn_emitAndLog(const gd::GdVal* _args, int _
         gd::GdVal _t1644 = gd::gd_iter_seq(gd_ctx.arena, lv__bus_list);
         gd::GdArr* _t1645 = (_t1644.kind == gd::GdVal::Kind::Arr) ? _t1644.arr : nullptr;
         uint32_t _len__t1646 = _t1645 ? _t1645->len : 0u;
-        for (uint32_t _t1646 = 0; _t1646 < _len__t1646; ++_t1646) {
+        for (uint32_t _t1646 = 0; _t1645 && _t1646 < _t1645->len; ++_t1646) {
             gd::GdVal lv__bus_pair = _t1645->data[_t1646];
             if (gd::native_scalar_truth(native_event_get<Gd__gd_core__CoreContext, &Gd__gd_core__CoreContext::f_fight_ended>(gd_ctx, this->f__ctx, SYM_GEN_fight_ended_1305))) {
                 return gd::GdVal::null();
@@ -719,7 +719,7 @@ gd::GdVal Gd__gd_core__CoreEventBus::fn_emitAndLog(const gd::GdVal* _args, int _
         gd::GdVal _t1644 = gd::gd_iter_seq(gd_ctx.arena, lv__bus_list);
         gd::GdArr* _t1645 = (_t1644.kind == gd::GdVal::Kind::Arr) ? _t1644.arr : nullptr;
         uint32_t _len__t1646 = _t1645 ? _t1645->len : 0u;
-        for (uint32_t _t1646 = 0; _t1646 < _len__t1646; ++_t1646) {
+        for (uint32_t _t1646 = 0; _t1645 && _t1646 < _t1645->len; ++_t1646) {
             gd::GdVal lv__bus_pair = _t1645->data[_t1646];
             if (gd::native_scalar_truth(gd::native_inline_get_prop(gd_ctx, this->f__ctx, SYM_GEN_fight_ended_1305))) {
                 return gd::GdVal::null();

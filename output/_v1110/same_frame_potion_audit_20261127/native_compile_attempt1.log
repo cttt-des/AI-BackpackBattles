@@ -1,0 +1,8 @@
+C:\Users\Windows\AppData\Local\CodexNativeBuilds\potion-order-audit-ouwb6wlr\test_same_frame_potions.cpp: In member function 'Potion* Fixture::potion(bool, const std::string&, int)':
+C:\Users\Windows\AppData\Local\CodexNativeBuilds\potion-order-audit-ouwb6wlr\test_same_frame_potions.cpp:67:43: error: 'struct Gd__gd_core_items__Potion' has no member named 'f_state'
+   67 |         p->f_isFull=V::from_bool(true);p->f_state=V::from_bool(true);p->f_placed=V::from_bool(true);p->f_ownerType=V::from_int(1);
+      |                                           ^~~~~~~
+C:\Users\Windows\AppData\Local\CodexNativeBuilds\potion-order-audit-ouwb6wlr\test_same_frame_potions.cpp: In lambda function:
+C:\Users\Windows\AppData\Local\CodexNativeBuilds\potion-order-audit-ouwb6wlr\test_same_frame_potions.cpp:109:90: error: 'struct gd::GdArr' has no member named 'clear'
+  109 |             gd::get_index(f.c,f.bus->f_connections,f.bus->fn_getEmissionID(args,2)).arr->clear();
+      |                                                                                          ^~~~~

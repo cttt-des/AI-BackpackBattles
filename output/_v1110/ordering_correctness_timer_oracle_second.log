@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\prepare_ordering_timer_oracle.py", line 51, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\prepare_ordering_timer_oracle.py", line 36, in main
+    run=subprocess.run([str(root/'test.exe')],capture_output=True);(WORK/'timer_sort_reference_raw.json').write_bytes(run.stdout);(WORK/'timer_sort_reference_execution.log').write_bytes(run.stderr);run.check_returncode();actual=json.loads(run.stdout)
+                                                                                                                                                                                                      ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 509, in check_returncode
+    raise CalledProcessError(self.returncode, self.args, self.stdout,
+                             self.stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\Windows\\AppData\\Local\\Temp\\ordering-timer-sort-uswajx_l\\test.exe']' returned non-zero exit status 3221226505.
