@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "actual_frame_cases": 135168,
+  "original_ordering_and_all_three_bus_paths": true,
+  "original_potions_and60_uninjected_activation_cases": true,
+  "fresh_post_AB_original_event_cases": 2604,
+  "receipts_sha256": {
+    "post_ab_actual_frame_tests.json": "9c65eb0cb4cf22b83cafde22005ec4af67017b293329cced283519cd2f06b029",
+    "post_ab_ordering_tests.json": "da19fc888c74b638c165d5542defd24ab775e132be32baffc9e61b925449efb4",
+    "post_ab_extra_potion_tests.json": "0b64bdf3e3ef85ecde4aa21ab065e00ee20103a89ba1505885015ed0fdabf94a",
+    "post_ab_full_gate.json": "a1aba053bea5c37044d92169600585ad3ef3d323acc5665251753037a3793878",
+    "post_ab_full_type_audit.json": "2c309936c75ad037cbb91af7f30b69f3626625808acfcf5dbdc4a024483fbcaa"
+  }
+}

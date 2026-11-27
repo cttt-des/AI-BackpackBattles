@@ -1,0 +1,27 @@
+{
+  "pid": 1736,
+  "created": 1795754047.6888928,
+  "root": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\frame-guard-semantic-sehxght6",
+  "object_directory": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\frame-guard-semantic-sehxght6\\objects",
+  "reused_objects": {
+    "gd_rt.o": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\ordering-semantic-wqcaqg3y\\objects\\gd_rt.o",
+    "engine_wrapper.o": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\container-builtins-semantic-tjt7o6wu\\objects\\engine_wrapper.o",
+    "sym_ids.o": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\container-builtins-semantic-tjt7o6wu\\objects\\sym_ids.o",
+    "register_all.o": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\container-builtins-semantic-tjt7o6wu\\objects\\register_all.o",
+    "shard_00.o": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\assembly-membership-semantic-yq84zi1r\\objects\\shard_00.o",
+    "shard_01.o": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\container-builtins-semantic-tjt7o6wu\\objects\\shard_01.o",
+    "shard_02.o": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\container-builtins-semantic-tjt7o6wu\\objects\\shard_02.o",
+    "shard_04.o": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\container-builtins-semantic-tjt7o6wu\\objects\\shard_04.o",
+    "shard_05.o": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\container-builtins-semantic-tjt7o6wu\\objects\\shard_05.o",
+    "shard_06.o": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\container-builtins-semantic-tjt7o6wu\\objects\\shard_06.o",
+    "shard_07.o": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\container-builtins-semantic-tjt7o6wu\\objects\\shard_07.o",
+    "shard_08.o": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\container-builtins-semantic-tjt7o6wu\\objects\\shard_08.o",
+    "shard_09.o": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\container-builtins-semantic-tjt7o6wu\\objects\\shard_09.o",
+    "shard_10.o": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\container-builtins-semantic-tjt7o6wu\\objects\\shard_10.o",
+    "shard_11.o": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\container-builtins-semantic-tjt7o6wu\\objects\\shard_11.o",
+    "shard_12.o": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\ordering-semantic-wqcaqg3y\\objects\\shard_12.o",
+    "shard_13.o": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\container-builtins-semantic-tjt7o6wu\\objects\\shard_13.o",
+    "shard_14.o": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\container-builtins-semantic-tjt7o6wu\\objects\\shard_14.o",
+    "shard_15.o": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\container-builtins-semantic-tjt7o6wu\\objects\\shard_15.o"
+  }
+}

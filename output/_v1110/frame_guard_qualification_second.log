@@ -1,0 +1,20 @@
+Retained actual_frame
+Retained original_ordering
+Retained original_potions
+Retained generate_property_tests
+Retained generate_type_constructor_tests
+Retained verify_event_identity
+Retained verify_lazy_diagnostics
+Retained verify_components
+Retained verify_static_collections
+Retained verify_static_setup
+Retained verify_dispatch_chain
+Retained verify_spatial
+Starting verify_motion_indices
+Passed verify_motion_indices
+Starting verify_targeted_timers
+Passed verify_targeted_timers
+Starting verify_active_cooldowns
+Passed verify_active_cooldowns
+Starting verify_buff_integer
+Failed verify_buff_integer; preserved D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\frame_guard_reuse_bundle\verify_buff_integer_qualification_attempt1.log

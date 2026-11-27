@@ -1,0 +1,38 @@
+{
+  "baseline": "02fda77681361a6ddc721aa9ea75950126fa0f82df787b83ac3ca97144192d52",
+  "maximum_compiler_workers": 2,
+  "compiler_priority": "below_normal",
+  "normal_prototype_not_for_speed_claim": true,
+  "formal_full20_instrumentation_fresh18_PGO": true,
+  "original_floating_flags_unchanged": true,
+  "AB": {
+    "initial_pairs": 24,
+    "only_if_mixed_evidence_one_extra_group": 8,
+    "maximum_pairs": 32,
+    "all_samples_and_outliers_retained": true,
+    "require_both_CPU_and_wall_paired_median_reduction_positive": true,
+    "followup_trigger": "First24 inconclusive or any leave-one-group CPU/wall median not positive, unless all three groups consistently regress",
+    "post_AB_actual_frame135168_and_original_contracts_required": true
+  },
+  "correctness": {
+    "current_repaired_original_Godot_oracles": true,
+    "all_retained_directed_cases": true,
+    "current_production_weapon_all136128_exact": true,
+    "full_original_events": 2604,
+    "all_original_fixed200_inputs_results_counters": true
+  },
+  "load20": {
+    "empirical_formula": true,
+    "extrapolation_allowed": true,
+    "observed_range_or_idle_window_not_gate": true
+  },
+  "deploy_only_after_positive_AB_and_complete_original_event_verification": true,
+  "no_new_branches": true,
+  "no_old200_FPS_target": true,
+  "release_raw24_policy": {
+    "single_run_all24_retained": true,
+    "old_minimum_every_batch_FPS": 50,
+    "no_20pct_coverage_requirement": true,
+    "no_same_source_repeat": true
+  }
+}

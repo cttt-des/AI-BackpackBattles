@@ -1,0 +1,7 @@
+{
+  "dll_sha256": "02fda77681361a6ddc721aa9ea75950126fa0f82df787b83ac3ca97144192d52",
+  "parent_verified_commit": "768d2c48e2ce12b9859318b0ac7713cd44100c6d",
+  "samples": 2000,
+  "source_profile_sha256": "2e03ae259303b99b25309239b7243f4cc3e38c7d61dc2997ba4869651e09164a",
+  "no_candidate_or_speed_claim": true
+}

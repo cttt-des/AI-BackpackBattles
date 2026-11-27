@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "fixture_revision": 2,
+  "cases": 320256,
+  "unknown_cpp_override_cases": 74496,
+  "real_handler_cases": 245760,
+  "active_route_assertions": 10240,
+  "difference_count": 0,
+  "first_differences": [],
+  "fixture_sha256": "23cfefb0a79a91dbb8749316a8ca3dd6d147c3e07beeae6af41c941d71f36f7b",
+  "symbols_header_sha256": "6a3327e730445da6501b12ea119276e0ab5022595569e7cbed63a588743ebe6c",
+  "baseline_dll_sha256": "80a0681c1c93268af2b29c21e5439b6444de36a29ad39486b3f4afadf548a44a",
+  "dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "cross_contexts_original_argument_pointer_and_nested_calls": true,
+  "all_four_rounding_modes_and_daz_ftz": true,
+  "raw_cases_sha256": {
+    "baseline_object_routes_cases.json": "bf4599485d8447211338d210fb678ddc4beda484c0a80535a3336b842e9c8be5",
+    "candidate_object_routes_cases.json": "ede1608ebe81ea781e1280af53ba4d73c183c2f788152a35f7b700635545749a"
+  },
+  "independent_actual_baseline_dll": true,
+  "no_throughput_claim": true
+}

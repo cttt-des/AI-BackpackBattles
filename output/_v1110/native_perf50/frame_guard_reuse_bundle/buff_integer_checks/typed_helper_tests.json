@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "cases": 204288,
+  "operation_checks": 806160,
+  "dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "baseline_dll_sha256": "02fda77681361a6ddc721aa9ea75950126fa0f82df787b83ac3ca97144192d52",
+  "exact_private_helper_bytes_compared": true,
+  "actual_original_runtime_operation_reference": true,
+  "full_value_vectors_flags_mxcsr_and_input_bytes_compared": true,
+  "full_int64_overflow_small53_boundary_nan_and_complex_fallbacks": true,
+  "four_rounding_and_four_daz_ftz_modes": true,
+  "no_object_callbacks": true,
+  "fixture_sha256": "243f03fb917c95917eb9589403d204cfa50e9ee73f515c43532d4cd6c848ff82",
+  "within_each_actual_dll_all_operations_exact": true,
+  "cross_dll_new_fast_operations_exact": true,
+  "cross_dll_fast_operation_checks": 9904,
+  "unchanged_fallback_runtime_cross_compiler_hash_equal": true,
+  "helper_sha256": "42edfd56118da9e871b1e30a4f4b27c7eb0fe234da3ea10e1b6075de48c65f2b",
+  "value_matrix_sha256": "c42bb8269dd44259df7c2c7970d2d051484ca8f36c8b88357d65e5c684ce78da",
+  "raw_sha256": {
+    "baseline_cases.json": "0b8b04bf1ce8a5f4327a7f787a6c16d19ac1799dd492d6e6e0bb14514d891d9e",
+    "candidate_cases.json": "0b8b04bf1ce8a5f4327a7f787a6c16d19ac1799dd492d6e6e0bb14514d891d9e"
+  },
+  "original_undefined_null_string_comparisons_skipped": 240,
+  "scope": "Exact private helper bytes instantiated in fixture; actual Buff integration additionally verified through DLL methods and full corpus",
+  "no_speed_claim": true
+}

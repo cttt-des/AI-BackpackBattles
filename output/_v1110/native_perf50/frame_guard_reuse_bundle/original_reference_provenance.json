@@ -1,0 +1,41 @@
+{
+  "engine_sha256": "aa19acae5bbc67bd7b79e20328ae2d7e2c2bb8589a2934c43c9126d742f60c97",
+  "source_event_bus_sha256": "ff9a8424cacd109104dc1598c4d0fee8a285f125f3c89c54fb0f11c479b4f788",
+  "source_game_version": "1.1.10",
+  "event_bus_body_unchanged": true,
+  "source_potion_provenance": {
+    "source_sha256": {
+      "output/_v1110/decompiled/Items/Potion.gd": "b4c0c7026fec662f50cd159f6f363cf78ab8abcc89c20bc770a97d02ee614a1a",
+      "output/_v1110/decompiled/Items/HeroicPotion.gd": "dbef633a2b369dfe0c1d1b1ec2cc705d432586d4f03853b8b441830549e449fb",
+      "output/_v1110/decompiled/Items/HealthPotion.gd": "0b535483c8832de65ca689d42184d8d650699dd38897bf2e2c719e15edd153e6",
+      "output/_v1110/decompiled/Core/Character.gd": "d567f4b1eec5c6734d12153a2ff6e53ec4a0b2d8c7f18185959c54a61d6960eb",
+      "output/_v1110/decompiled/Utility/EventBus.gd": "ff9a8424cacd109104dc1598c4d0fee8a285f125f3c89c54fb0f11c479b4f788",
+      "output/_v1110/decompiled/Utility/Util.gd": "596e7f7a9308ea03957e5c9f6e5cb43aa1591e1e0fd13217e2f2c70368970a36"
+    },
+    "unchanged_extracted_method_bodies": true,
+    "event_bus_adaptation": "Erase four CombatEvent type annotations only; dispatch body unchanged",
+    "fixture_scope": "UI/effect services are isolated stubs; original Potion control flow, Heroic/Health conditions, useStamina and EventBus execute in real Godot"
+  },
+  "result_sha256": "24f376d3735acc6e003bbdf3d60163474f2daeff681fff79585e1b4c0949b5c6",
+  "sort_cases": 256,
+  "comparison_call_sequences_recorded": true,
+  "fixture_sha256": {
+    "Actor.gd": "9f3685909cff57430abb97c36b832c4f10b2b7a16db43ac408de987920c45c3f",
+    "EventBus.gd": "a18f5bea275bddd8947154a36b47f03d0a282bb035adaa71045d34431e0d3b8f",
+    "Game.gd": "5baf1e8a5ba2b001fa43e08fa8a0c7ef790d065c3d73639f03ab52eac7ad7a7e",
+    "Health.gd": "8c697b32f9a08ad90eb0afb9b884f78bedf8d63129115a604c4b91af8f7b8d91",
+    "Heroic.gd": "21c31d95bcdbebc229954b5b6af5ff6374879ce11fe9ba05f0c56aa69b43c439",
+    "ItemStub.gd": "b7e40fa53bbde33dbd8b701b52ba991573e4f289e59344fe6ca8ef68c2b55fa5",
+    "ordering.gd": "1af31dc44b90cfb6fbbc7d3cb9380398cf15fea260bbc07bb73e743437991928",
+    "ordering.tscn": "4dd898cbd356b91029b93af715df204221b83b8aa968f2cc2b367abda1195c17",
+    "original_result.json": "1d04a270b743e0b71e692d2418a46181da788011cd5a4628983044fd39ed696d",
+    "Potion.gd": "db5788a3b7f59910e5c91d55961334d0cae4ff2327ce8ceece88e6ec658b6f16",
+    "project.godot": "19aeca8fbf993dde0d8071bab0ba399684efd7099b82db6bb131f8d8586623c2",
+    "sort_cases.json": "3fa2d46a895d4aec11ef0a362833da6f16e40d3a2e696a3dbe04e73d52d4f038",
+    "test.gd": "bd06583f39482b527b061bd938fa1b267e60ecf712a10f63d974fa0871f87b8e",
+    "test.tscn": "6da19e080c42cf6d887c68be6add5720b7644c2ef1b001f983b9d77feddb9c07",
+    "tie.gd": "5b0f345e6054c8b0f10823b808f024246da786b46b4b669261c85ef8afa43b99",
+    "tie.tscn": "02d945fff8b9192c451d1dd2246a7df6c8f6cbc28d396ec7aba07ef550893665",
+    "Util.gd": "c20440a46a61e264cbc91dcb821b7370907eeb3ea627920c9df7888272461739"
+  }
+}

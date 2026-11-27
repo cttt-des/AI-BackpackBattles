@@ -1,0 +1,9 @@
+Building complete20 instrumentation units with original FP flags; max2 jobs
+Built C:\Users\Windows\AppData\Local\CodexNativeBuilds\frame-guard-formal-tb85mg2z\objects\instrumented.dll (compiled 20/20, linked 20 objs) in 1303.97s
+Collecting new18 profiles from the corrected source
+instrumented.dll: 48.64 replays/s; 14.64 s of combat on average; 1f00611ee50c
+instrumented.dll: 42.05 replays/s; 16.11 s of combat on average; 2e74b45caa87
+instrumented.dll: 27.03 fights/s; 6.19 CPU s; 83.6 MiB peak; 88dda4dce54d
+Building corrected PGO release
+Built C:\Users\Windows\AppData\Local\CodexNativeBuilds\frame-guard-formal-tb85mg2z\objects\release.dll (compiled 18/20, linked 20 objs) in 832.98s
+Frame guard release ready cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52

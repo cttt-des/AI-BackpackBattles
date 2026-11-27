@@ -1,0 +1,11 @@
+{
+  "deployed": true,
+  "reason": "deployed_after_all_gates",
+  "production_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "candidate_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "AB_status": "positive_combined_evidence",
+  "all_protocol_processes_finished": true,
+  "no_same_source_retiming": true,
+  "other_optimization_directions_not_started": true,
+  "remaining_backup_required": true
+}

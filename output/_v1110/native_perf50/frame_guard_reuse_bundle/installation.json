@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "baseline_dll_sha256": "02fda77681361a6ddc721aa9ea75950126fa0f82df787b83ac3ca97144192d52",
+  "runtime": "dist\\native_1_1_10",
+  "backup_runtime": "dist\\native_1_1_10_before_frame_guard_20261127",
+  "changed_files": [
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/native_inline_dispatch.hpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/libgdcore.dll",
+    "output/_v1110/optimize_native_verified_bundle.py"
+  ],
+  "post_install_verification_sha256": "f401b4483332bfd93fcd3d213eaec42e72795044d934e082fd3c780cbe59c979"
+}

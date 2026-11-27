@@ -1,0 +1,995 @@
+
+C:\Users\Windows\AppData\Local\CodexNativeBuilds\frame-guard-release-review-y_4axgpx\baseline.dll:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+00000002a6d00920 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE>:
+   2a6d00920:	push   %r15
+   2a6d00922:	push   %r14
+   2a6d00924:	push   %r13
+   2a6d00926:	push   %r12
+   2a6d00928:	push   %rbp
+   2a6d00929:	push   %rdi
+   2a6d0092a:	push   %rsi
+   2a6d0092b:	push   %rbx
+   2a6d0092c:	sub    $0x168,%rsp
+   2a6d00933:	vpxor  %xmm3,%xmm3,%xmm3
+   2a6d00937:	mov    0x8(%rcx),%rax
+   2a6d0093b:	mov    0x28(%rcx),%rbx
+   2a6d0093f:	mov    %rcx,%r10
+   2a6d00942:	mov    %rdx,%r11
+   2a6d00945:	mov    %r8,%rsi
+   2a6d00948:	test   %rax,%rax
+   2a6d0094b:	je     2a6d01353 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xa33>
+   2a6d00951:	movzbl 0xd0(%rax),%edx
+   2a6d00958:	movzbl 0xd2(%rax),%edi
+   2a6d0095f:	xor    $0x1,%edx
+   2a6d00962:	test   %rbx,%rbx
+   2a6d00965:	sete   %cl
+   2a6d00968:	or     %cl,%dl
+   2a6d0096a:	mov    %edx,%r14d
+   2a6d0096d:	jne    2a6d013c4 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xaa4>
+   2a6d00973:	cmpb   $0x0,0xd1(%rax)
+   2a6d0097a:	jne    2a6d0138f <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xa6f>
+   2a6d00980:	cmpq   $0x0,(%rbx)
+   2a6d00984:	je     2a6d013c4 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xaa4>
+   2a6d0098a:	test   %dil,%dil
+   2a6d0098d:	jne    2a6d0178a <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xe6a>
+   2a6d00993:	movzbl 0x7b0(%r10),%eax
+   2a6d0099b:	cmp    $0x1,%al
+   2a6d0099d:	jne    2a6d017c5 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xea5>
+   2a6d009a3:	cmpb   $0x0,0x7b8(%r10)
+   2a6d009ab:	je     2a6d00bab <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x28b>
+   2a6d009b1:	movzbl 0x530(%r10),%eax
+   2a6d009b9:	mov    0x50(%r10),%rbp
+   2a6d009bd:	cmp    $0x2,%al
+   2a6d009bf:	jne    2a6d01034 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x714>
+   2a6d009c5:	mov    0x538(%r10),%rax
+   2a6d009cc:	test   %rax,%rax
+   2a6d009cf:	jns    2a6d0104c <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x72c>
+   2a6d009d5:	mov    0x8(%r10),%rbx
+   2a6d009d9:	vmovaps %xmm3,%xmm2
+   2a6d009dd:	test   %rbx,%rbx
+   2a6d009e0:	je     2a6cfdb81 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE.cold+0x35>
+   2a6d009e6:	cmpb   $0x0,0xd0(%rbx)
+   2a6d009ed:	je     2a6d0199a <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x107a>
+   2a6d009f3:	mov    0x28(%r10),%r12
+   2a6d009f7:	test   %r12,%r12
+   2a6d009fa:	je     2a6d01900 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xfe0>
+   2a6d00a00:	cmpb   $0x0,0xd1(%rbx)
+   2a6d00a07:	jne    2a6d019a2 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x1082>
+   2a6d00a0d:	cmpq   $0x0,(%r12)
+   2a6d00a12:	movzbl 0xd2(%rbx),%eax
+   2a6d00a19:	je     2a6d01900 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xfe0>
+   2a6d00a1f:	test   %al,%al
+   2a6d00a21:	jne    2a6d01160 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x840>
+   2a6d00a27:	mov    0x10(%r12),%rax
+   2a6d00a2c:	test   $0x1,%al
+   2a6d00a2e:	jne    2a6d00d08 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x3e8>
+   2a6d00a34:	cmpb   $0x9,0x60(%r10)
+   2a6d00a39:	mov    0x68(%r10),%rbx
+   2a6d00a3d:	jne    2a6d00d6c <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x44c>
+   2a6d00a43:	test   %rbx,%rbx
+   2a6d00a46:	je     2a6d00d6c <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x44c>
+   2a6d00a4c:	cmp    %rbx,(%r11)
+   2a6d00a4f:	jne    2a6d00cc0 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x3a0>
+   2a6d00a55:	test   %dil,%dil
+   2a6d00a58:	jne    2a6d018bc <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xf9c>
+   2a6d00a5e:	cmpb   $0x0,0x10(%r11)
+   2a6d00a63:	jne    2a6d00bab <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x28b>
+   2a6d00a69:	mov    0x320(%r10),%rax
+   2a6d00a70:	test   %rax,%rax
+   2a6d00a73:	je     2a6d018a1 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xf81>
+   2a6d00a79:	cmpl   $0x3,0x8(%rax)
+   2a6d00a7d:	jbe    2a6d018a1 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xf81>
+   2a6d00a83:	mov    (%rax),%rax
+   2a6d00a86:	movzbl 0x48(%rax),%r12d
+   2a6d00a8b:	test   %r12b,%r12b
+   2a6d00a8e:	jne    2a6cfdbea <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE.cold+0x9e>
+   2a6d00a94:	movb   $0x0,0xb0(%rsp)
+   2a6d00a9c:	movq   $0x0,0xb8(%rsp)
+   2a6d00aa8:	movzbl 0x90(%r10),%eax
+   2a6d00ab0:	cmp    $0x1,%al
+   2a6d00ab2:	jne    2a6d00fb2 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x692>
+   2a6d00ab8:	cmpb   $0x0,0x98(%r10)
+   2a6d00ac0:	je     2a6d01cd8 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x13b8>
+   2a6d00ac6:	cmpb   $0x0,0x60(%r10)
+   2a6d00acb:	je     2a6d01c79 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x1359>
+   2a6d00ad1:	test   %rbx,%rbx
+   2a6d00ad4:	je     2a6d01a6a <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x114a>
+   2a6d00ada:	movzbl 0xd8(%r10),%eax
+   2a6d00ae2:	cmp    $0x3,%al
+   2a6d00ae4:	jne    2a6d00bbf <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x29f>
+   2a6d00aea:	vmovsd 0xe0(%r10),%xmm1
+   2a6d00af3:	vmovsd 0x29f505(%rip),%xmm0        # 2a6fa0000 <.rdata+0x90>
+   2a6d00afb:	cmp    0x8(%r11),%rbx
+   2a6d00aff:	jne    2a6d00be0 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x2c0>
+   2a6d00b05:	test   %dil,%dil
+   2a6d00b08:	jne    2a6d01844 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xf24>
+   2a6d00b0e:	vaddsd 0x18(%r11),%xmm1,%xmm1
+   2a6d00b14:	vxorpd %xmm4,%xmm4,%xmm4
+   2a6d00b18:	vcomisd %xmm4,%xmm1
+   2a6d00b1c:	jb     2a6d00c90 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x370>
+   2a6d00b22:	vaddsd %xmm0,%xmm1,%xmm1
+   2a6d00b26:	movzbl (%rsi),%eax
+   2a6d00b29:	vmovsd 0x29f4ff(%rip),%xmm0        # 2a6fa0030 <.rdata+0xc0>
+   2a6d00b31:	vminsd %xmm1,%xmm0,%xmm0
+   2a6d00b35:	cmp    $0x3,%al
+   2a6d00b37:	jne    2a6d0114a <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x82a>
+   2a6d00b3d:	vmovsd 0x8(%rsi),%xmm4
+   2a6d00b42:	movzbl 0x4a0(%r10),%eax
+   2a6d00b4a:	cmp    $0x3,%al
+   2a6d00b4c:	jne    2a6d01c62 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x1342>
+   2a6d00b52:	vmulsd %xmm4,%xmm0,%xmm0
+   2a6d00b56:	vmovsd 0x4a8(%r10),%xmm1
+   2a6d00b5f:	vsubsd %xmm0,%xmm1,%xmm1
+   2a6d00b63:	movb   $0x3,0x4a0(%r10)
+   2a6d00b6b:	mov    0x8(%r10),%rbx
+   2a6d00b6f:	vmovsd %xmm1,0x4a8(%r10)
+   2a6d00b78:	movzbl 0x330(%rbp),%eax
+   2a6d00b7f:	cmp    $0x1,%al
+   2a6d00b81:	jne    2a6d00fd8 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x6b8>
+   2a6d00b87:	cmpb   $0x0,0x338(%rbp)
+   2a6d00b8e:	jne    2a6d00dd0 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x4b0>
+   2a6d00b94:	vmovsd 0x4a8(%r10),%xmm2
+   2a6d00b9d:	vxorpd %xmm0,%xmm0,%xmm0
+   2a6d00ba1:	vcomisd %xmm2,%xmm0
+   2a6d00ba5:	jae    2a6d00f1d <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x5fd>
+   2a6d00bab:	add    $0x168,%rsp
+   2a6d00bb2:	pop    %rbx
+   2a6d00bb3:	pop    %rsi
+   2a6d00bb4:	pop    %rdi
+   2a6d00bb5:	pop    %rbp
+   2a6d00bb6:	pop    %r12
+   2a6d00bb8:	pop    %r13
+   2a6d00bba:	pop    %r14
+   2a6d00bbc:	pop    %r15
+   2a6d00bbe:	ret
+   2a6d00bbf:	jbe    2a6d01cb5 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x1395>
+   2a6d00bc5:	vmovsd 0x29f433(%rip),%xmm0        # 2a6fa0000 <.rdata+0x90>
+   2a6d00bcd:	vxorpd %xmm1,%xmm1,%xmm1
+   2a6d00bd1:	cmp    0x8(%r11),%rbx
+   2a6d00bd5:	je     2a6d00b05 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x1e5>
+   2a6d00bdb:	nopl   0x0(%rax,%rax,1)
+   2a6d00be0:	mov    0x98(%rbx),%rdx
+   2a6d00be7:	mov    (%rdx),%rax
+   2a6d00bea:	mov    0x8(%rdx),%ecx
+   2a6d00bed:	mov    %rax,%r15
+   2a6d00bf0:	mov    %ecx,%r13d
+   2a6d00bf3:	cmp    $0x7,%ecx
+   2a6d00bf6:	jbe    2a6d01618 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xcf8>
+   2a6d00bfc:	cmpq   $0x6b,0x190(%rax)
+   2a6d00c04:	jne    2a6d0154a <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xc2a>
+   2a6d00c0a:	mov    0x1a8(%rax),%rax
+   2a6d00c11:	movzbl 0x78(%rax),%ecx
+   2a6d00c15:	cmp    $0x2,%cl
+   2a6d00c18:	jne    2a6d0126d <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x94d>
+   2a6d00c1e:	mov    0x80(%rax),%rax
+   2a6d00c25:	cmp    $0xa,%r13d
+   2a6d00c29:	jbe    2a6d01289 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x969>
+   2a6d00c2f:	cmpq   $0x6e,0x238(%r15)
+   2a6d00c37:	jne    2a6d01289 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x969>
+   2a6d00c3d:	mov    0x250(%r15),%rdx
+   2a6d00c44:	movzbl 0x78(%rdx),%ecx
+   2a6d00c48:	cmp    $0x2,%cl
+   2a6d00c4b:	jne    2a6d01343 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xa23>
+   2a6d00c51:	mov    0x80(%rdx),%rdx
+   2a6d00c58:	sub    %rdx,%rax
+   2a6d00c5b:	mov    %rbx,0x8(%r11)
+   2a6d00c5f:	vcvtsi2sd %rax,%xmm2,%xmm4
+   2a6d00c64:	vmulsd 0x29f3bc(%rip),%xmm4,%xmm4        # 2a6fa0028 <.rdata+0xb8>
+   2a6d00c6c:	vmovsd %xmm4,0x18(%r11)
+   2a6d00c72:	test   %dil,%dil
+   2a6d00c75:	jne    2a6d0120a <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x8ea>
+   2a6d00c7b:	vaddsd %xmm4,%xmm1,%xmm1
+   2a6d00c7f:	vxorpd %xmm4,%xmm4,%xmm4
+   2a6d00c83:	vcomisd %xmm4,%xmm1
+   2a6d00c87:	jae    2a6d00b22 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x202>
+   2a6d00c8d:	nopl   (%rax)
+   2a6d00c90:	vsubsd %xmm1,%xmm0,%xmm1
+   2a6d00c94:	movzbl (%rsi),%eax
+   2a6d00c97:	vdivsd %xmm1,%xmm0,%xmm0
+   2a6d00c9b:	vmovsd 0x29f37d(%rip),%xmm1        # 2a6fa0020 <.rdata+0xb0>
+   2a6d00ca3:	vcomisd %xmm0,%xmm1
+   2a6d00ca7:	ja     2a6d01778 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xe58>
+   2a6d00cad:	cmp    $0x3,%al
+   2a6d00caf:	jne    2a6d0114a <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x82a>
+   2a6d00cb5:	vmovsd 0x8(%rsi),%xmm4
+   2a6d00cba:	jmp    2a6d00b42 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x222>
+   2a6d00cbf:	nop
+   2a6d00cc0:	movzbl 0x378(%rbx),%eax
+   2a6d00cc7:	cmp    $0x3,%al
+   2a6d00cc9:	jne    2a6d01721 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xe01>
+   2a6d00ccf:	vmovsd 0x380(%rbx),%xmm1
+   2a6d00cd7:	vxorpd %xmm0,%xmm0,%xmm0
+   2a6d00cdb:	mov    %rbx,(%r11)
+   2a6d00cde:	vcomisd %xmm0,%xmm1
+   2a6d00ce2:	seta   %r12b
+   2a6d00ce6:	mov    %r12b,0x10(%r11)
+   2a6d00cea:	test   %dil,%dil
+   2a6d00ced:	jne    2a6d016e2 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xdc2>
+   2a6d00cf3:	test   %r12b,%r12b
+   2a6d00cf6:	je     2a6d00a69 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x149>
+   2a6d00cfc:	jmp    2a6d00bab <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x28b>
+   2a6d00d01:	nopl   0x0(%rax)
+   2a6d00d08:	vmovdqu %xmm3,(%r11)
+   2a6d00d0d:	test   %dil,%dil
+   2a6d00d10:	jne    2a6d011b5 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x895>
+   2a6d00d16:	mov    %r10,%rdx
+   2a6d00d19:	lea    0xd0(%rsp),%rcx
+   2a6d00d21:	mov    %r11,0x1b8(%rsp)
+   2a6d00d29:	mov    %r10,0x1b0(%rsp)
+   2a6d00d31:	vmovaps %xmm2,0x30(%rsp)
+   2a6d00d37:	call   2a6d0e420 <_ZN28Gd__gd_core_items__Gems__Gem12fn_characterEPKN2gd5GdValEi.constprop.0>
+   2a6d00d3c:	cmpb   $0x9,0xd0(%rsp)
+   2a6d00d44:	mov    0xd8(%rsp),%rbx
+   2a6d00d4c:	vpxor  %xmm3,%xmm3,%xmm3
+   2a6d00d50:	mov    0x1b0(%rsp),%r10
+   2a6d00d58:	mov    0x1b8(%rsp),%r11
+   2a6d00d60:	vmovaps 0x30(%rsp),%xmm2
+   2a6d00d66:	je     2a6d00a43 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x123>
+   2a6d00d6c:	xor    %ebx,%ebx
+   2a6d00d6e:	jmp    2a6d00a69 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x149>
+   2a6d00d73:	nopl   0x0(%rax,%rax,1)
+   2a6d00d78:	cmp    $0x3,%al
+   2a6d00d7a:	je     2a6d010d9 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x7b9>
+   2a6d00d80:	lea    0x330(%rbp),%rcx
+   2a6d00d87:	mov    %r11,0x1b8(%rsp)
+   2a6d00d8f:	mov    %r10,0x1b0(%rsp)
+   2a6d00d97:	vmovaps %xmm2,0x40(%rsp)
+   2a6d00d9d:	vmovsd %xmm1,0x30(%rsp)
+   2a6d00da3:	call   2a6c41310 <_ZN2gd8gd_truthERKNS_5GdValE>
+   2a6d00da8:	vmovsd 0x30(%rsp),%xmm1
+   2a6d00dae:	mov    0x1b0(%rsp),%r10
+   2a6d00db6:	vpxor  %xmm3,%xmm3,%xmm3
+   2a6d00dba:	test   %al,%al
+   2a6d00dbc:	mov    0x1b8(%rsp),%r11
+   2a6d00dc4:	vmovaps 0x40(%rsp),%xmm2
+   2a6d00dca:	je     2a6d00b94 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x274>
+   2a6d00dd0:	movzbl 0x4b8(%r10),%eax
+   2a6d00dd8:	movb   $0x9,0x130(%rsp)
+   2a6d00de0:	mov    %r10,0x138(%rsp)
+   2a6d00de8:	cmp    $0x2,%al
+   2a6d00dea:	je     2a6d01129 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x809>
+   2a6d00df0:	cmp    $0x3,%al
+   2a6d00df2:	je     2a6d01113 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x7f3>
+   2a6d00df8:	dec    %al
+   2a6d00dfa:	je     2a6d01c43 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x1323>
+   2a6d00e00:	vmovsd 0x29f1f8(%rip),%xmm0        # 2a6fa0000 <.rdata+0x90>
+   2a6d00e08:	vxorpd %xmm4,%xmm4,%xmm4
+   2a6d00e0c:	vdivsd %xmm4,%xmm1,%xmm1
+   2a6d00e10:	movb   $0x3,0x148(%rsp)
+   2a6d00e18:	vmovdqu %xmm3,(%r11)
+   2a6d00e1d:	vsubsd %xmm1,%xmm0,%xmm0
+   2a6d00e21:	vmovsd %xmm0,0x150(%rsp)
+   2a6d00e2a:	test   %dil,%dil
+   2a6d00e2d:	je     2a6d00e69 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x549>
+   2a6d00e2f:	mov    $0x7,%ecx
+   2a6d00e34:	mov    %r11,0x1b8(%rsp)
+   2a6d00e3c:	mov    %r10,0x1b0(%rsp)
+   2a6d00e44:	vmovaps %xmm2,0x30(%rsp)
+   2a6d00e4a:	call   2a66dcb40 <_ZN2gd24native_frame_segment_hitEj.part.0>
+   2a6d00e4f:	vmovaps 0x30(%rsp),%xmm2
+   2a6d00e55:	mov    0x1b8(%rsp),%r11
+   2a6d00e5d:	vpxor  %xmm3,%xmm3,%xmm3
+   2a6d00e61:	mov    0x1b0(%rsp),%r10
+   2a6d00e69:	cmpb   $0x0,0xd0(%rbx)
+   2a6d00e70:	je     2a6d00e96 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x576>
+   2a6d00e72:	movzbl 0x78(%rbp),%eax
+   2a6d00e76:	cmp    $0x7,%al
+   2a6d00e78:	je     2a6d01c30 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x1310>
+   2a6d00e7e:	cmp    $0x8,%al
+   2a6d00e80:	je     2a6d01c30 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x1310>
+   2a6d00e86:	cmp    $0xb,%al
+   2a6d00e88:	je     2a6d01c30 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x1310>
+   2a6d00e8e:	cmp    $0xa,%al
+   2a6d00e90:	je     2a6d01b21 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x1201>
+   2a6d00e96:	lea    0x130(%rsp),%rax
+   2a6d00e9e:	movl   $0x2,0x28(%rsp)
+   2a6d00ea6:	lea    0x90(%rsp),%rcx
+   2a6d00eae:	mov    $0x37f,%r9d
+   2a6d00eb4:	mov    %rax,0x20(%rsp)
+   2a6d00eb9:	lea    0x78(%rbp),%r8
+   2a6d00ebd:	mov    %rbx,%rdx
+   2a6d00ec0:	mov    %r11,0x1b8(%rsp)
+   2a6d00ec8:	mov    %r10,0x1b0(%rsp)
+   2a6d00ed0:	vmovaps %xmm2,0x30(%rsp)
+   2a6d00ed6:	call   2a6c29030 <_ZN2gd11call_methodERNS_9BattleCtxERKNS_5GdValEjPS3_i>
+   2a6d00edb:	vmovaps 0x30(%rsp),%xmm2
+   2a6d00ee1:	mov    0x1b8(%rsp),%r11
+   2a6d00ee9:	vpxor  %xmm3,%xmm3,%xmm3
+   2a6d00eed:	mov    0x1b0(%rsp),%r10
+   2a6d00ef5:	movzbl 0x4a0(%r10),%eax
+   2a6d00efd:	cmp    $0x3,%al
+   2a6d00eff:	je     2a6d00b94 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x274>
+   2a6d00f05:	ja     2a6d00f1d <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x5fd>
+   2a6d00f07:	cmp    $0x1,%al
+   2a6d00f09:	jne    2a6d01afb <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x11db>
+   2a6d00f0f:	cmpb   $0x0,0x4a8(%r10)
+   2a6d00f17:	jne    2a6d00bab <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x28b>
+   2a6d00f1d:	vmovdqu %xmm3,(%r11)
+   2a6d00f22:	test   %dil,%dil
+   2a6d00f25:	jne    2a6d01c96 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x1376>
+   2a6d00f2b:	cmpb   $0x0,0xd0(%rbx)
+   2a6d00f32:	movb   $0x9,0x130(%rsp)
+   2a6d00f3a:	mov    %r10,0x138(%rsp)
+   2a6d00f42:	je     2a6d01527 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xc07>
+   2a6d00f48:	mov    0x28(%r10),%rsi
+   2a6d00f4c:	test   %rsi,%rsi
+   2a6d00f4f:	je     2a6d01527 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xc07>
+   2a6d00f55:	cmpb   $0x0,0xd1(%rbx)
+   2a6d00f5c:	jne    2a6d01449 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xb29>
+   2a6d00f62:	mov    0x18(%rsi),%rax
+   2a6d00f66:	test   %rax,%rax
+   2a6d00f69:	je     2a6d01527 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xc07>
+   2a6d00f6f:	cmpb   $0x0,0xd2(%rbx)
+   2a6d00f76:	jne    2a6d0143d <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xb1d>
+   2a6d00f7c:	lea    0xf69d(%rip),%rcx        # 2a6d10620 <_ZN2gd22native_resolved_invokeI21Gd__gd_core__CoreItemXadL_ZNS1_10fn_triggerEPKNS_5GdValEiEEEES2_PNS_5GdObjES4_i>
+   2a6d00f83:	mov    0x138(%rsp),%rdx
+   2a6d00f8b:	mov    $0x0,%r9d
+   2a6d00f91:	mov    $0x0,%r8d
+   2a6d00f97:	cmp    %rcx,%rax
+   2a6d00f9a:	lea    0x90(%rsp),%rcx
+   2a6d00fa2:	jne    2a6d011f0 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x8d0>
+   2a6d00fa8:	call   2a6d10640 <_ZN21Gd__gd_core__CoreItem10fn_triggerEPKN2gd5GdValEi>
+   2a6d00fad:	jmp    2a6d00bab <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x28b>
+   2a6d00fb2:	ja     2a6d01000 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x6e0>
+   2a6d00fb4:	movzbl (%rsi),%eax
+   2a6d00fb7:	cmp    $0x3,%al
+   2a6d00fb9:	jne    2a6d01aee <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x11ce>
+   2a6d00fbf:	vmovsd 0x8(%rsi),%xmm4
+   2a6d00fc4:	vmovsd 0x29f034(%rip),%xmm0        # 2a6fa0000 <.rdata+0x90>
+   2a6d00fcc:	jmp    2a6d00b42 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x222>
+   2a6d00fd1:	nopl   0x0(%rax)
+   2a6d00fd8:	jbe    2a6d00b94 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x274>
+   2a6d00fde:	cmp    $0x2,%al
+   2a6d00fe0:	jne    2a6d00d78 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x458>
+   2a6d00fe6:	cmpq   $0x0,0x338(%rbp)
+   2a6d00fee:	je     2a6d00b94 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x274>
+   2a6d00ff4:	jmp    2a6d00dd0 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x4b0>
+   2a6d00ff9:	nopl   0x0(%rax)
+   2a6d01000:	cmp    $0x2,%al
+   2a6d01002:	jne    2a6d01078 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x758>
+   2a6d01004:	cmpq   $0x0,0x98(%r10)
+   2a6d0100c:	setne  %al
+   2a6d0100f:	test   %al,%al
+   2a6d01011:	jne    2a6d00ac6 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x1a6>
+   2a6d01017:	movzbl (%rsi),%eax
+   2a6d0101a:	cmp    $0x3,%al
+   2a6d0101c:	jne    2a6d01b11 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x11f1>
+   2a6d01022:	vmovsd 0x8(%rsi),%xmm4
+   2a6d01027:	vmovsd 0x29efd1(%rip),%xmm0        # 2a6fa0000 <.rdata+0x90>
+   2a6d0102f:	jmp    2a6d00b42 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x222>
+   2a6d01034:	cmp    $0x3,%al
+   2a6d01036:	je     2a6cfdb62 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE.cold+0x16>
+   2a6d0103c:	dec    %al
+   2a6d0103e:	jne    2a6d013fd <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xadd>
+   2a6d01044:	movzbl 0x538(%r10),%eax
+   2a6d0104c:	movzbl 0x438(%rbp),%edx
+   2a6d01053:	cmp    $0x2,%dl
+   2a6d01056:	jne    2a6d01d54 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x1434>
+   2a6d0105c:	mov    0x440(%rbp),%rdx
+   2a6d01063:	cmp    %rax,%rdx
+   2a6d01066:	jne    2a6d009d5 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xb5>
+   2a6d0106c:	jmp    2a6d00bab <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x28b>
+   2a6d01071:	nopl   0x0(%rax)
+   2a6d01078:	cmp    $0x3,%al
+   2a6d0107a:	je     2a6d010f6 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x7d6>
+   2a6d0107c:	lea    0x90(%r10),%rcx
+   2a6d01083:	mov    %r11,0x1b8(%rsp)
+   2a6d0108b:	mov    %r10,0x1b0(%rsp)
+   2a6d01093:	vmovaps %xmm2,0x30(%rsp)
+   2a6d01099:	call   2a6c41310 <_ZN2gd8gd_truthERKNS_5GdValE>
+   2a6d0109e:	mov    0x1b0(%rsp),%r10
+   2a6d010a6:	mov    0x1b8(%rsp),%r11
+   2a6d010ae:	vpxor  %xmm3,%xmm3,%xmm3
+   2a6d010b2:	test   %al,%al
+   2a6d010b4:	vmovaps 0x30(%rsp),%xmm2
+   2a6d010ba:	jne    2a6d00ac6 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x1a6>
+   2a6d010c0:	movzbl (%rsi),%eax
+   2a6d010c3:	cmp    $0x3,%al
+   2a6d010c5:	jne    2a6d0113f <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x81f>
+   2a6d010c7:	vmovsd 0x8(%rsi),%xmm4
+   2a6d010cc:	vmovsd 0x29ef2c(%rip),%xmm0        # 2a6fa0000 <.rdata+0x90>
+   2a6d010d4:	jmp    2a6d00b42 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x222>
+   2a6d010d9:	vxorpd %xmm0,%xmm0,%xmm0
+   2a6d010dd:	vucomisd 0x338(%rbp),%xmm0
+   2a6d010e5:	jp     2a6d00dd0 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x4b0>
+   2a6d010eb:	je     2a6d00b94 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x274>
+   2a6d010f1:	jmp    2a6d00dd0 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x4b0>
+   2a6d010f6:	vxorpd %xmm0,%xmm0,%xmm0
+   2a6d010fa:	mov    $0x1,%edx
+   2a6d010ff:	vucomisd 0x98(%r10),%xmm0
+   2a6d01108:	setp   %al
+   2a6d0110b:	cmovne %edx,%eax
+   2a6d0110e:	jmp    2a6d0100f <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x6ef>
+   2a6d01113:	vmovsd 0x4c0(%r10),%xmm4
+   2a6d0111c:	vmovsd 0x29eedc(%rip),%xmm0        # 2a6fa0000 <.rdata+0x90>
+   2a6d01124:	jmp    2a6d00e0c <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x4ec>
+   2a6d01129:	vmovsd 0x29eecf(%rip),%xmm0        # 2a6fa0000 <.rdata+0x90>
+   2a6d01131:	vcvtsi2sdq 0x4c0(%r10),%xmm2,%xmm4
+   2a6d0113a:	jmp    2a6d00e0c <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x4ec>
+   2a6d0113f:	vmovsd 0x29eeb9(%rip),%xmm0        # 2a6fa0000 <.rdata+0x90>
+   2a6d01147:	xor    %r14d,%r14d
+   2a6d0114a:	cmp    $0x3,%al
+   2a6d0114c:	jbe    2a6d011a1 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x881>
+   2a6d0114e:	vxorpd %xmm4,%xmm4,%xmm4
+   2a6d01152:	test   %r14b,%r14b
+   2a6d01155:	je     2a6d00b42 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x222>
+   2a6d0115b:	jmp    2a6cfdb4c <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE.cold>
+   2a6d01160:	xor    %ecx,%ecx
+   2a6d01162:	mov    %r11,0x1b8(%rsp)
+   2a6d0116a:	mov    %r10,0x1b0(%rsp)
+   2a6d01172:	vmovaps %xmm2,0x30(%rsp)
+   2a6d01178:	call   2a66d3400 <_ZN2gd27native_type_constructor_hitEj.part.0>
+   2a6d0117d:	mov    0x10(%r12),%rax
+   2a6d01182:	mov    0x1b0(%rsp),%r10
+   2a6d0118a:	vpxor  %xmm3,%xmm3,%xmm3
+   2a6d0118e:	mov    0x1b8(%rsp),%r11
+   2a6d01196:	vmovaps 0x30(%rsp),%xmm2
+   2a6d0119c:	jmp    2a6d00a2c <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x10c>
+   2a6d011a1:	cmp    $0x1,%al
+   2a6d011a3:	jne    2a6d011f7 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x8d7>
+   2a6d011a5:	cmpb   $0x0,0x8(%rsi)
+   2a6d011a9:	je     2a6d0114e <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x82e>
+   2a6d011ab:	vmovsd 0x29ee4d(%rip),%xmm4        # 2a6fa0000 <.rdata+0x90>
+   2a6d011b3:	jmp    2a6d01152 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x832>
+   2a6d011b5:	mov    $0x6,%ecx
+   2a6d011ba:	mov    %r11,0x1b8(%rsp)
+   2a6d011c2:	mov    %r10,0x1b0(%rsp)
+   2a6d011ca:	vmovaps %xmm2,0x30(%rsp)
+   2a6d011d0:	call   2a66dcb40 <_ZN2gd24native_frame_segment_hitEj.part.0>
+   2a6d011d5:	vmovaps 0x30(%rsp),%xmm2
+   2a6d011db:	mov    0x1b8(%rsp),%r11
+   2a6d011e3:	mov    0x1b0(%rsp),%r10
+   2a6d011eb:	jmp    2a6d00d16 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x3f6>
+   2a6d011f0:	call   *%rax
+   2a6d011f2:	jmp    2a6d00bab <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x28b>
+   2a6d011f7:	cmp    $0x2,%al
+   2a6d011f9:	jne    2a6d0114e <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x82e>
+   2a6d011ff:	vcvtsi2sdq 0x8(%rsi),%xmm2,%xmm4
+   2a6d01205:	jmp    2a6d01152 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x832>
+   2a6d0120a:	mov    $0x3,%ecx
+   2a6d0120f:	mov    %r11,0x1b8(%rsp)
+   2a6d01217:	mov    %r10,0x1b0(%rsp)
+   2a6d0121f:	vmovaps %xmm2,0x60(%rsp)
+   2a6d01225:	vmovsd %xmm0,0x50(%rsp)
+   2a6d0122b:	vmovsd %xmm4,0x40(%rsp)
+   2a6d01231:	vmovsd %xmm1,0x30(%rsp)
+   2a6d01237:	call   2a66dcb40 <_ZN2gd24native_frame_segment_hitEj.part.0>
+   2a6d0123c:	vmovsd 0x30(%rsp),%xmm1
+   2a6d01242:	vmovsd 0x40(%rsp),%xmm4
+   2a6d01248:	vpxor  %xmm3,%xmm3,%xmm3
+   2a6d0124c:	mov    0x1b0(%rsp),%r10
+   2a6d01254:	mov    0x1b8(%rsp),%r11
+   2a6d0125c:	vmovsd 0x50(%rsp),%xmm0
+   2a6d01262:	vmovaps 0x60(%rsp),%xmm2
+   2a6d01268:	jmp    2a6d00c7b <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x35b>
+   2a6d0126d:	cmp    $0x3,%cl
+   2a6d01270:	jne    2a6d013ed <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xacd>
+   2a6d01276:	vcvttsd2si 0x80(%rax),%rax
+   2a6d0127f:	cmp    $0xa,%r13d
+   2a6d01283:	ja     2a6d00c2f <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x30f>
+   2a6d01289:	lea    0x130(%rsp),%r9
+   2a6d01291:	lea    0xf0(%rsp),%rcx
+   2a6d01299:	lea    0x110(%rsp),%r8
+   2a6d012a1:	mov    %r10,0x1b0(%rsp)
+   2a6d012a9:	xor    %r10d,%r10d
+   2a6d012ac:	mov    %r11,0x1b8(%rsp)
+   2a6d012b4:	mov    %rax,0x40(%rsp)
+   2a6d012b9:	mov    %r10,0x138(%rsp)
+   2a6d012c1:	vmovaps %xmm2,0x60(%rsp)
+   2a6d012c7:	vmovsd %xmm0,0x50(%rsp)
+   2a6d012cd:	vmovsd %xmm1,0x30(%rsp)
+   2a6d012d3:	movb   $0x0,0x130(%rsp)
+   2a6d012db:	movb   $0x2,0x110(%rsp)
+   2a6d012e3:	movq   $0x6e,0x118(%rsp)
+   2a6d012ef:	call   2a6c47550 <_ZNK2gd6GdDict3getERKNS_5GdValES3_>
+   2a6d012f4:	cmpb   $0x9,0xf0(%rsp)
+   2a6d012fc:	vmovsd 0x30(%rsp),%xmm1
+   2a6d01302:	vpxor  %xmm3,%xmm3,%xmm3
+   2a6d01306:	mov    0x40(%rsp),%rax
+   2a6d0130b:	mov    0x1b0(%rsp),%r10
+   2a6d01313:	mov    0x1b8(%rsp),%r11
+   2a6d0131b:	vmovsd 0x50(%rsp),%xmm0
+   2a6d01321:	vmovaps 0x60(%rsp),%xmm2
+   2a6d01327:	jne    2a6d0134c <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xa2c>
+   2a6d01329:	mov    0xf8(%rsp),%rdx
+   2a6d01331:	test   %rdx,%rdx
+   2a6d01334:	je     2a6d0134c <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xa2c>
+   2a6d01336:	movzbl 0x78(%rdx),%ecx
+   2a6d0133a:	cmp    $0x2,%cl
+   2a6d0133d:	je     2a6d00c51 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x331>
+   2a6d01343:	cmp    $0x3,%cl
+   2a6d01346:	je     2a6d01375 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xa55>
+   2a6d01348:	dec    %cl
+   2a6d0134a:	je     2a6d01383 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xa63>
+   2a6d0134c:	xor    %edx,%edx
+   2a6d0134e:	jmp    2a6d00c58 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x338>
+   2a6d01353:	vmovdqu %xmm3,(%rdx)
+   2a6d01357:	lea    0x90(%rsp),%rcx
+   2a6d0135f:	mov    $0x1,%r9d
+   2a6d01365:	mov    %rsi,%r8
+   2a6d01368:	mov    %r10,%rdx
+   2a6d0136b:	call   2a6d77290 <_ZN21Gd__gd_core__CoreItem14fn_physicsTickEPKN2gd5GdValEi>
+   2a6d01370:	jmp    2a6d00bab <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x28b>
+   2a6d01375:	vcvttsd2si 0x80(%rdx),%rdx
+   2a6d0137e:	jmp    2a6d00c58 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x338>
+   2a6d01383:	movzbl 0x80(%rdx),%edx
+   2a6d0138a:	jmp    2a6d00c58 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x338>
+   2a6d0138f:	mov    %r10,%rcx
+   2a6d01392:	mov    %r11,0x1b8(%rsp)
+   2a6d0139a:	mov    %r10,0x1b0(%rsp)
+   2a6d013a2:	call   2a6d48ee0 <_ZN2gdL25native_resolved_exact_rowEPKNS_5GdObjE.lto_priv.0>
+   2a6d013a7:	mov    0x1b0(%rsp),%r10
+   2a6d013af:	mov    0x1b8(%rsp),%r11
+   2a6d013b7:	vpxor  %xmm3,%xmm3,%xmm3
+   2a6d013bb:	cmp    %rax,%rbx
+   2a6d013be:	je     2a6d00980 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x60>
+   2a6d013c4:	vmovdqu %xmm3,(%r11)
+   2a6d013c9:	test   %dil,%dil
+   2a6d013cc:	je     2a6d01357 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xa37>
+   2a6d013ce:	mov    $0x5,%ecx
+   2a6d013d3:	mov    %r10,0x1b0(%rsp)
+   2a6d013db:	call   2a66dcb40 <_ZN2gd24native_frame_segment_hitEj.part.0>
+   2a6d013e0:	mov    0x1b0(%rsp),%r10
+   2a6d013e8:	jmp    2a6d01357 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xa37>
+   2a6d013ed:	dec    %cl
+   2a6d013ef:	jne    2a6d01422 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xb02>
+   2a6d013f1:	movzbl 0x80(%rax),%eax
+   2a6d013f8:	jmp    2a6d0127f <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x95f>
+   2a6d013fd:	movzbl 0x438(%rbp),%edx
+   2a6d01404:	xor    %eax,%eax
+   2a6d01406:	cmp    $0x2,%dl
+   2a6d01409:	je     2a6d0105c <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x73c>
+   2a6d0140f:	cmp    $0x3,%dl
+   2a6d01412:	jne    2a6d01429 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xb09>
+   2a6d01414:	vcvttsd2si 0x440(%rbp),%rdx
+   2a6d0141d:	jmp    2a6d01063 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x743>
+   2a6d01422:	xor    %eax,%eax
+   2a6d01424:	jmp    2a6d0127f <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x95f>
+   2a6d01429:	dec    %dl
+   2a6d0142b:	jne    2a6d00bab <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x28b>
+   2a6d01431:	movzbl 0x440(%rbp),%edx
+   2a6d01438:	jmp    2a6d01063 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x743>
+   2a6d0143d:	incq   0xd8(%rbx)
+   2a6d01444:	jmp    2a6d00f7c <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x65c>
+   2a6d01449:	mov    %r10,%rcx
+   2a6d0144c:	call   2a6d48ee0 <_ZN2gdL25native_resolved_exact_rowEPKNS_5GdObjE.lto_priv.0>
+   2a6d01451:	cmp    %rax,%rsi
+   2a6d01454:	jne    2a6d01463 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xb43>
+   2a6d01456:	mov    0x18(%rsi),%rax
+   2a6d0145a:	test   %rax,%rax
+   2a6d0145d:	jne    2a6d00f6f <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x64f>
+   2a6d01463:	cmpb   $0x0,0xd0(%rbx)
+   2a6d0146a:	je     2a6d01527 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xc07>
+   2a6d01470:	movzbl 0x130(%rsp),%eax
+   2a6d01478:	cmp    $0x7,%al
+   2a6d0147a:	je     2a6d01518 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xbf8>
+   2a6d01480:	cmp    $0x8,%al
+   2a6d01482:	je     2a6d01518 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xbf8>
+   2a6d01488:	cmp    $0xb,%al
+   2a6d0148a:	je     2a6d01518 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xbf8>
+   2a6d01490:	cmp    $0xa,%al
+   2a6d01492:	jne    2a6d01527 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xc07>
+   2a6d01498:	cmpb   $0x0,0xd2(%rbx)
+   2a6d0149f:	je     2a6d014ab <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xb8b>
+   2a6d014a1:	mov    $0x9,%ecx
+   2a6d014a6:	call   2a66d3460 <_ZN2gd25native_inline_variant_hitEj.part.0>
+   2a6d014ab:	mov    0x138(%rsp),%rax
+   2a6d014b3:	test   %rax,%rax
+   2a6d014b6:	je     2a6d00bab <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x28b>
+   2a6d014bc:	cmpq   $0x0,0x38(%rax)
+   2a6d014c1:	je     2a6d00bab <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x28b>
+   2a6d014c7:	cmpb   $0x0,0x117(%rbx)
+   2a6d014ce:	jne    2a6d014e3 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xbc3>
+   2a6d014d0:	mov    %rax,%rdx
+   2a6d014d3:	mov    %rbx,%rcx
+   2a6d014d6:	call   2a623e260 <_ZN2gd26native_timer_observe_classERNS_9BattleCtxEPKNS_11GdClassMetaE.part.0>
+   2a6d014db:	mov    0x138(%rsp),%rax
+   2a6d014e3:	xor    %edx,%edx
+   2a6d014e5:	movb   $0x0,0x110(%rsp)
+   2a6d014ed:	xor    %r9d,%r9d
+   2a6d014f0:	xor    %r8d,%r8d
+   2a6d014f3:	mov    %rdx,0x118(%rsp)
+   2a6d014fb:	lea    0x110(%rsp),%rdx
+   2a6d01503:	mov    %rbx,%rcx
+   2a6d01506:	mov    %rdx,0x20(%rsp)
+   2a6d0150b:	mov    $0xf4,%edx
+   2a6d01510:	call   *0x38(%rax)
+   2a6d01513:	jmp    2a6d00bab <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x28b>
+   2a6d01518:	cmpq   $0x0,0x138(%rsp)
+   2a6d01521:	je     2a6d00bab <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x28b>
+   2a6d01527:	lea    0x90(%rsp),%rcx
+   2a6d0152f:	mov    $0xf4,%r9d
+   2a6d01535:	lea    0x130(%rsp),%r8
+   2a6d0153d:	mov    %rbx,%rdx
+   2a6d01540:	call   2a6c273e0 <_ZN2gd11call_methodERNS_9BattleCtxERKNS_5GdValEjPS3_i.constprop.0>
+   2a6d01545:	jmp    2a6d00bab <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x28b>
+   2a6d0154a:	mov    %r11,0x1b8(%rsp)
+   2a6d01552:	lea    0xf0(%rsp),%rcx
+   2a6d0155a:	xor    %r11d,%r11d
+   2a6d0155d:	lea    0x130(%rsp),%r9
+   2a6d01565:	lea    0x110(%rsp),%r8
+   2a6d0156d:	mov    %r10,0x1b0(%rsp)
+   2a6d01575:	mov    %r11,0x138(%rsp)
+   2a6d0157d:	mov    %rdx,0x30(%rsp)
+   2a6d01582:	vmovaps %xmm2,0x60(%rsp)
+   2a6d01588:	vmovsd %xmm0,0x50(%rsp)
+   2a6d0158e:	vmovsd %xmm1,0x40(%rsp)
+   2a6d01594:	movb   $0x0,0x130(%rsp)
+   2a6d0159c:	movb   $0x2,0x110(%rsp)
+   2a6d015a4:	movq   $0x6b,0x118(%rsp)
+   2a6d015b0:	call   2a6c47550 <_ZNK2gd6GdDict3getERKNS_5GdValES3_>
+   2a6d015b5:	cmpb   $0x9,0xf0(%rsp)
+   2a6d015bd:	mov    0x30(%rsp),%rdx
+   2a6d015c2:	vpxor  %xmm3,%xmm3,%xmm3
+   2a6d015c6:	vmovsd 0x40(%rsp),%xmm1
+   2a6d015cc:	mov    0x1b0(%rsp),%r10
+   2a6d015d4:	mov    0x1b8(%rsp),%r11
+   2a6d015dc:	vmovsd 0x50(%rsp),%xmm0
+   2a6d015e2:	vmovaps 0x60(%rsp),%xmm2
+   2a6d015e8:	jne    2a6d01422 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xb02>
+   2a6d015ee:	mov    0xf8(%rsp),%rax
+   2a6d015f6:	test   %rax,%rax
+   2a6d015f9:	je     2a6d01422 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xb02>
+   2a6d015ff:	movzbl 0x78(%rax),%ecx
+   2a6d01603:	cmp    $0x2,%cl
+   2a6d01606:	jne    2a6d0126d <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x94d>
+   2a6d0160c:	mov    0x80(%rax),%rax
+   2a6d01613:	jmp    2a6d0127f <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x95f>
+   2a6d01618:	xor    %eax,%eax
+   2a6d0161a:	lea    0xf0(%rsp),%rcx
+   2a6d01622:	lea    0x130(%rsp),%r9
+   2a6d0162a:	mov    %r11,0x1b8(%rsp)
+   2a6d01632:	lea    0x110(%rsp),%r8
+   2a6d0163a:	mov    %r10,0x1b0(%rsp)
+   2a6d01642:	mov    %r9,0x60(%rsp)
+   2a6d01647:	mov    %r8,0x50(%rsp)
+   2a6d0164c:	mov    %rdx,0x40(%rsp)
+   2a6d01651:	mov    %rcx,0x30(%rsp)
+   2a6d01656:	vmovaps %xmm2,0x80(%rsp)
+   2a6d0165f:	vmovsd %xmm0,0x78(%rsp)
+   2a6d01665:	vmovsd %xmm1,0x70(%rsp)
+   2a6d0166b:	movb   $0x0,0x130(%rsp)
+   2a6d01673:	mov    %rax,0x138(%rsp)
+   2a6d0167b:	movb   $0x2,0x110(%rsp)
+   2a6d01683:	movq   $0x6b,0x118(%rsp)
+   2a6d0168f:	call   2a6c47550 <_ZNK2gd6GdDict3getERKNS_5GdValES3_>
+   2a6d01694:	cmpb   $0x9,0xf0(%rsp)
+   2a6d0169c:	mov    0x30(%rsp),%rcx
+   2a6d016a1:	vpxor  %xmm3,%xmm3,%xmm3
+   2a6d016a5:	mov    0x40(%rsp),%rdx
+   2a6d016aa:	mov    0x50(%rsp),%r8
+   2a6d016af:	mov    0x60(%rsp),%r9
+   2a6d016b4:	vmovsd 0x70(%rsp),%xmm1
+   2a6d016ba:	mov    0x1b0(%rsp),%r10
+   2a6d016c2:	mov    0x1b8(%rsp),%r11
+   2a6d016ca:	vmovsd 0x78(%rsp),%xmm0
+   2a6d016d0:	vmovaps 0x80(%rsp),%xmm2
+   2a6d016d9:	je     2a6d01739 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xe19>
+   2a6d016db:	xor    %eax,%eax
+   2a6d016dd:	jmp    2a6d012a1 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x981>
+   2a6d016e2:	mov    $0x1,%ecx
+   2a6d016e7:	mov    %r11,0x1b8(%rsp)
+   2a6d016ef:	mov    %r10,0x1b0(%rsp)
+   2a6d016f7:	vmovaps %xmm2,0x30(%rsp)
+   2a6d016fd:	call   2a66dcb40 <_ZN2gd24native_frame_segment_hitEj.part.0>
+   2a6d01702:	mov    0x1b0(%rsp),%r10
+   2a6d0170a:	mov    0x1b8(%rsp),%r11
+   2a6d01712:	vpxor  %xmm3,%xmm3,%xmm3
+   2a6d01716:	vmovaps 0x30(%rsp),%xmm2
+   2a6d0171c:	jmp    2a6d00cf3 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x3d3>
+   2a6d01721:	jbe    2a6d01751 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xe31>
+   2a6d01723:	movb   $0x0,0x10(%r11)
+   2a6d01728:	mov    %rbx,(%r11)
+   2a6d0172b:	test   %dil,%dil
+   2a6d0172e:	je     2a6d00a69 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x149>
+   2a6d01734:	jmp    2a6cfdbe2 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE.cold+0x96>
+   2a6d01739:	mov    0xf8(%rsp),%rax
+   2a6d01741:	test   %rax,%rax
+   2a6d01744:	jne    2a6d015ff <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xcdf>
+   2a6d0174a:	xor    %eax,%eax
+   2a6d0174c:	jmp    2a6d012a1 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x981>
+   2a6d01751:	cmp    $0x1,%al
+   2a6d01753:	jne    2a6d017e9 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xec9>
+   2a6d01759:	cmpb   $0x0,0x380(%rbx)
+   2a6d01760:	je     2a6d01723 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xe03>
+   2a6d01762:	movb   $0x1,0x10(%r11)
+   2a6d01767:	mov    %rbx,(%r11)
+   2a6d0176a:	test   %dil,%dil
+   2a6d0176d:	je     2a6d00bab <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x28b>
+   2a6d01773:	jmp    2a6cfdb79 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE.cold+0x2d>
+   2a6d01778:	cmp    $0x3,%al
+   2a6d0177a:	jne    2a6d017f6 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xed6>
+   2a6d0177c:	vmovsd 0x8(%rsi),%xmm4
+   2a6d01781:	vmovapd %xmm1,%xmm0
+   2a6d01785:	jmp    2a6d00b42 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x222>
+   2a6d0178a:	xor    %ecx,%ecx
+   2a6d0178c:	mov    %r11,0x1b8(%rsp)
+   2a6d01794:	mov    %r10,0x1b0(%rsp)
+   2a6d0179c:	call   2a66dcb40 <_ZN2gd24native_frame_segment_hitEj.part.0>
+   2a6d017a1:	mov    0x1b0(%rsp),%r10
+   2a6d017a9:	mov    0x1b8(%rsp),%r11
+   2a6d017b1:	vpxor  %xmm3,%xmm3,%xmm3
+   2a6d017b5:	movzbl 0x7b0(%r10),%eax
+   2a6d017bd:	cmp    $0x1,%al
+   2a6d017bf:	je     2a6d009a3 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x83>
+   2a6d017c5:	cmp    $0x1,%al
+   2a6d017c7:	jbe    2a6d00bab <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x28b>
+   2a6d017cd:	cmp    $0x2,%al
+   2a6d017cf:	jne    2a6d017ff <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xedf>
+   2a6d017d1:	cmpq   $0x0,0x7b8(%r10)
+   2a6d017d9:	setne  %al
+   2a6d017dc:	test   %al,%al
+   2a6d017de:	jne    2a6d009b1 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x91>
+   2a6d017e4:	jmp    2a6d00bab <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x28b>
+   2a6d017e9:	cmp    $0x2,%al
+   2a6d017eb:	je     2a6cfdc37 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE.cold+0xeb>
+   2a6d017f1:	jmp    2a6d01723 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xe03>
+   2a6d017f6:	vmovapd %xmm1,%xmm0
+   2a6d017fa:	jmp    2a6d0114a <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x82a>
+   2a6d017ff:	cmp    $0x3,%al
+   2a6d01801:	je     2a6d01a01 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x10e1>
+   2a6d01807:	lea    0x7b0(%r10),%rcx
+   2a6d0180e:	mov    %r11,0x1b8(%rsp)
+   2a6d01816:	mov    %r10,0x1b0(%rsp)
+   2a6d0181e:	call   2a6c41310 <_ZN2gd8gd_truthERKNS_5GdValE>
+   2a6d01823:	mov    0x1b0(%rsp),%r10
+   2a6d0182b:	mov    0x1b8(%rsp),%r11
+   2a6d01833:	vpxor  %xmm3,%xmm3,%xmm3
+   2a6d01837:	test   %al,%al
+   2a6d01839:	jne    2a6d009b1 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x91>
+   2a6d0183f:	jmp    2a6d00bab <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x28b>
+   2a6d01844:	mov    $0x4,%ecx
+   2a6d01849:	mov    %r11,0x1b8(%rsp)
+   2a6d01851:	mov    %r10,0x1b0(%rsp)
+   2a6d01859:	vmovaps %xmm2,0x50(%rsp)
+   2a6d0185f:	vmovsd %xmm0,0x40(%rsp)
+   2a6d01865:	vmovsd %xmm1,0x30(%rsp)
+   2a6d0186b:	call   2a66dcb40 <_ZN2gd24native_frame_segment_hitEj.part.0>
+   2a6d01870:	mov    0x1b8(%rsp),%r11
+   2a6d01878:	vmovaps 0x50(%rsp),%xmm2
+   2a6d0187e:	vpxor  %xmm3,%xmm3,%xmm3
+   2a6d01882:	vmovsd 0x40(%rsp),%xmm0
+   2a6d01888:	mov    0x1b0(%rsp),%r10
+   2a6d01890:	vmovsd 0x18(%r11),%xmm4
+   2a6d01896:	vmovsd 0x30(%rsp),%xmm1
+   2a6d0189c:	jmp    2a6d00c7b <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x35b>
+   2a6d018a1:	xor    %r12d,%r12d
+   2a6d018a4:	movb   $0x0,0xb0(%rsp)
+   2a6d018ac:	mov    %r12,0xb8(%rsp)
+   2a6d018b4:	xor    %r12d,%r12d
+   2a6d018b7:	jmp    2a6d00aa8 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x188>
+   2a6d018bc:	mov    $0x2,%ecx
+   2a6d018c1:	mov    %r11,0x1b8(%rsp)
+   2a6d018c9:	mov    %r10,0x1b0(%rsp)
+   2a6d018d1:	vmovaps %xmm2,0x30(%rsp)
+   2a6d018d7:	call   2a66dcb40 <_ZN2gd24native_frame_segment_hitEj.part.0>
+   2a6d018dc:	mov    0x1b8(%rsp),%r11
+   2a6d018e4:	vmovaps 0x30(%rsp),%xmm2
+   2a6d018ea:	vpxor  %xmm3,%xmm3,%xmm3
+   2a6d018ee:	mov    0x1b0(%rsp),%r10
+   2a6d018f6:	movzbl 0x10(%r11),%r12d
+   2a6d018fb:	jmp    2a6d00cf3 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x3d3>
+   2a6d01900:	cmpb   $0x0,0xd2(%rbx)
+   2a6d01907:	jne    2a6d01a32 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x1112>
+   2a6d0190d:	mov    0x8(%r10),%rcx
+   2a6d01911:	mov    %r10,%rdx
+   2a6d01914:	mov    %r11,0x1b8(%rsp)
+   2a6d0191c:	mov    %r10,0x1b0(%rsp)
+   2a6d01924:	vmovaps %xmm2,0x30(%rsp)
+   2a6d0192a:	call   2a6c2df30 <_ZN2gd27native_timer_observe_objectERNS_9BattleCtxEPKNS_5GdObjE>
+   2a6d0192f:	vmovaps 0x30(%rsp),%xmm2
+   2a6d01935:	mov    0x1b8(%rsp),%r11
+   2a6d0193d:	mov    0x1b0(%rsp),%r10
+   2a6d01945:	mov    %r11,0x1b8(%rsp)
+   2a6d0194d:	mov    (%r10),%rax
+   2a6d01950:	mov    %r10,%rcx
+   2a6d01953:	mov    %r10,0x1b0(%rsp)
+   2a6d0195b:	vmovaps %xmm2,0x30(%rsp)
+   2a6d01961:	call   *0x10(%rax)
+   2a6d01964:	mov    0x1b0(%rsp),%r10
+   2a6d0196c:	mov    0x1b8(%rsp),%r11
+   2a6d01974:	vpxor  %xmm3,%xmm3,%xmm3
+   2a6d01978:	vmovaps 0x30(%rsp),%xmm2
+   2a6d0197e:	test   %rax,%rax
+   2a6d01981:	je     2a6d00a34 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x114>
+   2a6d01987:	cmp    0x2d3ce2(%rip),%rax        # 2a6fd5670 <.refptr.META_Gd__gd_core_items__Gems__Gem>
+   2a6d0198e:	je     2a6d00d08 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x3e8>
+   2a6d01994:	mov    0x18(%rax),%rax
+   2a6d01998:	jmp    2a6d0197e <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x105e>
+   2a6d0199a:	mov    %rbx,%rcx
+   2a6d0199d:	jmp    2a6d01911 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xff1>
+   2a6d019a2:	mov    %r10,%rcx
+   2a6d019a5:	mov    %r11,0x1b8(%rsp)
+   2a6d019ad:	mov    %r10,0x1b0(%rsp)
+   2a6d019b5:	vmovaps %xmm3,0x30(%rsp)
+   2a6d019bb:	call   2a6d48ee0 <_ZN2gdL25native_resolved_exact_rowEPKNS_5GdObjE.lto_priv.0>
+   2a6d019c0:	mov    0x1b0(%rsp),%r10
+   2a6d019c8:	mov    0x1b8(%rsp),%r11
+   2a6d019d0:	vpxor  %xmm3,%xmm3,%xmm3
+   2a6d019d4:	cmp    %rax,%r12
+   2a6d019d7:	vmovaps 0x30(%rsp),%xmm2
+   2a6d019dd:	je     2a6d01a1e <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x10fe>
+   2a6d019df:	incq   0xf8(%rbx)
+   2a6d019e6:	cmpb   $0x0,0xd2(%rbx)
+   2a6d019ed:	jne    2a6d01a32 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x1112>
+   2a6d019ef:	mov    0x8(%r10),%rcx
+   2a6d019f3:	test   %rcx,%rcx
+   2a6d019f6:	jne    2a6d01911 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xff1>
+   2a6d019fc:	jmp    2a6d01945 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x1025>
+   2a6d01a01:	vxorpd %xmm0,%xmm0,%xmm0
+   2a6d01a05:	mov    $0x1,%edx
+   2a6d01a0a:	vucomisd 0x7b8(%r10),%xmm0
+   2a6d01a13:	setp   %al
+   2a6d01a16:	cmovne %edx,%eax
+   2a6d01a19:	jmp    2a6d017dc <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xebc>
+   2a6d01a1e:	cmpq   $0x0,(%r12)
+   2a6d01a23:	movzbl 0xd2(%rbx),%eax
+   2a6d01a2a:	jne    2a6d00a1f <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xff>
+   2a6d01a30:	jmp    2a6d019e6 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x10c6>
+   2a6d01a32:	mov    $0x1,%ecx
+   2a6d01a37:	mov    %r11,0x1b8(%rsp)
+   2a6d01a3f:	mov    %r10,0x1b0(%rsp)
+   2a6d01a47:	vmovaps %xmm2,0x30(%rsp)
+   2a6d01a4d:	call   2a66d3400 <_ZN2gd27native_type_constructor_hitEj.part.0>
+   2a6d01a52:	vmovaps 0x30(%rsp),%xmm2
+   2a6d01a58:	mov    0x1b8(%rsp),%r11
+   2a6d01a60:	mov    0x1b0(%rsp),%r10
+   2a6d01a68:	jmp    2a6d019ef <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x10cf>
+   2a6d01a6a:	vmovdqu %xmm3,(%r11)
+   2a6d01a6f:	xor    %r9d,%r9d
+   2a6d01a72:	xor    %r8d,%r8d
+   2a6d01a75:	mov    %r10,%rdx
+   2a6d01a78:	lea    0x130(%rsp),%rcx
+   2a6d01a80:	mov    %r11,0x1b8(%rsp)
+   2a6d01a88:	mov    %r10,0x1b0(%rsp)
+   2a6d01a90:	vmovaps %xmm2,0x30(%rsp)
+   2a6d01a96:	call   2a6d12090 <_ZN21Gd__gd_core__CoreItem11fn_getSpeedEPKN2gd5GdValEi>
+   2a6d01a9b:	movzbl 0x130(%rsp),%eax
+   2a6d01aa3:	mov    0x1b0(%rsp),%r10
+   2a6d01aab:	vpxor  %xmm3,%xmm3,%xmm3
+   2a6d01aaf:	mov    0x1b8(%rsp),%r11
+   2a6d01ab7:	vmovaps 0x30(%rsp),%xmm2
+   2a6d01abd:	cmp    $0x2,%al
+   2a6d01abf:	je     2a6d01d95 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x1475>
+   2a6d01ac5:	cmp    $0x3,%al
+   2a6d01ac7:	je     2a6d01d87 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x1467>
+   2a6d01acd:	dec    %al
+   2a6d01acf:	je     2a6d01d6c <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x144c>
+   2a6d01ad5:	vxorpd %xmm0,%xmm0,%xmm0
+   2a6d01ad9:	movzbl (%rsi),%eax
+   2a6d01adc:	cmp    $0x3,%al
+   2a6d01ade:	jne    2a6d0114a <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x82a>
+   2a6d01ae4:	vmovsd 0x8(%rsi),%xmm4
+   2a6d01ae9:	jmp    2a6d00b42 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x222>
+   2a6d01aee:	vmovsd 0x29e50a(%rip),%xmm0        # 2a6fa0000 <.rdata+0x90>
+   2a6d01af6:	jmp    2a6d0114a <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x82a>
+   2a6d01afb:	cmp    $0x2,%al
+   2a6d01afd:	jne    2a6d00f1d <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x5fd>
+   2a6d01b03:	vcvtsi2sdq 0x4a8(%r10),%xmm2,%xmm2
+   2a6d01b0c:	jmp    2a6d00b9d <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x27d>
+   2a6d01b11:	vmovsd 0x29e4e7(%rip),%xmm0        # 2a6fa0000 <.rdata+0x90>
+   2a6d01b19:	xor    %r14d,%r14d
+   2a6d01b1c:	jmp    2a6d0114a <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x82a>
+   2a6d01b21:	cmpb   $0x0,0xd2(%rbx)
+   2a6d01b28:	je     2a6d01b64 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x1244>
+   2a6d01b2a:	mov    $0x9,%ecx
+   2a6d01b2f:	mov    %r11,0x1b8(%rsp)
+   2a6d01b37:	mov    %r10,0x1b0(%rsp)
+   2a6d01b3f:	vmovaps %xmm2,0x30(%rsp)
+   2a6d01b45:	call   2a66d3460 <_ZN2gd25native_inline_variant_hitEj.part.0>
+   2a6d01b4a:	vmovaps 0x30(%rsp),%xmm2
+   2a6d01b50:	mov    0x1b8(%rsp),%r11
+   2a6d01b58:	vpxor  %xmm3,%xmm3,%xmm3
+   2a6d01b5c:	mov    0x1b0(%rsp),%r10
+   2a6d01b64:	mov    0x80(%rbp),%rdx
+   2a6d01b6b:	test   %rdx,%rdx
+   2a6d01b6e:	je     2a6d00ef5 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x5d5>
+   2a6d01b74:	cmpq   $0x0,0x38(%rdx)
+   2a6d01b79:	je     2a6d00ef5 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x5d5>
+   2a6d01b7f:	cmpb   $0x0,0x117(%rbx)
+   2a6d01b86:	jne    2a6d01bbc <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x129c>
+   2a6d01b88:	mov    %rbx,%rcx
+   2a6d01b8b:	mov    %r11,0x1b8(%rsp)
+   2a6d01b93:	mov    %r10,0x1b0(%rsp)
+   2a6d01b9b:	vmovaps %xmm2,0x30(%rsp)
+   2a6d01ba1:	call   2a623e260 <_ZN2gd26native_timer_observe_classERNS_9BattleCtxEPKNS_11GdClassMetaE.part.0>
+   2a6d01ba6:	vmovaps 0x30(%rsp),%xmm2
+   2a6d01bac:	mov    0x1b8(%rsp),%r11
+   2a6d01bb4:	mov    0x1b0(%rsp),%r10
+   2a6d01bbc:	xor    %ecx,%ecx
+   2a6d01bbe:	movb   $0x0,0x110(%rsp)
+   2a6d01bc6:	lea    0x110(%rsp),%rdx
+   2a6d01bce:	mov    $0x2,%r9d
+   2a6d01bd4:	mov    %rcx,0x118(%rsp)
+   2a6d01bdc:	lea    0x130(%rsp),%r8
+   2a6d01be4:	mov    %rbx,%rcx
+   2a6d01be7:	mov    %r11,0x1b8(%rsp)
+   2a6d01bef:	mov    %r10,0x1b0(%rsp)
+   2a6d01bf7:	mov    0x80(%rbp),%rax
+   2a6d01bfe:	mov    %rdx,0x20(%rsp)
+   2a6d01c03:	mov    $0x37f,%edx
+   2a6d01c08:	vmovaps %xmm2,0x30(%rsp)
+   2a6d01c0e:	call   *0x38(%rax)
+   2a6d01c11:	mov    0x1b0(%rsp),%r10
+   2a6d01c19:	mov    0x1b8(%rsp),%r11
+   2a6d01c21:	vpxor  %xmm3,%xmm3,%xmm3
+   2a6d01c25:	vmovaps 0x30(%rsp),%xmm2
+   2a6d01c2b:	jmp    2a6d00ef5 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x5d5>
+   2a6d01c30:	cmpq   $0x0,0x80(%rbp)
+   2a6d01c38:	jne    2a6d00e96 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x576>
+   2a6d01c3e:	jmp    2a6d00ef5 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x5d5>
+   2a6d01c43:	cmpb   $0x0,0x4c0(%r10)
+   2a6d01c4b:	je     2a6d00e00 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x4e0>
+   2a6d01c51:	vmovsd 0x29e3a7(%rip),%xmm0        # 2a6fa0000 <.rdata+0x90>
+   2a6d01c59:	vmovapd %xmm0,%xmm4
+   2a6d01c5d:	jmp    2a6d00e0c <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x4ec>
+   2a6d01c62:	jbe    2a6d01cf1 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x13d1>
+   2a6d01c68:	vxorpd %xmm1,%xmm1,%xmm1
+   2a6d01c6c:	vmulsd %xmm4,%xmm0,%xmm0
+   2a6d01c70:	vsubsd %xmm0,%xmm1,%xmm1
+   2a6d01c74:	jmp    2a6d00b63 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x243>
+   2a6d01c79:	movzbl (%rsi),%eax
+   2a6d01c7c:	cmp    $0x3,%al
+   2a6d01c7e:	jne    2a6d01da4 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x1484>
+   2a6d01c84:	vmovsd 0x8(%rsi),%xmm4
+   2a6d01c89:	vmovsd 0x29e36f(%rip),%xmm0        # 2a6fa0000 <.rdata+0x90>
+   2a6d01c91:	jmp    2a6d00b42 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x222>
+   2a6d01c96:	mov    $0x8,%ecx
+   2a6d01c9b:	mov    %r10,0x1b0(%rsp)
+   2a6d01ca3:	call   2a66dcb40 <_ZN2gd24native_frame_segment_hitEj.part.0>
+   2a6d01ca8:	mov    0x1b0(%rsp),%r10
+   2a6d01cb0:	jmp    2a6d00f2b <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x60b>
+   2a6d01cb5:	cmp    $0x1,%al
+   2a6d01cb7:	jne    2a6d01d10 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x13f0>
+   2a6d01cb9:	cmpb   $0x0,0xe0(%r10)
+   2a6d01cc1:	je     2a6d00bc5 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x2a5>
+   2a6d01cc7:	vmovsd 0x29e331(%rip),%xmm0        # 2a6fa0000 <.rdata+0x90>
+   2a6d01ccf:	vmovapd %xmm0,%xmm1
+   2a6d01cd3:	jmp    2a6d00bd1 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x2b1>
+   2a6d01cd8:	movzbl (%rsi),%eax
+   2a6d01cdb:	cmp    $0x3,%al
+   2a6d01cdd:	jne    2a6d01d2e <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x140e>
+   2a6d01cdf:	vmovsd 0x8(%rsi),%xmm4
+   2a6d01ce4:	vmovsd 0x29e314(%rip),%xmm0        # 2a6fa0000 <.rdata+0x90>
+   2a6d01cec:	jmp    2a6d00b42 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x222>
+   2a6d01cf1:	cmp    $0x1,%al
+   2a6d01cf3:	jne    2a6d01d3e <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x141e>
+   2a6d01cf5:	cmpb   $0x0,0x4a8(%r10)
+   2a6d01cfd:	je     2a6d01c68 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x1348>
+   2a6d01d03:	vmovsd 0x29e2f5(%rip),%xmm1        # 2a6fa0000 <.rdata+0x90>
+   2a6d01d0b:	jmp    2a6d01c6c <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x134c>
+   2a6d01d10:	cmp    $0x2,%al
+   2a6d01d12:	jne    2a6d00bc5 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x2a5>
+   2a6d01d18:	vmovsd 0x29e2e0(%rip),%xmm0        # 2a6fa0000 <.rdata+0x90>
+   2a6d01d20:	vcvtsi2sdq 0xe0(%r10),%xmm2,%xmm1
+   2a6d01d29:	jmp    2a6d00bd1 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x2b1>
+   2a6d01d2e:	vmovsd 0x29e2ca(%rip),%xmm0        # 2a6fa0000 <.rdata+0x90>
+   2a6d01d36:	xor    %r14d,%r14d
+   2a6d01d39:	jmp    2a6d0114a <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x82a>
+   2a6d01d3e:	cmp    $0x2,%al
+   2a6d01d40:	jne    2a6d01c68 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x1348>
+   2a6d01d46:	vcvtsi2sdq 0x4a8(%r10),%xmm2,%xmm1
+   2a6d01d4f:	jmp    2a6d01c6c <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x134c>
+   2a6d01d54:	cmp    $0x3,%dl
+   2a6d01d57:	je     2a6d01414 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xaf4>
+   2a6d01d5d:	dec    %dl
+   2a6d01d5f:	je     2a6d01431 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0xb11>
+   2a6d01d65:	xor    %edx,%edx
+   2a6d01d67:	jmp    2a6d01063 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x743>
+   2a6d01d6c:	cmpb   $0x0,0x138(%rsp)
+   2a6d01d74:	je     2a6d01ad5 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x11b5>
+   2a6d01d7a:	vmovsd 0x29e27e(%rip),%xmm0        # 2a6fa0000 <.rdata+0x90>
+   2a6d01d82:	jmp    2a6d01ad9 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x11b9>
+   2a6d01d87:	vmovsd 0x138(%rsp),%xmm0
+   2a6d01d90:	jmp    2a6d01ad9 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x11b9>
+   2a6d01d95:	vcvtsi2sdq 0x138(%rsp),%xmm2,%xmm0
+   2a6d01d9f:	jmp    2a6d01ad9 <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x11b9>
+   2a6d01da4:	vmovsd 0x29e254(%rip),%xmm0        # 2a6fa0000 <.rdata+0x90>
+   2a6d01dac:	jmp    2a6d0114a <_ZN2gd25native_frame_segment_tickEP21Gd__gd_core__CoreItemRNS_26NativeFrameSegmentSnapshotERKNS_5GdValE+0x82a>
+   2a6d01db1:	nop
+   2a6d01db2:	nopl   (%rax)
+   2a6d01db5:	data16 cs nopw 0x0(%rax,%rax,1)

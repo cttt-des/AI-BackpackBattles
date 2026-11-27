@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "baseline_dll_sha256": "02fda77681361a6ddc721aa9ea75950126fa0f82df787b83ac3ca97144192d52",
+  "steps": 33,
+  "actual_frame_cases": 135168,
+  "all_repaired_original_sort_and_listener_oracles": true,
+  "full_original_event_cases": 2604,
+  "all_current_production_weapon_cases": 136128,
+  "all_original_counters_unchanged": true
+}

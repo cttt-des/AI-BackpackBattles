@@ -1,0 +1,61 @@
+post_ab actual-DLL frame135168 passed
+{"passed": true, "dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52", "source_manifest_sha256": "43e0f634e7cb0ac0ad9ccdecc7bdd79f97190a353a32db6a6c46af0e39486390", "sort_cases": 256, "potion_cases": 12, "event_scenarios": 18, "event_native_and_generic_both_checked": true, "exact_original_comparator_call_order": true, "full_original_results_compared": true, "original_reference_sha256": "24f376d3735acc6e003bbdf3d60163474f2daeff681fff79585e1b4c0949b5c6", "result_sha256": "979e20746391c6b2b3f18698d1ef0cb6162eb016794929e7fd3429f3fd70b499", "build_directory": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\ordering-contracts-424236th", "literal_fast_path_and_public_native_and_generic_paths_checked": true, "literal_event_scenarios": 18, "literal_fixture_sha256": "c73305b7b07f24146cf16217c69b8435e1baaade2b091141846b2c418964251f"}
+Original belt/nested chains, tied potions and60 uninjected default activation cases passed
+Checking native_host_phases_reuse_2 (518 fights)
+Checking native_host_phases_reuse_0 (862 fights)
+native_host_phases_reuse_0: 862/862 strict passes
+Checking native_host_phases_reuse_1 (785 fights)
+native_host_phases_reuse_1: 785/785 strict passes
+Checking native_host_phases_reuse_3 (264 fights)
+native_host_phases_reuse_2: 518/518 strict passes
+Checking native_host_phases_observed_base_current (124 fights)
+native_host_phases_reuse_3: 264/264 strict passes
+Checking native_host_phases_reuse_4 (22 fights)
+native_host_phases_reuse_4: 22/22 strict passes
+Checking native_host_rng_phases_new_expand (19 fights)
+native_host_rng_phases_new_expand: 19/19 strict passes
+Checking native_host_phases_observed_base_last (8 fights)
+native_host_phases_observed_base_last: 8/8 strict passes
+Checking native_host_phases_reuse_5 (1 fights)
+native_host_phases_reuse_5: 1/1 strict passes
+Checking native_host_phases_reuse_6 (1 fights)
+native_host_phases_reuse_6: 1/1 strict passes
+native_host_phases_observed_base_current: 124/124 strict passes
+base {'expected': 914, 'recorded': 914, 'verified': 914, 'passed': 914, 'winner_mismatch': 0}
+expand {'expected': 1690, 'recorded': 1690, 'verified': 1690, 'passed': 1690, 'winner_mismatch': 0}
+{
+  "baseline_dll_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+  "candidate_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "runtime_data_sha256": "55bdd068cf3308547de78b45abbed4bf4f57e8253fbec82313a99578defa00ae",
+  "unchanged_cpp_event_streams": 2604,
+  "cohorts": {
+    "base": 914,
+    "expand": 1690
+  },
+  "ordered_case_and_cpp_event_hashes_sha256": "b8066c9224bc418923c62f5a3dafb8912100b21bb0026c3b13669872f90e2f54"
+}
+{
+  "baseline_dll_sha256": "02fda77681361a6ddc721aa9ea75950126fa0f82df787b83ac3ca97144192d52",
+  "candidate_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "runtime_data_sha256": "55bdd068cf3308547de78b45abbed4bf4f57e8253fbec82313a99578defa00ae",
+  "unchanged_cpp_event_streams": 2604,
+  "cohorts": {
+    "base": 914,
+    "expand": 1690
+  },
+  "ordered_case_and_cpp_event_hashes_sha256": "b8066c9224bc418923c62f5a3dafb8912100b21bb0026c3b13669872f90e2f54"
+}
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\frame_guard_reuse_bundle\finish_post_ab.py", line 109, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\frame_guard_reuse_bundle\finish_post_ab.py", line 88, in main
+    baseline=json.loads((WORK.parent/'ordering_correctness_bundle/post_ab_full_type_audit.json').read_bytes())
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py", line 777, in read_bytes
+    with self.open(mode='rb', buffering=0) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\ordering_correctness_bundle\\post_ab_full_type_audit.json'

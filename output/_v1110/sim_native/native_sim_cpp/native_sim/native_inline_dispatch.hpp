@@ -435,7 +435,12 @@ inline void native_frame_segment_tick(Gd__gd_core__CoreItem* item,
     const auto blocked = item->f__cooldown_blocked_epoch.as_int();
     if (blocked >= 0 && blocked == context.f_timer_pass_epoch.as_int()) return;
 
-    const auto receiver = gd::native_inline_self_type(item->rt_ctx_,item,&META_Gd__gd_core_items__Gems__Gem)
+    // Entry proved this exact cached row. Until this point only direct
+    // fields, scalar conversions and counter functions were evaluated:
+    // no user callback or row/context write can invalidate that proof.
+    // Preserve the original successful type-query diagnostic at its old point.
+    if (collect) native_type_constructor_hit(0);
+    const auto receiver = (row->type_mask & uint64_t{1}) != 0
         ? (snapshot.clear(), native_frame_segment_hit_if(collect,6), static_cast<Gd__gd_core_items__Gems__Gem*>(item)->fn_character(nullptr, 0))
         : item->f_character_;
     const auto* character = receiver.kind == gd::GdVal::Kind::Obj

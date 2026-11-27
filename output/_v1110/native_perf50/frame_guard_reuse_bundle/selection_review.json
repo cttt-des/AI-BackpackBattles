@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "baseline": "02fda77681361a6ddc721aa9ea75950126fa0f82df787b83ac3ca97144192d52",
+  "samples": 2000,
+  "largest_single_leaf": [
+    "gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)",
+    177
+  ],
+  "selected": "Same-invocation reuse of the proven row for Gem type check in native_frame_segment_tick",
+  "machine_code_redundancy_saved": "post_ordering_assessment/frame_guard_current_disassembly.txt",
+  "alternatives": [
+    {
+      "name": "Weapon full typed call chain",
+      "reason": "Two previously completed variants did not pass paired A/B; no new structural evidence to repeat them"
+    },
+    {
+      "name": "Compact listener representation",
+      "reason": "Potentially useful but larger mutation/aliasing proof and touches recently repaired event paths"
+    },
+    {
+      "name": "Generic GdVal arithmetic or layout rewrite",
+      "reason": "Prior generic inlining regressed; broader representation work lacks a narrow new proof"
+    }
+  ],
+  "sample_attribution_not_gain_or_ceiling": true,
+  "no_speed_claim": true
+}

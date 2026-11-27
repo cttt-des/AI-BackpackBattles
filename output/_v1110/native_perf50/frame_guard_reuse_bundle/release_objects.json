@@ -1,0 +1,26 @@
+{
+  "object_directory": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\frame-guard-formal-tb85mg2z\\objects",
+  "dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "objects_sha256": {
+    "engine_wrapper.o": "0bb9927c9485aa6dd8ef60e936a8eebe563c8b7ed6900c224d305d7baaef1234",
+    "gd_rt.o": "872a3dc1625c02d7f67fbb8fef148de14c9668c22f94d69b6cbeac18027bbada",
+    "register_all.o": "87aa32f2f9350de3823d2587f56c1a10c2b7f77e125e1ba01206854af046d6f8",
+    "shard_00.o": "e9c7919820bb71153b0922942b474304a79d273a9d719967b3367554f2e00605",
+    "shard_01.o": "7d7b1d6318aaad323b4b32f039db0870c849da7976c708a2735b224daf7355eb",
+    "shard_02.o": "8e278d3a727e80ac870911882ac113570ab486510f60c6e2121cc681e231ea58",
+    "shard_03.o": "6ed6171ba1b1955954ca07d58a705bfef0f57a396854477118a3aa89ed829162",
+    "shard_04.o": "41c8dbbd32620c80bb76a12e743dd0f70e1f37237204ad788fb25bc1c85a0348",
+    "shard_05.o": "b7f016b5e09a0fddc7bd224e12b59cc97a7ea7a167cde9d30c0c9c266b9d1f2d",
+    "shard_06.o": "1ee087011c965ae912ff53c17b8a9e4ae18f15118f6d08bc71e8a22117fce969",
+    "shard_07.o": "2d1a48d95fae7ae5b3a33f43fc62025c7c1f15a2fe08ee3b08f31fb73b79e0de",
+    "shard_08.o": "06bd6fa4e3758b8b8b70ab146ee9378be1916b210228b47e71e2669f2b0e7989",
+    "shard_09.o": "c2bc4da512b0f95dfa956d2996a532f4addf06cc0fc9c662ef445fcad00e140c",
+    "shard_10.o": "f6a314bd626657fc6e0496d6d1792bf535855161e8cd2fa1aee1b98576dcd518",
+    "shard_11.o": "a456348d9bb34f2d0e038fc15f9c2db0c2e225956701a6c3a4fa026111833897",
+    "shard_12.o": "b3457b7e2a13192e960b58c985afbdee5e48864979d022837da72b7c0f9aaee5",
+    "shard_13.o": "f2f24b7713abb75c5b9eef88e2ed30e6415816fa62551a43b30b3314fecd1b41",
+    "shard_14.o": "0ac4b1e0ad5b3540ca2b5662cc355b7bca3526606149d715a867e69d233f15fd",
+    "shard_15.o": "6d38096eb37d5389612d725f194da85d332655650e75cd717bf607f9ceb4617f",
+    "sym_ids.o": "35b0d562d93f7e48a8863ad0cea81c5e1ea58ef709ae0b47ffd4e0f423652678"
+  }
+}

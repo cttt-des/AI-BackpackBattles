@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "cases": 14112,
+  "dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "baseline_dll_sha256": "02fda77681361a6ddc721aa9ea75950126fa0f82df787b83ac3ca97144192d52",
+  "actual_separate_dll_methods_native_and_generic": true,
+  "all16_fp_modes": true,
+  "selected_buff_character_timer_full_temporary_stacks_rng_trace_fenv_and_mxcsr_case_hashes_equal": true,
+  "fixture_sha256": "1430f88f79fc5fdf27d109701a00eec1d0bb7de987e59486030e5a18fcad3825",
+  "raw_sha256": {
+    "buff_integer_methods_baseline_cases.json": "615b663a1684f183ebb005ae35c1e1b657b9a9a261338db43d5dd1b25c477a46",
+    "buff_integer_methods_candidate_cases.json": "615b663a1684f183ebb005ae35c1e1b657b9a9a261338db43d5dd1b25c477a46"
+  },
+  "no_speed_claim": true
+}

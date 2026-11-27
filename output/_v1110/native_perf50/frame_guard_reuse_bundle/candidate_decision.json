@@ -1,0 +1,12 @@
+{
+  "status": "positive_combined_evidence",
+  "accepted": true,
+  "selected_assessment": "ab_assessment.json",
+  "assessment_sha256": "c6db9feec3a1e3b306b4844f5d3cf095457c46943c775093a4ac75f587b1c0dd",
+  "candidate_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "baseline_dll_sha256": "02fda77681361a6ddc721aa9ea75950126fa0f82df787b83ac3ca97144192d52",
+  "pairs": 24,
+  "all_original_pairs_and_extremes_retained": true,
+  "no_same_source_retiming": true,
+  "not_deployed_yet": true
+}

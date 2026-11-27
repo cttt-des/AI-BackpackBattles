@@ -1,0 +1,82 @@
+{
+  "passed": true,
+  "checked_hot_objects": 18,
+  "fp_contract_off_all": true,
+  "compiler_options_identical_except_profile_directory": true,
+  "no_compiler_pta": true,
+  "dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "objects": {
+    "engine_wrapper.o": {
+      "object_sha256": "0bb9927c9485aa6dd8ef60e936a8eebe563c8b7ed6900c224d305d7baaef1234",
+      "options_sha256": "d77f33891c0945cb89485a67f33669febb19fadbaecd498afeef4217148e9ac5"
+    },
+    "gd_rt.o": {
+      "object_sha256": "872a3dc1625c02d7f67fbb8fef148de14c9668c22f94d69b6cbeac18027bbada",
+      "options_sha256": "d77f33891c0945cb89485a67f33669febb19fadbaecd498afeef4217148e9ac5"
+    },
+    "shard_00.o": {
+      "object_sha256": "e9c7919820bb71153b0922942b474304a79d273a9d719967b3367554f2e00605",
+      "options_sha256": "d77f33891c0945cb89485a67f33669febb19fadbaecd498afeef4217148e9ac5"
+    },
+    "shard_01.o": {
+      "object_sha256": "7d7b1d6318aaad323b4b32f039db0870c849da7976c708a2735b224daf7355eb",
+      "options_sha256": "d77f33891c0945cb89485a67f33669febb19fadbaecd498afeef4217148e9ac5"
+    },
+    "shard_02.o": {
+      "object_sha256": "8e278d3a727e80ac870911882ac113570ab486510f60c6e2121cc681e231ea58",
+      "options_sha256": "d77f33891c0945cb89485a67f33669febb19fadbaecd498afeef4217148e9ac5"
+    },
+    "shard_03.o": {
+      "object_sha256": "6ed6171ba1b1955954ca07d58a705bfef0f57a396854477118a3aa89ed829162",
+      "options_sha256": "d77f33891c0945cb89485a67f33669febb19fadbaecd498afeef4217148e9ac5"
+    },
+    "shard_04.o": {
+      "object_sha256": "41c8dbbd32620c80bb76a12e743dd0f70e1f37237204ad788fb25bc1c85a0348",
+      "options_sha256": "d77f33891c0945cb89485a67f33669febb19fadbaecd498afeef4217148e9ac5"
+    },
+    "shard_05.o": {
+      "object_sha256": "b7f016b5e09a0fddc7bd224e12b59cc97a7ea7a167cde9d30c0c9c266b9d1f2d",
+      "options_sha256": "d77f33891c0945cb89485a67f33669febb19fadbaecd498afeef4217148e9ac5"
+    },
+    "shard_06.o": {
+      "object_sha256": "1ee087011c965ae912ff53c17b8a9e4ae18f15118f6d08bc71e8a22117fce969",
+      "options_sha256": "d77f33891c0945cb89485a67f33669febb19fadbaecd498afeef4217148e9ac5"
+    },
+    "shard_07.o": {
+      "object_sha256": "2d1a48d95fae7ae5b3a33f43fc62025c7c1f15a2fe08ee3b08f31fb73b79e0de",
+      "options_sha256": "d77f33891c0945cb89485a67f33669febb19fadbaecd498afeef4217148e9ac5"
+    },
+    "shard_08.o": {
+      "object_sha256": "06bd6fa4e3758b8b8b70ab146ee9378be1916b210228b47e71e2669f2b0e7989",
+      "options_sha256": "d77f33891c0945cb89485a67f33669febb19fadbaecd498afeef4217148e9ac5"
+    },
+    "shard_09.o": {
+      "object_sha256": "c2bc4da512b0f95dfa956d2996a532f4addf06cc0fc9c662ef445fcad00e140c",
+      "options_sha256": "d77f33891c0945cb89485a67f33669febb19fadbaecd498afeef4217148e9ac5"
+    },
+    "shard_10.o": {
+      "object_sha256": "f6a314bd626657fc6e0496d6d1792bf535855161e8cd2fa1aee1b98576dcd518",
+      "options_sha256": "d77f33891c0945cb89485a67f33669febb19fadbaecd498afeef4217148e9ac5"
+    },
+    "shard_11.o": {
+      "object_sha256": "a456348d9bb34f2d0e038fc15f9c2db0c2e225956701a6c3a4fa026111833897",
+      "options_sha256": "d77f33891c0945cb89485a67f33669febb19fadbaecd498afeef4217148e9ac5"
+    },
+    "shard_12.o": {
+      "object_sha256": "b3457b7e2a13192e960b58c985afbdee5e48864979d022837da72b7c0f9aaee5",
+      "options_sha256": "d77f33891c0945cb89485a67f33669febb19fadbaecd498afeef4217148e9ac5"
+    },
+    "shard_13.o": {
+      "object_sha256": "f2f24b7713abb75c5b9eef88e2ed30e6415816fa62551a43b30b3314fecd1b41",
+      "options_sha256": "d77f33891c0945cb89485a67f33669febb19fadbaecd498afeef4217148e9ac5"
+    },
+    "shard_14.o": {
+      "object_sha256": "0ac4b1e0ad5b3540ca2b5662cc355b7bca3526606149d715a867e69d233f15fd",
+      "options_sha256": "d77f33891c0945cb89485a67f33669febb19fadbaecd498afeef4217148e9ac5"
+    },
+    "shard_15.o": {
+      "object_sha256": "6d38096eb37d5389612d725f194da85d332655650e75cd717bf607f9ceb4617f",
+      "options_sha256": "d77f33891c0945cb89485a67f33669febb19fadbaecd498afeef4217148e9ac5"
+    }
+  }
+}

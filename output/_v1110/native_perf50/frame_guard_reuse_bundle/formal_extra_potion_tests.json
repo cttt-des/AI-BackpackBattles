@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "default_activation_cases_without_injected_order": 60,
+  "source_game_shuffle_and_sort_both_checked": true,
+  "potion_chain_and_belt_cases": 6,
+  "original_health_priorities": [
+    1000,
+    1001
+  ],
+  "tie_actual_potions_both_sort_paths_match_original": true,
+  "original_reference_sha256": "8e3ad291e2b35b11deec4606e8c446ddc8f5971513c2dde6bc9869a032dbefec",
+  "actual_sha256": {
+    "potion_chains": "69e142cc1195550725128d16181ce44214e428d6c3003151102076a96f555c55",
+    "potion_tie": "859481114bce36eb3303e3d9cba381745a63637018251f7d7a7bcb718e5dbcff"
+  },
+  "scope": "Original control flow and signal order; visual/random-buff/cleanse services are isolated, full corpus tested separately"
+}
