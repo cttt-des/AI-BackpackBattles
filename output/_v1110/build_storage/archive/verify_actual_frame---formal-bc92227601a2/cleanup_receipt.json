@@ -1,0 +1,25 @@
+{
+  "workspace": "D:\\CodexNativeBuilds\\work\\verify_actual_frame---formal-bc92227601a2",
+  "archive": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\build_storage\\archive\\verify_actual_frame---formal-bc92227601a2",
+  "preserved": [
+    {
+      "path": ".native_owner.json",
+      "sha256": "a80d3da2f79814714d2f52a9d511f2bf32c077554c94863c0d3e0d6923a462aa",
+      "bytes": 45
+    },
+    {
+      "path": "frame-guard-actual-9qtuv9rp/baseline/test.cpp",
+      "sha256": "98ab99926f30a02005e58e29e800f9a2ed249c9ad4667ffd330766303343d2de",
+      "bytes": 11569
+    },
+    {
+      "path": "frame-guard-actual-9qtuv9rp/candidate/test.cpp",
+      "sha256": "98ab99926f30a02005e58e29e800f9a2ed249c9ad4667ffd330766303343d2de",
+      "bytes": 11569
+    }
+  ],
+  "total_bytes": 46781681,
+  "discarded_rebuildable_bytes": 46758498,
+  "cleanup_complete": true,
+  "recovered_after_transient_windows_access_error": true
+}

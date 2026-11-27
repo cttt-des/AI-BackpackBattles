@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+  "differential_results": {
+    "baseline": {
+      "cases": 1624,
+      "cooldown_flag_cases": 40,
+      "state_and_callback_digest": 6207326027345683418
+    },
+    "candidate": {
+      "cases": 1624,
+      "cooldown_flag_cases": 40,
+      "state_and_callback_digest": 6207326027345683418
+    }
+  }
+}

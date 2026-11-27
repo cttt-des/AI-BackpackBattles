@@ -1,0 +1,26 @@
+{
+  "pid": 27952,
+  "created": 1795805342.9663568,
+  "cpu_seconds": 646.734375,
+  "io": {
+    "read_count": 10425,
+    "write_count": 15250,
+    "read_bytes": 13565155,
+    "write_bytes": 36701428,
+    "other_count": 394954,
+    "other_bytes": 6779254
+  },
+  "command": [
+    "git.exe",
+    "-c",
+    "pack.threads=2",
+    "-c",
+    "core.autocrlf=false",
+    "add",
+    "-f",
+    "--pathspec-from-file=D:\\CodexNativeBuilds\\work\\finish_quiet_round-archive-4e0c4e14ded6\\quiet-own-index-l57_kgec\\paths",
+    "--pathspec-file-nul"
+  ],
+  "only_own_isolated_index": true,
+  "reason": "Replace explicit-pathspec staging with verified batch hash/index records"
+}

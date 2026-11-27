@@ -1,0 +1,7 @@
+{
+  "reason": "Code review found one MXCSR store per scalar lane; sticky expression flags can be accumulated as integer bits and restored once at the existing frame boundary, before any observer.",
+  "no_candidate_timing_has_been_run": true,
+  "current_build_source_remains_frozen": true,
+  "build_latest_revision_as_fresh_full20_after_current_build_and_first_state_fixture": true,
+  "fragment_sha256": "620cf27ba12fc0ac57bf015f6880714c4da264dbfa3b61551b56cf2b7dcca729"
+}

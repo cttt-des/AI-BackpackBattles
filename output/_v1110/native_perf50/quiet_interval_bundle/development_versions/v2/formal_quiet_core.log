@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_quiet_core.py", line 38, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_build_storage.py", line 89, in run
+    with workspace(function.__module__+'-'+function.__name__):return function(*args,**kwargs)
+                                                                     ~~~~~~~~^^^^^^^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_quiet_core.py", line 26, in main
+    result=subprocess.run(args,capture_output=True,timeout=180);(checks/(label+'_raw.json')).write_bytes(result.stdout);(checks/(label+'_stderr.log')).write_bytes(result.stderr);result.check_returncode();data[label]=json.loads(result.stdout)
+                                                                                                                                                                                  ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 509, in check_returncode
+    raise CalledProcessError(self.returncode, self.args, self.stdout,
+                             self.stderr)
+subprocess.CalledProcessError: Command '['D:\\CodexNativeBuilds\\work\\__main__-main-72af071e2867\\quiet-core-actual-flocdanr\\candidate\\check.exe']' returned non-zero exit status 2.

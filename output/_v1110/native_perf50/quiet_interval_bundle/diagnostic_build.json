@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "dll_sha256": "dbc6ad17752d40312a2a7637f913face0b0f23c3977b9c4ac8c8f0ca08cd25ba",
+  "full20_units": true,
+  "max_workers": 2,
+  "below_normal": true,
+  "intermediates": "D:\\CodexNativeBuilds\\work\\__main__-build-7a356b4734fb\\quiet-census-h9mcjxnc\\objects",
+  "no_speed_claim": true
+}

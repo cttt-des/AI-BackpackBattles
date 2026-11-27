@@ -1,0 +1,224 @@
+{
+  "workspace": "D:\\CodexNativeBuilds\\work\\__main__-build-4763c1054bbb",
+  "archive": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\build_storage\\archive\\__main__-build-4763c1054bbb",
+  "preserved": [
+    {
+      "path": ".native_owner.json",
+      "sha256": "f339aa59a4d61f2a92c1aa6caea6d343befa068305712f91f9b23b7fe8bcc970",
+      "bytes": 45
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/instrumented_exports.def",
+      "sha256": "e423396108ebb4715027961b75cd39624f918586711b1c65ac472e305d67eadb",
+      "bytes": 1582
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/libgdcore.dll.ltrans.mk",
+      "sha256": "018bc57b8407b979184ec530c96821ca3456d0c513c9253cef8767509bfb9816",
+      "bytes": 636309
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/libgdcore.dll.wpa.args.0",
+      "sha256": "aebc5568eb5fc67ea2971f92d31dd131302596789a61dcba5368f2f0a871dfcc",
+      "bytes": 1839
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/D~/CodexNativeBuilds/work/__main__-build-4763c1054bbb/quiet-formal-3mmprb9a/objects/engine_wrapper.gcda",
+      "sha256": "4ca800dd78797cb2438e5f8fe43d74279478c0479268b2bf47e371f133556d85",
+      "bytes": 37816
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/D~/CodexNativeBuilds/work/__main__-build-4763c1054bbb/quiet-formal-3mmprb9a/objects/gd_rt.gcda",
+      "sha256": "af2b052a0ab15987f072fcf14b5ca2e63a702d8471742386fbd9d2b6dfc8be11",
+      "bytes": 537836
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/D~/CodexNativeBuilds/work/__main__-build-4763c1054bbb/quiet-formal-3mmprb9a/objects/shard_00.gcda",
+      "sha256": "cf1b2b875981a91417f21434a3d826749ccfef029642b9db2ff0788a7060a4fa",
+      "bytes": 428164
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/D~/CodexNativeBuilds/work/__main__-build-4763c1054bbb/quiet-formal-3mmprb9a/objects/shard_01.gcda",
+      "sha256": "f48263e35a8fc9c7f9c0da0b5bb00a0a48142e36437f366c0d783e7b8a5fa747",
+      "bytes": 189156
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/D~/CodexNativeBuilds/work/__main__-build-4763c1054bbb/quiet-formal-3mmprb9a/objects/shard_02.gcda",
+      "sha256": "0d500a5846041fb358876ff8a816d636143876e9b51c1ad72d878801487563c4",
+      "bytes": 273068
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/D~/CodexNativeBuilds/work/__main__-build-4763c1054bbb/quiet-formal-3mmprb9a/objects/shard_03.gcda",
+      "sha256": "776c8afa74b1c95596e95b9ba96d273cdced1548dbeec456d733c2e2ad73026b",
+      "bytes": 189324
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/D~/CodexNativeBuilds/work/__main__-build-4763c1054bbb/quiet-formal-3mmprb9a/objects/shard_04.gcda",
+      "sha256": "c5f50dba543d4c1f0a352e1177e7aec37cbf3c711e27ef3296e8fd85d4190f52",
+      "bytes": 161540
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/D~/CodexNativeBuilds/work/__main__-build-4763c1054bbb/quiet-formal-3mmprb9a/objects/shard_05.gcda",
+      "sha256": "4abf5275329bddcd644954c67cf44fc9f3ce07a4d1481646e7fed483797b69d8",
+      "bytes": 176188
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/D~/CodexNativeBuilds/work/__main__-build-4763c1054bbb/quiet-formal-3mmprb9a/objects/shard_06.gcda",
+      "sha256": "d9f859c676fbd0787ad4348f3ba9ac4122ab12c7e2fca3232adb5162e1f751fb",
+      "bytes": 171944
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/D~/CodexNativeBuilds/work/__main__-build-4763c1054bbb/quiet-formal-3mmprb9a/objects/shard_07.gcda",
+      "sha256": "6393b4120e169e0cc2db6823fba1613e07a646178ab376050ce6293576fd7ddf",
+      "bytes": 182652
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/D~/CodexNativeBuilds/work/__main__-build-4763c1054bbb/quiet-formal-3mmprb9a/objects/shard_08.gcda",
+      "sha256": "c351ec027997e2705b5af043f2a23e1452d6f995adfcdd461889658bfafc8a12",
+      "bytes": 147456
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/D~/CodexNativeBuilds/work/__main__-build-4763c1054bbb/quiet-formal-3mmprb9a/objects/shard_09.gcda",
+      "sha256": "5bcb2c1342c69bd8ab3e22717ce9f681c8dedb316da0635036f57451a77fedda",
+      "bytes": 125352
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/D~/CodexNativeBuilds/work/__main__-build-4763c1054bbb/quiet-formal-3mmprb9a/objects/shard_10.gcda",
+      "sha256": "84efcee3f0464648ec5cd95f0f5da56ab2ebac4fff4c12eef9c6c81ecd6e8666",
+      "bytes": 193460
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/D~/CodexNativeBuilds/work/__main__-build-4763c1054bbb/quiet-formal-3mmprb9a/objects/shard_11.gcda",
+      "sha256": "f1725c49335b5ec8829e197f5c0d6101317773a32efef5ffd82430e8bd70419f",
+      "bytes": 134164
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/D~/CodexNativeBuilds/work/__main__-build-4763c1054bbb/quiet-formal-3mmprb9a/objects/shard_12.gcda",
+      "sha256": "66b817665c1743f8073fd3efd558e32eb4d2e24bf8b6b473198d3e21b2fdee38",
+      "bytes": 196908
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/D~/CodexNativeBuilds/work/__main__-build-4763c1054bbb/quiet-formal-3mmprb9a/objects/shard_13.gcda",
+      "sha256": "83f2998e2c78bf72a7a8ecc2d1a283b2339ef2cc711ef9ca9c45ed4e41624c59",
+      "bytes": 157588
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/D~/CodexNativeBuilds/work/__main__-build-4763c1054bbb/quiet-formal-3mmprb9a/objects/shard_14.gcda",
+      "sha256": "5930cf9d9f5441e3b2c43b44292fa19b052ec029e4b77c68efa1ef64219a6dae",
+      "bytes": 143764
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/D~/CodexNativeBuilds/work/__main__-build-4763c1054bbb/quiet-formal-3mmprb9a/objects/shard_15.gcda",
+      "sha256": "1f098a539a131c5f9474dd67da14995ca423ebdd7909338254599b9a3a87ee5e",
+      "bytes": 160544
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/engine_wrapper.gcda",
+      "sha256": "4ca800dd78797cb2438e5f8fe43d74279478c0479268b2bf47e371f133556d85",
+      "bytes": 37816
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/gd_rt.gcda",
+      "sha256": "af2b052a0ab15987f072fcf14b5ca2e63a702d8471742386fbd9d2b6dfc8be11",
+      "bytes": 537836
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/shard_00.gcda",
+      "sha256": "cf1b2b875981a91417f21434a3d826749ccfef029642b9db2ff0788a7060a4fa",
+      "bytes": 428164
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/shard_01.gcda",
+      "sha256": "f48263e35a8fc9c7f9c0da0b5bb00a0a48142e36437f366c0d783e7b8a5fa747",
+      "bytes": 189156
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/shard_02.gcda",
+      "sha256": "0d500a5846041fb358876ff8a816d636143876e9b51c1ad72d878801487563c4",
+      "bytes": 273068
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/shard_03.gcda",
+      "sha256": "776c8afa74b1c95596e95b9ba96d273cdced1548dbeec456d733c2e2ad73026b",
+      "bytes": 189324
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/shard_04.gcda",
+      "sha256": "c5f50dba543d4c1f0a352e1177e7aec37cbf3c711e27ef3296e8fd85d4190f52",
+      "bytes": 161540
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/shard_05.gcda",
+      "sha256": "4abf5275329bddcd644954c67cf44fc9f3ce07a4d1481646e7fed483797b69d8",
+      "bytes": 176188
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/shard_06.gcda",
+      "sha256": "d9f859c676fbd0787ad4348f3ba9ac4122ab12c7e2fca3232adb5162e1f751fb",
+      "bytes": 171944
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/shard_07.gcda",
+      "sha256": "6393b4120e169e0cc2db6823fba1613e07a646178ab376050ce6293576fd7ddf",
+      "bytes": 182652
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/shard_08.gcda",
+      "sha256": "c351ec027997e2705b5af043f2a23e1452d6f995adfcdd461889658bfafc8a12",
+      "bytes": 147456
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/shard_09.gcda",
+      "sha256": "5bcb2c1342c69bd8ab3e22717ce9f681c8dedb316da0635036f57451a77fedda",
+      "bytes": 125352
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/shard_10.gcda",
+      "sha256": "84efcee3f0464648ec5cd95f0f5da56ab2ebac4fff4c12eef9c6c81ecd6e8666",
+      "bytes": 193460
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/shard_11.gcda",
+      "sha256": "f1725c49335b5ec8829e197f5c0d6101317773a32efef5ffd82430e8bd70419f",
+      "bytes": 134164
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/shard_12.gcda",
+      "sha256": "66b817665c1743f8073fd3efd558e32eb4d2e24bf8b6b473198d3e21b2fdee38",
+      "bytes": 196908
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/shard_13.gcda",
+      "sha256": "83f2998e2c78bf72a7a8ecc2d1a283b2339ef2cc711ef9ca9c45ed4e41624c59",
+      "bytes": 157588
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/shard_14.gcda",
+      "sha256": "5930cf9d9f5441e3b2c43b44292fa19b052ec029e4b77c68efa1ef64219a6dae",
+      "bytes": 143764
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/pgo/shard_15.gcda",
+      "sha256": "1f098a539a131c5f9474dd67da14995ca423ebdd7909338254599b9a3a87ee5e",
+      "bytes": 160544
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/replays.json",
+      "sha256": "be1dece51daedac961c77d211b5a926478dde2eb27da598900f10d7a5e6fb257",
+      "bytes": 6627
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/smoke.json",
+      "sha256": "e4848245007f86411c2cd8afc3cb3f8fefe2342041b43df86c55f00af7bf7c37",
+      "bytes": 1015
+    },
+    {
+      "path": "quiet-formal-3mmprb9a/objects/training.json",
+      "sha256": "ef2c563c11b19aa8ec5406a39797e29955f7c8a3bbe11af63fcd9d9a555b6376",
+      "bytes": 861
+    }
+  ],
+  "total_bytes": 183611274,
+  "discarded_rebuildable_bytes": 175749148,
+  "cleanup_complete": true
+}

@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+  "profile_sha256": "9f2df427803d5a9ef8dcc85e3f2ddd1373cedf15348997d54d8b1778521fa730",
+  "original_profiler_sha256": "980afc3b1313736ea5c5f483d106187b25b784d262e0e33aa33a630476ec766f",
+  "wrapper_sha256": "5e0db502771ae556e2b38ca5d76f3b25ad705344c819ec67d2406d774c5a515e",
+  "only_profiler_adaptation": "Validate the last result vector outside the sampled interval",
+  "profiled_native_samples": 8078,
+  "actual_fixed200_inputs_and_results_checked": true,
+  "not_a_second_AB_or_speed_adoption_test": true,
+  "baseline_profile": "native_perf50/measurement_structure_bundle/profile_baseline.json",
+  "below_normal": true,
+  "one_logical_cpu": true,
+  "original_wrapper_snapshot": "rejected_profile_wrapper_before_child_fix.py",
+  "cleanup_receipt": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\build_storage\\archive\\__main__-main-7dc1af2a2a44\\cleanup_receipt.json",
+  "cleanup_receipt_sha256": "905b7606feba0153410debade17052336b1f04cea1b6c0d6a1734922488ca9bf",
+  "launcher_cleanup_failure_recovered_without_reprofiling": true
+}

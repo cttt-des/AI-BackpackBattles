@@ -1,0 +1,42 @@
+场次 19：夹具=D:\文件资料\学习\自动背包AI\output\_v1110\native_host_rng_phases_new_expand_cpp\fixtures.json below_master=None
+[1/19] run101127_r8_o101282_r8 pass | first=None
+[2/19] run101360_r16_o400073_r16 pass | first=None
+[3/19] run101571_r12_o200222_r12 pass | first=None
+[4/19] run101582_r9_o704990_r9 pass | first=None
+[5/19] run300225_r6_o500231_r6 pass | first=None
+[6/19] run604648_r11_o101432_r11 pass | first=None
+[7/19] run604775_r12_o200195_r12 pass | first=None
+[8/19] run604857_r8_o704267_r8 pass | first=None
+[9/19] run704304_r11_o604610_r11 pass | first=None
+[10/19] run704467_r9_o500276_r9 pass | first=None
+[11/19] run704514_r14_o500247_r14 pass | first=None
+[12/19] run704709_r11_o704267_r11 pass | first=None
+[13/19] run704758_r6_o604625_r6 pass | first=None
+[14/19] run704842_r15_o604595_r15 pass | first=None
+[15/19] run704896_r16_o101394_r16 pass | first=None
+[16/19] run704896_r17_o101360_r17 pass | first=None
+[17/19] run704950_r17_o500205_r17 pass | first=None
+[18/19] run704993_r18_o101755_r18 pass | first=None
+[19/19] run705059_r11_o604523_r11 pass | first=None
+== 汇总 ==
+{
+ "total": 19,
+ "passed": 19,
+ "reference_mode": "native-only",
+ "category": {
+  "pass": 19
+ },
+ "winner_mismatch": 0,
+ "winner_unavailable": 0,
+ "cases_with_coarse_gem_origin": 0,
+ "strict_gem_origins": true,
+ "original_dir": "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_host_observed_expand\\expand",
+ "first_divergences": [],
+ "below_master_override": null,
+ "dll": "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\quiet_interval_bundle\\prototype.dll",
+ "wall_total_s": 3.5,
+ "strict_item_origins": true,
+ "dll_sha256": "24272e7596a5e7caf929f0dd2851d2824a838344d4ca6d337b9f15112babe743",
+ "fixtures_sha256": "60807ee2a7fd768dd4696f33cfbebb0ba84fb6a6be21566a906f1f2e4bb96a52",
+ "runtime_data_sha256": "55bdd068cf3308547de78b45abbed4bf4f57e8253fbec82313a99578defa00ae"
+}

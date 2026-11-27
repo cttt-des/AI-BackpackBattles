@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "compiler_processes": [],
+  "managed_workspaces_empty": true,
+  "driver_finished": true,
+  "source_projection_passed": true,
+  "production_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "candidate_dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+  "scripts_sha256": {
+    "native_build_storage.py": "faabff88addf77ce2cd9eb58eb982947cc535ac0c496cf8d2063b601ff828617",
+    "native_build_schedule.py": "62d81144490d89156d926ce69e1d34ea8c810ab38e176f89afce84936c17a175",
+    "build_native_hot_lto.py": "2fabf6651cecf0993fa811b41f2eb6d416fb830470241af4cebe33998078658d",
+    "quiet_round.py": "af9d9e08dabc7e6ce0221a3e0abf3a82cbbf38d6fd18a6628fc50717647f6b44",
+    "finish_quiet_round.py": "1e7ce129897c4a4f0baf14cec5f6358c51895169161ac798436e6c040e2680c5",
+    "compare_quiet_round.py": "345ef128062f5462b7b53aab66ff4f04717850f29793706f89e1722c526b44c5",
+    "measure_native_quads.py": "67962b6b6406e682deb9a19f786c5af2316e1ce1164f99222fbf169983e7367a",
+    "measurement_platform.py": "8f72474d31f8af73979f008865de634a0f7018470fb611f01d5e553740047c60",
+    "measure_native_corpus_blocks.py": "eb97896fe52853749f5b61027616fc7389d9dff2eb512e75331d34507a0a4b86"
+  },
+  "all_semantic_gates_passed": true,
+  "only_light_monitoring_until_all24_quads_finish": true
+}

@@ -1,0 +1,31 @@
+场次 8：夹具=D:\文件资料\学习\自动背包AI\output\_v1110\native_host_phases_observed_base_last_cpp\fixtures.json below_master=None
+[1/8] run985_r12 pass | first=None
+[2/8] run986_r12 pass | first=None
+[3/8] run988_r15 pass | first=None
+[4/8] run989_r18 pass | first=None
+[5/8] run991_r18 pass | first=None
+[6/8] run995_r18 pass | first=None
+[7/8] run996_r18 pass | first=None
+[8/8] run997_r11 pass | first=None
+== 汇总 ==
+{
+ "total": 8,
+ "passed": 8,
+ "reference_mode": "native-only",
+ "category": {
+  "pass": 8
+ },
+ "winner_mismatch": 0,
+ "winner_unavailable": 0,
+ "cases_with_coarse_gem_origin": 0,
+ "strict_gem_origins": true,
+ "original_dir": "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_host_observed_base\\base",
+ "first_divergences": [],
+ "below_master_override": null,
+ "dll": "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\quiet_interval_bundle\\prototype.dll",
+ "wall_total_s": 6.9,
+ "strict_item_origins": true,
+ "dll_sha256": "24272e7596a5e7caf929f0dd2851d2824a838344d4ca6d337b9f15112babe743",
+ "fixtures_sha256": "c2907b21bc752522203da0ed7df1ca59d91f27944a5a670df7420963ab9c5e16",
+ "runtime_data_sha256": "55bdd068cf3308547de78b45abbed4bf4f57e8253fbec82313a99578defa00ae"
+}

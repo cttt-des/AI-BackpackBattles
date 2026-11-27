@@ -1,5 +1,5 @@
 """Project-local disposable build workspaces on an ASCII D: path."""
-import contextlib,functools,hashlib,json,os,re,shutil,tempfile,uuid
+import contextlib,functools,hashlib,json,os,re,shutil,tempfile,time,uuid
 from pathlib import Path
 
 ROOT=Path('D:/CodexNativeBuilds')
@@ -51,7 +51,18 @@ def archive_and_remove(path):
     record=destination/'cleanup_receipt.json';record.write_text(json.dumps(receipt,indent=2)+'\n',encoding='utf8')
     # Every retained source/log/data file was checked; compiled temporaries are
     # disposable. Exported DLLs and frozen PGO receipts live outside this tree.
-    shutil.rmtree(checked(path,ROOT/'work'))
+    # Windows antivirus may briefly retain a just-exited test executable.
+    # Retry only access/sharing failures, within this already validated scope.
+    marker=path/'.native_owner.json';owner=marker.read_bytes() if marker.exists() else None
+    deadline=time.monotonic()+10;retries=0
+    while True:
+        try:
+            shutil.rmtree(checked(path,ROOT/'work'));break
+        except PermissionError:
+            if owner is not None and path.exists() and not marker.exists():marker.write_bytes(owner)
+            if time.monotonic()>=deadline:raise
+            retries+=1;time.sleep(min(.1*2**min(retries-1,4),1))
+    receipt['cleanup_access_retries']=retries
     receipt['cleanup_complete']=not path.exists();record.write_text(json.dumps(receipt,indent=2)+'\n',encoding='utf8')
 def reap_orphans():
     import psutil

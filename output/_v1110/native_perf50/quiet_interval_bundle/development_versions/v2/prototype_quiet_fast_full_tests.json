@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "dll_sha256": "1df0d88adbf5a632a15aabfc471116e3999bd22defae1ad3124402fdfaa24794",
+  "cases": 2604,
+  "coverage": {
+    "attempts": 1830742,
+    "rejected": 1668156,
+    "segments": 162586,
+    "frames": 849836,
+    "lanes": 4790519
+  },
+  "full_gate_sha256": "921a120756ae2d1e0715220beaca0ef59874c523cb949cf9b934dfc0e0d3959f",
+  "event_hash_comparison_sha256": "9ad9ec6ee38071eb1032b52eb2b9c2bfac23cbced60c91215faff54189f78eae",
+  "all_original_strict_event_receipts_retained": true
+}

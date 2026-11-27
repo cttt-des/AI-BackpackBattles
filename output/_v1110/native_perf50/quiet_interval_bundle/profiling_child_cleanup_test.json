@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "actual_child_load_and_call": true,
+  "temporary_DLL_deleted_after_child_exit": true,
+  "workspace": "D:\\CodexNativeBuilds\\work\\quiet-profile-child-cleanup-check-c6574bf33681",
+  "cleanup_receipt": {
+    "workspace": "D:\\CodexNativeBuilds\\work\\quiet-profile-child-cleanup-check-c6574bf33681",
+    "archive": "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\build_storage\\archive\\quiet-profile-child-cleanup-check-c6574bf33681",
+    "preserved": [
+      {
+        "path": ".native_owner.json",
+        "sha256": "3c06a59eac4aaee1489d712e44985b77b50d3520440a5e84c9437dbc20ad9584",
+        "bytes": 45
+      }
+    ],
+    "total_bytes": 354147,
+    "discarded_rebuildable_bytes": 354102,
+    "cleanup_complete": true,
+    "cleanup_access_retries": 0
+  },
+  "cleanup_receipt_sha256": "9c966c908e0c6c2d5762cb43446408dfbe18b8c07c0db8b668f3acb6acb3eb10"
+}

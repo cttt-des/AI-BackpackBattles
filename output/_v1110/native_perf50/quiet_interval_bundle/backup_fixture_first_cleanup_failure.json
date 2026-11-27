@@ -1,0 +1,6 @@
+{
+  "error": "Read-only Git fixture object rejected deletion after all equivalence checks",
+  "owned_workspace": "D:\\CodexNativeBuilds\\work\\backup-index-fixture-ad063ff41580",
+  "cleanup_recovered": true,
+  "receipt_sha256": "42bb38e9d0833a769ea96b9bda81cc158b7070220463325ee9af1f1c47ed5e76"
+}

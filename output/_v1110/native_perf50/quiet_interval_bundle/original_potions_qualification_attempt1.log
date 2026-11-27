@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\quiet_interval_bundle\verify_ordering_extra_potions.py", line 89, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\quiet_interval_bundle\verify_ordering_extra_potions.py", line 78, in main
+    for name in ('test_ordering_potion_chains.cpp','test_same_frame_potion_tie.cpp','test_same_frame_potions.cpp'):shutil.copyfile(STAGE/name,build/name)
+                                                                                                                   ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 315, in copyfile
+    with open(dst, 'wb') as fdst:
+         ~~~~^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\CodexNativeBuilds\\work\\verify_ordering_contracts---dll-1fe60593bdd7\\ordering-contracts-g7vx1fx8\\test_ordering_potion_chains.cpp'

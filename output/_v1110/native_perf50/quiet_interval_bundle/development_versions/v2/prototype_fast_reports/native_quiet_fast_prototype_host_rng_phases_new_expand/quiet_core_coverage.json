@@ -1,0 +1,13 @@
+{
+  "verifier_exit_code": 0,
+  "dll_sha256": "1df0d88adbf5a632a15aabfc471116e3999bd22defae1ad3124402fdfaa24794",
+  "counts": {
+    "attempts": 10766,
+    "rejected": 9541,
+    "segments": 1225,
+    "frames": 6315,
+    "lanes": 36113
+  },
+  "verifier_source_sha256": "fd4cfc79088a9b201f71bd3f644b4cebfe3191fa9d1fc8864697ea8b5f35b057",
+  "original_strict_verifier_unchanged": true
+}

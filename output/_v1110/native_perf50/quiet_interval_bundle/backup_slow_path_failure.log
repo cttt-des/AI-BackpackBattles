@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\finish_quiet_round.py", line 58, in <module>
+    if __name__=='__main__':{'close':close,'archive':archive,'upload':lambda:archive(True)}[sys.argv[1]]()
+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\finish_quiet_round.py", line 56, in archive
+    exec(compile(text,str(STAGE/'archive_frame_guard.py'),'exec'),dict(__name__='__main__',__file__=str(STAGE/'finish_quiet_round.py')))
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\archive_frame_guard.py", line 75, in <module>
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\archive_frame_guard.py", line 71, in main
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\archive_frame_guard.py", line 7, in git
+    def git(*args,env=None,input=None,timeout=None):return subprocess.check_output(['git',*args],cwd=REPO,env=env,input=input,timeout=timeout)
+                                                           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 473, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['git', '-c', 'pack.threads=2', '-c', 'core.autocrlf=false', 'add', '-f', '--pathspec-from-file=D:\\CodexNativeBuilds\\work\\finish_quiet_round-archive-4e0c4e14ded6\\quiet-own-index-l57_kgec\\paths', '--pathspec-file-nul']' returned non-zero exit status 15.

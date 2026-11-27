@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "previous": {
+    "prototype.dll": "5088a6bdaccb786a33c79c67e49f2ba047152408ce3438584480e1a25d703f0e",
+    "prototype_build.json": "df025f9003fb93b27319434791c902b10d51c20aabf58a7ca6c4917df703f6d5",
+    "prototype_build.log": "c69fdacf10f02d39ea8c912b393883dee714f1fad4c9196f4e8bb08b1f3d5721",
+    "normal_object_paths.json": "f1e528908c86a3c7597fb6e0df54bab5025167d4cb6ff76e644fa6a48408ef30",
+    "candidate_syntax_preflight.json": "16e11f9f01ef9ce70fb1566f6851175d982c96fc65519d5ff754deeefe2eecdd",
+    "source_changes.json": "3e0004e2396d53173d846002e80f719d6b3659c071a067e77df16f99510055a1",
+    "source_before_build.json": "147f9af8e9cf248c6930ee29d4d003f542ce42bfb49c8b6d870a20a5d18b5b1e",
+    "transform.json": "d80559b5c9fe35a9a991d8c4f0ef38c5fc8d5fb7f788047949610b9a1c02a624",
+    "regeneration_manifest.json": "0acab659b800d7735b3f93fa8956ffe1eb9fc40a5fcfd61293ee4967e47851a9",
+    "verified_bundle_pending.py": "fe3b8684b40c15e7c780e3c20b6be573e57758eb4da89ad80cde2aa4d26bfbb6",
+    "full_regeneration_test.json": "b7c0fe533ce39a278ea18416745e12681ec9f2fc21d220edfa0b8850431d1032",
+    "full_regeneration_directory.json": "818788657f27c2802a214d5de8888c298ffda04be63eec906aa3138316ddadd1",
+    "full_regeneration_1.log": "fbbb384c6432f340be5001ff0f1448bd2cd9b9fef3860ade5355b233a4228e52",
+    "full_regeneration_2.log": "fbbb384c6432f340be5001ff0f1448bd2cd9b9fef3860ade5355b233a4228e52",
+    "regeneration_driver.log": "e302295ee6738321c008977e2e4bc9191362d2a8750a0ea95e2adef9fb93eff6"
+  },
+  "archive": "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\quiet_interval_bundle\\development_versions\\v1",
+  "new_fragment_sha256": "aeb7d1e3a2b766cc3fe5cb233869a50b26f6d26b8478387a1235bcdc7cce7023",
+  "source_manifest_sha256": "2f670072c16543c61ab8efea945298a2df57e32f81392488151fe8c33bf08e5b",
+  "old20_objects_already_removed": true,
+  "no_candidate_timing_has_been_run": true,
+  "full20_normal_rebuild_required": true
+}

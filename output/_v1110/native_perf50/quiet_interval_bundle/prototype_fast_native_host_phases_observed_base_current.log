@@ -1,0 +1,147 @@
+场次 124：夹具=D:\文件资料\学习\自动背包AI\output\_v1110\native_hot_verify_host_phases_observed_base_current\fixtures.json below_master=None
+[1/124] run1023_r18 pass | first=None
+[2/124] run1032_r2 pass | first=None
+[3/124] run1042_r12 pass | first=None
+[4/124] run1047_r1 pass | first=None
+[5/124] run1049_r18 pass | first=None
+[6/124] run1056_r14 pass | first=None
+[7/124] run1063_r13 pass | first=None
+[8/124] run1068_r18 pass | first=None
+[9/124] run1161_r3 pass | first=None
+[10/124] run1166_r18 pass | first=None
+[11/124] run1169_r11 pass | first=None
+[12/124] run1172_r18 pass | first=None
+[13/124] run1179_r11 pass | first=None
+[14/124] run1234_r18 pass | first=None
+[15/124] run1236_r11 pass | first=None
+[16/124] run1237_r6 pass | first=None
+[17/124] run1243_r18 pass | first=None
+[18/124] run1257_r7 pass | first=None
+[19/124] run1287_r13 pass | first=None
+[20/124] run1347_r18 pass | first=None
+[21/124] run571_r18 pass | first=None
+[22/124] run750_r11 pass | first=None
+[23/124] run754_r15 pass | first=None
+[24/124] run755_r9 pass | first=None
+[25/124] run758_r15 pass | first=None
+[26/124] run759_r11 pass | first=None
+[27/124] run824_r18 pass | first=None
+[28/124] run826_r10 pass | first=None
+[29/124] run829_r15 pass | first=None
+[30/124] run922_r13 pass | first=None
+[31/124] run925_r18 pass | first=None
+[32/124] run926_r11 pass | first=None
+[33/124] run958_r7 pass | first=None
+[34/124] run987_r6 pass | first=None
+[35/124] run998_r12 pass | first=None
+[36/124] run1015_r18 pass | first=None
+[37/124] run1018_r11 pass | first=None
+[38/124] run1019_r11 pass | first=None
+[39/124] run1020_r18 pass | first=None
+[40/124] run1022_r18 pass | first=None
+[41/124] run1024_r18 pass | first=None
+[42/124] run1025_r18 pass | first=None
+[43/124] run1026_r2 pass | first=None
+[44/124] run1036_r18 pass | first=None
+[45/124] run1045_r18 pass | first=None
+[46/124] run1048_r18 pass | first=None
+[47/124] run1050_r18 pass | first=None
+[48/124] run1051_r6 pass | first=None
+[49/124] run1053_r7 pass | first=None
+[50/124] run1055_r18 pass | first=None
+[51/124] run1061_r12 pass | first=None
+[52/124] run1062_r9 pass | first=None
+[53/124] run1065_r7 pass | first=None
+[54/124] run1070_r18 pass | first=None
+[55/124] run1071_r18 pass | first=None
+[56/124] run1072_r12 pass | first=None
+[57/124] run1073_r12 pass | first=None
+[58/124] run1074_r18 pass | first=None
+[59/124] run1075_r9 pass | first=None
+[60/124] run1076_r10 pass | first=None
+[61/124] run1143_r13 pass | first=None
+[62/124] run1160_r18 pass | first=None
+[63/124] run1162_r7 pass | first=None
+[64/124] run1165_r7 pass | first=None
+[65/124] run1167_r18 pass | first=None
+[66/124] run1168_r18 pass | first=None
+[67/124] run1170_r11 pass | first=None
+[68/124] run1171_r18 pass | first=None
+[69/124] run1173_r18 pass | first=None
+[70/124] run1174_r18 pass | first=None
+[71/124] run1175_r11 pass | first=None
+[72/124] run1176_r11 pass | first=None
+[73/124] run1177_r18 pass | first=None
+[74/124] run1178_r13 pass | first=None
+[75/124] run1180_r11 pass | first=None
+[76/124] run1233_r14 pass | first=None
+[77/124] run1235_r7 pass | first=None
+[78/124] run1238_r15 pass | first=None
+[79/124] run1239_r18 pass | first=None
+[80/124] run1240_r18 pass | first=None
+[81/124] run1241_r18 pass | first=None
+[82/124] run1242_r12 pass | first=None
+[83/124] run1244_r14 pass | first=None
+[84/124] run1245_r18 pass | first=None
+[85/124] run1246_r11 pass | first=None
+[86/124] run1247_r7 pass | first=None
+[87/124] run1259_r6 pass | first=None
+[88/124] run1260_r11 pass | first=None
+[89/124] run1261_r18 pass | first=None
+[90/124] run1262_r15 pass | first=None
+[91/124] run1263_r10 pass | first=None
+[92/124] run1264_r18 pass | first=None
+[93/124] run1265_r9 pass | first=None
+[94/124] run1267_r12 pass | first=None
+[95/124] run1286_r18 pass | first=None
+[96/124] run1288_r6 pass | first=None
+[97/124] run1308_r18 pass | first=None
+[98/124] run1309_r5 pass | first=None
+[99/124] run1328_r15 pass | first=None
+[100/124] run1329_r12 pass | first=None
+[101/124] run1346_r18 pass | first=None
+[102/124] run1348_r18 pass | first=None
+[103/124] run1349_r11 pass | first=None
+[104/124] run1492_r18 pass | first=None
+[105/124] run572_r9 pass | first=None
+[106/124] run747_r14 pass | first=None
+[107/124] run752_r18 pass | first=None
+[108/124] run757_r12 pass | first=None
+[109/124] run760_r11 pass | first=None
+[110/124] run761_r18 pass | first=None
+[111/124] run822_r18 pass | first=None
+[112/124] run823_r18 pass | first=None
+[113/124] run825_r18 pass | first=None
+[114/124] run828_r11 pass | first=None
+[115/124] run923_r11 pass | first=None
+[116/124] run924_r15 pass | first=None
+[117/124] run927_r11 pass | first=None
+[118/124] run928_r18 pass | first=None
+[119/124] run948_r18 pass | first=None
+[120/124] run953_r18 pass | first=None
+[121/124] run956_r7 pass | first=None
+[122/124] run962_r18 pass | first=None
+[123/124] run966_r15 pass | first=None
+[124/124] run967_r7 pass | first=None
+== 汇总 ==
+{
+ "total": 124,
+ "passed": 124,
+ "reference_mode": "native-only",
+ "category": {
+  "pass": 124
+ },
+ "winner_mismatch": 0,
+ "winner_unavailable": 0,
+ "cases_with_coarse_gem_origin": 0,
+ "strict_gem_origins": true,
+ "original_dir": "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_host_observed_base\\base",
+ "first_divergences": [],
+ "below_master_override": null,
+ "dll": "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\quiet_interval_bundle\\prototype.dll",
+ "wall_total_s": 55.7,
+ "strict_item_origins": true,
+ "dll_sha256": "24272e7596a5e7caf929f0dd2851d2824a838344d4ca6d337b9f15112babe743",
+ "fixtures_sha256": "a965d34b1024e63dbabc1d358ae03fed2207af5884b19a70414ea79d971a0914",
+ "runtime_data_sha256": "55bdd068cf3308547de78b45abbed4bf4f57e8253fbec82313a99578defa00ae"
+}

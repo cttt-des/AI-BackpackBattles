@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "all24_quads_completed": true,
+  "all_pre_timing_script_hashes_unchanged": true,
+  "source_projection_unchanged": true,
+  "production_unchanged": true,
+  "original_results_checked_every_arm": true,
+  "pre_timing_receipt_sha256": "79d38f9fddda5ac6404410d30168ca7b14943cfac70f8ce448685f9018ae99d6"
+}

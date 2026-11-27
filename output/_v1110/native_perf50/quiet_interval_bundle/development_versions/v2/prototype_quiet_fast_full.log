@@ -1,0 +1,45 @@
+native_host_phases_reuse_1: 785 strict passes; 0 optimized frames
+native_host_phases_reuse_0: 862 strict passes; 193494 optimized frames
+native_host_phases_reuse_3: 264 strict passes; 143717 optimized frames
+native_host_phases_reuse_2: 518 strict passes; 390449 optimized frames
+native_host_phases_observed_base_current: 124 strict passes; 102818 optimized frames
+native_host_phases_reuse_4: 22 strict passes; 4191 optimized frames
+native_host_rng_phases_new_expand: 19 strict passes; 6315 optimized frames
+native_host_phases_reuse_5: 1 strict passes; 0 optimized frames
+native_host_phases_reuse_6: 1 strict passes; 496 optimized frames
+native_host_phases_observed_base_last: 8 strict passes; 8356 optimized frames
+base {'expected': 914, 'recorded': 914, 'verified': 914, 'passed': 914, 'winner_mismatch': 0}
+expand {'expected': 1690, 'recorded': 1690, 'verified': 1690, 'passed': 1690, 'winner_mismatch': 0}
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\compare_native_event_receipts.py", line 68, in <module>
+    main()
+    ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\compare_native_event_receipts.py", line 41, in main
+    candidate, new = read_gate(args.candidate, args.candidate_prefix)
+                     ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\compare_native_event_receipts.py", line 26, in read_gate
+    records, runtime = load_receipts(reports, gate["dll_sha256"])
+                       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\check_native_corpus_gate.py", line 87, in load_receipts
+    summary = read_json(folder / "summary.json")
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\check_native_corpus_gate.py", line 15, in read_json
+    return json.loads(path.read_bytes())
+                      ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py", line 777, in read_bytes
+    with self.open(mode='rb', buffering=0) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_quiet_fast_prototype_host_phases_observed_base_current\\cpp\\summary.json'
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_quiet_full.py", line 30, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_quiet_full.py", line 27, in main
+    subprocess.run([sys.executable,'-X','utf8',str(STAGE/'compare_native_event_receipts.py'),'--baseline',str(ACCEPTED/'bundle_full_gate.json'),'--candidate',str(gate),'--baseline-prefix','native_frame_guard_reuse_bundle_bundle_','--candidate-prefix',prefix,'--out',str(WORK/(a.tag+'_quiet_fast_event_hashes.json'))],check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe', '-X', 'utf8', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\compare_native_event_receipts.py', '--baseline', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\frame_guard_reuse_bundle\\bundle_full_gate.json', '--candidate', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\quiet_interval_bundle\\prototype_quiet_fast_full_gate.json', '--baseline-prefix', 'native_frame_guard_reuse_bundle_bundle_', '--candidate-prefix', 'native_quiet_fast_prototype_', '--out', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\quiet_interval_bundle\\prototype_quiet_fast_event_hashes.json']' returned non-zero exit status 1.

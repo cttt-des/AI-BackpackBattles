@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "actual_tree": "13570108d54532073019468b2887bd23a67d2371",
+  "reference_tree": "13570108d54532073019468b2887bd23a67d2371",
+  "trees_identical_to_literal_git_add": true,
+  "unicode_spaces_and_square_brackets_literal": true,
+  "CRLF_and_binary_bytes_preserved": true,
+  "executable_mode_preserved": true,
+  "untouched_index_preserved": true,
+  "streamed_blob_comparison_passed": true,
+  "changed_blob_rejected": true,
+  "D_fixture_workspace_removed": true
+}

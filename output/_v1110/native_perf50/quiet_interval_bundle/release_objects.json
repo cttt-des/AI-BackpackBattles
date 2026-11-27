@@ -1,0 +1,26 @@
+{
+  "object_directory": "D:\\CodexNativeBuilds\\work\\__main__-build-9b148317b5fa\\quiet-formal-z_f0u5tx\\objects",
+  "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+  "objects_sha256": {
+    "engine_wrapper.o": "62d52bd2bcf7fcc2ff167da24e6b039db9ff90ff4f1acbca70de93dbd52c1d6c",
+    "gd_rt.o": "7ba52509ed7f611fa342a5cf431f2de0f46d80b8e66f4818dd9bdd438d6af3b1",
+    "register_all.o": "87aa32f2f9350de3823d2587f56c1a10c2b7f77e125e1ba01206854af046d6f8",
+    "shard_00.o": "317608570e20db8a2b5f67a1806891b00ba96f0389927b1588d49826ea1c92f9",
+    "shard_01.o": "17e0f72681bb3f8352404854ddeed2e5a9c11cebb40a41ee8d84cabeaaf550d8",
+    "shard_02.o": "34d98e59df1097e89cbc0748ff42516bb7e541d5a156ab452e9155eb0de6220a",
+    "shard_03.o": "912c35f9fc3bf78dc84c4a892c2492a7b60535b707053082a750cb7bda62239d",
+    "shard_04.o": "4e6c6ef8d86f2c1770148c601148b22dad47cd6851570643b55aaeca7aae08db",
+    "shard_05.o": "f34d9c9cfc0cf23225d2393fa590b8d054df0965f02932871fad84b41d339023",
+    "shard_06.o": "f61325b22484acf7f2a81b8048074340ff36e340eded43a669846a6efce283ad",
+    "shard_07.o": "461413053cf2df0956041e401eeac2951d6d7afc28a23e7d884461387586010b",
+    "shard_08.o": "abfba49b705aead6f5d78af1b6286226c0775e924f9363d60dcbf77b47d393b0",
+    "shard_09.o": "eb788d4ca85193fabc29406f2ed0d4efc287e48c43e9aae5e5bb516fd6e5ac76",
+    "shard_10.o": "c434ff446ea766aec2c70167027685960e5d8470fec92ae6297bccf85bd0259e",
+    "shard_11.o": "3685ad6329ce9a120a1f8d38897b26efac51344291eb3ddd9221cf24de7067e8",
+    "shard_12.o": "d1e1244bb32654a02e0ae16e966c279c291fc2b5602d434529d7f778aa6d6e22",
+    "shard_13.o": "cc94988c16b0518372b056959149424456b576e65c7e0c9b696cd73905ab1f91",
+    "shard_14.o": "915650b61851f755f7de1675eec3ab019e611ebfffb208068128d1bc9fc039f3",
+    "shard_15.o": "0092cb63bd9ebdcf5ce7f1a335ef35f88e6e323ec46d32bbc9475279ed32277a",
+    "sym_ids.o": "35b0d562d93f7e48a8863ad0cea81c5e1ea58ef709ae0b47ffd4e0f423652678"
+  }
+}

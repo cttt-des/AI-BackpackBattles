@@ -1,0 +1,23 @@
+native_host_phases_reuse_1: 785 strict passes; 0 optimized frames
+native_host_phases_reuse_0: 862 strict passes; 193494 optimized frames
+native_host_phases_reuse_3: 264 strict passes; 143717 optimized frames
+native_host_phases_reuse_2: 518 strict passes; 390449 optimized frames
+native_host_phases_observed_base_current: 124 strict passes; 102818 optimized frames
+native_host_phases_reuse_4: 22 strict passes; 4191 optimized frames
+native_host_rng_phases_new_expand: 19 strict passes; 6315 optimized frames
+native_host_phases_reuse_5: 1 strict passes; 0 optimized frames
+native_host_phases_reuse_6: 1 strict passes; 496 optimized frames
+native_host_phases_observed_base_last: 8 strict passes; 8356 optimized frames
+base {'expected': 914, 'recorded': 914, 'verified': 914, 'passed': 914, 'winner_mismatch': 0}
+expand {'expected': 1690, 'recorded': 1690, 'verified': 1690, 'passed': 1690, 'winner_mismatch': 0}
+{
+  "baseline_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "candidate_dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+  "runtime_data_sha256": "55bdd068cf3308547de78b45abbed4bf4f57e8253fbec82313a99578defa00ae",
+  "unchanged_cpp_event_streams": 2604,
+  "cohorts": {
+    "base": 914,
+    "expand": 1690
+  },
+  "ordered_case_and_cpp_event_hashes_sha256": "b8066c9224bc418923c62f5a3dafb8912100b21bb0026c3b13669872f90e2f54"
+}

@@ -1,0 +1,73 @@
+{
+  "selected": "guarded numerical core segments between original callback boundaries; original RNG/idle/visual phases still execute each frame",
+  "diagnostic_counts": {
+    "active_frames": 193352,
+    "deferred": 0,
+    "idle_calls": 0,
+    "delayed_calls": 92890,
+    "motion": 105549,
+    "player_flickers": 79937,
+    "opponent_flickers": 72729,
+    "lib_fires": 0,
+    "particle_draws": 57,
+    "critical_shake": 32920,
+    "active_buff_timers": 30513,
+    "item_timers": 133347,
+    "idle_rng_due_within4": 7265,
+    "character_timer_due_within4": 13861,
+    "fatigue_due_within4": 3648,
+    "active_gems": 2394,
+    "quiet_external_queues": 37473,
+    "quiet_external_and_no_timers": 16038,
+    "quiet_all_static_guards": 14403,
+    "quiet_streak4_frames": 13164,
+    "active_item_visits": 3633567,
+    "active_buff_visits": 43699,
+    "no_item_or_buff_timers": 57849,
+    "core_event_free1": 158056,
+    "core_event_free2": 134812,
+    "core_event_free4": 101996,
+    "core_event_free8": 63606,
+    "core_event_free4_no_gems": 101996,
+    "core_event_free4_empty_libfires": 101996
+  },
+  "diagnostic_sha256": "8699689f14c4bb16a2a504bb1ff974588cca46d0bf673617058c944fa164dca1",
+  "frozen_AB_protocol_sha256": "9458ac675627c1eef19bbfa0dc42557c508580d2d76a8d0bf3b58250b68423c5",
+  "no_aggregate_delta_formula": true,
+  "no_same_source_retiming": true,
+  "full2604_with_optimization_exercised_required": true,
+  "all_retained_tests_required": true,
+  "deploy_only_after_positive_calibrated_AB": true,
+  "pre_timing_revision": {
+    "first_development_dll_sha256": "5088a6bdaccb786a33c79c67e49f2ba047152408ce3438584480e1a25d703f0e",
+    "first_development_cases": 49152,
+    "first_development_coverage": {
+      "attempts": 180678,
+      "rejected": 170740,
+      "segments": 9938,
+      "frames": 52612,
+      "lanes": 281389
+    },
+    "changes": [
+      "accumulate sticky expression flags as integer bits, one frame-boundary restoration",
+      "reject known short intervals and blocked tails before remaining graph validation",
+      "avoid repeated RTTI proof for the same item",
+      "reject opening/audit frames before creating the numerical plan"
+    ],
+    "no_candidate_speed_observations": true
+  },
+  "floating_flags_revision": {
+    "rejected_dll_sha256": "31eef0ec03db48a99c686f5d217e1c64065ce2ad72315963389c2a802ff454c7",
+    "independent_original_mismatches": 192,
+    "mismatches_by_mode": {
+      "32": 80,
+      "33": 80,
+      "40": 16,
+      "41": 16
+    },
+    "all_game_fields_and_RNG_were_equal": true,
+    "fix": "Explicit pointer/scalar dependencies order arithmetic around MXCSR capture; no compiler flag changes",
+    "SSE_reference_cases": 35152,
+    "no_AB_or_deployment_before_correction": true
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "path": "docs/C++模拟器空帧与局部事件流架构评估_2026-11-27.md",
+  "sha256": "db3ca0f5067f38f7114065f1dfeab245eca3a63a3263e6c37ca845482d1d1d4e",
+  "related_documents": {
+    "C++模拟器优化交接_2026-11-23.md": "73c9c3e7b56cc29a6f7055e9eba698ba427c133473b5f6a760785c47d3d0afc7",
+    "C++模拟器性能优化清单.md": "c8dd775d948aea71da51231d44891a0076ec66823839f02e2a6c489556921874",
+    "C++模拟器下一阶段优化评估.md": "6bb99231581dfbf6f4f1d8d4ccfb584a965315c21c373c22da6aff14b29df4e5",
+    "C++模拟器构建产物管理.md": "29eded95f0dca847a9be6dd64ddfc0cb7186ab062a95ab25f2d55b39ab729d8d"
+  }
+}

@@ -1,0 +1,246 @@
+{
+  "passed": true,
+  "baseline": {
+    "samples": 8070,
+    "counts": {
+      "trigger_chain": 3462,
+      "original_core_frame_without_trigger": 2702,
+      "setup": 1532,
+      "new_segment_entry_including_original_tail": 0,
+      "new_character_preparation": 0,
+      "new_plan_any": 0,
+      "new_entry_type_proof": 0,
+      "new_entry_fenv": 0
+    },
+    "share_pct": {
+      "trigger_chain": 42.899628252788105,
+      "original_core_frame_without_trigger": 33.482032218091696,
+      "setup": 18.983890954151178,
+      "new_segment_entry_including_original_tail": 0.0,
+      "new_character_preparation": 0.0,
+      "new_plan_any": 0.0,
+      "new_entry_type_proof": 0.0,
+      "new_entry_fenv": 0.0
+    },
+    "shares_are_overlapping_not_additive": true,
+    "top_leaf": [
+      [
+        "gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)",
+        666
+      ],
+      [
+        "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+        406
+      ],
+      [
+        "Gd__gd_core__CoreItem::fn_onItemAdded(gd::GdVal const*, int)",
+        193
+      ],
+      [
+        "Gd__gd_core__CoreGrid::fn_getItemsInCells(gd::GdVal const*, int)",
+        169
+      ],
+      [
+        "gd::GdDict::find_index(gd::GdVal const&, unsigned long long) const",
+        165
+      ],
+      [
+        "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+        156
+      ],
+      [
+        "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+        153
+      ],
+      [
+        "gd::gd_eq(gd::GdVal const&, gd::GdVal const&)",
+        135
+      ],
+      [
+        "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+        128
+      ],
+      [
+        "Gd__gd_core__CoreContext::fn_tickMotion(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+        122
+      ],
+      [
+        "gd::GdDict::set(gd::BattleArena&, gd::GdVal const&, gd::GdVal const&)",
+        113
+      ],
+      [
+        "Gd__gd_core__CoreBuff::fn_gainTemporary(gd::GdVal const*, int)",
+        110
+      ],
+      [
+        "Gd__gd_core__CoreItem::fn__tickChargePath(gd::GdVal const*, int)",
+        107
+      ],
+      [
+        "Gd__gd_core__CoreItem::fn_addMetric(gd::GdVal const*, int)",
+        104
+      ],
+      [
+        "Gd__gd_core__CoreEventBus::fn_emitAndLog(gd::GdVal const*, int)",
+        94
+      ],
+      [
+        "Gd__gd_core__CoreItem::fn_activate(gd::GdVal const*, int)",
+        92
+      ],
+      [
+        "gd::gd_val_hash(gd::GdVal const&)",
+        91
+      ],
+      [
+        "Gd__gd_core__CoreCombat::fn_stepCharacterIdle(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+        91
+      ],
+      [
+        "gd_native_emit_literal_body(Gd__gd_core__CoreEventBus*, gd::GdVal const*, NativeLiteralEventArguments&)",
+        82
+      ],
+      [
+        "Gd__gd_core__CoreCombatLog::fn_createEvent(gd::GdVal const*, int) [clone .constprop.0]",
+        80
+      ]
+    ]
+  },
+  "candidate": {
+    "samples": 8078,
+    "counts": {
+      "trigger_chain": 2703,
+      "original_core_frame_without_trigger": 1717,
+      "setup": 1144,
+      "new_segment_entry_including_original_tail": 2169,
+      "new_character_preparation": 1448,
+      "new_plan_any": 1448,
+      "new_entry_type_proof": 717,
+      "new_entry_fenv": 331
+    },
+    "share_pct": {
+      "trigger_chain": 33.46125278534291,
+      "original_core_frame_without_trigger": 21.255261203268137,
+      "setup": 14.161921267640505,
+      "new_segment_entry_including_original_tail": 26.85070562020302,
+      "new_character_preparation": 17.925229017083435,
+      "new_plan_any": 17.925229017083435,
+      "new_entry_type_proof": 8.875959395890073,
+      "new_entry_fenv": 4.097548898242139
+    },
+    "shares_are_overlapping_not_additive": true,
+    "top_leaf": [
+      [
+        "gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)",
+        376
+      ],
+      [
+        "gd::native_resolved_exact_row(gd::GdObj const*) [clone .lto_priv.0]",
+        325
+      ],
+      [
+        "(anonymous namespace)::QuietCorePlan::character(Gd__gd_core__CoreCharacter&, Gd__gd_core__CoreContext&, unsigned int) [clone .part.0] [clone .lto_priv.0]",
+        315
+      ],
+      [
+        "(anonymous namespace)::QuietCorePlan::character(Gd__gd_core__CoreCharacter&, Gd__gd_core__CoreContext&, unsigned int)::{lambda(Gd__gd_core__CoreItem&, bool)#1}::operator()(Gd__gd_core__CoreItem&, bool) const",
+        309
+      ],
+      [
+        "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+        278
+      ],
+      [
+        "__cxxabiv1::__si_class_type_info::__do_dyncast(long long, __cxxabiv1::__class_type_info::__sub_kind, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info::__dyncast_result&) const",
+        230
+      ],
+      [
+        "std::type_info::operator==(std::type_info const&) const",
+        215
+      ],
+      [
+        "gd_diag_quiet_core_advance",
+        152
+      ],
+      [
+        "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+        133
+      ],
+      [
+        "__mingw_setfp",
+        131
+      ],
+      [
+        "gd::GdDict::find_index(gd::GdVal const&, unsigned long long) const",
+        129
+      ],
+      [
+        "Gd__gd_core__CoreItem::fn_onItemAdded(gd::GdVal const*, int)",
+        121
+      ],
+      [
+        "Gd__gd_core__CoreContext::fn_tickMotion(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+        117
+      ],
+      [
+        "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+        115
+      ],
+      [
+        "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+        112
+      ],
+      [
+        "Gd__gd_core__CoreGrid::fn_getItemsInCells(gd::GdVal const*, int)",
+        93
+      ],
+      [
+        "__dynamic_cast",
+        90
+      ],
+      [
+        "Gd__gd_core__CoreItem::fn_activate(gd::GdVal const*, int)",
+        87
+      ],
+      [
+        "gd_native_emit_literal_body(Gd__gd_core__CoreEventBus*, gd::GdVal const*, NativeLiteralEventArguments&)",
+        84
+      ],
+      [
+        "Gd__gd_core__CoreItem::fn_addMetric(gd::GdVal const*, int)",
+        81
+      ]
+    ]
+  },
+  "fixed200": {
+    "attempts": 150678,
+    "rejected": 140740,
+    "segments": 9938,
+    "frames": 52612,
+    "lanes": 281389,
+    "rejected_fraction": 0.9340447842418933
+  },
+  "full2604": {
+    "attempts": 1830742,
+    "rejected": 1668156,
+    "segments": 162586,
+    "frames": 849836,
+    "lanes": 4790519,
+    "rejected_fraction": 0.911191200070791
+  },
+  "profile_sha256": {
+    "baseline": "6d559fc43aa0a848e01f6b49db011ad7082a60738d91f2161e653d89f5a65130",
+    "candidate": "9f2df427803d5a9ef8dcc85e3f2ddd1373cedf15348997d54d8b1778521fa730"
+  },
+  "interpretation": "Repeated graph/type proof and plan preparation are a substantial new cost; fallback attempts pay this work too. The helper share includes retained original tail work and is not wholly removable overhead.",
+  "static_source_findings": [
+    "Entry captures fenv and allocates/initializes the plan before prepare checks all mode eligibility",
+    "Rejected attempts build the graph again on the next original frame",
+    "Each certificate visits buff, item, gem and timer objects and repeats RTTI/row proof",
+    "Original per-frame RNG/idle/visual tails and trigger/damage chain still execute"
+  ],
+  "no_profile_based_speed_claim": true,
+  "no_same_source_additional_AB": true,
+  "next_architecture_requirement": "Amortize a closed-scene certificate with proven callback/watch invalidation and reuse nearest-due information; test this cost in an instrumented prototype before another full PGO round.",
+  "conclusion": "Reject this per-attempt certificate/precomputation implementation; this does not falsify all idle-interval or local-event scheduling designs."
+}

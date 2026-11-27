@@ -8,7 +8,13 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import json
+import threading
+import time
+import types
+import psutil
 from native_build_storage import isolated_build,clean_lto_parts
+from native_build_schedule import select_jobs
 
 
 LEGACY_HOT_UNITS = {"gd_rt", "engine_wrapper", "shard_00", "shard_02", "shard_03", "shard_07"}
@@ -16,7 +22,11 @@ HOT_UNITS = {"gd_rt", "engine_wrapper", *(f"shard_{index:02d}" for index in rang
 LTO = "-flto=2"
 
 
-def build_dll(native, out, jobs, profile_flags=(), *, hot_units=HOT_UNITS, link_flags=()):
+def build_dll(native, out, jobs, profile_flags=(), *, hot_units=HOT_UNITS, link_flags=(), lto_jobs=None):
+    schedule = select_jobs(jobs, lto_jobs)
+    if os.name == 'nt': psutil.Process().nice(psutil.BELOW_NORMAL_PRIORITY_CLASS)
+    schedule['below_normal_priority'] = os.name == 'nt'
+    jobs = schedule['frontend_jobs']
     module = runpy.run_path(str(native / "build_windows.py"))
     standard_flags = tuple(module["COMMON"])
     hot_flags = (*standard_flags, LTO, *profile_flags)
@@ -41,10 +51,48 @@ def build_dll(native, out, jobs, profile_flags=(), *, hot_units=HOT_UNITS, link_
     )
     namespace["OUT_LIB"] = out
     # Compile flags above are frozen; optional export/link policy stays link-only.
-    module["COMMON"].extend((LTO, *profile_flags, *link_flags))
-    result=build()
-    clean_lto_parts(module['OBJ_DIR'])
-    return result
+    module["COMMON"].extend((f"-flto={schedule['lto_jobs']}", *profile_flags, *link_flags))
+    schedule.update(object_lto_option=LTO, link_lto_option=f"-flto={schedule['lto_jobs']}",
+                    partition_algorithm='unchanged (balanced)',
+                    peak_lto_workers=0, peak_frontend_workers=0, make_commands=[])
+    print(f"Build scheduling: frontend={jobs}, LTO={schedule['lto_jobs']} "
+          f"(available {schedule['available_bytes'] / 1024**3:.2f} GiB)", flush=True)
+    stop = threading.Event()
+    def monitor():
+        while not stop.wait(0.5):
+            try:
+                children = psutil.Process().children(recursive=True)
+                counts = dict(lto1=0, cc1plus=0)
+                for child in children:
+                    try:
+                        name = child.name().lower().removesuffix('.exe')
+                        if name in counts: counts[name] += 1
+                        if name in ('make', 'mingw32-make'):
+                            command = child.cmdline()
+                            if command not in schedule['make_commands']: schedule['make_commands'].append(command)
+                    except (psutil.NoSuchProcess, psutil.AccessDenied): pass
+                schedule['peak_lto_workers'] = max(schedule['peak_lto_workers'], counts['lto1'])
+                schedule['peak_frontend_workers'] = max(schedule['peak_frontend_workers'], counts['cc1plus'])
+            except (psutil.NoSuchProcess, psutil.AccessDenied): pass
+    # Override only this loaded builder's subprocess binding, never the shared module.
+    def link_run(command, *args, **kwargs):
+        schedule['link_command'] = list(map(str, command))
+        start = time.perf_counter()
+        try: return subprocess.run(command, *args, **kwargs)
+        finally: schedule['link_wall_seconds'] = time.perf_counter() - start
+    namespace['subprocess'] = types.SimpleNamespace(**{**vars(subprocess), 'run':link_run})
+    observer = threading.Thread(target=monitor, daemon=True); observer.start()
+    start = time.perf_counter()
+    try:
+        result = build()
+        clean_lto_parts(module['OBJ_DIR'])
+        schedule['passed'] = True
+        return result
+    finally:
+        stop.set(); observer.join()
+        schedule['total_wall_seconds'] = time.perf_counter() - start
+        schedule.setdefault('passed', False)
+        Path(out).with_suffix('.build_schedule.json').write_text(json.dumps(schedule, indent=2)+'\n', encoding='utf8')
 
 
 def collect_profiles(instrumented, objects, profile, hot_units=HOT_UNITS):
@@ -104,14 +152,16 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("native", type=Path)
     parser.add_argument("--out", type=Path, required=True)
-    parser.add_argument("--jobs", type=int, default=2)
+    parser.add_argument("--jobs", type=int, default=0, help="Source compiler jobs; 0 selects a memory-aware budget")
+    parser.add_argument("--lto-jobs", type=int, default=0, help="Independent LTO jobs; 0 selects a memory-aware budget")
     parser.add_argument("--pgo", action="store_true", help="Train the hot units on the local replay and batch benchmarks")
     parser.add_argument("--hot-preset", choices=("full", "legacy"), default="full",
                         help="Use all generated shards, or reproduce the earlier six-unit configuration")
     parser.add_argument("--extra-hot-unit", action="append", default=[], metavar="SOURCE_STEM")
     args = parser.parse_args()
-    if args.jobs < 1:
-        parser.error("--jobs must be positive")
+    if args.jobs < 0 or args.lto_jobs < 0:
+        parser.error("job counts must be zero (auto) or positive")
+    os.environ['NATIVE_LTO_JOBS'] = str(args.lto_jobs)
     native = args.native.resolve()
     source_stems = {path.stem for path in (native / "gen/shards").glob("*.cpp")}
     if unsupported := set(args.extra_hot_unit) - source_stems:

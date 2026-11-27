@@ -1,0 +1,27 @@
+formal actual-DLL frame135168 passed
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\run_native_managed.py", line 11, in <module>
+    if __name__=='__main__':sys.exit(main())
+                                     ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\run_native_managed.py", line 8, in main
+    with workspace(script.stem+'-'+(sys.argv[2] if len(sys.argv)>2 else 'run')):
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 148, in __exit__
+    next(self.gen)
+    ~~~~^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_build_storage.py", line 85, in workspace
+    archive_and_remove(path)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_build_storage.py", line 54, in archive_and_remove
+    shutil.rmtree(checked(path,ROOT/'work'))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 705, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 701, in _rmtree_unsafe
+    os.unlink(fullname)
+    ~~~~~~~~~^^^^^^^^^^
+PermissionError: [WinError 5] 拒绝访问。: 'D:\\CodexNativeBuilds\\work\\verify_actual_frame---formal-bc92227601a2\\frame-guard-actual-9qtuv9rp\\candidate\\check.exe'

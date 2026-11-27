@@ -1,0 +1,5 @@
+In file included from D:\CodexNativeBuilds\work\verify_ordering_extra_potions---dll-6fab4b0285ef\ordering-extra-potions-ewp3rym0\test_ordering_potion_chains.cpp:2:
+D:\CodexNativeBuilds\work\verify_ordering_extra_potions---dll-6fab4b0285ef\ordering-extra-potions-ewp3rym0\test_same_frame_potions.cpp: In function 'int retained_potion_audit_unused()':
+D:\CodexNativeBuilds\work\verify_ordering_extra_potions---dll-6fab4b0285ef\ordering-extra-potions-ewp3rym0\test_same_frame_potions.cpp:134:16: warning: control reaches end of non-void function [-Wreturn-type]
+  134 |     std::cout<<"]}\n";
+      |                ^~~~~~

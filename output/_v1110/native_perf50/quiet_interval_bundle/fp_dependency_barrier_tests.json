@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "cases": 35152,
+  "fingerprint": 5245707342519783462,
+  "actual_fragment_sha256": "bafbf560ee0d687060300949942512f9744f52c404293a1a44fac6108305e603",
+  "fixture_sha256": "1b6d241c9303a4970f1ad06ee419731e8a30d56b815ebe16cfd6d40572f88f54",
+  "literal_SSE_reference": true,
+  "all16_rounding_DAZ_FTZ_modes": true,
+  "positive_negative_zero_subnormal_overflow_and_cancellation": true,
+  "compiler_flags": [
+    "-O3",
+    "-flto=2",
+    "-std=c++20",
+    "-ffp-contract=off"
+  ]
+}

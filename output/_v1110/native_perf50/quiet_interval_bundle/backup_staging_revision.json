@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "first_attempt_preserved": true,
+  "new_index_method": "Bulk literal hash-object/update-index; all raw bytes and existing modes retained",
+  "parity_test_sha256": "4bd387af5398dd3d786a9ceb9d004aaf3a61a3d2431316ca774b9aab4c9b5cba",
+  "streaming_verification": true,
+  "script_sha256": "7b6a6e7cb9f1106ecd1c240e22dde9480f44df3fa76e4765b17a661535ced2f5",
+  "user_boundary_unchanged": true
+}

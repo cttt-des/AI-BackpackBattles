@@ -1,0 +1,14 @@
+{
+  "candidate_dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+  "baseline_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "protocol_sha256": "9458ac675627c1eef19bbfa0dc42557c508580d2d76a8d0bf3b58250b68423c5",
+  "source_manifest_sha256": "05ba4f7e8d0046f546bf4ec186936e239b92e39bb1e345290ccdbcbfd06ca8c8",
+  "scripts_sha256": {
+    "measure_native_quads.py": "67962b6b6406e682deb9a19f786c5af2316e1ce1164f99222fbf169983e7367a",
+    "measurement_platform.py": "8f72474d31f8af73979f008865de634a0f7018470fb611f01d5e553740047c60",
+    "measure_native_corpus_blocks.py": "eb97896fe52853749f5b61027616fc7389d9dff2eb512e75331d34507a0a4b86",
+    "compare_quiet_round.py": "345ef128062f5462b7b53aab66ff4f04717850f29793706f89e1722c526b44c5",
+    "analyze_structure_aa.py": "f7b8ea157f5cf2113475d888137d68de8ba958248a312a12b770bd6c91caaef6"
+  },
+  "written_before_any_warmup_or_arm": true
+}

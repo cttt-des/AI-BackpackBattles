@@ -1,0 +1,237 @@
+{
+  "actual_frame": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "9724328dce5625688f00dacc06e769c4ead276141d37ad89a1c1a7f0b842be99",
+    "log": "actual_frame_qualification_attempt1.log",
+    "log_sha256": "ebd6c0beb7b7c13edfdc7ce059c375f346181c4d000cd74a2f957e9f729f77b0",
+    "verifier_completed": true,
+    "launcher_cleanup_recovered": true,
+    "cleanup_receipt": "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\build_storage\\archive\\verify_actual_frame---formal-bc92227601a2\\cleanup_receipt.json",
+    "cleanup_receipt_sha256": "caff4788280ed1ed8da59dcebcb2b81625fe158459eb15786553d55042bd3047"
+  },
+  "original_ordering": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "48ee433159a268264962ce08002a8ed55398eedd77d964e8c484d0c9c120b867",
+    "log": "original_ordering_qualification_attempt1.log",
+    "log_sha256": "d12a5c9e1e3ca8353f157eaf3bba83e6b797bf0fef54fa1721738a1472b97897"
+  },
+  "original_potions": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "1e646fc942d7b0442f9efef67bae0bd5889a4e0832a281c9ae6c9d318378eb42",
+    "log": "original_potions_qualification_attempt2.log",
+    "log_sha256": "6d4782911a9dd16c798a6d4c38464457dd0e4848fd6ccee543af4e3313265b4c"
+  },
+  "generate_property_tests": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "830867ec7c32093ad4c19819c992a79ed7fba718cfa1f7f51f2f4269c7aeb119",
+    "log": "generate_property_tests_qualification_attempt1.log",
+    "log_sha256": "41b41d005c7e7ddcafdf44b53514514cca15fad618207f8e1fa5996f391a5d45"
+  },
+  "generate_type_constructor_tests": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "92c47778808a976f199d551672b67dc11592c5f38adf5c30859768bfc6f03b1d",
+    "log": "generate_type_constructor_tests_qualification_attempt1.log",
+    "log_sha256": "e0bdd3a326b345fcec67e15ea6cd8b737c200196a396170c42d01ba03c205bc6"
+  },
+  "verify_event_identity": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "a2979a3b8ed7f33c90c5a676fac7ee3e4b625b8006c4af373f371ddcc8c23d02",
+    "log": "verify_event_identity_qualification_attempt1.log",
+    "log_sha256": "752a0f5821b82eb526f8ef6c7f50c4b6401f8553a92cd8640356ef38a8ad33d4"
+  },
+  "verify_lazy_diagnostics": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "bb0c88e3c8f8d4ebce7754e0a3f5ad75fae614e28ec48b55db082e19cdc51234",
+    "log": "verify_lazy_diagnostics_qualification_attempt1.log",
+    "log_sha256": "b64cd9b3019280da235f9dec29bed6b1e67c2f6f439c130487de859388f253eb"
+  },
+  "verify_components": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "c022ab51d3f833355a7d0b560b10d0c192e9ecc9b7f7e3d03f0f3a5de88b8a48",
+    "log": "verify_components_qualification_attempt1.log",
+    "log_sha256": "ba410c9991bcb3453db69bd1b8f0d837f4f554f8754c05d5d9fbcb82e871080c"
+  },
+  "verify_static_collections": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "fbc511fe9e3df5c207ae7ad04bd0a93404baad36d86bedcd398c2ac6f87133c1",
+    "log": "verify_static_collections_qualification_attempt1.log",
+    "log_sha256": "40aeb18ef397cb1287e09f6ec457ef135c44d175da9b382f5d505afd1ca6018f"
+  },
+  "verify_static_setup": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "04fddfd9987a4be607d85dbf589be865b5d038537e67d80231c73554adeb05c8",
+    "log": "verify_static_setup_qualification_attempt1.log",
+    "log_sha256": "6894ed491372ffee2b557ece7b0fd307520b101fc665e8dd7e3a372aa3d9545f"
+  },
+  "verify_dispatch_chain": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "e49e50a4e299c2701dd0bab2f0b180b5878fe065f30b10717fb869e47ce689ed",
+    "log": "verify_dispatch_chain_qualification_attempt1.log",
+    "log_sha256": "2b51fb24b812cdaa026d9c8dad2a7bd4cba4f94401126c6e1493d9776ac74e52"
+  },
+  "verify_spatial": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "c9f5d2dd8cb6ac67a8eb84e10a8726d5ae20dd1e39f537500943939b191f1f98",
+    "log": "verify_spatial_qualification_attempt1.log",
+    "log_sha256": "e366e25a9f16467d2994e461b16379af2fec784b0357d934c9517ad02055213e"
+  },
+  "verify_motion_indices": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "128ba77d443378585fdbb48ccd0cf7d8f253a540b09d6332a13bf39019876bb8",
+    "log": "verify_motion_indices_qualification_attempt1.log",
+    "log_sha256": "67f90f5c2e374c2e6d8d63b059c27ce863e68c83e6d0dc58b03a2370a07ac547"
+  },
+  "verify_targeted_timers": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "024709eea8971e9b71bd0374a6278127fd8cc48480d30bc5ad3e1b7aa62cb008",
+    "log": "verify_targeted_timers_qualification_attempt1.log",
+    "log_sha256": "02968278f9efacf910daeb7f0cad7a6254ce61442a578c04da729a19e41cb933"
+  },
+  "verify_active_cooldowns": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "b49f399bacd7142a4c3a81e56a4f8699f98c0273e1634efef6b6025c9fd805a1",
+    "log": "verify_active_cooldowns_qualification_attempt1.log",
+    "log_sha256": "1cc89d4f30e5a73bd993b512f183c8fa3a3716aaf82bdc6ed0529a3057513d91"
+  },
+  "verify_buff_integer": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "8fa0fab4344df575bafa9a5b79b28c329544e2c545d3d03b16f134ae5f2694be",
+    "log": "verify_buff_integer_qualification_attempt1.log",
+    "log_sha256": "e68c288a95200dde4eb7e89a246eb558bce852baf0461865ef9b6d6e45c3c98f"
+  },
+  "verify_container_builtins": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "7a0a4e7247459865b16c61bc5fe0c2ef53997d04c03568acc3e5df1e04d5a2ea",
+    "log": "verify_container_builtins_qualification_attempt1.log",
+    "log_sha256": "a9f55608a2b97909dd8f72215a5e222e7f3b24dbe0319d1c65dfd5da921d43e3"
+  },
+  "verify_scalar_truth": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "fa752317b8643500c6f940e7db26647764ea950d8c45969afd515bc519ae8671",
+    "log": "verify_scalar_truth_qualification_attempt1.log",
+    "log_sha256": "2c997265becd73f45dc2a952431ddddfd7f2c5c6c73b0755a7e68df22bef94bd"
+  },
+  "verify_private_snapshots": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "f4b90a9e85825cb34a60d21a1e7d5d57b32da24f2892fb0c43580635f7bc83ee",
+    "log": "verify_private_snapshots_qualification_attempt1.log",
+    "log_sha256": "2cd3a363b12eb4b68a6e422e3a604307a0ce49bf668b0b591047b6b37da31db5"
+  },
+  "verify_control_word": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "3ad343fb0caf41b2269da28cd4170e62a44a166eab0481db48dc8eae82cafb7e",
+    "log": "verify_control_word_qualification_attempt1.log",
+    "log_sha256": "36e6a0716e5c7dea4f7472d6c292528b2236731dd98b284100c7614828e0b61d"
+  },
+  "verify_display_storage": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "9d36eec9de4cc8b31708d5dde0f7b0c442270dba5303f30505533e3a4d0e9f59",
+    "log": "verify_display_storage_qualification_attempt1.log",
+    "log_sha256": "a0b0d62be205cc734cfbf75f775a3a9dfb52a9be569f2acec38f7291bb04a01b"
+  },
+  "verify_integer_grid": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "afd45f03e08aeb89913c3e8dbb5b6aa4c248858372f37df033b1f1181a76ede7",
+    "log": "verify_integer_grid_qualification_attempt1.log",
+    "log_sha256": "562bb694552284e4d48dcae4d8d162f9ad1af3320eb0b2bdb85335137a8a8fd0"
+  },
+  "verify_event_factory": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "5da83b88c1de76b8c539f45234daa5e9af7d9963e88ccd8d5c52465ed1d3b1ac",
+    "log": "verify_event_factory_qualification_attempt1.log",
+    "log_sha256": "c9bd8bf6925da568f1b1c66eeeec022d554dcb8b63b0020c875f730bd3f59360"
+  },
+  "verify_literal_spans": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "99db0a3ac99ef2379eb164ca2ff07a83dd6880997392467094952808bce97026",
+    "log": "verify_literal_spans_qualification_attempt1.log",
+    "log_sha256": "0b8e794bca3ae09e240983f7b9ffd79adfe74cb9dd083b11bf3df74cf8f11e47"
+  },
+  "verify_callback_dispatch": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "a059f78bdf0f189ac497d14deba08383afa573d413461ff4ef747ace06aad940",
+    "log": "verify_callback_dispatch_qualification_attempt1.log",
+    "log_sha256": "cb5d2acf27e0469334a84a6c4d8620e9d4e0b7a21ddbb143e4da957c5a51e39d"
+  },
+  "verify_object_routes": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "d45fbd927c4a57295b0a6f3d7250471e1fa1adc800765a06e36c87a305d172a4",
+    "log": "verify_object_routes_qualification_attempt1.log",
+    "log_sha256": "56bb843e14a598a5aefd73f2d23012a6f1103173250f7482ee0990029ffbafc2"
+  },
+  "verify_full_pgo_buff": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "8caf466a994e8792b1f80da3a15b79860add5013c12259d02a527d1eab4fafb4",
+    "log": "verify_full_pgo_buff_qualification_attempt1.log",
+    "log_sha256": "5381116652fac1f84cd7bacd184e549ea450927afaa37dcc02cd60330c485098"
+  },
+  "verify_assembly_membership": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "e6c42a9cad580054b08f801889026cd9df2b27c4e010d32fc8f793faa2e89990",
+    "log": "verify_assembly_membership_qualification_attempt1.log",
+    "log_sha256": "11953767a996f22d662c48eeb23a8c1f5c3a73eb425843b638481798dc43f4e7"
+  },
+  "verify_resolved": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "f8ac546b5c4799552df43583b2ace11daf8f62414e2001f0ec65d5459a0d4257",
+    "log": "verify_resolved_qualification_attempt1.log",
+    "log_sha256": "a465ee38037936b77beacbd3fdce309ff9d084ddd0fd43e6ad6b6a468da6ffab"
+  },
+  "verify_retained_weapon_chain": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "a566d1d423c6404df06a3e13f09766cf28a15e6b6059de5030cc79ecfa28d330",
+    "log": "verify_retained_weapon_chain_qualification_attempt1.log",
+    "log_sha256": "81492c26276340badce428573f74a848e1391d7b40bb35eb6e84f0f1b34a98d2"
+  },
+  "fixed200": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "ab5d947d86adf7b7d33ffda608a8d94c3817e121d151b701f69f6a2d4cfd83da",
+    "log": "fixed200_qualification_attempt1.log",
+    "log_sha256": "cdf71c8b8cce9284ac6e9263445342355743ca83714c199febb297602ef36628"
+  },
+  "full2604": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "90d8b224abb98fdb43baaceacf154a02df4c726eb7a5bfcae633a3b0b5e3e920",
+    "log": "full2604_qualification_attempt1.log",
+    "log_sha256": "e4352f0114063f6ff141585616fd44bf0d463bdd4a8dab400ec09615f169a6e7"
+  },
+  "full_type_and_events": {
+    "passed": true,
+    "dll_sha256": "3c02c8732e665f154809100d3affe1e98ceb1c200bcab3d39b851bd4b238fce4",
+    "script_sha256": "41a9ad81db81e1bfd43884d56d482827ed0491d6a4accd306f7992665617eb5f",
+    "log": "full_type_and_events_qualification_attempt1.log",
+    "log_sha256": "ba415e56d2c3def34488b1f8abfe4829f2a4a0c0ec3d5f0baa83a703ae530313"
+  }
+}

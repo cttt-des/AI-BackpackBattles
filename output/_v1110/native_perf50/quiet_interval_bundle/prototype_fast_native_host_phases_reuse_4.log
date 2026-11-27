@@ -1,0 +1,45 @@
+场次 22：夹具=D:\文件资料\学习\自动背包AI\output\_v1110\native_host_phases_reuse_4_cpp\fixtures.json below_master=None
+[1/22] run101416_r6_o500204_r6 pass | first=None
+[2/22] run101459_r14_o704614_r14 pass | first=None
+[3/22] run101571_r11_o704580_r11 pass | first=None
+[4/22] run101668_r15_o704273_r15 pass | first=None
+[5/22] run101777_r3_o101407_r3 pass | first=None
+[6/22] run300197_r1_o604754_r1 pass | first=None
+[7/22] run500242_r9_o101320_r9 pass | first=None
+[8/22] run500264_r6_o300166_r6 pass | first=None
+[9/22] run604713_r15_o704908_r15 pass | first=None
+[10/22] run604827_r17_o100872_r17 pass | first=None
+[11/22] run704469_r15_o705050_r15 pass | first=None
+[12/22] run704649_r15_o300199_r15 pass | first=None
+[13/22] run704812_r16_o100914_r16 pass | first=None
+[14/22] run704864_r3_o101148_r3 pass | first=None
+[15/22] run704879_r17_o604818_r17 pass | first=None
+[16/22] run704957_r6_o400025_r6 pass | first=None
+[17/22] run704968_r1_o400089_r1 pass | first=None
+[18/22] run705074_r6_o704829_r6 pass | first=None
+[19/22] run705104_r18_o604832_r18 pass | first=None
+[20/22] run705109_r12_o101487_r12 pass | first=None
+[21/22] run705120_r12_o100854_r12 pass | first=None
+[22/22] run705122_r12_o101348_r12 pass | first=None
+== 汇总 ==
+{
+ "total": 22,
+ "passed": 22,
+ "reference_mode": "native-only",
+ "category": {
+  "pass": 22
+ },
+ "winner_mismatch": 0,
+ "winner_unavailable": 0,
+ "cases_with_coarse_gem_origin": 0,
+ "strict_gem_origins": true,
+ "original_dir": "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_winner_retry",
+ "first_divergences": [],
+ "below_master_override": null,
+ "dll": "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\quiet_interval_bundle\\prototype.dll",
+ "wall_total_s": 3.6,
+ "strict_item_origins": true,
+ "dll_sha256": "24272e7596a5e7caf929f0dd2851d2824a838344d4ca6d337b9f15112babe743",
+ "fixtures_sha256": "277d25abc722f2ec836228e67d418872baf2ab292df60b07cb6384dbb597eee8",
+ "runtime_data_sha256": "55bdd068cf3308547de78b45abbed4bf4f57e8253fbec82313a99578defa00ae"
+}

@@ -1,0 +1,16 @@
+{
+  "workspace": "D:\\CodexNativeBuilds\\work\\__main__-main-7dc1af2a2a44",
+  "archive": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\build_storage\\archive\\__main__-main-7dc1af2a2a44",
+  "preserved": [
+    {
+      "path": ".native_owner.json",
+      "sha256": "dd11aa6700999ad9f4e569631a14afd1ce0f116f6e13a8f18e338c3c474e08e9",
+      "bytes": 45
+    }
+  ],
+  "total_bytes": 20583345,
+  "discarded_rebuildable_bytes": 20583300,
+  "cleanup_complete": true,
+  "cleanup_recovered_after_profiling_process_exit": true,
+  "loaded_DLL_cannot_be_removed_in_same_process": true
+}

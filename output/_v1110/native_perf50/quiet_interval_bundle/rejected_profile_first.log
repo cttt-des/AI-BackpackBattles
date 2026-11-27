@@ -1,0 +1,65 @@
+leaf
+('gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)', 376)
+('gd::native_resolved_exact_row(gd::GdObj const*) [clone .lto_priv.0]', 325)
+('(anonymous namespace)::QuietCorePlan::character(Gd__gd_core__CoreCharacter&, Gd__gd_core__CoreContext&, unsigned int) [clone .part.0] [clone .lto_priv.0]', 315)
+('(anonymous namespace)::QuietCorePlan::character(Gd__gd_core__CoreCharacter&, Gd__gd_core__CoreContext&, unsigned int)::{lambda(Gd__gd_core__CoreItem&, bool)#1}::operator()(Gd__gd_core__CoreItem&, bool) const', 309)
+('Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)', 278)
+('__cxxabiv1::__si_class_type_info::__do_dyncast(long long, __cxxabiv1::__class_type_info::__sub_kind, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info::__dyncast_result&) const', 230)
+('std::type_info::operator==(std::type_info const&) const', 215)
+('gd_diag_quiet_core_advance', 152)
+('gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]', 133)
+('__mingw_setfp', 131)
+('gd::GdDict::find_index(gd::GdVal const&, unsigned long long) const', 129)
+('Gd__gd_core__CoreItem::fn_onItemAdded(gd::GdVal const*, int)', 121)
+inclusive
+('gd_sim_run_one_replay_native_clock', 8019)
+('(anonymous namespace)::run_one_internal(gd::BattleCtx&, PackedSide const&, PackedSide const&, BattleOptions const&, BattleResult&, ReplayInitial const*, ReplayBuffState const*, ReplayEngineRng const*, bool, double, (anonymous namespace)::ReplayHostRng*, bool) [clone .lto_priv.0]', 8017)
+('Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)', 4417)
+('gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)', 3089)
+('Gd__gd_core__CoreItem::fn_trigger(gd::GdVal const*, int)', 2688)
+('gd_diag_quiet_core_advance', 2169)
+('gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)', 1449)
+('(anonymous namespace)::QuietCorePlan::character(Gd__gd_core__CoreCharacter&, Gd__gd_core__CoreContext&, unsigned int) [clone .part.0] [clone .lto_priv.0]', 1448)
+('gd::GdVal gd::native_resolved_invoke<Gd__gd_core_items__Weapon, &Gd__gd_core_items__Weapon::fn_doCooldownEffect>(gd::GdObj*, gd::GdVal const*, int)', 1310)
+('Gd__gd_core_items__Weapon::fn_doCooldownEffect(gd::GdVal const*, int)', 1309)
+('(anonymous namespace)::build_side_items(gd::BattleCtx&, gd::GdObj*, Gd__gd_core__CoreCharacter*, int, PackedSide const&, std::vector<Gd__gd_core__CoreItemData*, std::allocator<Gd__gd_core__CoreItemData*> >&, gd::GdArr*, std::vector<Gd__gd_core__CoreItem*, std::allocator<Gd__gd_core__CoreItem*> >*) [clone .lto_priv.0]', 1144)
+('Gd__gd_core__CoreCharacter::fn_takeDamage(gd::GdVal const*, int)', 984)
+callers
+('gd_sim_run_one_replay_native_clock -> (anonymous namespace)::run_one_internal(gd::BattleCtx&, PackedSide const&, PackedSide const&, BattleOptions const&, BattleResult&, ReplayInitial const*, ReplayBuffState const*, ReplayEngineRng const*, bool, double, (anonymous namespace)::ReplayHostRng*, bool) [clone .lto_priv.0]', 8016)
+('(anonymous namespace)::run_one_internal(gd::BattleCtx&, PackedSide const&, PackedSide const&, BattleOptions const&, BattleResult&, ReplayInitial const*, ReplayBuffState const*, ReplayEngineRng const*, bool, double, (anonymous namespace)::ReplayHostRng*, bool) [clone .lto_priv.0] -> Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)', 4416)
+('Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int) -> gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)', 3088)
+('gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&) -> Gd__gd_core__CoreItem::fn_trigger(gd::GdVal const*, int)', 2684)
+('(anonymous namespace)::run_one_internal(gd::BattleCtx&, PackedSide const&, PackedSide const&, BattleOptions const&, BattleResult&, ReplayInitial const*, ReplayBuffState const*, ReplayEngineRng const*, bool, double, (anonymous namespace)::ReplayHostRng*, bool) [clone .lto_priv.0] -> gd_diag_quiet_core_advance', 2169)
+('gd_diag_quiet_core_advance -> (anonymous namespace)::QuietCorePlan::character(Gd__gd_core__CoreCharacter&, Gd__gd_core__CoreContext&, unsigned int) [clone .part.0] [clone .lto_priv.0]', 1448)
+('gd::GdVal gd::native_resolved_invoke<Gd__gd_core_items__Weapon, &Gd__gd_core_items__Weapon::fn_doCooldownEffect>(gd::GdObj*, gd::GdVal const*, int) -> Gd__gd_core_items__Weapon::fn_doCooldownEffect(gd::GdVal const*, int)', 1309)
+('Gd__gd_core__CoreItem::fn_trigger(gd::GdVal const*, int) -> gd::GdVal gd::native_resolved_invoke<Gd__gd_core_items__Weapon, &Gd__gd_core_items__Weapon::fn_doCooldownEffect>(gd::GdObj*, gd::GdVal const*, int)', 1307)
+('(anonymous namespace)::run_one_internal(gd::BattleCtx&, PackedSide const&, PackedSide const&, BattleOptions const&, BattleResult&, ReplayInitial const*, ReplayBuffState const*, ReplayEngineRng const*, bool, double, (anonymous namespace)::ReplayHostRng*, bool) [clone .lto_priv.0] -> (anonymous namespace)::build_side_items(gd::BattleCtx&, gd::GdObj*, Gd__gd_core__CoreCharacter*, int, PackedSide const&, std::vector<Gd__gd_core__CoreItemData*, std::allocator<Gd__gd_core__CoreItemData*> >&, gd::GdArr*, std::vector<Gd__gd_core__CoreItem*, std::allocator<Gd__gd_core__CoreItem*> >*) [clone .lto_priv.0]', 1144)
+('gd::GdVal gd::native_resolved_invoke<Gd__gd_core__CoreCharacter, &Gd__gd_core__CoreCharacter::fn_dealDamage>(gd::GdObj*, gd::GdVal const*, int) -> Gd__gd_core__CoreCharacter::fn_dealDamage(gd::GdVal const*, int)', 938)
+('Gd__gd_core_items__Weapon::fn_doCooldownEffect(gd::GdVal const*, int) -> gd::GdVal gd::native_resolved_invoke<Gd__gd_core__CoreItem, &Gd__gd_core__CoreItem::fn_dealDamage>(gd::GdObj*, gd::GdVal const*, int)', 901)
+('Gd__gd_core__CoreCharacter::fn_dealDamage(gd::GdVal const*, int) -> Gd__gd_core__CoreCharacter::fn_takeDamage(gd::GdVal const*, int)', 883)
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\profile_quiet_rejected.py", line 32, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_build_storage.py", line 100, in run
+    with workspace(function.__module__+'-'+function.__name__):return function(*args,**kwargs)
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\contextlib.py", line 148, in __exit__
+    next(self.gen)
+    ~~~~^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_build_storage.py", line 96, in workspace
+    archive_and_remove(path)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_build_storage.py", line 60, in archive_and_remove
+    shutil.rmtree(checked(path,ROOT/'work'));break
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 705, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\shutil.py", line 701, in _rmtree_unsafe
+    os.unlink(fullname)
+    ~~~~~~~~~^^^^^^^^^^
+PermissionError: [WinError 5] 拒绝访问。: 'D:\\CodexNativeBuilds\\work\\__main__-main-7dc1af2a2a44\\quiet-rejected-profile-yz4ii_wm\\libgdcore.dll'
