@@ -1,0 +1,6 @@
+{
+  "url": "https://raw.githubusercontent.com/godotengine/godot/3.6-stable/core/math/random_pcg.h",
+  "source_sha256": "78df30f09c976fb5250134b44fd3dd4552c399bf350bca9776423e7b2078f017",
+  "license_header_retained": true,
+  "checked_scope": "randf scaling formula and draw order only; no whole-RNG accessor claim"
+}

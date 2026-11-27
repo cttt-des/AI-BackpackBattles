@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "moved_owned_runtime_copies_out_of_source": {
+    "__pycache__/__init__.cpython-314.pyc": "da4ba6914e0ad47f4d1cf91390e74019cf438565f70b6592b3de2e1c2e5bd48b",
+    "__pycache__/build_windows.cpython-314.pyc": "e5f6df7761a571ccf5fd926b68800f5bf8fe41b9dfdfe7eb764bb3f4de2ec693",
+    "__pycache__/sim.cpython-314.pyc": "51e19b11a016148aebc4e115526828613cd82d2c1190e591b92c6c882cc52b04",
+    "libgdcore.dll": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52"
+  },
+  "all715_source_bytes_unchanged": true,
+  "no_actual_test_DLL_profile_or_user_file_changed": true
+}

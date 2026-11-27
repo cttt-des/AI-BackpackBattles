@@ -1,0 +1,26 @@
+{
+  "one_candidate_only": true,
+  "all_previous_repair_and_optimizations_retained": true,
+  "max_compiler_workers": 2,
+  "below_normal_compilers": true,
+  "full20_instrumentation_fresh18_PGO": true,
+  "all_original_FP_flags": true,
+  "all_retained_cases": true,
+  "full_original_events": 2604,
+  "AB": {
+    "initial_pairs": 24,
+    "maximum_pairs": 32,
+    "only_one8pair_followup_on_mixed_sensitivity": true,
+    "require_both_CPU_and_wall_medians_positive": true,
+    "retain_all_extremes": true,
+    "no_same_source_retiming": true
+  },
+  "load20": {
+    "empirical_formula": true,
+    "allow_extrapolation": true,
+    "no_load_coverage_gate": true
+  },
+  "raw24_minimum_fights_per_second": 50,
+  "no_new_branches": true,
+  "no_old200_goal": true
+}

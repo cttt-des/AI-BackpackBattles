@@ -1,0 +1,82 @@
+{
+  "passed": true,
+  "checked_hot_objects": 18,
+  "fp_contract_off_all": true,
+  "compiler_options_identical_except_profile_directory": true,
+  "no_compiler_pta": true,
+  "dll_sha256": "8d8c35dc67a4daadb4904d12bf2776744eb0121731904948021129584c5d0cb3",
+  "objects": {
+    "engine_wrapper.o": {
+      "object_sha256": "1f3e6474f96e148dac4a69e951aa54acc55706718b8389512239450c32162954",
+      "options_sha256": "661e9114dc94b5218afa0bd04463f81632207cf5ff8d651b14280211fdbcee20"
+    },
+    "gd_rt.o": {
+      "object_sha256": "395ce29995648471ff72c769e6f265588472fea526a73797c8a5e4de72758a67",
+      "options_sha256": "661e9114dc94b5218afa0bd04463f81632207cf5ff8d651b14280211fdbcee20"
+    },
+    "shard_00.o": {
+      "object_sha256": "f9cd40f8285560234fbd248c8aa52f815dcd75fd99b2c5b4d4d45a5ec09e5d09",
+      "options_sha256": "661e9114dc94b5218afa0bd04463f81632207cf5ff8d651b14280211fdbcee20"
+    },
+    "shard_01.o": {
+      "object_sha256": "fdf7e9cb21a39a5980349f37c79763c0e7d1e4246bdc1e69f1517f31bfe69dca",
+      "options_sha256": "661e9114dc94b5218afa0bd04463f81632207cf5ff8d651b14280211fdbcee20"
+    },
+    "shard_02.o": {
+      "object_sha256": "c0ef46bd237d2482d61554486b84bfeb1c7aad61c3577a49381d8d126af08b11",
+      "options_sha256": "661e9114dc94b5218afa0bd04463f81632207cf5ff8d651b14280211fdbcee20"
+    },
+    "shard_03.o": {
+      "object_sha256": "9b82de6e264b1c4bbea6a16edd608553517b145b04f391a7012674e55e875389",
+      "options_sha256": "661e9114dc94b5218afa0bd04463f81632207cf5ff8d651b14280211fdbcee20"
+    },
+    "shard_04.o": {
+      "object_sha256": "058f7bded12870859e8953ae99829f925608618fd15b3613ededf87707969e57",
+      "options_sha256": "661e9114dc94b5218afa0bd04463f81632207cf5ff8d651b14280211fdbcee20"
+    },
+    "shard_05.o": {
+      "object_sha256": "8120b01cd18d1c27da1f4f32332136c106a0d487fd312d26c3a236b9c86885d5",
+      "options_sha256": "661e9114dc94b5218afa0bd04463f81632207cf5ff8d651b14280211fdbcee20"
+    },
+    "shard_06.o": {
+      "object_sha256": "09ab355b34ce6a76ea4337378c8e414e8ffe36a151bdc74f1276823464c6876f",
+      "options_sha256": "661e9114dc94b5218afa0bd04463f81632207cf5ff8d651b14280211fdbcee20"
+    },
+    "shard_07.o": {
+      "object_sha256": "c4eb390565cdacfba6d66583c94d6be7d74d4cebedffe066c4a73f4e9fb305ac",
+      "options_sha256": "661e9114dc94b5218afa0bd04463f81632207cf5ff8d651b14280211fdbcee20"
+    },
+    "shard_08.o": {
+      "object_sha256": "64aed49575635e1779ceb9b9d4b888e5f8caffe911e4a9b239d5e774a3833810",
+      "options_sha256": "661e9114dc94b5218afa0bd04463f81632207cf5ff8d651b14280211fdbcee20"
+    },
+    "shard_09.o": {
+      "object_sha256": "daa66bbe80723ffee17edf8a07159e87e7ab0abbadb79a7eb47a08472e010da4",
+      "options_sha256": "661e9114dc94b5218afa0bd04463f81632207cf5ff8d651b14280211fdbcee20"
+    },
+    "shard_10.o": {
+      "object_sha256": "9753ca03db4d4b0b0f1a7df5ca0cd59ecd04392841662654e6fa8ef21703f49c",
+      "options_sha256": "661e9114dc94b5218afa0bd04463f81632207cf5ff8d651b14280211fdbcee20"
+    },
+    "shard_11.o": {
+      "object_sha256": "62daa61b47be5ffaf907c5e855efb25673faf820723b370328f25440aea29505",
+      "options_sha256": "661e9114dc94b5218afa0bd04463f81632207cf5ff8d651b14280211fdbcee20"
+    },
+    "shard_12.o": {
+      "object_sha256": "21ac241d8e938e97ae424bc400627610e76401e23f1a3382403aa9b55ffb56f0",
+      "options_sha256": "661e9114dc94b5218afa0bd04463f81632207cf5ff8d651b14280211fdbcee20"
+    },
+    "shard_13.o": {
+      "object_sha256": "acc49a671ad2b036a8acca66dc2113df0985973afaaa36575fea1c7a4701d921",
+      "options_sha256": "661e9114dc94b5218afa0bd04463f81632207cf5ff8d651b14280211fdbcee20"
+    },
+    "shard_14.o": {
+      "object_sha256": "d44eb7813ba08be42801f1c57f29c33ccc77b5595fcd5f711f876c9074603b62",
+      "options_sha256": "661e9114dc94b5218afa0bd04463f81632207cf5ff8d651b14280211fdbcee20"
+    },
+    "shard_15.o": {
+      "object_sha256": "807314bacf0adad0df5c4642103df91f92be8b7138df352e1af7929aa267480d",
+      "options_sha256": "661e9114dc94b5218afa0bd04463f81632207cf5ff8d651b14280211fdbcee20"
+    }
+  }
+}

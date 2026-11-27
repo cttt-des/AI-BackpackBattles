@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "8d8c35dc67a4daadb4904d12bf2776744eb0121731904948021129584c5d0cb3",
+  "output": "512 RNG bitwise/state comparisons, 32 timer ticks, new-slot C++ override fallback and exact-type audit passed\n",
+  "compiled_against_candidate_headers": true
+}

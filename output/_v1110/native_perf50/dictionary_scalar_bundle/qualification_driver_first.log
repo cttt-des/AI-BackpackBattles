@@ -1,0 +1,42 @@
+Starting actual_frame
+Passed actual_frame
+Starting original_ordering
+Passed original_ordering
+Starting original_potions
+Passed original_potions
+Starting generate_property_tests
+Passed generate_property_tests
+Starting generate_type_constructor_tests
+Passed generate_type_constructor_tests
+Starting verify_event_identity
+Passed verify_event_identity
+Starting verify_lazy_diagnostics
+Passed verify_lazy_diagnostics
+Starting verify_components
+Passed verify_components
+Starting verify_static_collections
+Passed verify_static_collections
+Starting verify_static_setup
+Passed verify_static_setup
+Starting verify_dispatch_chain
+Passed verify_dispatch_chain
+Starting verify_spatial
+Passed verify_spatial
+Starting verify_motion_indices
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\next_two.py", line 330, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\next_two.py", line 329, in main
+    globals()[args.phase]()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\next_two.py", line 165, in qualify
+    log=work/f'{name}_qualification_attempt{number}.log';print('Starting '+name,flush=True);run(script,*args,log=log)
+                                                                                            ~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\next_two.py", line 17, in run
+    with log.open('wb') as stream:subprocess.run(command,stdout=stream,stderr=subprocess.STDOUT,check=True)
+                                  ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe', '-u', '-X', 'utf8', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\dictionary_scalar_bundle\\verify_motion_indices.py']' returned non-zero exit status 1.

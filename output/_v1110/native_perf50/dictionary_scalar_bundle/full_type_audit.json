@@ -1,0 +1,139 @@
+{
+  "candidate_dll_sha256": "8d8c35dc67a4daadb4904d12bf2776744eb0121731904948021129584c5d0cb3",
+  "fights": 2604,
+  "coverage": {
+    "generic_hits": 146278076,
+    "funcref_hits": 2143020,
+    "lazy_resolutions": 952008,
+    "unsupported_types": 2601,
+    "audit_mismatch": 0,
+    "selected_fallback": 4123200
+  },
+  "object_route_coverage": {
+    "instance_methods": 14158254,
+    "static_context_f32": 1112809
+  },
+  "integer_grid_coverage": {
+    "fast_queries": 9008725,
+    "ordinary_queries": 0,
+    "enabled_dicts": 5208,
+    "rejected_dicts": 0,
+    "mode_conversions": 0,
+    "reserved": 0
+  },
+  "active_cooldown_coverage": {
+    "indexed_phases": 5035984,
+    "rebuilds": 26874,
+    "cache_hits": 5009110,
+    "indexed_owners": 50404556,
+    "build_fallbacks": 0,
+    "same_pass_resumes": 11003,
+    "eligibility_changes": 322196,
+    "build_slots": 1232926,
+    "build_active_owners": 277689,
+    "reserved": 0
+  },
+  "targeted_timer_coverage": {
+    "indexed_passes": 5035984,
+    "rebuilds": 5208,
+    "cache_hits": 5030776,
+    "indexed_owners": 9773443,
+    "fallback_passes": 0,
+    "same_pass_resumes": 0,
+    "watched_invalidations": 0,
+    "build_slots": 220201,
+    "build_eligible_owners": 10003,
+    "unknown_boundaries": 0
+  },
+  "motion_index_coverage": {
+    "native_runs": 2517997,
+    "native_entries": 5564319,
+    "kept_entries": 5418491
+  },
+  "spatial_coverage": {
+    "lookups": 9008725,
+    "hits": 3360453,
+    "object_dedup": 3358915,
+    "fallbacks": 0
+  },
+  "dispatch_chain_coverage": {
+    "behavior_methods": 275579,
+    "behavior_empty": 0,
+    "behavior_probes": 777809,
+    "flat_callbacks": 2143020
+  },
+  "static_setup_coverage": {
+    "bulk_stack_tables": 202616,
+    "ordered_stack_fallback": 0,
+    "metric_counts": 1272643,
+    "affected_loops": 202616
+  },
+  "event_identity_coverage": {
+    "fast_identities": 663207,
+    "fallbacks": 0,
+    "fast_emissions": 2550578,
+    "emission_fallbacks": 0
+  },
+  "lazy_diagnostic_coverage": {
+    "0": {
+      "skipped": 1427182,
+      "retained": 38120
+    },
+    "1": {
+      "skipped": 24831,
+      "retained": 8895
+    },
+    "2": {
+      "skipped": 7512,
+      "retained": 0
+    },
+    "3": {
+      "skipped": 6170,
+      "retained": 0
+    },
+    "4": {
+      "skipped": 23326,
+      "retained": 0
+    },
+    "5": {
+      "skipped": 23326,
+      "retained": 0
+    },
+    "6": {
+      "skipped": 0,
+      "retained": 22792
+    }
+  },
+  "static_collection_coverage": {
+    "attack_lookup": 128560,
+    "round_lookup": 2604,
+    "stack_count": 1070027
+  },
+  "hot_slot_coverage": {
+    "new_method_hits": 1126227,
+    "new_field_hits": 16608087
+  },
+  "type_constructor_coverage": {
+    "type_hits": 51782642,
+    "type_fallback": 0,
+    "fused_initializations": 1134539,
+    "factory_fallback": 0
+  },
+  "old_event_kernel_type_mismatches": 0,
+  "receipts": [
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_dictionary_scalar_bundle_bundle_host_phases_observed_base_current\\cpp",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_dictionary_scalar_bundle_bundle_host_phases_observed_base_last",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_dictionary_scalar_bundle_bundle_host_phases_reuse_0",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_dictionary_scalar_bundle_bundle_host_phases_reuse_1",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_dictionary_scalar_bundle_bundle_host_phases_reuse_2",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_dictionary_scalar_bundle_bundle_host_phases_reuse_3",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_dictionary_scalar_bundle_bundle_host_phases_reuse_4",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_dictionary_scalar_bundle_bundle_host_phases_reuse_5",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_dictionary_scalar_bundle_bundle_host_phases_reuse_6",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_dictionary_scalar_bundle_bundle_host_rng_phases_new_expand"
+  ],
+  "property_coverage": {
+    "field_hits": 68590447,
+    "selected_fallback": 0
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "candidate": "rng_scaling_bundle",
+  "source": "GdRng::randf, gd_rt.hpp",
+  "mantissa_float_after_original_conversion": [
+    2147483648,
+    4294967296
+  ],
+  "clz_bounds": [
+    0,
+    31
+  ],
+  "result_bounds": [
+    2.3283064365386963e-10,
+    1
+  ],
+  "original_unsigned_to_float_conversion_unchanged": true,
+  "normal_exact_binary_scaling_no_rounding_needed": true,
+  "original_proto_zero_branch_and_one_draw_unchanged": true,
+  "ordinary_two_draws_unchanged": true,
+  "randd_and_remaining_range_arithmetic_unchanged": true,
+  "IEEE_binary32_only_with_original_fallback": true,
+  "proposed_actual_DLL_boundary_cases": 337920,
+  "proposed64_draw_sequence_cases": 16384,
+  "all16_FP_modes_flags_errno_MXCSR_and_state_required": true,
+  "not_yet_built_or_timed": true
+}

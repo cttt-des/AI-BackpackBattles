@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "dll_sha256": "8d8c35dc67a4daadb4904d12bf2776744eb0121731904948021129584c5d0cb3",
+  "baseline_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "actual_frame_cases": 135168,
+  "all_original_counter_equivalence": true,
+  "original_sort_potion_listener_oracles": true,
+  "all_current_production_weapon_cases": 136128,
+  "full_original_event_cases": 2604
+}

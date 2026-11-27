@@ -1,0 +1,41 @@
+{
+  "baseline": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "baseline_remote": "27223087f31cf6915fd950860615b711a3ca2d1f",
+  "selected_in_order": [
+    {
+      "name": "dictionary_scalar_bundle",
+      "scope": "Same-kind Int/Obj/Str equality within existing hash-qualified dictionary query, no hash/order change",
+      "observed_queries": 2578136
+    },
+    {
+      "name": "event_loop_scalar_bundle",
+      "scope": "Bounded listener counter and freshly proven Bool trace-off field gate, no caching across callbacks and all3 live lengths retained"
+    }
+  ],
+  "screened_out": [
+    {
+      "name": "bound callback argument stack merge",
+      "observed_bound_calls": 0
+    },
+    {
+      "name": "dictionary duplicate",
+      "observed_calls": 0
+    },
+    {
+      "name": "reserved unindexed dictionary construction",
+      "observed_queries": 1221,
+      "reason": "Only 1221 of 2578136 queries, lower coverage than query kernel"
+    },
+    {
+      "name": "weapon full typed chain",
+      "reason": "Two completed nonpositive trials; no new structure to repeat"
+    },
+    {
+      "name": "global value representation or compact listener storage",
+      "reason": "Higher proof and layout cost; first isolate actual query and loop overhead"
+    }
+  ],
+  "diagnostic_results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "selection_is_hypothesis_not_performance_claim": true,
+  "two_sequential_candidates_no_new_branches": true
+}

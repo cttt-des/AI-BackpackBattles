@@ -1,0 +1,26 @@
+{
+ "caseId": "run604616_r16_o704706_r16",
+ "category": "pass",
+ "missing_fields": [],
+ "notes": [],
+ "wall_s": 0.031308499979786575,
+ "winner": {
+  "cpp": "opponent",
+  "original": "opponent"
+ },
+ "winner_match": true,
+ "natural_ending_match": true,
+ "events_cpp_vs_original": {
+  "rows_cpp": 364,
+  "rows_original": 364,
+  "first_divergence": null,
+  "cpp_row": null,
+  "original_row": null
+ },
+ "original_events_sha256": "4283291a48f1fd8c3f3d681a0448cdb1b26ae4e0b6c4d7953f7820ce81353b6d",
+ "original_boundaries_sha256": "9bfe62aa7525993783ed3f712c0dd34dc723a7f67d1e41eb0af8f841d2191e2e",
+ "cpp_events_sha256": "a54db166055e41de081e7ce5aba122ca7f9e2e9663840b903c0bc44585ddebeb",
+ "reference_manifest_sha256": "02aa3e7aa49bd2b778667b90487529a07d1577972d271e2317afa8606fd151ac",
+ "strict_gem_first": null,
+ "strict_item_first": null
+}

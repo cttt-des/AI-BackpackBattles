@@ -1,0 +1,28 @@
+{
+  "dll_sha256": "8d8c35dc67a4daadb4904d12bf2776744eb0121731904948021129584c5d0cb3",
+  "serial": null,
+  "load_calibration": {
+    "median_fights_per_second": 120.2916663671079,
+    "minimum_fights_per_second": 91.82832584469963,
+    "maximum_fights_per_second": 138.50546919723106,
+    "load_range": [
+      18.487805135564216,
+      44.214374374293115
+    ]
+  },
+  "fitted_fights_per_second_at20": 132.01679309271128,
+  "reference_is_extrapolation": false,
+  "r_squared_log_wall_time": 0.898687873234326,
+  "validation": {
+    "median_absolute_relative_time_error": 0.033514628902547514,
+    "p90_absolute_relative_time_error": 0.07390573809199993,
+    "constant_median_absolute_relative_time_error": 0.12992669884050698
+  },
+  "raw24_gate_passed": null,
+  "nonrelease_only": true,
+  "all_samples_retained": true,
+  "report_sha256": {
+    "bundle_load_calibration.json": "1723107f52e65aac804828db0170879298129fb4f2bc903b6f5847952730a82c",
+    "bundle_load20.json": "6924421760d173432ce9d5d43e537d6cb65aee03dad2f3eb25198d2bda413cac"
+  }
+}

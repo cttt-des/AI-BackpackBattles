@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\probe_next_two.py", line 39, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\probe_next_two.py", line 34, in main
+    sim=load_simulator(objects/'probe.dll');counts=(ctypes.c_uint64*256).in_dll(ctypes.CDLL(str(objects/'probe.dll')),'next_two_probe_counts')
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\bench_native_hot_path.py", line 27, in load_simulator
+    return module.NativeSimulator(lib_path=dll.resolve(), runtime_path=SIM / "assets/gd_core_runtime.json")
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\sim_native\native_sim_cpp\native_sim\sim.py", line 243, in __init__
+    self._bind_signatures()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\sim_native\native_sim_cpp\native_sim\sim.py", line 251, in _bind_signatures
+    lib.gd_sim_init.argtypes = []
+    ^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 486, in __getattr__
+    func = self.__getitem__(name)
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 491, in __getitem__
+    func = self._FuncPtr((name_or_ordinal, self))
+AttributeError: function 'gd_sim_init' not found

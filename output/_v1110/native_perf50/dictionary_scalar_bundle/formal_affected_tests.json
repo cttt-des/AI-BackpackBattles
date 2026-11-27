@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "dll_sha256": "8d8c35dc67a4daadb4904d12bf2776744eb0121731904948021129584c5d0cb3",
+  "baseline_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "cases": 322944,
+  "all16_FP_modes": true,
+  "actual_separate_DLL_find_index_functions": true,
+  "all_mixed_numeric_NaN_collisions_recursive_and_identity_keys": true,
+  "hash_and_iteration_order_unchanged": true,
+  "fixture_sha256": "5cee40998c34ddc73ad97e66048ebb43f033dc1cda60ff75e2b6de778195038e",
+  "raw_sha256": {
+    "baseline_cases.json": "1669a81b705345d192668557c1782fe7a3f628133574c3324efef87c510a9514",
+    "candidate_cases.json": "1669a81b705345d192668557c1782fe7a3f628133574c3324efef87c510a9514"
+  }
+}
