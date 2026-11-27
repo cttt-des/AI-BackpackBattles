@@ -1,0 +1,26 @@
+{
+  "selected": "hot-state layout schema across item/character/buff/context; preserve original execution",
+  "evidence": [
+    "3,633,579 scattered cooldown item accesses per fixed200",
+    "frame and trigger chains account for76.38% sampled cost",
+    "current CoreItem2112 bytes with hot fields distributed across distant lines",
+    "global memcpy15MB is not evidence that only copy instructions dominate"
+  ],
+  "scope": "one structural representation prototype, no additional micro-fixes",
+  "comparison": [
+    "whole-frame skip has83.6% log-free bins but requires exact recurrence and full observer certificate; absence of logs is insufficient",
+    "full event-stream rewrite changes phase and callback model; larger semantic proof surface",
+    "GdVal16 needs lossless Vec2 indirection and all ABI boundaries; no evidence yet that tradeoff wins",
+    "lineup blueprint promising for repeated lineups; cold build still must execute ordered setup callbacks and RNG"
+  ],
+  "limits": "layout change is an architecture prototype, not an algorithmic removal of all frame work; no promised gain or claim of cache misses measured",
+  "frozen_AB_protocol_sha256": "7ccd99d086f59acac38e69b95e305b44d16f77d52565cea829df8dcc6d3dd921",
+  "must_use_exactly_predeclared24_quads": true,
+  "no_same_source_retiming": true,
+  "complete2604_original_events_and_retained_directed_tests_required": true,
+  "deploy_only_after_credible_positive_gain": true,
+  "source_maintenance_recipe_and_two_full_regenerations_required": true,
+  "max_compiler_workers": 2,
+  "below_normal_compilers": true,
+  "no_new_branches": true
+}

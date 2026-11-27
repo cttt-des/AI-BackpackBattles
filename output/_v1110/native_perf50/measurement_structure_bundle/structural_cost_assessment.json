@@ -1,0 +1,1320 @@
+{
+  "samples": 8070,
+  "exclusive_sample_counts": {
+    "frame_without_trigger": 2702,
+    "item_assembly": 1532,
+    "other_setup_and_export": 374,
+    "trigger_chain": 3462
+  },
+  "exclusive_sample_pct": {
+    "frame_without_trigger": 33.482032218091696,
+    "item_assembly": 18.983890954151178,
+    "other_setup_and_export": 4.634448574969021,
+    "trigger_chain": 42.899628252788105
+  },
+  "sampling_is_attribution_not_achievable_gain": true,
+  "original_log_inactivity": {
+    "total_ticks": 193352,
+    "ticks_without_logged_event": 161658,
+    "percent": 83.6081343870247,
+    "timestamp_rounding_to_60Hz_bins": true,
+    "not_proof_of_semantic_empty_frames": true,
+    "cases": [
+      {
+        "case_id": "run704618_r13_o300135_r13",
+        "ticks": 152,
+        "logged_event_tick_bins": 20,
+        "ticks_without_logged_event": 132
+      },
+      {
+        "case_id": "run705018_r12_o604499_r12",
+        "ticks": 204,
+        "logged_event_tick_bins": 29,
+        "ticks_without_logged_event": 175
+      },
+      {
+        "case_id": "run604681_r14_o300198_r14",
+        "ticks": 221,
+        "logged_event_tick_bins": 30,
+        "ticks_without_logged_event": 191
+      },
+      {
+        "case_id": "run1390_r18",
+        "ticks": 240,
+        "logged_event_tick_bins": 40,
+        "ticks_without_logged_event": 200
+      },
+      {
+        "case_id": "run704860_r14_o704849_r14",
+        "ticks": 254,
+        "logged_event_tick_bins": 33,
+        "ticks_without_logged_event": 221
+      },
+      {
+        "case_id": "run705022_r14_o101494_r14",
+        "ticks": 267,
+        "logged_event_tick_bins": 49,
+        "ticks_without_logged_event": 218
+      },
+      {
+        "case_id": "run704866_r15_o500258_r15",
+        "ticks": 275,
+        "logged_event_tick_bins": 32,
+        "ticks_without_logged_event": 243
+      },
+      {
+        "case_id": "run704462_r1_o704769_r1",
+        "ticks": 281,
+        "logged_event_tick_bins": 15,
+        "ticks_without_logged_event": 266
+      },
+      {
+        "case_id": "run101401_r3_o704663_r3",
+        "ticks": 294,
+        "logged_event_tick_bins": 21,
+        "ticks_without_logged_event": 273
+      },
+      {
+        "case_id": "run100936_r1_o101077_r1",
+        "ticks": 302,
+        "logged_event_tick_bins": 14,
+        "ticks_without_logged_event": 288
+      },
+      {
+        "case_id": "run604863_r11_o705017_r11",
+        "ticks": 307,
+        "logged_event_tick_bins": 50,
+        "ticks_without_logged_event": 257
+      },
+      {
+        "case_id": "run704991_r15_o200246_r15",
+        "ticks": 317,
+        "logged_event_tick_bins": 45,
+        "ticks_without_logged_event": 272
+      },
+      {
+        "case_id": "run101384_r1_o604589_r1",
+        "ticks": 326,
+        "logged_event_tick_bins": 16,
+        "ticks_without_logged_event": 310
+      },
+      {
+        "case_id": "run705039_r18_o704909_r18",
+        "ticks": 333,
+        "logged_event_tick_bins": 79,
+        "ticks_without_logged_event": 254
+      },
+      {
+        "case_id": "run101411_r8_o704957_r8",
+        "ticks": 341,
+        "logged_event_tick_bins": 43,
+        "ticks_without_logged_event": 298
+      },
+      {
+        "case_id": "run604613_r10_o101581_r10",
+        "ticks": 344,
+        "logged_event_tick_bins": 31,
+        "ticks_without_logged_event": 313
+      },
+      {
+        "case_id": "run101590_r15_o604520_r15",
+        "ticks": 350,
+        "logged_event_tick_bins": 50,
+        "ticks_without_logged_event": 300
+      },
+      {
+        "case_id": "run704242_r18_o604645_r18",
+        "ticks": 357,
+        "logged_event_tick_bins": 52,
+        "ticks_without_logged_event": 305
+      },
+      {
+        "case_id": "run101760_r16_o101560_r16",
+        "ticks": 360,
+        "logged_event_tick_bins": 46,
+        "ticks_without_logged_event": 314
+      },
+      {
+        "case_id": "run704950_r9_o101367_r9",
+        "ticks": 360,
+        "logged_event_tick_bins": 67,
+        "ticks_without_logged_event": 293
+      },
+      {
+        "case_id": "run704969_r15_o604694_r15",
+        "ticks": 364,
+        "logged_event_tick_bins": 38,
+        "ticks_without_logged_event": 326
+      },
+      {
+        "case_id": "run704241_r17_o101321_r17",
+        "ticks": 372,
+        "logged_event_tick_bins": 61,
+        "ticks_without_logged_event": 311
+      },
+      {
+        "case_id": "run705153_r16_o100892_r16",
+        "ticks": 377,
+        "logged_event_tick_bins": 44,
+        "ticks_without_logged_event": 333
+      },
+      {
+        "case_id": "run705102_r9_o704957_r9",
+        "ticks": 381,
+        "logged_event_tick_bins": 36,
+        "ticks_without_logged_event": 345
+      },
+      {
+        "case_id": "run101737_r9_o100940_r9",
+        "ticks": 388,
+        "logged_event_tick_bins": 36,
+        "ticks_without_logged_event": 352
+      },
+      {
+        "case_id": "run704814_r18_o200200_r18",
+        "ticks": 395,
+        "logged_event_tick_bins": 76,
+        "ticks_without_logged_event": 319
+      },
+      {
+        "case_id": "run704785_r18_o604764_r18",
+        "ticks": 402,
+        "logged_event_tick_bins": 77,
+        "ticks_without_logged_event": 325
+      },
+      {
+        "case_id": "run101411_r9_o704524_r9",
+        "ticks": 406,
+        "logged_event_tick_bins": 45,
+        "ticks_without_logged_event": 361
+      },
+      {
+        "case_id": "run101581_r11_o101329_r11",
+        "ticks": 412,
+        "logged_event_tick_bins": 49,
+        "ticks_without_logged_event": 363
+      },
+      {
+        "case_id": "run500266_r1_o300182_r1",
+        "ticks": 418,
+        "logged_event_tick_bins": 15,
+        "ticks_without_logged_event": 403
+      },
+      {
+        "case_id": "run1339_r6",
+        "ticks": 423,
+        "logged_event_tick_bins": 42,
+        "ticks_without_logged_event": 381
+      },
+      {
+        "case_id": "run604869_r10_o101316_r10",
+        "ticks": 430,
+        "logged_event_tick_bins": 49,
+        "ticks_without_logged_event": 381
+      },
+      {
+        "case_id": "run704991_r12_o704508_r12",
+        "ticks": 434,
+        "logged_event_tick_bins": 56,
+        "ticks_without_logged_event": 378
+      },
+      {
+        "case_id": "run100828_r18_o604808_r18",
+        "ticks": 439,
+        "logged_event_tick_bins": 98,
+        "ticks_without_logged_event": 341
+      },
+      {
+        "case_id": "run704991_r8_o704410_r8",
+        "ticks": 443,
+        "logged_event_tick_bins": 46,
+        "ticks_without_logged_event": 397
+      },
+      {
+        "case_id": "run705068_r9_o101696_r9",
+        "ticks": 451,
+        "logged_event_tick_bins": 61,
+        "ticks_without_logged_event": 390
+      },
+      {
+        "case_id": "run705141_r6_o100932_r6",
+        "ticks": 458,
+        "logged_event_tick_bins": 39,
+        "ticks_without_logged_event": 419
+      },
+      {
+        "case_id": "run704697_r12_o604616_r12",
+        "ticks": 463,
+        "logged_event_tick_bins": 46,
+        "ticks_without_logged_event": 417
+      },
+      {
+        "case_id": "run604871_r3_o101375_r3",
+        "ticks": 468,
+        "logged_event_tick_bins": 29,
+        "ticks_without_logged_event": 439
+      },
+      {
+        "case_id": "run101489_r6_o705109_r6",
+        "ticks": 476,
+        "logged_event_tick_bins": 58,
+        "ticks_without_logged_event": 418
+      },
+      {
+        "case_id": "run100942_r6_o704338_r6",
+        "ticks": 480,
+        "logged_event_tick_bins": 48,
+        "ticks_without_logged_event": 432
+      },
+      {
+        "case_id": "run705078_r12_o101367_r12",
+        "ticks": 480,
+        "logged_event_tick_bins": 122,
+        "ticks_without_logged_event": 358
+      },
+      {
+        "case_id": "run1534_r15",
+        "ticks": 485,
+        "logged_event_tick_bins": 82,
+        "ticks_without_logged_event": 403
+      },
+      {
+        "case_id": "run400026_r16_o101621_r16",
+        "ticks": 493,
+        "logged_event_tick_bins": 105,
+        "ticks_without_logged_event": 388
+      },
+      {
+        "case_id": "run500240_r15_o300198_r15",
+        "ticks": 498,
+        "logged_event_tick_bins": 69,
+        "ticks_without_logged_event": 429
+      },
+      {
+        "case_id": "run704697_r16_o704726_r16",
+        "ticks": 504,
+        "logged_event_tick_bins": 65,
+        "ticks_without_logged_event": 439
+      },
+      {
+        "case_id": "run101489_r1_o704681_r1",
+        "ticks": 511,
+        "logged_event_tick_bins": 21,
+        "ticks_without_logged_event": 490
+      },
+      {
+        "case_id": "run100936_r16_o100846_r16",
+        "ticks": 515,
+        "logged_event_tick_bins": 100,
+        "ticks_without_logged_event": 415
+      },
+      {
+        "case_id": "run704879_r17_o604818_r17",
+        "ticks": 517,
+        "logged_event_tick_bins": 82,
+        "ticks_without_logged_event": 435
+      },
+      {
+        "case_id": "run704223_r16_o100993_r16",
+        "ticks": 523,
+        "logged_event_tick_bins": 86,
+        "ticks_without_logged_event": 437
+      },
+      {
+        "case_id": "run867_r17",
+        "ticks": 526,
+        "logged_event_tick_bins": 143,
+        "ticks_without_logged_event": 383
+      },
+      {
+        "case_id": "run777_r14",
+        "ticks": 531,
+        "logged_event_tick_bins": 79,
+        "ticks_without_logged_event": 452
+      },
+      {
+        "case_id": "run704861_r12_o400060_r12",
+        "ticks": 537,
+        "logged_event_tick_bins": 66,
+        "ticks_without_logged_event": 471
+      },
+      {
+        "case_id": "run704728_r16_o704903_r16",
+        "ticks": 540,
+        "logged_event_tick_bins": 104,
+        "ticks_without_logged_event": 436
+      },
+      {
+        "case_id": "run101764_r6_o704862_r6",
+        "ticks": 545,
+        "logged_event_tick_bins": 47,
+        "ticks_without_logged_event": 498
+      },
+      {
+        "case_id": "run704995_r12_o101334_r12",
+        "ticks": 548,
+        "logged_event_tick_bins": 82,
+        "ticks_without_logged_event": 466
+      },
+      {
+        "case_id": "run101629_r15_o704334_r15",
+        "ticks": 555,
+        "logged_event_tick_bins": 104,
+        "ticks_without_logged_event": 451
+      },
+      {
+        "case_id": "run101768_r9_o704461_r9",
+        "ticks": 559,
+        "logged_event_tick_bins": 67,
+        "ticks_without_logged_event": 492
+      },
+      {
+        "case_id": "run847_r9",
+        "ticks": 566,
+        "logged_event_tick_bins": 69,
+        "ticks_without_logged_event": 497
+      },
+      {
+        "case_id": "run704259_r16_o704679_r16",
+        "ticks": 574,
+        "logged_event_tick_bins": 116,
+        "ticks_without_logged_event": 458
+      },
+      {
+        "case_id": "run101576_r12_o101157_r12",
+        "ticks": 580,
+        "logged_event_tick_bins": 107,
+        "ticks_without_logged_event": 473
+      },
+      {
+        "case_id": "run101489_r7_o100932_r7",
+        "ticks": 584,
+        "logged_event_tick_bins": 74,
+        "ticks_without_logged_event": 510
+      },
+      {
+        "case_id": "run500279_r8_o704864_r8",
+        "ticks": 590,
+        "logged_event_tick_bins": 70,
+        "ticks_without_logged_event": 520
+      },
+      {
+        "case_id": "run705145_r6_o300119_r6",
+        "ticks": 593,
+        "logged_event_tick_bins": 57,
+        "ticks_without_logged_event": 536
+      },
+      {
+        "case_id": "run100995_r3_o101022_r3",
+        "ticks": 600,
+        "logged_event_tick_bins": 25,
+        "ticks_without_logged_event": 575
+      },
+      {
+        "case_id": "run1550_r11",
+        "ticks": 600,
+        "logged_event_tick_bins": 69,
+        "ticks_without_logged_event": 531
+      },
+      {
+        "case_id": "run969_r18",
+        "ticks": 600,
+        "logged_event_tick_bins": 121,
+        "ticks_without_logged_event": 479
+      },
+      {
+        "case_id": "run835_r17",
+        "ticks": 605,
+        "logged_event_tick_bins": 97,
+        "ticks_without_logged_event": 508
+      },
+      {
+        "case_id": "run101166_r9_o704869_r9",
+        "ticks": 614,
+        "logged_event_tick_bins": 111,
+        "ticks_without_logged_event": 503
+      },
+      {
+        "case_id": "run500274_r15_o604534_r15",
+        "ticks": 619,
+        "logged_event_tick_bins": 108,
+        "ticks_without_logged_event": 511
+      },
+      {
+        "case_id": "run690_r6",
+        "ticks": 625,
+        "logged_event_tick_bins": 51,
+        "ticks_without_logged_event": 574
+      },
+      {
+        "case_id": "run101337_r15_o604831_r15",
+        "ticks": 632,
+        "logged_event_tick_bins": 113,
+        "ticks_without_logged_event": 519
+      },
+      {
+        "case_id": "run101689_r18_o101178_r18",
+        "ticks": 635,
+        "logged_event_tick_bins": 124,
+        "ticks_without_logged_event": 511
+      },
+      {
+        "case_id": "run704227_r17_o604697_r17",
+        "ticks": 638,
+        "logged_event_tick_bins": 124,
+        "ticks_without_logged_event": 514
+      },
+      {
+        "case_id": "run604595_r9_o704800_r8",
+        "ticks": 643,
+        "logged_event_tick_bins": 64,
+        "ticks_without_logged_event": 579
+      },
+      {
+        "case_id": "run101620_r15_o704418_r15",
+        "ticks": 651,
+        "logged_event_tick_bins": 95,
+        "ticks_without_logged_event": 556
+      },
+      {
+        "case_id": "run300206_r6_o100995_r6",
+        "ticks": 655,
+        "logged_event_tick_bins": 50,
+        "ticks_without_logged_event": 605
+      },
+      {
+        "case_id": "run645_r11",
+        "ticks": 659,
+        "logged_event_tick_bins": 94,
+        "ticks_without_logged_event": 565
+      },
+      {
+        "case_id": "run101702_r6_o101271_r6",
+        "ticks": 662,
+        "logged_event_tick_bins": 50,
+        "ticks_without_logged_event": 612
+      },
+      {
+        "case_id": "run300168_r10_o604825_r10",
+        "ticks": 668,
+        "logged_event_tick_bins": 132,
+        "ticks_without_logged_event": 536
+      },
+      {
+        "case_id": "run100839_r14_o604658_r14",
+        "ticks": 673,
+        "logged_event_tick_bins": 76,
+        "ticks_without_logged_event": 597
+      },
+      {
+        "case_id": "run750_r11",
+        "ticks": 677,
+        "logged_event_tick_bins": 120,
+        "ticks_without_logged_event": 557
+      },
+      {
+        "case_id": "run500272_r1_o101552_r1",
+        "ticks": 682,
+        "logged_event_tick_bins": 31,
+        "ticks_without_logged_event": 651
+      },
+      {
+        "case_id": "run101642_r18_o704974_r18",
+        "ticks": 687,
+        "logged_event_tick_bins": 148,
+        "ticks_without_logged_event": 539
+      },
+      {
+        "case_id": "run1407_r1",
+        "ticks": 691,
+        "logged_event_tick_bins": 23,
+        "ticks_without_logged_event": 668
+      },
+      {
+        "case_id": "run832_r10",
+        "ticks": 695,
+        "logged_event_tick_bins": 107,
+        "ticks_without_logged_event": 588
+      },
+      {
+        "case_id": "run705120_r12_o100854_r12",
+        "ticks": 701,
+        "logged_event_tick_bins": 132,
+        "ticks_without_logged_event": 569
+      },
+      {
+        "case_id": "run1133_r6",
+        "ticks": 706,
+        "logged_event_tick_bins": 80,
+        "ticks_without_logged_event": 626
+      },
+      {
+        "case_id": "run100873_r12_o400043_r12",
+        "ticks": 711,
+        "logged_event_tick_bins": 81,
+        "ticks_without_logged_event": 630
+      },
+      {
+        "case_id": "run604695_r1_o100934_r1",
+        "ticks": 715,
+        "logged_event_tick_bins": 28,
+        "ticks_without_logged_event": 687
+      },
+      {
+        "case_id": "run1429_r11",
+        "ticks": 720,
+        "logged_event_tick_bins": 95,
+        "ticks_without_logged_event": 625
+      },
+      {
+        "case_id": "run919_r13",
+        "ticks": 720,
+        "logged_event_tick_bins": 116,
+        "ticks_without_logged_event": 604
+      },
+      {
+        "case_id": "run695_r18",
+        "ticks": 723,
+        "logged_event_tick_bins": 196,
+        "ticks_without_logged_event": 527
+      },
+      {
+        "case_id": "run101607_r6_o704809_r6",
+        "ticks": 728,
+        "logged_event_tick_bins": 72,
+        "ticks_without_logged_event": 656
+      },
+      {
+        "case_id": "run1359_r10",
+        "ticks": 734,
+        "logged_event_tick_bins": 82,
+        "ticks_without_logged_event": 652
+      },
+      {
+        "case_id": "run1041_r9",
+        "ticks": 740,
+        "logged_event_tick_bins": 94,
+        "ticks_without_logged_event": 646
+      },
+      {
+        "case_id": "run1225_r12",
+        "ticks": 748,
+        "logged_event_tick_bins": 148,
+        "ticks_without_logged_event": 600
+      },
+      {
+        "case_id": "run101294_r16_o500166_r16",
+        "ticks": 753,
+        "logged_event_tick_bins": 125,
+        "ticks_without_logged_event": 628
+      },
+      {
+        "case_id": "run705005_r3_o300190_r3",
+        "ticks": 757,
+        "logged_event_tick_bins": 42,
+        "ticks_without_logged_event": 715
+      },
+      {
+        "case_id": "run101376_r1_o604857_r1",
+        "ticks": 765,
+        "logged_event_tick_bins": 37,
+        "ticks_without_logged_event": 728
+      },
+      {
+        "case_id": "run604582_r4_o400067_r4",
+        "ticks": 772,
+        "logged_event_tick_bins": 37,
+        "ticks_without_logged_event": 735
+      },
+      {
+        "case_id": "run1149_r7",
+        "ticks": 779,
+        "logged_event_tick_bins": 71,
+        "ticks_without_logged_event": 708
+      },
+      {
+        "case_id": "run623_r6",
+        "ticks": 785,
+        "logged_event_tick_bins": 48,
+        "ticks_without_logged_event": 737
+      },
+      {
+        "case_id": "run101710_r1_o100915_r1",
+        "ticks": 793,
+        "logged_event_tick_bins": 39,
+        "ticks_without_logged_event": 754
+      },
+      {
+        "case_id": "run604565_r1_o101067_r1",
+        "ticks": 799,
+        "logged_event_tick_bins": 35,
+        "ticks_without_logged_event": 764
+      },
+      {
+        "case_id": "run801_r18",
+        "ticks": 809,
+        "logged_event_tick_bins": 137,
+        "ticks_without_logged_event": 672
+      },
+      {
+        "case_id": "run704285_r12_o300135_r12",
+        "ticks": 815,
+        "logged_event_tick_bins": 136,
+        "ticks_without_logged_event": 679
+      },
+      {
+        "case_id": "run704519_r9_o101125_r9",
+        "ticks": 820,
+        "logged_event_tick_bins": 115,
+        "ticks_without_logged_event": 705
+      },
+      {
+        "case_id": "run774_r12",
+        "ticks": 827,
+        "logged_event_tick_bins": 167,
+        "ticks_without_logged_event": 660
+      },
+      {
+        "case_id": "run101386_r1_o500238_r1",
+        "ticks": 833,
+        "logged_event_tick_bins": 35,
+        "ticks_without_logged_event": 798
+      },
+      {
+        "case_id": "run1524_r18",
+        "ticks": 840,
+        "logged_event_tick_bins": 225,
+        "ticks_without_logged_event": 615
+      },
+      {
+        "case_id": "run500246_r6_o101781_r6",
+        "ticks": 842,
+        "logged_event_tick_bins": 74,
+        "ticks_without_logged_event": 768
+      },
+      {
+        "case_id": "run1530_r18",
+        "ticks": 848,
+        "logged_event_tick_bins": 162,
+        "ticks_without_logged_event": 686
+      },
+      {
+        "case_id": "run101299_r1_o705105_r1",
+        "ticks": 856,
+        "logged_event_tick_bins": 35,
+        "ticks_without_logged_event": 821
+      },
+      {
+        "case_id": "run101728_r9_o500166_r9",
+        "ticks": 862,
+        "logged_event_tick_bins": 123,
+        "ticks_without_logged_event": 739
+      },
+      {
+        "case_id": "run704666_r14_o704842_r14",
+        "ticks": 870,
+        "logged_event_tick_bins": 161,
+        "ticks_without_logged_event": 709
+      },
+      {
+        "case_id": "run973_r6",
+        "ticks": 878,
+        "logged_event_tick_bins": 65,
+        "ticks_without_logged_event": 813
+      },
+      {
+        "case_id": "run1258_r12",
+        "ticks": 885,
+        "logged_event_tick_bins": 134,
+        "ticks_without_logged_event": 751
+      },
+      {
+        "case_id": "run101671_r6_o101277_r6",
+        "ticks": 896,
+        "logged_event_tick_bins": 83,
+        "ticks_without_logged_event": 813
+      },
+      {
+        "case_id": "run704530_r8_o101533_r8",
+        "ticks": 901,
+        "logged_event_tick_bins": 79,
+        "ticks_without_logged_event": 822
+      },
+      {
+        "case_id": "run704958_r12_o704760_r12",
+        "ticks": 913,
+        "logged_event_tick_bins": 122,
+        "ticks_without_logged_event": 791
+      },
+      {
+        "case_id": "run101418_r3_o200214_r3",
+        "ticks": 924,
+        "logged_event_tick_bins": 50,
+        "ticks_without_logged_event": 874
+      },
+      {
+        "case_id": "run704748_r16_o101248_r16",
+        "ticks": 932,
+        "logged_event_tick_bins": 234,
+        "ticks_without_logged_event": 698
+      },
+      {
+        "case_id": "run740_r18",
+        "ticks": 937,
+        "logged_event_tick_bins": 175,
+        "ticks_without_logged_event": 762
+      },
+      {
+        "case_id": "run705122_r17_o704376_r17",
+        "ticks": 946,
+        "logged_event_tick_bins": 157,
+        "ticks_without_logged_event": 789
+      },
+      {
+        "case_id": "run574_r7",
+        "ticks": 960,
+        "logged_event_tick_bins": 81,
+        "ticks_without_logged_event": 879
+      },
+      {
+        "case_id": "run704610_r8_o400082_r8",
+        "ticks": 962,
+        "logged_event_tick_bins": 108,
+        "ticks_without_logged_event": 854
+      },
+      {
+        "case_id": "run604507_r6_o704604_r6",
+        "ticks": 971,
+        "logged_event_tick_bins": 100,
+        "ticks_without_logged_event": 871
+      },
+      {
+        "case_id": "run704768_r9_o704876_r9",
+        "ticks": 984,
+        "logged_event_tick_bins": 129,
+        "ticks_without_logged_event": 855
+      },
+      {
+        "case_id": "run101388_r3_o101574_r3",
+        "ticks": 997,
+        "logged_event_tick_bins": 63,
+        "ticks_without_logged_event": 934
+      },
+      {
+        "case_id": "run838_r18",
+        "ticks": 1007,
+        "logged_event_tick_bins": 361,
+        "ticks_without_logged_event": 646
+      },
+      {
+        "case_id": "run704935_r8_o500144_r8",
+        "ticks": 1014,
+        "logged_event_tick_bins": 179,
+        "ticks_without_logged_event": 835
+      },
+      {
+        "case_id": "run705130_r7_o100875_r7",
+        "ticks": 1020,
+        "logged_event_tick_bins": 94,
+        "ticks_without_logged_event": 926
+      },
+      {
+        "case_id": "run1284_r7",
+        "ticks": 1035,
+        "logged_event_tick_bins": 75,
+        "ticks_without_logged_event": 960
+      },
+      {
+        "case_id": "run500171_r17_o604595_r17",
+        "ticks": 1047,
+        "logged_event_tick_bins": 181,
+        "ticks_without_logged_event": 866
+      },
+      {
+        "case_id": "run704737_r11_o100846_r11",
+        "ticks": 1061,
+        "logged_event_tick_bins": 131,
+        "ticks_without_logged_event": 930
+      },
+      {
+        "case_id": "run604494_r8_o500146_r8",
+        "ticks": 1071,
+        "logged_event_tick_bins": 85,
+        "ticks_without_logged_event": 986
+      },
+      {
+        "case_id": "run604704_r6_o100939_r6",
+        "ticks": 1078,
+        "logged_event_tick_bins": 87,
+        "ticks_without_logged_event": 991
+      },
+      {
+        "case_id": "run101704_r3_o704467_r3",
+        "ticks": 1080,
+        "logged_event_tick_bins": 68,
+        "ticks_without_logged_event": 1012
+      },
+      {
+        "case_id": "run704738_r1_o704426_r1",
+        "ticks": 1080,
+        "logged_event_tick_bins": 46,
+        "ticks_without_logged_event": 1034
+      },
+      {
+        "case_id": "run601_r18",
+        "ticks": 1093,
+        "logged_event_tick_bins": 160,
+        "ticks_without_logged_event": 933
+      },
+      {
+        "case_id": "run1289_r7",
+        "ticks": 1110,
+        "logged_event_tick_bins": 86,
+        "ticks_without_logged_event": 1024
+      },
+      {
+        "case_id": "run100899_r9_o704884_r9",
+        "ticks": 1124,
+        "logged_event_tick_bins": 117,
+        "ticks_without_logged_event": 1007
+      },
+      {
+        "case_id": "run704960_r6_o604500_r6",
+        "ticks": 1132,
+        "logged_event_tick_bins": 112,
+        "ticks_without_logged_event": 1020
+      },
+      {
+        "case_id": "run1212_r2",
+        "ticks": 1139,
+        "logged_event_tick_bins": 62,
+        "ticks_without_logged_event": 1077
+      },
+      {
+        "case_id": "run1292_r18",
+        "ticks": 1147,
+        "logged_event_tick_bins": 264,
+        "ticks_without_logged_event": 883
+      },
+      {
+        "case_id": "run704507_r18_o101208_r18",
+        "ticks": 1164,
+        "logged_event_tick_bins": 252,
+        "ticks_without_logged_event": 912
+      },
+      {
+        "case_id": "run101251_r17_o100914_r17",
+        "ticks": 1176,
+        "logged_event_tick_bins": 374,
+        "ticks_without_logged_event": 802
+      },
+      {
+        "case_id": "run1020_r18",
+        "ticks": 1191,
+        "logged_event_tick_bins": 525,
+        "ticks_without_logged_event": 666
+      },
+      {
+        "case_id": "run101746_r7_o704274_r7",
+        "ticks": 1200,
+        "logged_event_tick_bins": 138,
+        "ticks_without_logged_event": 1062
+      },
+      {
+        "case_id": "run704879_r14_o704504_r14",
+        "ticks": 1200,
+        "logged_event_tick_bins": 290,
+        "ticks_without_logged_event": 910
+      },
+      {
+        "case_id": "run101762_r1_o101587_r1",
+        "ticks": 1211,
+        "logged_event_tick_bins": 53,
+        "ticks_without_logged_event": 1158
+      },
+      {
+        "case_id": "run101419_r5_o604740_r5",
+        "ticks": 1226,
+        "logged_event_tick_bins": 129,
+        "ticks_without_logged_event": 1097
+      },
+      {
+        "case_id": "run604582_r18_o604680_r18",
+        "ticks": 1244,
+        "logged_event_tick_bins": 197,
+        "ticks_without_logged_event": 1047
+      },
+      {
+        "case_id": "run101126_r1_o704971_r1",
+        "ticks": 1260,
+        "logged_event_tick_bins": 40,
+        "ticks_without_logged_event": 1220
+      },
+      {
+        "case_id": "run1214_r2",
+        "ticks": 1263,
+        "logged_event_tick_bins": 71,
+        "ticks_without_logged_event": 1192
+      },
+      {
+        "case_id": "run604589_r15_o400010_r15",
+        "ticks": 1287,
+        "logged_event_tick_bins": 205,
+        "ticks_without_logged_event": 1082
+      },
+      {
+        "case_id": "run704215_r11_o704849_r11",
+        "ticks": 1304,
+        "logged_event_tick_bins": 155,
+        "ticks_without_logged_event": 1149
+      },
+      {
+        "case_id": "run101781_r1_o500240_r1",
+        "ticks": 1320,
+        "logged_event_tick_bins": 53,
+        "ticks_without_logged_event": 1267
+      },
+      {
+        "case_id": "run704389_r3_o300114_r3",
+        "ticks": 1320,
+        "logged_event_tick_bins": 89,
+        "ticks_without_logged_event": 1231
+      },
+      {
+        "case_id": "run604504_r6_o704354_r6",
+        "ticks": 1325,
+        "logged_event_tick_bins": 154,
+        "ticks_without_logged_event": 1171
+      },
+      {
+        "case_id": "run101668_r9_o101414_r9",
+        "ticks": 1341,
+        "logged_event_tick_bins": 184,
+        "ticks_without_logged_event": 1157
+      },
+      {
+        "case_id": "run1338_r6",
+        "ticks": 1352,
+        "logged_event_tick_bins": 109,
+        "ticks_without_logged_event": 1243
+      },
+      {
+        "case_id": "run101668_r15_o704273_r15",
+        "ticks": 1371,
+        "logged_event_tick_bins": 292,
+        "ticks_without_logged_event": 1079
+      },
+      {
+        "case_id": "run704507_r13_o604697_r13",
+        "ticks": 1380,
+        "logged_event_tick_bins": 270,
+        "ticks_without_logged_event": 1110
+      },
+      {
+        "case_id": "run1022_r18",
+        "ticks": 1392,
+        "logged_event_tick_bins": 687,
+        "ticks_without_logged_event": 705
+      },
+      {
+        "case_id": "run101620_r8_o604747_r8",
+        "ticks": 1423,
+        "logged_event_tick_bins": 109,
+        "ticks_without_logged_event": 1314
+      },
+      {
+        "case_id": "run705037_r3_o704287_r3",
+        "ticks": 1440,
+        "logged_event_tick_bins": 144,
+        "ticks_without_logged_event": 1296
+      },
+      {
+        "case_id": "run101277_r3_o704331_r3",
+        "ticks": 1448,
+        "logged_event_tick_bins": 112,
+        "ticks_without_logged_event": 1336
+      },
+      {
+        "case_id": "run704935_r3_o604657_r3",
+        "ticks": 1500,
+        "logged_event_tick_bins": 96,
+        "ticks_without_logged_event": 1404
+      },
+      {
+        "case_id": "run704896_r6_o604727_r6",
+        "ticks": 1533,
+        "logged_event_tick_bins": 129,
+        "ticks_without_logged_event": 1404
+      },
+      {
+        "case_id": "run1519_r11",
+        "ticks": 1560,
+        "logged_event_tick_bins": 191,
+        "ticks_without_logged_event": 1369
+      },
+      {
+        "case_id": "run1269_r13",
+        "ticks": 1574,
+        "logged_event_tick_bins": 319,
+        "ticks_without_logged_event": 1255
+      },
+      {
+        "case_id": "run705088_r3_o704896_r3",
+        "ticks": 1611,
+        "logged_event_tick_bins": 105,
+        "ticks_without_logged_event": 1506
+      },
+      {
+        "case_id": "run773_r12",
+        "ticks": 1630,
+        "logged_event_tick_bins": 535,
+        "ticks_without_logged_event": 1095
+      },
+      {
+        "case_id": "run101697_r6_o400041_r6",
+        "ticks": 1680,
+        "logged_event_tick_bins": 116,
+        "ticks_without_logged_event": 1564
+      },
+      {
+        "case_id": "run793_r11",
+        "ticks": 1698,
+        "logged_event_tick_bins": 156,
+        "ticks_without_logged_event": 1542
+      },
+      {
+        "case_id": "run1323_r18",
+        "ticks": 1738,
+        "logged_event_tick_bins": 353,
+        "ticks_without_logged_event": 1385
+      },
+      {
+        "case_id": "run720_r9",
+        "ticks": 1764,
+        "logged_event_tick_bins": 125,
+        "ticks_without_logged_event": 1639
+      },
+      {
+        "case_id": "run632_r7",
+        "ticks": 1800,
+        "logged_event_tick_bins": 96,
+        "ticks_without_logged_event": 1704
+      },
+      {
+        "case_id": "run1191_r13",
+        "ticks": 1860,
+        "logged_event_tick_bins": 238,
+        "ticks_without_logged_event": 1622
+      },
+      {
+        "case_id": "run101481_r9_o500170_r9",
+        "ticks": 1920,
+        "logged_event_tick_bins": 220,
+        "ticks_without_logged_event": 1700
+      },
+      {
+        "case_id": "run1565_r6",
+        "ticks": 1933,
+        "logged_event_tick_bins": 137,
+        "ticks_without_logged_event": 1796
+      },
+      {
+        "case_id": "run1330_r18",
+        "ticks": 1999,
+        "logged_event_tick_bins": 367,
+        "ticks_without_logged_event": 1632
+      },
+      {
+        "case_id": "run1159_r17",
+        "ticks": 2044,
+        "logged_event_tick_bins": 577,
+        "ticks_without_logged_event": 1467
+      },
+      {
+        "case_id": "run1254_r18",
+        "ticks": 2097,
+        "logged_event_tick_bins": 387,
+        "ticks_without_logged_event": 1710
+      },
+      {
+        "case_id": "run1252_r11",
+        "ticks": 2140,
+        "logged_event_tick_bins": 212,
+        "ticks_without_logged_event": 1928
+      },
+      {
+        "case_id": "run826_r10",
+        "ticks": 2160,
+        "logged_event_tick_bins": 331,
+        "ticks_without_logged_event": 1829
+      },
+      {
+        "case_id": "run400065_r15_o400073_r15",
+        "ticks": 2220,
+        "logged_event_tick_bins": 295,
+        "ticks_without_logged_event": 1925
+      },
+      {
+        "case_id": "run700_r6",
+        "ticks": 2280,
+        "logged_event_tick_bins": 170,
+        "ticks_without_logged_event": 2110
+      },
+      {
+        "case_id": "run1189_r9",
+        "ticks": 2363,
+        "logged_event_tick_bins": 294,
+        "ticks_without_logged_event": 2069
+      },
+      {
+        "case_id": "run1531_r15",
+        "ticks": 2451,
+        "logged_event_tick_bins": 282,
+        "ticks_without_logged_event": 2169
+      },
+      {
+        "case_id": "run101635_r11_o101268_r11",
+        "ticks": 2520,
+        "logged_event_tick_bins": 696,
+        "ticks_without_logged_event": 1824
+      },
+      {
+        "case_id": "run610_r18",
+        "ticks": 2583,
+        "logged_event_tick_bins": 420,
+        "ticks_without_logged_event": 2163
+      },
+      {
+        "case_id": "run1079_r12",
+        "ticks": 2705,
+        "logged_event_tick_bins": 939,
+        "ticks_without_logged_event": 1766
+      },
+      {
+        "case_id": "run1123_r11",
+        "ticks": 2880,
+        "logged_event_tick_bins": 1036,
+        "ticks_without_logged_event": 1844
+      },
+      {
+        "case_id": "run1210_r18",
+        "ticks": 3026,
+        "logged_event_tick_bins": 741,
+        "ticks_without_logged_event": 2285
+      },
+      {
+        "case_id": "run1377_r13",
+        "ticks": 3300,
+        "logged_event_tick_bins": 532,
+        "ticks_without_logged_event": 2768
+      },
+      {
+        "case_id": "run820_r10",
+        "ticks": 3720,
+        "logged_event_tick_bins": 1413,
+        "ticks_without_logged_event": 2307
+      },
+      {
+        "case_id": "run1125_r18",
+        "ticks": 4200,
+        "logged_event_tick_bins": 3277,
+        "ticks_without_logged_event": 923
+      }
+    ]
+  },
+  "original_source_sha256": {
+    "oracle/Items/Item.gd": "062241e6d51f0f6f68ddbf6c65ecc938793b2e444bd735e51c5e2b2fe604ab7f",
+    "oracle/Core/Character.gd": "ab368317ea220ce6520a3a364adbfb0df6dca04061f989f1013724944639df50",
+    "oracle/Interface/CombatTimer/CombatTimer.gd": "64ee07f803feebd32994f8642ef72de78e6103ae61c442aca9df006b46d690c1",
+    "oracle/Utility/Util.gd": "d4766dd24603dd2f54956e0ff5267f66fffb1386d8cb7693934d052ed3ba9d83"
+  },
+  "whole_frame_skip_obstacles": [
+    "Item._physics_process decrements triggerTime and reads character stun/speed every tick",
+    "Character stun and stamina evolve between attacks",
+    "timer passes preserve phase order and float32/double recurrences",
+    "motion/particles/critical shake consume RNG in apparently log-free frames",
+    "host RNG injection and deferred callbacks are observation boundaries"
+  ],
+  "safe_architectural_candidate_classes": [
+    "compact hot execution state or field layout; preserve each original operation and callback visibility",
+    "immutable lineup assembly plan with mutable per-fight graph; separately measure cold and repeated use",
+    "certified quiet segments only with exact recurrences and complete observer/deadline proof"
+  ],
+  "operation_counts": {
+    "setup_and_outside_frame": {
+      "arena_requests": 2349561,
+      "arena_requested_bytes": 296310077,
+      "arrays_created": 1184744,
+      "dicts_created": 266254,
+      "array_storage_growths": 154224,
+      "explicit_memcpy_bytes": 9379338,
+      "explicit_memmove_bytes": 674432,
+      "array_find_calls": 315247,
+      "array_find_comparisons": 545053,
+      "dict_find_calls": 875806,
+      "dict_hash_probes": 143551,
+      "generic_dispatch_calls": 584138,
+      "generic_argument_cells": 576724,
+      "frame_calls": 0,
+      "cooldown_item_visits": 0,
+      "trigger_calls": 0,
+      "arena_slow_calls": 40133,
+      "arena_new_blocks": 4,
+      "arena_new_capacity_bytes": 4194304,
+      "ownership_calls": 59732,
+      "ownership_block_probes": 80516,
+      "inline_dispatch_calls": 4780242,
+      "inline_argument_cells": 3824323
+    },
+    "frame_excluding_trigger": {
+      "arena_requests": 687363,
+      "arena_requested_bytes": 41697530,
+      "arrays_created": 458899,
+      "dicts_created": 1453,
+      "array_storage_growths": 36849,
+      "explicit_memcpy_bytes": 3123002,
+      "explicit_memmove_bytes": 103936,
+      "array_find_calls": 27016,
+      "array_find_comparisons": 39159,
+      "dict_find_calls": 167703,
+      "dict_hash_probes": 122410,
+      "generic_dispatch_calls": 376560,
+      "generic_argument_cells": 269651,
+      "frame_calls": 223352,
+      "cooldown_item_visits": 3633579,
+      "trigger_calls": 0,
+      "arena_slow_calls": 46,
+      "arena_new_blocks": 1,
+      "arena_new_capacity_bytes": 1048576,
+      "ownership_calls": 213167,
+      "ownership_block_probes": 294745,
+      "inline_dispatch_calls": 4569392,
+      "inline_argument_cells": 2596243
+    },
+    "trigger_chain": {
+      "arena_requests": 1579759,
+      "arena_requested_bytes": 135513366,
+      "arrays_created": 362672,
+      "dicts_created": 22489,
+      "array_storage_growths": 33508,
+      "explicit_memcpy_bytes": 2150739,
+      "explicit_memmove_bytes": 133192,
+      "array_find_calls": 216051,
+      "array_find_comparisons": 254421,
+      "dict_find_calls": 1534627,
+      "dict_hash_probes": 1049966,
+      "generic_dispatch_calls": 1117583,
+      "generic_argument_cells": 1529808,
+      "frame_calls": 0,
+      "cooldown_item_visits": 0,
+      "trigger_calls": 37700,
+      "arena_slow_calls": 123,
+      "arena_new_blocks": 26,
+      "arena_new_capacity_bytes": 27262976,
+      "ownership_calls": 0,
+      "ownership_block_probes": 0,
+      "inline_dispatch_calls": 5057021,
+      "inline_argument_cells": 5374128
+    }
+  }
+}

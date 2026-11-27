@@ -1,0 +1,10 @@
+{
+  "completed": true,
+  "source_bytes": 885767141,
+  "roots": 5,
+  "C_free_before": 52042674176,
+  "C_free_after": 52927565824,
+  "C_free_increase": 884891648,
+  "inventory_sha256": "0416ee90f9e3d085449d7eb05028d6a6db932f8efc839d30e99097e6dd1a0eb0",
+  "all_removed": true
+}

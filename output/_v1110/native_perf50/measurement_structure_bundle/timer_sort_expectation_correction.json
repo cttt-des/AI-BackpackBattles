@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "all1760_original_cases_retained": true,
+  "changed_family": 6,
+  "changed_scenario": 6,
+  "comparator_returns_null_and_creates_one_timer_per_call": true,
+  "original_Godot_calls": 14,
+  "original_Godot_order": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "changed_cases": {
+    "state_hashes": [
+      1536,
+      1537,
+      1538,
+      1539,
+      1540,
+      1541,
+      1542,
+      1543,
+      1544,
+      1545,
+      1546,
+      1547,
+      1548,
+      1549,
+      1550,
+      1551
+    ],
+    "legacy_hashes": [
+      1544,
+      1545,
+      1546,
+      1547,
+      1548,
+      1549,
+      1550,
+      1551
+    ]
+  },
+  "all_other_frozen_state_and_counter_hashes_equal": true,
+  "corrected_normal_reference_dll_sha256": "c956eae4a81681a57aa13af1c022a99fb10ed51ca490fa89014af0332d3c9f48",
+  "reference_scope": "Only 16 sorting side-effect cases updated; normal/reference vs formal PGO still compared in full. Godot independently specifies comparator schedule and order.",
+  "original_fixture_sha256": "230f60cc81d36495dc20d27b9e7b7ec16c8d9c4d6ed3075c42a55e3ff061d23a",
+  "assertion_only_fixture_sha256": "4c0e174858b02eabde7d0ac1db2ff47161db929dcdb0d85da744bde0f0aaf3a1"
+}

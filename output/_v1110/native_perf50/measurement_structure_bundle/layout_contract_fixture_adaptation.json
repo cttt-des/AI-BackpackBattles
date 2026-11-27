@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "candidate_dll_sha256": "0e796c7fa00f6aef37b0afd605f313b0c7290b3b915119f334f92afe15c3bfb7",
+  "reason": "The architecture intentionally changes gems/active geometry; old cache-line placement is not a state/alias/lifetime requirement",
+  "original_fixture_sha256": "92f8a02bdfe3712549f148626c5b5af00bd34d795fe10e0c6009f727736b0388",
+  "adapted_fixture_sha256": "309e08e83d40dfd8c310a294be04caf31ef627cb5dc54b34fb34467b3268f340",
+  "exact_inverse_of_only_declared_geometry_predicates": true,
+  "replacements": [
+    [
+      "        assert(line==reinterpret_cast<uintptr_t>(&item->f_gems)/64);",
+      "        assert(reinterpret_cast<uintptr_t>(&item->f_gems)-reinterpret_cast<uintptr_t>(item)==480u);"
+    ],
+    [
+      "        assert(reinterpret_cast<uintptr_t>(&item->f__cooldown_active)/64==\n               reinterpret_cast<uintptr_t>(&item->native_bridge_gems_header_.len)/64);",
+      "        assert(reinterpret_cast<uintptr_t>(&item->f__cooldown_active)-reinterpret_cast<uintptr_t>(item)==48u);\n        assert(reinterpret_cast<uintptr_t>(&item->native_bridge_gems_header_)-reinterpret_cast<uintptr_t>(item)==1936u);"
+    ]
+  ],
+  "original43_state_copy_escape_ownership_and_lifetime_cases_preserved": true,
+  "old_timer_header_cacheline_predicate_retained": true,
+  "all674_size_alignment_and_five_storage_anchor_proofs_still_required": true,
+  "no_candidate_source_or_DLL_changed": true
+}

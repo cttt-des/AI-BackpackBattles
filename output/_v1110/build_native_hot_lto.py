@@ -8,6 +8,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from native_build_storage import isolated_build,clean_lto_parts
 
 
 LEGACY_HOT_UNITS = {"gd_rt", "engine_wrapper", "shard_00", "shard_02", "shard_03", "shard_07"}
@@ -41,7 +42,9 @@ def build_dll(native, out, jobs, profile_flags=(), *, hot_units=HOT_UNITS, link_
     namespace["OUT_LIB"] = out
     # Compile flags above are frozen; optional export/link policy stays link-only.
     module["COMMON"].extend((LTO, *profile_flags, *link_flags))
-    return build()
+    result=build()
+    clean_lto_parts(module['OBJ_DIR'])
+    return result
 
 
 def collect_profiles(instrumented, objects, profile, hot_units=HOT_UNITS):
@@ -67,6 +70,7 @@ def collect_profiles(instrumented, objects, profile, hot_units=HOT_UNITS):
         shutil.copy2(counts, lookup / counts.name)
 
 
+@isolated_build
 def build_candidate(native, out, jobs, pgo=False, *, hot_units=HOT_UNITS):
     with tempfile.TemporaryDirectory(prefix="native-hot-lto-") as objects:
         previous = {name: os.environ.get(name) for name in ("NATIVE_SIM_OBJ", "MAKE")}

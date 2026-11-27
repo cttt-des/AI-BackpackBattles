@@ -1,0 +1,65 @@
+{
+  "passed": true,
+  "all674_object_sizes_and_alignments_identical": true,
+  "all_GdVal_fields_same_size_and_slot_offsets": true,
+  "five_original_inline_storage_and_timer_alignment_offsets_identical": true,
+  "computed_hot_field_cache_line_footprints": {
+    "cooldown": {
+      "baseline": [
+        8
+      ],
+      "candidate": [
+        4
+      ]
+    },
+    "character_frame": {
+      "baseline": [
+        9,
+        8,
+        7,
+        8,
+        6,
+        7,
+        7,
+        8
+      ],
+      "candidate": [
+        4,
+        5,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ]
+    },
+    "buff_tick": {
+      "baseline": [
+        6,
+        6,
+        5,
+        5,
+        4,
+        4,
+        4,
+        5
+      ],
+      "candidate": [
+        4,
+        4,
+        3,
+        3,
+        3,
+        3,
+        3,
+        4
+      ]
+    }
+  },
+  "footprint_is_static_not_a_cache_miss_measurement_or_speed_claim": true,
+  "raw_sha256": {
+    "baseline": "716600ce53aa7b645a874524fc4eabfea0090e8f6f4dada88e286f68ff2a9ee9",
+    "candidate": "be093c8ccde75952edd38f889910add131869f2df50e7290c45de46874231fc8"
+  }
+}

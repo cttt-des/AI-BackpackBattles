@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "dll_sha256": "c110da7b1b0b8022331472da33119a32cee4790274d0261864c7c7eebcea62ff",
+  "actual_frame_cases": 135168,
+  "all16_FP_modes": true,
+  "complete_state_flags_MXCSR_RNG_and27_counters": true
+}

@@ -1,0 +1,22 @@
+{
+  "resumed_on_explicit_user_instruction": true,
+  "utc": "2026-11-27T13:08:56.440139+00:00",
+  "candidate_dll_sha256": "0e796c7fa00f6aef37b0afd605f313b0c7290b3b915119f334f92afe15c3bfb7",
+  "baseline_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "completed_qualification_steps": 33,
+  "all_qualified_logs_and_directed_scripts_verified": true,
+  "full2604_original_event_and_counter_proof_reused_for_identical_bytes": true,
+  "prior_attempt_interrupted_at_first_ready_print": true,
+  "prior_warmup_or_formal_observations": 0,
+  "previous_files_retained": {
+    "formal_timing_inputs.json": "1e69143c77bb66fea06ed2b2e831db7055958c7443e26f69a016a7079b735aef",
+    "ab_fixed_1_A_worker.log": "10a6529b6a134abea30fd989c6dcc3f846b55b7f5d3548ad657ee09e9ff20f6a",
+    "ab_fixed_1.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "comparison_first.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "same_frozen24_quad_budget_seeds_metrics_and_acceptance": true,
+  "no_source_changes_or_rebuild": true,
+  "temporary_storage": "D:/CodexNativeBuilds/work",
+  "cleanup_after_phase": true,
+  "no_new_branch": true
+}

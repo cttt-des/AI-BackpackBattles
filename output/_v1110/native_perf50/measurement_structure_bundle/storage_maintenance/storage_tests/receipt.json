@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "actual_MinGW_LTO_units": 5,
+  "final_dll_sha256": "456b6e9c5dee8e52856b23e6327ad96bac9fc8691df04088f1df645d3291a24f",
+  "LTO_parts_removed_before_return": true,
+  "source_objects_removed_after_full_build_scope": true,
+  "child_explicit_legacy_C_path_redirected_to_D": true,
+  "success_and_exception_workspaces_removed": true,
+  "original18_baseline_option_receipts_match_without_old_objects": true,
+  "tampered_receipts_rejected": true,
+  "workspaces": [
+    "D:\\CodexNativeBuilds\\work\\storage-real-lto-test-40799ecaebee",
+    "D:\\CodexNativeBuilds\\work\\storage-exception-test-2c89511a4d2d"
+  ],
+  "optimization_goal_not_resumed": true
+}

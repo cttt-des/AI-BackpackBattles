@@ -2,6 +2,7 @@
 import argparse,ast,ctypes,hashlib,json,os,re,runpy,shutil,subprocess,sys,tempfile
 from pathlib import Path
 import psutil
+from native_build_storage import isolated_build,adapt_formal_builder
 from prepare_frame_guard_reuse import REPO,STAGE,BASE,sha,inventory
 from install_ordering_correctness import boundary,replace,training
 from setup_frame_guard_checks import NAMES,MODULES
@@ -84,9 +85,10 @@ def setup():
     # The prior complete suite remains unchanged except its baseline and paths.
     print('Complete repaired regression suite retained',flush=True)
 
+@isolated_build
 def prototype():
     p=prepared();p.verify_projection(p.WORK/'bundle_src');psutil.Process().nice(psutil.BELOW_NORMAL_PRIORITY_CLASS)
-    if p.NAME==ROUNDS[1]:
+    if p.NAME in ROUNDS:
         from concurrent.futures import ThreadPoolExecutor
         root=Path(tempfile.mkdtemp(prefix='rng-scaling-normal-',dir=Path(os.environ['LOCALAPPDATA'])/'CodexNativeBuilds'));objects=root/'objects';objects.mkdir()
         os.environ.update(NATIVE_SIM_OBJ=str(objects),NATIVE_SIM_CXX='D:/mingw64/bin/g++.exe',MAKE='D:/mingw64/bin/mingw32-make.exe')
@@ -98,20 +100,6 @@ def prototype():
         paths={s.name:s for s in objects.glob('*.o')};assert len(paths)==20
         p.verify_projection(p.WORK/'bundle_src');p.save('normal_object_paths.json',{n:str(s) for n,s in paths.items()})
         p.save('prototype_build.json',dict(passed=True,dll_sha256=sha(p.WORK/'prototype.dll'),objects_sha256={n:sha(s) for n,s in paths.items()},full20_normal_units_header_change=True,only_semantic_not_for_speed_or_deployment=True));return
-    old=read(p.ACCEPTED/'prototype_build.json')['objects_sha256']
-    if (p.ACCEPTED/'normal_object_paths.json').exists():paths={n:Path(s) for n,s in read(p.ACCEPTED/'normal_object_paths.json').items()}
-    else:
-        live=read(p.ACCEPTED/'live_semantic_build.json');paths={n:Path(live['reused_objects'].get(n,str(Path(live['object_directory'])/n))) for n in old}
-    assert all(sha(paths[n])==h for n,h in old.items())
-    changed='gd_rt' if p.NAME==ROUNDS[0] else 'shard_12'
-    root=Path(tempfile.mkdtemp(prefix='next-two-normal-',dir=Path(os.environ['LOCALAPPDATA'])/'CodexNativeBuilds'));objects=root/'objects';objects.mkdir()
-    source=p.WORK/'bundle_src';unit=source/('gd_rt.cpp' if changed=='gd_rt' else 'gen/shards/shard_12.cpp')
-    flags=runpy.run_path(str(source/'build_windows.py'))['COMMON'];cxx='D:/mingw64/bin/g++.exe'
-    with (p.WORK/'prototype_compile.log').open('wb') as log:subprocess.run([cxx,*flags,'-c',str(unit),'-o',str(objects/(changed+'.o'))],stdout=log,stderr=subprocess.STDOUT,check=True)
-    paths[changed+'.o']=objects/(changed+'.o')
-    with (p.WORK/'prototype_link.log').open('wb') as log:subprocess.run([cxx,*flags,'-shared','-static','-o',str(objects/'libgdcore.dll'),*map(str,paths.values())],stdout=log,stderr=subprocess.STDOUT,check=True)
-    shutil.copyfile(objects/'libgdcore.dll',p.WORK/'prototype.dll');p.verify_projection(source)
-    p.save('normal_object_paths.json',{n:str(s) for n,s in paths.items()});p.save('prototype_build.json',dict(passed=True,dll_sha256=sha(p.WORK/'prototype.dll'),objects_sha256={n:sha(s) for n,s in paths.items()},changed_units=[changed],only_semantic_not_for_speed_or_deployment=True))
 
 def affected(formal=False,tag=None,dll=None):
     p=prepared();tag=tag or ('formal' if formal else 'prototype');target=p.WORK/(tag+'_affected_tests.json');assert not target.exists()
@@ -154,6 +142,7 @@ def regenerate():
     text=text.replace('native_perf50/frame_guard_reuse_bundle','native_perf50/'+p.NAME)
     exec(compile(text,str(STAGE/'regenerate_frame_guard.py'),'exec'),dict(__name__='__main__',__file__=str(STAGE/'next_two.py')))
 
+@isolated_build
 def build():
     p=prepared();script=STAGE/'build_ordering_release.py'
     assert script.read_bytes()==subprocess.check_output(['git','show',p.ARCHIVE+':output/_v1110/build_ordering_release.py'],cwd=REPO)
@@ -161,7 +150,7 @@ def build():
     text=text.replace("WORK/'prototype_ordering_tests.json'","WORK/'prototype_affected_tests.json'")
     old="    assert all(json.loads((WORK/n).read_bytes())['passed'] for n in ('python_compiled_ordering_tests.json','python_source_ordering_tests.json'))"
     assert text.count(old)==1;text=text.replace(old,"    assert json.loads((WORK/'full_regeneration_test.json').read_bytes())['passed']")
-    text=text.replace('ordering-formal-','next-two-formal-')
+    text=adapt_formal_builder(text).replace('ordering-formal-','next-two-formal-')
     exec(compile(text,str(script),'exec'),dict(__name__='__main__',__file__=str(STAGE/'next_two.py')))
 
 def qualify():

@@ -1,0 +1,22 @@
+{
+  "completed": true,
+  "roots_bytes": {
+    "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds": 38268962376,
+    "C:\\Users\\Windows\\AppData\\Local\\Temp\\frame-guard-regeneration-b8aiyd_d": 141361258,
+    "C:\\Users\\Windows\\AppData\\Local\\Temp\\frame-guard-regeneration-9eo5lp3b": 100399523,
+    "C:\\Users\\Windows\\AppData\\Local\\Temp\\frame-guard-regeneration-fcqm6x3n": 100273981,
+    "C:\\Users\\Windows\\AppData\\Local\\Temp\\next-two-machine-ojxpz__0": 41104680,
+    "C:\\Users\\Windows\\AppData\\Local\\Temp\\next-two-machine-2f5gvbw9": 41103194,
+    "C:\\Users\\Windows\\AppData\\Local\\Temp\\rng-baseline-review-e6u0em1o": 20552466
+  },
+  "source_bytes": 38713757478,
+  "preserved_files": 42151,
+  "discarded_rebuildable_files": 24460,
+  "unique_preserved_bytes": 2997478726,
+  "C_free_before": 13167091712,
+  "C_free_after": 52043304960,
+  "C_free_increase": 38876213248,
+  "inventory_sha256": "1ad724ae2423230dcaeafe6e2fc63d1e84a34b932ca3e956b1ee761f5fa1b4ec",
+  "all_roots_removed": true,
+  "user_workspace_and_staging_untouched": true
+}

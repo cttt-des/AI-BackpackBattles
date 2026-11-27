@@ -1,7 +1,9 @@
 """Prove two complete source generations and reject unknown edits before writes."""
 import importlib.util,json,os,shutil,subprocess,sys,tempfile
+from native_build_storage import isolated_build
 from pathlib import Path
 from prepare_frame_guard_reuse import REPO,STAGE,WORK,BASE,ACCEPTED,HEADER,sha,save,verify_projection
+@isolated_build
 def main():
     verify_projection(WORK/'bundle_src')
     manifest=json.loads((ACCEPTED/'regeneration_manifest.json').read_bytes());rows={r['path']:r for r in manifest['inventory']}

@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "0e796c7fa00f6aef37b0afd605f313b0c7290b3b915119f334f92afe15c3bfb7",
+  "output": "Cached/uncached exact dispatch, generated/C++ overrides, single fallback, copy/slicing, audit-before-row-read, null/array/dictionary/disabled paths, return payload bits and512 RNG comparisons passed\n",
+  "compiled_against_candidate_headers": true
+}

@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "pattern": "ABBA",
+      "expected_log_reduction": 0,
+      "actual": {
+        "main_thread_cpu_s": -2.0816681711721685e-17,
+        "wall_s": -5.551115123125783e-17
+      }
+    },
+    {
+      "pattern": "ABBA",
+      "expected_log_reduction": 0.04879016416943204,
+      "actual": {
+        "main_thread_cpu_s": 0.04879016416943199,
+        "wall_s": 0.048790164169431965
+      }
+    },
+    {
+      "pattern": "ABBA",
+      "expected_log_reduction": -0.04879016416943204,
+      "actual": {
+        "main_thread_cpu_s": -0.04879016416943212,
+        "wall_s": -0.04879016416943216
+      }
+    },
+    {
+      "pattern": "BAAB",
+      "expected_log_reduction": 0,
+      "actual": {
+        "main_thread_cpu_s": 2.0816681711721685e-17,
+        "wall_s": 5.551115123125783e-17
+      }
+    },
+    {
+      "pattern": "BAAB",
+      "expected_log_reduction": 0.04879016416943204,
+      "actual": {
+        "main_thread_cpu_s": 0.04879016416943205,
+        "wall_s": 0.04879016416943194
+      }
+    },
+    {
+      "pattern": "BAAB",
+      "expected_log_reduction": -0.04879016416943204,
+      "actual": {
+        "main_thread_cpu_s": -0.048790164169431986,
+        "wall_s": -0.048790164169431965
+      }
+    }
+  ]
+}

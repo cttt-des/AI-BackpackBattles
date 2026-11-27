@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "cases": 128128,
+  "dll_sha256": "0e796c7fa00f6aef37b0afd605f313b0c7290b3b915119f334f92afe15c3bfb7",
+  "baseline_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "original_generic_call_method_actual_binary_reference": true,
+  "full_state_vectors_compared_not_just_hashes": true,
+  "alias_growth_self_append_pool_flags_missing_and_negative_argc": true,
+  "null_and_empty_array_dictionary_enum_and_foreign_receivers": true,
+  "watch_version_overflow_depth_overflow_and_disabled_dispatch": true,
+  "old_six_counters_user_static_callback_counts_and_all16_fenv_mxcsr_modes": true,
+  "float_resize_and_fp_deep_truth_use_original_fallback": true,
+  "per_case_hashes_equal_between_actual_dlls": true,
+  "raw_sha256": {
+    "container_builtins_baseline_cases.json": "4c38dd5bee737e31ad015affd0ac8a61289c5caff151fe68f5bdaed173d9197f",
+    "container_builtins_candidate_cases.json": "4c38dd5bee737e31ad015affd0ac8a61289c5caff151fe68f5bdaed173d9197f"
+  },
+  "fixture_sha256": "3eb2bd0416d905f7239036a43deb2cc64a5dac5f8e83e7a048a7671bd2044b16",
+  "no_speed_claim": true
+}

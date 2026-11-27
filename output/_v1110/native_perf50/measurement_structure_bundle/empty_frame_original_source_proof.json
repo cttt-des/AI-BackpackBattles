@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "canonical_game_methods": [
+    {
+      "path": "Items/Item.gd",
+      "working_oracle_sha256": "062241e6d51f0f6f68ddbf6c65ecc938793b2e444bd735e51c5e2b2fe604ab7f",
+      "canonical_decompiled_sha256": "d98ce12b6e5fafb3715db069898e23d4063c9e6ec819edfdd2926cc3d5659369",
+      "method_sha256": "e10da439b3742ed35f1646306356f779d106d35a5f7a33c1b03771d3a8ebb9b1",
+      "physics_method_identical": true,
+      "canonical_method": "func _physics_process(delta: float):\n\tif not character().isStunned():\n\t\ttriggerTime -= delta * getSpeed()\n\t\tshowCooldown(1.0 - (triggerTime / iterationCooldown))\n\t\tif triggerTime <= 0:\n\t\t\ttrigger()\n"
+    },
+    {
+      "path": "Core/Character.gd",
+      "working_oracle_sha256": "ab368317ea220ce6520a3a364adbfb0df6dca04061f989f1013724944639df50",
+      "canonical_decompiled_sha256": "d567f4b1eec5c6734d12153a2ff6e53ec4a0b2d8c7f18185959c54a61d6960eb",
+      "method_sha256": "0dec2a511896512c607947075ad5d859117ff893e542d0dcad5aa51fbe632666",
+      "physics_method_identical": true,
+      "canonical_method": "func _physics_process(delta: float) -> void :\n\tif stunnedDuration > 0:\n\t\tstunnedDuration -= delta\n\t\tif stunnedDuration <= 0:\n\t\t\tendStun()\n\t\n\taddStamina(getStaminaRegeneration() * delta)\n"
+    }
+  ],
+  "working_oracle_not_assumed_pristine": true,
+  "protected_files_not_modified": true
+}

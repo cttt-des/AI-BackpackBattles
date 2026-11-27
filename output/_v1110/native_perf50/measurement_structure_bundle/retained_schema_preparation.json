@@ -1,0 +1,14 @@
+{
+  "actual_frame_fixture_uses_each_DLL_own_header": true,
+  "additional_independent_DLL_fixtures_use_own_headers": [
+    "verify_assembly_membership_buff_helpers.py",
+    "verify_assembly_membership_buff_methods.py",
+    "verify_assembly_membership_truth.py",
+    "verify_assembly_membership_builtins.py"
+  ],
+  "all674_sizes_and_alignments_unchanged": true,
+  "only4_field_declaration_permutations": true,
+  "all_original_semantic_cases_and_expectations_retained": true,
+  "declared_geometry_predicates_updated": true,
+  "geometry_adaptation_receipt_sha256": "9d0ce1e78e799862f6fc94c8a7b788ec9f878e3421fe6882cae389f21b1ca856"
+}

@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "source_files": 710,
+  "full_gdscript_and_all_retained_optimization_pipeline": true,
+  "source_generation_twice_bytes_and_mtimes_identical": true,
+  "unknown_edits_rejected_before_writes": true,
+  "compiler_invoked": false,
+  "source_manifest_sha256": "a1ca9df45df1ee4995215525b3ce651344a7a4d74a6c16d5ed5852a8ead9b70a"
+}

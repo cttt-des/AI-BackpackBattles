@@ -1,0 +1,14 @@
+{
+  "candidate_dll_sha256": "0e796c7fa00f6aef37b0afd605f313b0c7290b3b915119f334f92afe15c3bfb7",
+  "baseline_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "protocol_sha256": "7ccd99d086f59acac38e69b95e305b44d16f77d52565cea829df8dcc6d3dd921",
+  "source_manifest_sha256": "a1ca9df45df1ee4995215525b3ce651344a7a4d74a6c16d5ed5852a8ead9b70a",
+  "scripts_sha256": {
+    "measure_native_quads.py": "67962b6b6406e682deb9a19f786c5af2316e1ce1164f99222fbf169983e7367a",
+    "measurement_platform.py": "8f72474d31f8af73979f008865de634a0f7018470fb611f01d5e553740047c60",
+    "measure_native_corpus_blocks.py": "eb97896fe52853749f5b61027616fc7389d9dff2eb512e75331d34507a0a4b86",
+    "compare_structure_round.py": "4f7bc0c8cca04ee589b49c80af067d4d81f833ecbb02ddf2acda6ad97f6882b2",
+    "analyze_structure_aa.py": "f7b8ea157f5cf2113475d888137d68de8ba958248a312a12b770bd6c91caaef6"
+  },
+  "written_before_any_warmup_or_arm": true
+}

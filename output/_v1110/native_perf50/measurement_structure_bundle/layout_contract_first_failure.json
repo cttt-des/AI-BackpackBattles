@@ -1,0 +1,17 @@
+{
+  "candidate_dll_sha256": "0e796c7fa00f6aef37b0afd605f313b0c7290b3b915119f334f92afe15c3bfb7",
+  "failed_log": "verify_resolved_qualification_attempt1.log",
+  "first_partial_outputs_sha256": {
+    "verify_resolved.py": "f8ac546b5c4799552df43583b2ace11daf8f62414e2001f0ec65d5459a0d4257",
+    "resolved_abi.json": "7ac90e34d75c6141352fb0b9e7730dd40ed240b9a4a9c10fc21598497b8119ae",
+    "item_layout_offsets.json": "9053599b639c8207b604e767a7522ed7fd72087ada57fa09e1856776f884ca27",
+    "resolved_boundary_test.json": "1a980fbb86ae47583dff82ed9b76bbd33e23cfaa7c20acb107e09d3861d16cb4",
+    "buff_chunk_differential.json": "431408757bd36cc30db296d9ae3a8327fe6088034cdbfbed7c2172a24c61dc56",
+    "addspeed_trace_differential.json": "dbd5bbcc26d0e432107ffc2b861d20b81d2a7b2f05f94b7dbc044f23008d6d6e",
+    "hot_coverage_test.json": "2aa6154ad41c42f1ff681b7e7c56f61b661cad542262bbdeecb6bcaabb25461e",
+    "type_constructor_test.json": "e367bb1d7061ad6ebfadeb33c09ac5916a4f69c789bcd77d83fb2de38006bbc9",
+    "property_test.json": "79ef1bd5d0629fc077f98ceda1043b51379f055da4839b61a2a948942a8b86dd",
+    "inline_candidate_test_directory.txt": "93c9fb74900781459782bfa9504976a929e66eda2968ecaa6e1d0e4bc214dd7d"
+  },
+  "no_formal_AB_or_release_speed_observations_collected": true
+}

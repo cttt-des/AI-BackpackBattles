@@ -1,0 +1,76 @@
+"""Document, close and archive exactly the calibrated structural experiment."""
+import json,sys,os,subprocess
+from pathlib import Path
+from prepare_structure_round import REPO,STAGE,WORK,BASE,ACCEPTED,EXPECTED,ARCHIVE,sha,save,inventory,verify_projection
+from install_ordering_correctness import boundary
+def read(name):return json.loads((WORK/name).read_bytes())
+def close():
+    boundary();decision=read('candidate_decision.json');speed=read('measurements_summary.json');deployed=(WORK/'installation.json').exists();candidate=sha(WORK/'bundle.dll')
+    assert sha(BASE/'libgdcore.dll')==sha(REPO/'dist/native_1_1_10/libgdcore.dll')==(candidate if deployed else EXPECTED)
+    if deployed:verify_projection(BASE);assert read('post_install_verification.json')['passed']
+    else:assert inventory(BASE)==read('baseline_source.json')
+    save('current_runtime_status.json',dict(deployed=deployed,production_dll_sha256=sha(BASE/'libgdcore.dll'),candidate_dll_sha256=candidate,AB_status=decision['status'],all_protocol_processes_finished=True,no_same_source_retiming=True,remaining_backup_required=True))
+    aa=read('aa_analysis.json');ab=read('ab_assessment.json');layout=read('layout_projection.json');cost=read('structural_cost_assessment.json');cpu=ab['metrics']['main_thread_cpu_s'];wall=ab['metrics']['wall_s']
+    note=REPO/'docs/C++模拟器AA校准与热状态布局架构原型记录_2026-11-27.md';assert not note.exists()
+    text=f'''# 同DLL A/A校准与热状态布局架构原型（2026-11-27）
+
+本轮{'已验证收益并部署' if deployed else '未满足可信收益的部署条件，保留原生产版本'}。生产`{sha(BASE/'libgdcore.dll')}`；起始基线`{EXPECTED}`，候选`{candidate}`。既有分支、HEAD、用户暂存区和受保护文件保持。远端仅更新既有`codex/native-perf50-verified`，提交见checkpoint_receipt.json。
+
+## 测速校准
+
+先冻结计划，再使用同一份已部署DLL的两个独立进程：旧流程8对、修正流程两组各12个四臂样本；每臂4次固定200场、每组预热120秒。功能烟测单列，不计入校准。旧控制组保留全部样本，CPU／墙钟中位“收益”为−3.4006%／−4.6551%；代码相同，因此不能解释为代码效果。
+
+修正流程固定逻辑CPU2（按拓扑选第二物理核的首逻辑CPU，不挑最快核），ABBA／BAAB数量平衡且预先随机化，第二组反转加载顺序。按真实计时中点，对外围同臂的log耗时线性插值得到中间臂对照，取24个四臂对比的中位数。GC只在每次请求的计时区间关闭；完整结果哈希在区间外检查。计时期间无编辑、编译、剖析及分析脚本，报告只在计时后写出。QueryThreadCycleTime仅作附加遥测，不当作墙钟时间或频率。
+
+合并A/A中位CPU／墙钟差为{aa['median_reduction_pct'][0]:.4f}%／{aa['median_reduction_pct'][1]:.4f}%，95%区间均含零。保留相邻相关性，以分组循环移动块bootstrap量化，块长2及3均报告；经验联合80%可检出耗时降低约{aa['bootstrap']['2']['joint80_detectable_reduction_pct']:.3f}%／{aa['bootstrap']['3']['joint80_detectable_reduction_pct']:.3f}%。这是本机本次环境的经验分辨率，不是通用保证；旧8对与新24四臂样本预算不同，不能把全部变化归因于固定核心。
+
+正式A/B协议在候选测速前冻结：两组共24四臂，不追加同源样本；CPU和墙钟在块长2及3的95%下界均须大于零，中位收益须超过A/A绝对空效应95%包络，两组方向也都须为正。所有初次样本和极值均保留。
+
+用户因C盘占用要求暂停时，首次A/B尚停在第一个工作进程的ready输出，未进入预热或正式回放。该次输入快照、错误日志及空日志完整移存interrupted_before_ready_20261127。用户明确恢复后，核对同一DLL、715文件、33项已完成验证日志及冻结的测速代码哈希，再按原预算完成首份24四臂。此为启动中断恢复，不是观察收益后追加样本。详见resume_verification.json。
+
+中间目录现统一使用D:\\CodexNativeBuilds\\work；阶段结束自动保留必要记录并删除中间文件。旧对象文件不参与本次继续验证；必要最终DLL、源码及PGO记录均已保存在D盘。存储维护记录在storage_maintenance。
+
+## 实际成本与空帧评估
+
+生产DLL采样{cost['samples']}栈，互斥归属：触发链{cost['exclusive_sample_pct']['trigger_chain']:.2f}%，其他帧内{cost['exclusive_sample_pct']['frame_without_trigger']:.2f}%，装配{cost['exclusive_sample_pct']['item_assembly']:.2f}%，其余初始化／导出{cost['exclusive_sample_pct']['other_setup_and_export']:.2f}%。采样包含内联和采样偏差，是成本归属，不是收益承诺。
+
+独立影子DLL统计固定200场实际分配请求、请求字节、显式容器复制／搬移、查找比较和派发参数数量，完整结果签名保持。原始数值在diagnostic_counts.json：分配累计约462万次／473.52MB，冷却访问3633579次，触发链字典查询1534627次。累计请求字节不是峰值内存，逻辑参数单元数不是机器实际搬运字节；没有改GdVal复制构造去“测”复制，也不使用影子DLL速度当收益。
+
+原版日志按60Hz时间戳分箱，{cost['original_log_inactivity']['percent']:.2f}%帧无日志事件，这不证明帧无工作。已核对原版Item._physics_process、Character及计时器来源：冷却、体力、眩晕、计时器、运动、粒子、critical shake及宿主RNG边界仍可能变化；重复浮点减法也不能无证明替换为N×delta。完整事件流重写和精确空区间快进保留为架构路线，需先建立完整观察者／截止点证明。
+
+## 本轮结构性原型
+
+本轮选择物品／角色／Buff／上下文的热状态布局模式。只在4个生成对象头中，对同类型GdVal声明槽做排列；初始化及全部方法体、算式、字段名称、动态回调、派发和排序代码均未改动。674类的sizeof和alignof全部相同，GdVal24及原内嵌存储／计时器64字节锚点偏移保持，原C入口保持。原C++字段偏移有意改变，独立DLL测试分别使用各自头文件。
+
+按实际编译字段偏移计算，冷却热点的64字节行覆盖由8降至4；角色及Buff的各合法对齐位置也单列保留。该值是静态足迹，未伪称缓存缺失计数，更不直接换算为速度。该原型的局限是没有消除物理帧算法本身；布局改善能否兑现由A/B判定。
+
+完整715文件逆变换证明只改声明排列；两次从GDScript及全部保留优化重生成，复现710份C++清单的字节及mtime，未知编辑在写入前拒绝。普通20单元原型只作语义筛查；正式完整20插桩／18新PGO保持原浮点及优化选项，最多2个BelowNormal编译任务。
+
+旧item-locality测试的gems／timers同缓存行和active／bridge同缓存行断言在新布局下不成立。首次失败与所有已完成输出保留；核对生产代码没有依赖这些固定偏移后，只将这两个几何谓词替换为新模式的精确位置断言，保留全部43项状态、复制、别名、逃逸、所有权与生命周期用例，以及原计时器／内嵌头位置检查。候选源码、DLL和算法未为此改动；这是有意改变布局合同，不是跳过语义测试。详见layout_contract_fixture_adaptation.json。
+
+## 完整验证与结果
+
+原版Godot排序与药水／腰带／嵌套触发、同帧动态派发的定向对照保留。实际DLL帧函数135168项及当前生产武器链136128项，16浮点模式、状态／RNG／标志／MXCSR／原计数与全部继承检查通过；2604场原版逐事件、来源、RNG、终局、旧计数和逐场哈希通过。对应DLL由complete_correctness_gate.json绑定。
+
+正式24四臂CPU／墙钟中位耗时降低{cpu['paired_median_time_reduction_pct']:.6f}%／{wall['paired_median_time_reduction_pct']:.6f}%；各95%区间、A/A噪声门槛与分组方向见ab_assessment.json。判定`{decision['status']}`。{'收益通过后再次完成全部2604及定向检查，首raw24、独立cal24、安装后实际DLL与12训练作业均验收。' if deployed else '候选未替换生产DLL；独立cal24仅作非发布报告，不冒充部署验收。'}
+
+20%负载经验估计{speed['fitted_fights_per_second_at20']:.4f}场/秒，{'外推' if speed['reference_is_extrapolation'] else '插值'}，log墙钟拟合R²={speed['r_squared_log_wall_time']:.6f}。仍按经验公式换算，允许外推；不等待空闲，不设20%覆盖门槛，不把跨轮归一化FPS变化当作代码收益。
+
+全部证据与正负样本位于output/_v1110/native_perf50/measurement_structure_bundle。下一步是否值得采用更大的调度／表示重写，应依据本轮校准和成本证据，不能因为源码改动看似漂亮就认定加速。
+'''
+    note.write_text(text,encoding='utf8',newline='\n');save('documentation.json',dict(path=note.relative_to(REPO).as_posix(),sha256=sha(note)))
+def archive(upload=False):
+    text=(STAGE/'archive_frame_guard.py').read_text('utf8').replace('from prepare_frame_guard_reuse import','from prepare_structure_round import')
+    old="paths=set(STAGE.glob('*frame_guard*.py'));paths.add(STAGE/'profile_post_ordering.py')";assert old in text
+    text=text.replace(old,"paths=set(STAGE.glob('*structure*.py'));paths.update(STAGE/n for n in ('measurement_platform.py','measure_native_quads.py','measure_native_corpus_blocks.py','compare_native_isolated_blocks.py','analyze_structure_aa.py','calibrate_structure_measurement.py','native_build_storage.py','run_native_managed.py','retire_native_c_cache.py','retire_native_temp_cache.py','test_native_build_storage.py','build_native_hot_lto.py','next_two.py','regenerate_frame_guard.py','AGENTS.md','native_storage_hook/sitecustomize.py'));paths.add(REPO/'docs/C++模拟器构建产物管理.md')")
+    old="paths.update(p for p in STAGE.glob('frame_guard*.log') if not p.name.startswith(('frame_guard_archive_','frame_guard_goal_driver_')));paths.add(STAGE/'post_ordering_profile_first.log')";assert old in text;text=text.replace(old,'# All phase logs live inside the frozen work directory.')
+    text=text.replace("for folder in (WORK,STAGE/'native_perf50/post_ordering_assessment'):","for folder in (WORK,):")
+    old="            if p.name.startswith('checkpoint_'):continue";assert old in text;text=text.replace(old,"            if p.name.startswith(('checkpoint_','structure_goal_driver','structure_archive_')):continue")
+    text=text.replace("note=REPO/'docs/C++模拟器逐帧类型守卫复用优化记录_2026-11-27.md'","note=REPO/json.loads((WORK/'documentation.json').read_bytes())['path']")
+    text=text.replace('frame type guard reuse','calibrated hot-state layout architecture').replace('frame-guard-own-index-','structure-own-index-')
+    sys.argv=[str(STAGE/'finish_structure_round.py'),*(['--upload'] if upload else [])]
+    exec(compile(text,str(STAGE/'archive_frame_guard.py'),'exec'),dict(__name__='__main__',__file__=str(STAGE/'finish_structure_round.py')))
+if __name__=='__main__':
+    if not os.environ.get('NATIVE_BUILD_SESSION'):
+        raise SystemExit(subprocess.call([sys.executable,'-u','-X','utf8',str(STAGE/'run_native_managed.py'),str(Path(__file__).resolve()),*sys.argv[1:]]))
+    {'close':close,'archive':archive,'upload':lambda:archive(True)}[sys.argv[1]]()

@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "baseline_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "all136128_current_weapon_cases_exact": true,
+  "no_case_merging": true,
+  "all32_scripts": true,
+  "all_original_semantic_cases_and_expectations_retained": true,
+  "declared_geometry_predicates_updated": true,
+  "geometry_adaptation_receipt_sha256": "9d0ce1e78e799862f6fc94c8a7b788ec9f878e3421fe6882cae389f21b1ca856"
+}

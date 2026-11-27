@@ -1,0 +1,6 @@
+{
+  "name": "measurement_structure_bundle",
+  "baseline_bundle": "frame_guard_reuse_bundle",
+  "baseline_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "parent_remote_commit": "08c302e0ca056ab5ffff4853fc61b7705129e8d0"
+}

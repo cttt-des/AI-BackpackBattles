@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "retired_source_GiB": 36.879931221716106,
+  "C_free_GiB": 49.29103469848633,
+  "D_free_GiB": 378.00039291381836,
+  "C_cache_absent": true,
+  "D_disposable_workspace_empty": true,
+  "legacy_explicit_C_path_redirected_without_recreating_C_cache": true,
+  "baseline18_flags_verified_after_real_object_deletion": true,
+  "HEAD_index_protected_files_and_production_source_unchanged": true,
+  "production_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "optimization_still_paused": true,
+  "utc": "2026-11-27T13:06:40.888150+00:00"
+}

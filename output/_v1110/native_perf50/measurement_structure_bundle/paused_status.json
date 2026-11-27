@@ -1,0 +1,14 @@
+{
+  "paused_by_user": true,
+  "reason": "C drive storage maintenance",
+  "no_automatic_optimization_resume": true,
+  "last_progress": {
+    "phase": "timing",
+    "script": "compare_structure_round.py",
+    "log": "comparison_first.log",
+    "measurement_only_monitoring": true,
+    "finished": false
+  },
+  "measurement_report_files": {},
+  "all_completed_artifacts_preserved": true
+}

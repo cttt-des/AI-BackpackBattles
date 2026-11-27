@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "dll_sha256": "0e796c7fa00f6aef37b0afd605f313b0c7290b3b915119f334f92afe15c3bfb7",
+  "cases": 2016,
+  "sealed_known_cases": 1056,
+  "registry_boundary_checks": 4,
+  "actual_production_method_checked": true,
+  "separate_old_new_abi_executables": true,
+  "layouts": {
+    "historical_oracle": {
+      "GdVal": 24,
+      "GdArr": 24,
+      "CoreItem": 1792,
+      "BattleCtx": 264
+    },
+    "baseline": {
+      "GdVal": 24,
+      "GdArr": 32,
+      "CoreItem": 2112,
+      "BattleCtx": 328
+    },
+    "candidate": {
+      "GdVal": 24,
+      "GdArr": 32,
+      "CoreItem": 2112,
+      "BattleCtx": 328
+    }
+  },
+  "independent_receipts": {
+    "owner": {
+      "cases": 1760,
+      "all_declared_reference_states_and_legacy_counters_equal": true,
+      "reference_sha256": "7fc4c9a5b242af3ddbcc8548b7f2a23233ed4355b6475773ddfa4a6758e81168",
+      "frozen_original_reference_sha256": "2e73d3bc5265634a3295888f96f4664584382beeb2e0fc6c7cc8a6ac17970f7c",
+      "Godot_sort_expectation_updated_only_for_owner": true
+    },
+    "safety": {
+      "cases": 192,
+      "all_declared_reference_states_and_legacy_counters_equal": true,
+      "reference_sha256": "787a9cbd8addcb3a5b16b0ecf5be9f20bb62b1b7c8d39b5e74ef561f61a07e41",
+      "frozen_original_reference_sha256": "787a9cbd8addcb3a5b16b0ecf5be9f20bb62b1b7c8d39b5e74ef561f61a07e41",
+      "Godot_sort_expectation_updated_only_for_owner": false
+    },
+    "ownership": {
+      "cases": 64,
+      "all_declared_reference_states_and_legacy_counters_equal": true,
+      "reference_sha256": "1a3f04e02d9cf68f10764cc92dd2b291bb8fa02ac87725ff95e3f7c4c0b4013c",
+      "frozen_original_reference_sha256": "1a3f04e02d9cf68f10764cc92dd2b291bb8fa02ac87725ff95e3f7c4c0b4013c",
+      "Godot_sort_expectation_updated_only_for_owner": false
+    }
+  },
+  "all_unaffected_original_states_retained_and_Godot_sort_side_effects_checked": true
+}

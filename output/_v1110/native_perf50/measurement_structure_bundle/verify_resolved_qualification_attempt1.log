@@ -1,0 +1,26 @@
+Measured actual baseline/candidate base and derived layout sizes and offsets
+401 enum lookup and 9 full constructor cases matched baseline
+1624 Buff scan state/callback and40 cooldown-flag cases matched baseline
+AddSpeed diagnostic and fallback differential cases matched baseline
+{"new_method_symbols":16,"unknown_receiver_payload_rng_bind_cases":1344,"null_and_existing_cache_preserved":true,"generated_fast_path_and_bad_row_audit":true}
+
+{"type_predicates":454276,"original_fused_initializations":1348,"graph_fields":210938,"boundaries":2039,"aliases_payloads_rng_ids_order_checked":true}
+
+{"classes":674,"field_cases":289476,"field_bindings":13158,"aliases":13158,"boundary_cases":24,"rng_ids_payload_metadata_unchanged":true,"explicit_bad_row_audit_caught":true}
+
+Assertion failed: line==reinterpret_cast<uintptr_t>(&item->f_gems)/64, file D:\文件资料\学习\自动背包AI\output\_v1110\test_native_item_locality.cpp, line 39
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\measurement_structure_bundle\verify_resolved.py", line 133, in <module>
+    main()
+    ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\measurement_structure_bundle\verify_resolved.py", line 111, in main
+    output=subprocess.check_output([str(executable)],text=True)
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 473, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\Windows\\AppData\\Local\\Temp\\native-inline-timer-candidate-pd7p5n5_\\test_3.exe']' returned non-zero exit status 3221226505.

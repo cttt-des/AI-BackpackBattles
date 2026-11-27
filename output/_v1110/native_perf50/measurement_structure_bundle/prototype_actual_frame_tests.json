@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "cases": 135168,
+  "dll_sha256": "c110da7b1b0b8022331472da33119a32cee4790274d0261864c7c7eebcea62ff",
+  "baseline_dll_sha256": "146263d86e7e0e1c0bb530b49a313b04c9fd63575fe831137ec84c97d114b334",
+  "actual_DLL_functions_via_GetProcAddress": true,
+  "no_inline_fixture_substitution": true,
+  "original18_scenarios_plus4_callback_guard_mutation_scenarios": true,
+  "all16_FP_modes": true,
+  "all_original_state_RNG_FPflags_MXCSR_and27_counters": true,
+  "difference_count": 0,
+  "first_differences": [],
+  "fixture_sha256": "98ab99926f30a02005e58e29e800f9a2ed249c9ad4667ffd330766303343d2de"
+}

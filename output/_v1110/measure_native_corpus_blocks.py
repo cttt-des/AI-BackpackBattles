@@ -6,7 +6,7 @@ import time
 import psutil
 
 
-def measure_blocks(sim,jobs,repetitions,load_before):
+def measure_blocks(sim,jobs,repetitions,load_before,*,precise_timestamps=False):
     assert len(jobs)==200 and repetitions>=1
     before=psutil.sensors_battery()
     def replay(job):
@@ -20,7 +20,8 @@ def measure_blocks(sim,jobs,repetitions,load_before):
         all_results.append(list(map(replay,jobs)))
         raw.append({'wall_s':time.perf_counter()-start,'main_thread_cpu_s':time.thread_time()-thread})
     thread_cpu=time.thread_time()-thread_start
-    cpu,wall=time.process_time()-cpu_start,time.perf_counter()-wall_start
+    cpu=time.process_time()-cpu_start
+    wall_end=time.perf_counter();wall=wall_end-wall_start
     load=psutil.cpu_percent(interval=None);logical=psutil.cpu_count();after=psutil.sensors_battery()
     signatures=[];durations=[]
     for record,results in zip(raw,all_results,strict=True):
@@ -32,7 +33,8 @@ def measure_blocks(sim,jobs,repetitions,load_before):
             signature.update(ctypes.string_at(ctypes.addressof(result),ctypes.sizeof(result)))
         signatures.append(signature.hexdigest());record.update(results_sha256=signatures[-1],matched_original_terminal=200)
     assert len(set(signatures))==1,'Every repeated fixed200 must have the same complete result signature'
-    return {'results_sha256':signatures[0],'matched_original_terminal':200,
+    timestamps={'measurement_start_qpc':wall_start,'measurement_end_qpc':wall_end} if precise_timestamps else {}
+    return {**timestamps,'results_sha256':signatures[0],'matched_original_terminal':200,
         'wall_s':wall/repetitions,'cpu_s':cpu/repetitions,'main_thread_cpu_s':thread_cpu/repetitions,
         'fights_per_second':200*repetitions/wall,
         'combat_seconds':{'minimum':min(durations),'median':statistics.median(durations),'mean':statistics.mean(durations),'maximum':max(durations)},
