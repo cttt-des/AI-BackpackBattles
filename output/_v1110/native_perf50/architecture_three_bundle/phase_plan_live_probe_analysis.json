@@ -1,0 +1,55 @@
+{
+  "passed": true,
+  "semantic_cases": 48,
+  "live_fields_read_each_step": true,
+  "modes": [
+    {
+      "mode": 0,
+      "quad_reductions_pct": [
+        4.105982716914269,
+        8.225578841188774,
+        13.839325820019454,
+        2.656616571391246
+      ],
+      "median_target_segment_reduction_pct": 6.165780779051522,
+      "ns_per_visit": {
+        "A": 16.521825,
+        "B": 15.463125000000002
+      },
+      "optimistic_whole_workload_ceiling_pct": 0.508849556133564
+    },
+    {
+      "mode": 1,
+      "quad_reductions_pct": [
+        -7.801329067755347,
+        -14.74011916999276,
+        19.573158161239558,
+        -11.475613833980859
+      ],
+      "median_target_segment_reduction_pct": -9.638471450868103,
+      "ns_per_visit": {
+        "A": 15.746875,
+        "B": 15.782224999999997
+      },
+      "optimistic_whole_workload_ceiling_pct": -0.7954437718972428
+    },
+    {
+      "mode": 2,
+      "quad_reductions_pct": [
+        7.276874336160477,
+        -12.464866602718129,
+        -58.91519625765129,
+        12.799685784437697
+      ],
+      "median_target_segment_reduction_pct": -2.593996133278826,
+      "ns_per_visit": {
+        "A": 17.679887499999996,
+        "B": 16.7711875
+      },
+      "optimistic_whole_workload_ceiling_pct": -0.21407731288723497
+    }
+  ],
+  "not_release_gain": true,
+  "callback_recovery_and_game_coverage_still_unproven": true,
+  "decision": "Insufficient mechanism margin; reconsider before full integration"
+}

@@ -1,0 +1,5 @@
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\test_invariant_resume_probe.cpp:4:
+D:\文件资料\学习\自动背包AI\output\_v1110\test_native_frame_segments.cpp: In function 'int inherited_frame_fixture_main()':
+D:\文件资料\学习\自动背包AI\output\_v1110\test_native_frame_segments.cpp:182:1: warning: control reaches end of non-void function [-Wreturn-type]
+  182 | }
+      | ^

@@ -1,0 +1,5 @@
+In file included from D:\CodexNativeBuilds\work\__main__-main-7bb4748c3e74\phase-plan-probe-zkfcen_t\probe.cpp:3:
+D:\文件资料\学习\自动背包AI\output\_v1110/test_native_frame_segments.cpp: In function 'int inherited_frame_fixture_main()':
+D:\文件资料\学习\自动背包AI\output\_v1110/test_native_frame_segments.cpp:182:1: warning: control reaches end of non-void function [-Wreturn-type]
+  182 | }
+      | ^

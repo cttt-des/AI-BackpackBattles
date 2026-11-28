@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "dll_sha256": "8d77fa971191916ae3c9f9ef57abed30623cf76628dcb398b8bdba863f2ced0d",
+  "source_manifest_sha256": "3b03c62684de50cc2f8537c12b41d9a8f298d5beabc8f37a1ba56e6f5f838c81",
+  "full20_fresh_normal": true,
+  "schedule": {
+    "frontend_jobs": 1,
+    "lto_jobs": 1,
+    "requested_frontend_jobs": 0,
+    "requested_lto_jobs": 0,
+    "logical_cpus": 8,
+    "physical_cpus": 4,
+    "cpu_worker_cap": 3,
+    "reserved_physical_cores": 1,
+    "available_bytes": 2266660864,
+    "reserved_bytes": 2147483648,
+    "automatic_frontend_cap": 1,
+    "automatic_lto_cap": 1
+  },
+  "objects_sha256": {
+    "engine_wrapper.o": "02d5fd0c3a22c17c1bbd46063fe0435c2d897f50cdd49c82682555fee21121ca",
+    "gd_rt.o": "09d0a272827138f3f76b1a36be8f5b421b63bd2934dea8d4f08f60805b618c8d",
+    "register_all.o": "87aa32f2f9350de3823d2587f56c1a10c2b7f77e125e1ba01206854af046d6f8",
+    "shard_00.o": "c20c657e46c328388af2e1e928a0a3a7b5e29f982492a6004a7db6c5411b3452",
+    "shard_01.o": "1a47871519582e80a031e3840e866a731d3a80e139d02da25f75116847e7d8a7",
+    "shard_02.o": "dbae283c78c33c9aaa87e044db62096c6f5bff19348963fa14a94df96c5405a3",
+    "shard_03.o": "2766f8aee803376eebdf6348138302bc597bcbf48e549fc28f68862f8321a861",
+    "shard_04.o": "faf47e145d3ac2492530fae2e00770e15e9835fb62736e13696c46d71bd658fd",
+    "shard_05.o": "9d737997b5fb816b14aec2c9099f46fa6622829370009c78bddbac2dc4b3d81d",
+    "shard_06.o": "c2ee7befd5eea6523320186e8924bf0caad8f02b0b3ea44f32c7546ce00b91e4",
+    "shard_07.o": "5eb2f00bf088d4437c54bf3f83b1bace3e6bf3ba716ac295891c010dc8f16713",
+    "shard_08.o": "b1f76fc357130fd459419a89986579151839b8ded56d00dd0fe9d5a41f42ef86",
+    "shard_09.o": "1201fa4fb7680e77b53939f94a0b4d24c5415047cd92b628b564da0fe73b16d6",
+    "shard_10.o": "ebda8acce45bc7d29f1917091f145b3fcf52c67b39276196beaf11205ab9d5a5",
+    "shard_11.o": "b50bde85bc585b1145681b21919a071a1a3c69b587c855f6ed10de184e8412c2",
+    "shard_12.o": "dae0a5d4faae255f90c0fbee7bc9bf7735ac6897e4814e28e7b6d5ab14fa4801",
+    "shard_13.o": "df6b1bb47aa816a1993b5e8376d462c0ecb8e1c5a2cb1b0fe5f998a0337787d9",
+    "shard_14.o": "ef6adf22bbd38891e46291f6c88de79f57030250f179f50dd295eadaac5ccc63",
+    "shard_15.o": "4dd4af969f2121b354e7f6a3dba7a78f9ac3384283d82d68ad897d76fe2f80b8",
+    "sym_ids.o": "35b0d562d93f7e48a8863ad0cea81c5e1ea58ef709ae0b47ffd4e0f423652678"
+  },
+  "semantic_only": true
+}

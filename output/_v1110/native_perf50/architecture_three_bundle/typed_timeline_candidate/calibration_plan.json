@@ -1,0 +1,110 @@
+{
+  "baseline_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "parent_remote_commit": "08c302e0ca056ab5ffff4853fc61b7705129e8d0",
+  "topology": {
+    "physical_core_logical_cpus": [
+      [
+        0,
+        1
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        6,
+        7
+      ]
+    ],
+    "allowed_logical_cpus": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "selected_logical_cpu": 2,
+    "selected_physical_core": [
+      2,
+      3
+    ],
+    "selection_rule": "first allowed logical CPU in second physical core, independent of speed results"
+  },
+  "scripts_sha256": {
+    "measure_native_quads.py": "67962b6b6406e682deb9a19f786c5af2316e1ce1164f99222fbf169983e7367a",
+    "measurement_platform.py": "8f72474d31f8af73979f008865de634a0f7018470fb611f01d5e553740047c60",
+    "measure_native_corpus_blocks.py": "eb97896fe52853749f5b61027616fc7389d9dff2eb512e75331d34507a0a4b86",
+    "compare_native_isolated_blocks.py": "a566eae606d8e83e35c8ae43ba9d555c767e480877e9cba36fccdff57349b9ef",
+    "calibrate_structure_measurement.py": "8eff748e937213f25b160b0e530a43b6ee8c4993232ab451411cd531845e1857"
+  },
+  "functional_smoke": {
+    "quads": 2,
+    "repetitions": 1,
+    "warmup_seconds": 0,
+    "seed": 271101,
+    "not_calibration_or_performance_claim": true
+  },
+  "old_method_control": {
+    "pairs": 8,
+    "repetitions": 4,
+    "warmup_seconds": 120,
+    "affinity": "all allowed logical CPUs; exact old procedure"
+  },
+  "corrected_sessions": [
+    {
+      "name": "aa_fixed_1",
+      "quads": 12,
+      "repetitions": 4,
+      "warmup_seconds": 120,
+      "seed": 271102,
+      "candidate_load_first": false
+    },
+    {
+      "name": "aa_fixed_2",
+      "quads": 12,
+      "repetitions": 4,
+      "warmup_seconds": 120,
+      "seed": 271103,
+      "candidate_load_first": true
+    }
+  ],
+  "every_batch_original_fixed200_signature": true,
+  "all_observations_and_extremes_retained": true,
+  "no_candidate_in_this_stage": true,
+  "primary_metrics": [
+    "main_thread_cpu_s",
+    "wall_s"
+  ],
+  "primary_estimator": "median of time-bracketed quad log contrasts",
+  "analysis": {
+    "bootstrap_resamples": 20000,
+    "seed": 271104,
+    "moving_block_length": 2,
+    "sensitivity_block_length": 3,
+    "session_grouping": true,
+    "estimate": [
+      "absolute null bias and 95% envelope",
+      "joint 80% detection magnitude at 24 quads",
+      "time drift",
+      "order effects",
+      "lag correlation"
+    ],
+    "formal_AB_budget": "two sessions of12 quads; no additional same-source sampling",
+    "acceptance": "both CPU and wall95% lower bounds positive; both point gains exceed respective AA absolute95% null envelopes; both sessions direction positive"
+  },
+  "no_edits_compiles_profiling_or_analysis_during_timing": true,
+  "load20": {
+    "empirical_formula": true,
+    "extrapolation_allowed": true,
+    "no_idle_or_coverage_gate": true
+  },
+  "no_new_branches": true,
+  "preserve_user_files_index_HEAD": true
+}

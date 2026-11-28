@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "semantic_cases": 48,
+  "modes": [
+    {
+      "mode": 0,
+      "quad_phase_reductions_pct": [
+        88.61542804061028,
+        87.98961096538126,
+        90.11643439127539,
+        86.9177006238718
+      ],
+      "median_phase_reduction_pct": 88.30251950299578,
+      "baseline_ns_per_visit": 16.775175,
+      "ideal_ns_per_visit": 2.1153750000000002,
+      "optimistic_whole_workload_ceiling_pct": 7.287430329543236
+    },
+    {
+      "mode": 1,
+      "quad_phase_reductions_pct": [
+        85.94905316692515,
+        87.72109881874654,
+        89.80580955534278,
+        84.61670938797545
+      ],
+      "median_phase_reduction_pct": 86.83507599283584,
+      "baseline_ns_per_visit": 16.366162499999998,
+      "ideal_ns_per_visit": 1.918225,
+      "optimistic_whole_workload_ceiling_pct": 7.166325151536757
+    },
+    {
+      "mode": 2,
+      "quad_phase_reductions_pct": [
+        88.57122890986912,
+        87.30745585464574,
+        80.30608189317793,
+        90.44636924229445
+      ],
+      "median_phase_reduction_pct": 87.93934238225742,
+      "baseline_ns_per_visit": 15.9231625,
+      "ideal_ns_per_visit": 1.77865,
+      "optimistic_whole_workload_ceiling_pct": 7.257458048122941
+    }
+  ],
+  "median_ideal_build_s": 1.8736900000000002e-07,
+  "real_production_build_count_per200": 1904,
+  "not_a_release_gain": true,
+  "unproven_costs": [
+    "Callback suffix recovery",
+    "Guard coverage in real game scenes",
+    "Live field/type changes and gem-specific behavior"
+  ],
+  "next": "Mechanism ceiling warrants a bounded live phase prototype only if sufficient; no full PGO yet"
+}

@@ -1,0 +1,14 @@
+{
+  "profile_sha256": "6d559fc43aa0a848e01f6b49db011ad7082a60738d91f2161e653d89f5a65130",
+  "samples": 8070,
+  "five_function_leaf_sum": 448,
+  "five_function_leaf_pct": 5.551425030978934,
+  "five_subtree_union": 708,
+  "five_subtree_union_pct": 8.773234200743495,
+  "charge_callback_subtree_retained": 156,
+  "idle_subtree_retained": 158,
+  "remaining_sampled_upper_bound": 394,
+  "remaining_upper_bound_pct": 4.882280049566295,
+  "handoff_5_55_percent_was_leaf_sum_not_subtree_union": true,
+  "not_all_remaining_cost_is_removable": true
+}

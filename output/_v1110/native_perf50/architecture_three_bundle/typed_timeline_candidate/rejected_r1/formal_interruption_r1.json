@@ -1,0 +1,12 @@
+{
+  "reason": "Review found float-valued live replacement queue size truncated in typed_delay tail; formal build must not continue on obsolete source",
+  "formal_pid": 26716,
+  "owned_child_pids": [
+    13248,
+    32068,
+    29160,
+    32276,
+    32408,
+    2776
+  ]
+}

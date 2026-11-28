@@ -1,0 +1,6 @@
+{
+  "reason": "r1 failed4/6 actual-DLL fractional custom-container tail cases; retain literal GdVal end/read/write tail",
+  "r1_regression_receipt": "rejected_r1_container_receipt.json",
+  "FP_support": "New typed paths restricted to default nearest/all-masked/noDAZ/noFTZ; other controls retain original full methods",
+  "no_candidate_speed_observations_or_AB_before_revision": true
+}

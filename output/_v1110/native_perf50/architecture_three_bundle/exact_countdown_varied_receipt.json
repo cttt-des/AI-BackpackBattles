@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "semantic_proof_reused_by_unchanged_header_SHA": true,
+  "proof_receipt_sha256": "4f810e104e7a5fabbe6ec4af5333041fbded3466c9ea2e8b13429bbdc60248fd",
+  "source_sha256": "b02a6236ea7fa6b0a32f6c8d4327e5e132046f4e501416b456d334383634630a",
+  "raw_sha256": "123c693b0df2bd8c516491df902fdb4613c61fe2c07dff6e3f0daaac2eba6644",
+  "not_release_gain": true
+}

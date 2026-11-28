@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "calibration_plan_sha256": "5b352accea4d63c8ea4c180e1e5c7afbafa1dd1f810d2a8b96c434e9db94c8ee",
+  "aa_analysis_sha256": "c25f49275f5db13696ae23ef72fdde72ff1cf22ca9499c0a70fe763ab728d19a",
+  "logical_cpu": 2,
+  "formal_sessions": 2,
+  "quads_per_session": 12,
+  "repetitions": 4,
+  "warmup_seconds": 120,
+  "seeds": [
+    271201,
+    271202
+  ],
+  "reverse_load_order_second_session": true,
+  "bootstrap_seed": 271203,
+  "bootstrap_resamples": 20000,
+  "block_lengths": [
+    2,
+    3
+  ],
+  "primary_estimator": "median of time-bracketed quad log contrasts",
+  "minimum_point_log_reduction": [
+    0.010432212793368456,
+    0.021348558345170555
+  ],
+  "acceptance": {
+    "both_CPU_and_wall95_lower_bounds_positive_for_both_block_lengths": true,
+    "both_point_gains_above_frozen_AA_envelopes": true,
+    "both_sessions_CPU_and_wall_direction_positive": true,
+    "raw24_all_batches_FPS_at_least50": true,
+    "full2604_original_event_identity": true
+  },
+  "all_first_samples_retained": true,
+  "no_same_source_additional_timing": true,
+  "load20": {
+    "formula": "log(wall_seconds)=a+b*background_load_pct",
+    "allow_extrapolation": true,
+    "no_load_coverage_gate": true
+  }
+}

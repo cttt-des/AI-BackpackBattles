@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "attempt": 3,
+  "source_sha256": "ccfa68c48e2e678d531429d67be778823fae002836a6513bc64f0c3ca880272a",
+  "driver_sha256": "8e7f77dfb56b8b60cf1483f298f8925db19141d38d12b9a3589537eee6aacc63",
+  "baseline_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "raw_path": "frontier_resume_probe_raw_3.json",
+  "raw_sha256": "d973c94fd425892172d704d603d519f1bd3695a317a683faf3042d828149e216",
+  "flags": [
+    "-O3",
+    "-std=c++20",
+    "-march=native",
+    "-ffp-contract=off",
+    "-static"
+  ],
+  "semantic_cases": 13440,
+  "small_mechanism_probe_only": true,
+  "not_a_release_gain": true
+}

@@ -1,0 +1,9 @@
+output/_v1110/native_perf50/frame_guard_reuse_bundle/bundle_src/gen/shards\shard_01.cpp:2047:    this->f_speedScale = gd::gd_coerce_float(gd::GdVal::from_float(0.0));
+output/_v1110/native_perf50/frame_guard_reuse_bundle/bundle_src/gen/shards\shard_06.cpp:1946:    this->f_speedScale = gd::gd_coerce_float(gd::GdVal::from_float(0.0));
+output/_v1110/native_perf50/frame_guard_reuse_bundle/bundle_src/gen/shards\shard_00.cpp:255:    this->f_speedScale = gd::gd_coerce_float(gd::GdVal::from_float(0.0));
+output/_v1110/native_perf50/frame_guard_reuse_bundle/bundle_src/gen/shards\shard_00.cpp:279:    this->f_statDisplayOverrides = gd::GdVal::from_arr(this->native_make_display_array(gd_ctx));
+output/_v1110/native_perf50/frame_guard_reuse_bundle/bundle_src/gen/shards\shard_00.cpp:443:        case SYM_GEN_speedScale_9: this->f_speedScale = gd::gd_coerce_float(val); return true;
+output/_v1110/native_perf50/frame_guard_reuse_bundle/bundle_src/gen/shards\shard_00.cpp:467:        case SYM_GEN_statDisplayOverrides_33: this->f_statDisplayOverrides = val; return true;
+output/_v1110/native_perf50/frame_guard_reuse_bundle/bundle_src/gen/shards\shard_00.cpp:2025:    this->f_speedScale = gd::gd_coerce_float(gd::GdVal::from_float(0.0));
+output/_v1110/native_perf50/frame_guard_reuse_bundle/bundle_src/gen/shards\shard_00.cpp:3401:    this->f_speedScale = gd::gd_coerce_float(gd::gd_add(gd_ctx, this->f_speedScale, lv_amount));
+output/_v1110/native_perf50/frame_guard_reuse_bundle/bundle_src/gen/shards\shard_00.cpp:3445:    this->f_speedScale = gd::gd_coerce_float(gd::gd_sub(this->f_speedScale, lv_amount));

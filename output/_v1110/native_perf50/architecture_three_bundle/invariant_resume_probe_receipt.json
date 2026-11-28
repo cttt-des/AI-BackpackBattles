@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "attempt": 1,
+  "source_sha256": "2115bd64da07e17fb17bcb9e8317b89e2464eda564dc6031a2d69694a68d9d73",
+  "driver_sha256": "12d78e1c8e36bdb085161b0039529e4d0dac7c6331b796ababd48c5d25674dfc",
+  "baseline_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "raw_path": "invariant_resume_probe_raw_1.json",
+  "raw_sha256": "e62d2afcc996282f7a201385f6ce49975fa1263ac5cd794bcfbea8abe8a5c090",
+  "flags": [
+    "-O3",
+    "-std=c++20",
+    "-march=native",
+    "-ffp-contract=off",
+    "-static"
+  ],
+  "semantic_cases": 9792,
+  "small_mechanism_probe_only": true,
+  "not_a_release_gain": true
+}

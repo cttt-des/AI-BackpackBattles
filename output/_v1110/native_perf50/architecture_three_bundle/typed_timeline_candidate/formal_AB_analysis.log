@@ -1,0 +1,79 @@
+{
+  "status": "inconclusive_retained",
+  "baseline_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "candidate_dll_sha256": "e772a89eb1fb5b429f12f556837205d6328c31eae718aaff5358498091b2ffd3",
+  "metrics": {
+    "main_thread_cpu_s": {
+      "quads": 24,
+      "paired_median_time_reduction_pct": -2.626204005612711,
+      "sum_time_reduction_pct": -0.8323506970937089,
+      "median95_interval_pct_by_block": {
+        "2": [
+          -6.623128647378746,
+          0.4324126558587274
+        ],
+        "3": [
+          -6.623128647378746,
+          0.05078476492605542
+        ]
+      },
+      "minimum_AA_point_reduction_pct": 1.0377985993807557
+    },
+    "wall_s": {
+      "quads": 24,
+      "paired_median_time_reduction_pct": -2.6639141720716166,
+      "sum_time_reduction_pct": -0.12253004970854686,
+      "median95_interval_pct_by_block": {
+        "2": [
+          -6.146434285342046,
+          1.0614739133680446
+        ],
+        "3": [
+          -5.995486800721146,
+          0.1886842554958988
+        ]
+      },
+      "minimum_AA_point_reduction_pct": 2.1122290895215334
+    }
+  },
+  "session_median_reduction_pct": [
+    [
+      -2.657936951103016,
+      -2.6639141720716166
+    ],
+    [
+      -1.377424310492039,
+      -1.0430113040174147
+    ]
+  ],
+  "log95_intervals_by_block": {
+    "2": [
+      [
+        -0.06413026888313468,
+        -0.05964941031428009
+      ],
+      [
+        0.0043335026324836,
+        0.010671477341820005
+      ]
+    ],
+    "3": [
+      [
+        -0.06413026888313468,
+        -0.058226329865847304
+      ],
+      [
+        0.0005079766475541529,
+        0.001888624884709214
+      ]
+    ]
+  },
+  "acceptance": {
+    "both_interval_lower_bounds_positive": false,
+    "points_exceed_frozen_AA_null_envelopes": false,
+    "both_sessions_both_directions_positive": false
+  },
+  "all24_quads_and_extremes_retained": true,
+  "no_same_source_retiming": true,
+  "protocol_sha256": "7ccd99d086f59acac38e69b95e305b44d16f77d52565cea829df8dcc6d3dd921"
+}

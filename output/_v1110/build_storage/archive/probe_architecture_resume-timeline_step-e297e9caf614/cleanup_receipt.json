@@ -1,0 +1,15 @@
+{
+  "workspace": "D:\\CodexNativeBuilds\\work\\probe_architecture_resume-timeline_step-e297e9caf614",
+  "archive": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\build_storage\\archive\\probe_architecture_resume-timeline_step-e297e9caf614",
+  "preserved": [
+    {
+      "path": ".native_owner.json",
+      "sha256": "9cbb9980cd09441a7910adb242b6de45e8d8dd6d88f1c2b029cbbd491909e216",
+      "bytes": 45
+    }
+  ],
+  "total_bytes": 45,
+  "discarded_rebuildable_bytes": 0,
+  "cleanup_complete": true,
+  "cleanup_access_retries": 0
+}

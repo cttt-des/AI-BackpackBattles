@@ -1,0 +1,11 @@
+Building complete20 instrumentation units with original FP flags; max2 jobs
+Build scheduling: frontend=1, LTO=3 (available 3.67 GiB)
+Built D:\CodexNativeBuilds\work\__main__-formal-70c1c0fc286d\timeline-formal-46b4se3x\objects\instrumented.dll (compiled 20/20, linked 20 objs) in 990.16s
+Collecting new18 profiles from the corrected source
+instrumented.dll: 116.75 replays/s; 14.64 s of combat on average; 1f00611ee50c
+instrumented.dll: 51.87 replays/s; 16.11 s of combat on average; 2e74b45caa87
+instrumented.dll: 40.98 fights/s; 4.58 CPU s; 83.5 MiB peak; 88dda4dce54d
+Building corrected PGO release
+Build scheduling: frontend=1, LTO=3 (available 3.78 GiB)
+Built D:\CodexNativeBuilds\work\__main__-formal-70c1c0fc286d\timeline-formal-46b4se3x\objects\release.dll (compiled 18/20, linked 20 objs) in 615.59s
+Corrected release ready e772a89eb1fb5b429f12f556837205d6328c31eae718aaff5358498091b2ffd3

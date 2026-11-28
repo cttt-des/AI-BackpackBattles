@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "source_sha256": {
+    "exact_countdown_jump.hpp": "96dd2a3132b9b369aafbdfd66dc19c3a3a65d6c69d793e29475612d62c49c52e",
+    "test_exact_countdown_jump.cpp": "741297fd578c4d8bf1b011bffd16b53f32676589d7e466c80fa6d1fc7b1f3bf6"
+  },
+  "raw_sha256": "c70b8f6649f6219ccd391586a6d197862ff3d575770bba4045461a92c07803c0",
+  "accepted": 415602,
+  "rejected_without_changes": 2231566,
+  "literal_SSE_reference": true,
+  "full_DLL_build": false,
+  "not_release_gain": true
+}

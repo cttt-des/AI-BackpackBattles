@@ -1,0 +1,3 @@
+formal timeline_step {'raw_sha256': 'd50f22edce78245be4ff2b37cdb1c29fc4a37661400317c276708ee41c9e230f', 'source_sha256': 'af5d2d46b7004847ef78dab10437d742a552cab3e525fc320c1972ca74e190a4', 'cases': 57344, 'coverage': [30281, 29710, 568, 0]}
+formal delay {'raw_sha256': '70f9442b912819e3e86899ff3697fb9eea05782f23d0e799dd4d8e75af8adab9', 'source_sha256': 'cb3c5b145b06a4cb297327e114295148e95e03a8cbc5a7a13c8b05979fba40f4', 'cases': 11264, 'coverage': [0, 0, 0, 1197]}
+formal legacy_motion {'raw_sha256': '8fd6a914a25ad74ecaab72a241083f1ecd0fbf789ba2a817e979c197aef26fe3', 'source_sha256': '1ffec229c1a6411ca078c9883b583ffc9a3dd1fa4e382c716454285948bb7be1', 'cases': 5840, 'coverage': None}

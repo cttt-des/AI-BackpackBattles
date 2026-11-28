@@ -1,0 +1,21 @@
+{
+  "all_three_directions_have_execution_decisions": true,
+  "all_protocol_processes_finished": true,
+  "deployed": false,
+  "baseline_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "candidate_dll_sha256": "e772a89eb1fb5b429f12f556837205d6328c31eae718aaff5358498091b2ffd3",
+  "production_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "direction1": "no_go_live_invariant_margin",
+  "direction2": "no_go_current_watch_frontier_design",
+  "direction3": "inconclusive_retained",
+  "CPU_time_reduction_pct": -2.626204005612711,
+  "wall_time_reduction_pct": -2.6639141720716166,
+  "semantic_full2604": true,
+  "optimized_coverage": {
+    "motion_entries": 5564319,
+    "typed_visual_steps": 919899,
+    "typed_charge_steps": 4172014,
+    "delay_entries": 2852553
+  },
+  "awaiting_milestone_backup": true
+}

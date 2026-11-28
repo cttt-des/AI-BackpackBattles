@@ -1,0 +1,28 @@
+{
+  "baseline_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "phase_plan": {
+    "decision": "no_go_for_this_round",
+    "semantic_cases": 9792,
+    "reason": "Complete live raw-input qualification and sticky replay leave only a small/noisy target-segment margin. Per-frame input churn is slower. Projected game gain is below the calibrated wall envelope; no full build for this path.",
+    "source": "invariant_resume_analysis.json"
+  },
+  "exact_deadlines": {
+    "decision": "no_go_for_current_watch_reuse_design",
+    "model_scenarios": 128,
+    "observation_comparisons": 13440,
+    "untracked_actual_DLL_writers": 5,
+    "reason": "Current structure/eligibility versions are not numeric invalidation certificates. Direct and resolved getters see stale pending storage; materialization must precede writes and cannot re-raise cleared flags. Correct bounded model still scans lanes. A complete observer/writer instrumentation project is required to remove that traversal; not justified by short-window arithmetic cost and invariant screen.",
+    "model_is_not_game_scheduler_proof": true,
+    "source": "frontier_resume_probe_receipt.json"
+  },
+  "typed_timeline": {
+    "decision": "go_to_isolated_normal_candidate",
+    "reason": "Typed original FP32 stepping has substantially more margin than record caching alone. Actual DLL controls used; local-only delay speedup discounted. Full normal build and directed actual-DLL tests precede fresh PGO; complete optimized2604 and frozen24-quad AB still required.",
+    "source": [
+      "timeline_step_resume_analysis.json",
+      "delay_resume_analysis.json",
+      "profile_weight_correction.json"
+    ]
+  },
+  "no_deployment_or_whole_game_gain_claim": true
+}

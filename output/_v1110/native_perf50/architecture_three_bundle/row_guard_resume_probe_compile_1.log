@@ -1,0 +1,5 @@
+D:\文件资料\学习\自动背包AI\output\_v1110\test_row_guard_resume_probe.cpp: In function 'int main()':
+D:\文件资料\学习\自动背包AI\output\_v1110\test_row_guard_resume_probe.cpp:10:31: error: 'native_resolved_rows' is not a member of 'gd'; did you mean 'native_resolved_slots'?
+   10 |     for(const auto& local:gd::native_resolved_rows){const auto* meta=local.metadata;if(!meta || !meta->alloc_fn)continue;auto* object=meta->alloc_fn(b);const auto* row=object->native_call_row_;assert(row && row->metadata==meta);++rows;
+      |                               ^~~~~~~~~~~~~~~~~~~~
+      |                               native_resolved_slots

@@ -1,0 +1,3 @@
+prototype timeline_step {'raw_sha256': 'ba73f231619c503b9b6ed9de43eb4bb57d7ebfde0fe8a00170c2f61c74c5e27b', 'source_sha256': 'af5d2d46b7004847ef78dab10437d742a552cab3e525fc320c1972ca74e190a4', 'cases': 57344, 'coverage': [484496, 475360, 9088, 0]}
+prototype delay {'raw_sha256': 'e1c66c396e3a4a5fe63d30197fed74fa876eee47bf10caac953a5d9d3b43edbc', 'source_sha256': '86e85f9959dfea6ad97a563a1264089f5ac64d8f9c50426efbc9215b84a87d64', 'cases': 11264, 'coverage': [0, 0, 0, 18820]}
+prototype legacy_motion {'raw_sha256': '8fd6a914a25ad74ecaab72a241083f1ecd0fbf789ba2a817e979c197aef26fe3', 'source_sha256': '1ffec229c1a6411ca078c9883b583ffc9a3dd1fa4e382c716454285948bb7be1', 'cases': 5840, 'coverage': None}

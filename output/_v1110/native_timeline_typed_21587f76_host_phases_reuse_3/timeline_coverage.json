@@ -1,0 +1,12 @@
+{
+  "verifier_exit_code": 0,
+  "dll_sha256": "21587f76d82cb4ab182ef4e52a10a7d24ffac677242c59fbfb59bf3f028aabed",
+  "counts": {
+    "motion_entries": 180186,
+    "typed_visual_steps": 116333,
+    "typed_charge_steps": 0,
+    "delay_entries": 183390
+  },
+  "verifier_source_sha256": "fd4cfc79088a9b201f71bd3f644b4cebfe3191fa9d1fc8864697ea8b5f35b057",
+  "original_strict_verifier_unchanged": true
+}

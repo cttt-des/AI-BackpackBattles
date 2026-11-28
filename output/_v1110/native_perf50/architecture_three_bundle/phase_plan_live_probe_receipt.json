@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "source_sha256": "1864fc66c6b02dd5048ab46f89d3ab3b3949c3a439aee0c42ed8fc15e5ede03e",
+  "baseline_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "raw_sha256": "8004308ff811f352496bdb9eea465d40577b3ae8231d9f5d9f2ad3fd40384f3e",
+  "semantic_cases": 48,
+  "actual_production_function_via_GetProcAddress": true,
+  "ideal_no_callback_upper_bound_only": true,
+  "live_mutable_fields_read_each_step": true,
+  "no_full_DLL_or_PGO_build": true,
+  "no_release_speed_claim": true
+}

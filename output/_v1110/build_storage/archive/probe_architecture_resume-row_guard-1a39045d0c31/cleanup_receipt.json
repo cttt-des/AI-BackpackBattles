@@ -1,0 +1,15 @@
+{
+  "workspace": "D:\\CodexNativeBuilds\\work\\probe_architecture_resume-row_guard-1a39045d0c31",
+  "archive": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\build_storage\\archive\\probe_architecture_resume-row_guard-1a39045d0c31",
+  "preserved": [
+    {
+      "path": ".native_owner.json",
+      "sha256": "b9b09ee0fda8e2c86478346c0e272ce54323ab02aef143e9bba4a29840f6ad02",
+      "bytes": 44
+    }
+  ],
+  "total_bytes": 44,
+  "discarded_rebuildable_bytes": 0,
+  "cleanup_complete": true,
+  "cleanup_access_retries": 0
+}

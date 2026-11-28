@@ -1,0 +1,1 @@
+{"passed":true,"semantic_cases":13440,"model_scenarios":128,"untracked_numeric_writers":5,"stale_direct_and_resolved_getters_exposed":true,"read_must_not_replay_old_cleared_flags":true,"lazy_model_counts":{"per_lane_frontier_scans":6720,"materialization_jumps":4560,"scalar_steps":91584,"phase_flags_writes":1680},"model_is_not_a_full_game_observer_proof":true}

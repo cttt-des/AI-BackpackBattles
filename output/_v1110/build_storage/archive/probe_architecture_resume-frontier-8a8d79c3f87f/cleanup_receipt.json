@@ -1,0 +1,15 @@
+{
+  "workspace": "D:\\CodexNativeBuilds\\work\\probe_architecture_resume-frontier-8a8d79c3f87f",
+  "archive": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\build_storage\\archive\\probe_architecture_resume-frontier-8a8d79c3f87f",
+  "preserved": [
+    {
+      "path": ".native_owner.json",
+      "sha256": "efec365d79226250ef487c0ec8da2149d8b5522df9c47d75a602f7a7cb25a8f3",
+      "bytes": 45
+    }
+  ],
+  "total_bytes": 45,
+  "discarded_rebuildable_bytes": 0,
+  "cleanup_complete": true,
+  "cleanup_access_retries": 0
+}

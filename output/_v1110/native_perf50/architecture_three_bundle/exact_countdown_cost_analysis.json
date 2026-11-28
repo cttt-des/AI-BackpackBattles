@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "source_receipt": "exact_countdown_varied_receipt.json",
+  "statistic": "ratio of per-arm medians; not formal workload AB",
+  "samples_retained": 64,
+  "rows": [
+    {
+      "steps": 4,
+      "literal_SSE_median_s": 0.08814515,
+      "integer_jump_median_s": 0.20314900000000002,
+      "arithmetic_reduction_pct": -130.47099017926683
+    },
+    {
+      "steps": 8,
+      "literal_SSE_median_s": 0.06406680000000001,
+      "integer_jump_median_s": 0.09906685,
+      "arithmetic_reduction_pct": -54.63055748062957
+    },
+    {
+      "steps": 32,
+      "literal_SSE_median_s": 0.0467128,
+      "integer_jump_median_s": 0.0241274,
+      "arithmetic_reduction_pct": 48.349488791080816
+    },
+    {
+      "steps": 128,
+      "literal_SSE_median_s": 0.07259895,
+      "integer_jump_median_s": 0.0058996,
+      "arithmetic_reduction_pct": 91.87371167213851
+    }
+  ],
+  "not_release_gain": true,
+  "constant_input_first_timing_not_used_for_decision": true,
+  "decision": "No pure 4/8-step arithmetic replacement. Scheduling must remove per-frame traversal/dispatch and cover phase observers before integration."
+}

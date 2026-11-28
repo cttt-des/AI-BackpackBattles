@@ -1,0 +1,345 @@
+{
+  "raw_sha256": "b776336f4b26400b792c35d9c1ca43c4274594682a78a7e8d772725fb0110e90",
+  "receipt_sha256": "88d23516ec24211d6a0acf2c61129bd3564cb7e3b7e262c4e576305586c8cd98",
+  "all_samples_retained": true,
+  "statistic": "median of 4 time-bracketed geometric contrasts",
+  "not_formal_workload_AB": true,
+  "rows": [
+    {
+      "group": {
+        "mode": 0,
+        "comparison": 0
+      },
+      "reference": "A",
+      "candidate": "B",
+      "metrics": {
+        "wall_s": {
+          "median_reduction_pct": 35.88700050016719,
+          "all4_quad_reductions_pct": [
+            44.90692462390867,
+            35.23214027921752,
+            33.386214341033124,
+            36.54186072111686
+          ]
+        },
+        "cycles": {
+          "median_reduction_pct": 36.139621231440415,
+          "all4_quad_reductions_pct": [
+            44.07391336100757,
+            35.81906119622297,
+            35.02413517287779,
+            36.460181266657855
+          ]
+        }
+      }
+    },
+    {
+      "group": {
+        "mode": 0,
+        "comparison": 1
+      },
+      "reference": "R",
+      "candidate": "B",
+      "metrics": {
+        "wall_s": {
+          "median_reduction_pct": 33.57021166820705,
+          "all4_quad_reductions_pct": [
+            33.58036604503371,
+            21.646043208636158,
+            36.64119642019158,
+            33.56005729138039
+          ]
+        },
+        "cycles": {
+          "median_reduction_pct": 33.33771342978367,
+          "all4_quad_reductions_pct": [
+            34.44349373725862,
+            29.617630698700893,
+            36.61428374700888,
+            32.23193312230872
+          ]
+        }
+      }
+    },
+    {
+      "group": {
+        "mode": 0,
+        "comparison": 2
+      },
+      "reference": "A",
+      "candidate": "C",
+      "metrics": {
+        "wall_s": {
+          "median_reduction_pct": 26.61346678608114,
+          "all4_quad_reductions_pct": [
+            16.429331678634085,
+            36.797601893528196,
+            48.336937223634116,
+            14.428782498248438
+          ]
+        },
+        "cycles": {
+          "median_reduction_pct": 43.59233220659732,
+          "all4_quad_reductions_pct": [
+            51.09433558410919,
+            37.909537542295645,
+            49.275126870899,
+            33.669203054951325
+          ]
+        }
+      }
+    },
+    {
+      "group": {
+        "mode": 1,
+        "comparison": 0
+      },
+      "reference": "A",
+      "candidate": "B",
+      "metrics": {
+        "wall_s": {
+          "median_reduction_pct": 12.125637080416286,
+          "all4_quad_reductions_pct": [
+            -18.000113755129043,
+            17.369957929023705,
+            6.881316231808865,
+            19.562863572097534
+          ]
+        },
+        "cycles": {
+          "median_reduction_pct": 14.750841888475584,
+          "all4_quad_reductions_pct": [
+            12.209391981709105,
+            17.292291795242065,
+            12.027205139603547,
+            17.8234855344652
+          ]
+        }
+      }
+    },
+    {
+      "group": {
+        "mode": 1,
+        "comparison": 1
+      },
+      "reference": "R",
+      "candidate": "B",
+      "metrics": {
+        "wall_s": {
+          "median_reduction_pct": -7.215100245456075,
+          "all4_quad_reductions_pct": [
+            8.577823242799576,
+            -4.529134972486837,
+            -48.598758668952314,
+            -9.901065518425312
+          ]
+        },
+        "cycles": {
+          "median_reduction_pct": -6.346539438532822,
+          "all4_quad_reductions_pct": [
+            8.476905910761822,
+            3.9903649214701464,
+            -34.64594496480979,
+            -16.68344379853579
+          ]
+        }
+      }
+    },
+    {
+      "group": {
+        "mode": 1,
+        "comparison": 2
+      },
+      "reference": "A",
+      "candidate": "C",
+      "metrics": {
+        "wall_s": {
+          "median_reduction_pct": 17.66782615961016,
+          "all4_quad_reductions_pct": [
+            22.843371925416143,
+            -5.934388499287713,
+            12.492280393804178,
+            27.77339769901245
+          ]
+        },
+        "cycles": {
+          "median_reduction_pct": 21.56463846965055,
+          "all4_quad_reductions_pct": [
+            24.160121758004806,
+            -8.487141384801888,
+            18.969155181296294,
+            25.425119489761062
+          ]
+        }
+      }
+    },
+    {
+      "group": {
+        "mode": 2,
+        "comparison": 0
+      },
+      "reference": "A",
+      "candidate": "B",
+      "metrics": {
+        "wall_s": {
+          "median_reduction_pct": 37.25657446944322,
+          "all4_quad_reductions_pct": [
+            36.16061052764823,
+            29.37503615899175,
+            38.35253841123822,
+            39.8777958551901
+          ]
+        },
+        "cycles": {
+          "median_reduction_pct": 33.76389432480674,
+          "all4_quad_reductions_pct": [
+            30.42002941259472,
+            30.289520678847172,
+            37.52132637880011,
+            37.10775923701877
+          ]
+        }
+      }
+    },
+    {
+      "group": {
+        "mode": 2,
+        "comparison": 1
+      },
+      "reference": "R",
+      "candidate": "B",
+      "metrics": {
+        "wall_s": {
+          "median_reduction_pct": 31.748672864872365,
+          "all4_quad_reductions_pct": [
+            24.298844404416165,
+            37.47644484980326,
+            29.21536806840499,
+            34.28197766133974
+          ]
+        },
+        "cycles": {
+          "median_reduction_pct": 33.79838505897387,
+          "all4_quad_reductions_pct": [
+            28.79280936060884,
+            37.98775937829774,
+            30.99307887780196,
+            36.603691240145785
+          ]
+        }
+      }
+    },
+    {
+      "group": {
+        "mode": 2,
+        "comparison": 2
+      },
+      "reference": "A",
+      "candidate": "C",
+      "metrics": {
+        "wall_s": {
+          "median_reduction_pct": 40.88029401410641,
+          "all4_quad_reductions_pct": [
+            24.62343995889501,
+            45.35981509471034,
+            43.47995295202048,
+            38.28063507619235
+          ]
+        },
+        "cycles": {
+          "median_reduction_pct": 38.380650953060666,
+          "all4_quad_reductions_pct": [
+            37.27200717393034,
+            45.717090546880875,
+            38.863837767754305,
+            37.89746413836702
+          ]
+        }
+      }
+    },
+    {
+      "group": {
+        "mode": 3,
+        "comparison": 0
+      },
+      "reference": "A",
+      "candidate": "B",
+      "metrics": {
+        "wall_s": {
+          "median_reduction_pct": 35.87637468580235,
+          "all4_quad_reductions_pct": [
+            35.80340871415986,
+            37.38294781104663,
+            35.949340657444836,
+            33.80577244876108
+          ]
+        },
+        "cycles": {
+          "median_reduction_pct": 36.851591507684496,
+          "all4_quad_reductions_pct": [
+            36.370138746314176,
+            37.33304426905482,
+            34.77130144514244,
+            38.64325844902305
+          ]
+        }
+      }
+    },
+    {
+      "group": {
+        "mode": 3,
+        "comparison": 1
+      },
+      "reference": "R",
+      "candidate": "B",
+      "metrics": {
+        "wall_s": {
+          "median_reduction_pct": 33.748848840131345,
+          "all4_quad_reductions_pct": [
+            33.17995725081466,
+            34.31774042944804,
+            34.95500590081032,
+            29.942670379502946
+          ]
+        },
+        "cycles": {
+          "median_reduction_pct": 33.94611441992099,
+          "all4_quad_reductions_pct": [
+            33.42281476231184,
+            33.20337641694776,
+            35.21338732937615,
+            34.46941407753014
+          ]
+        }
+      }
+    },
+    {
+      "group": {
+        "mode": 3,
+        "comparison": 2
+      },
+      "reference": "A",
+      "candidate": "C",
+      "metrics": {
+        "wall_s": {
+          "median_reduction_pct": 35.85495091107172,
+          "all4_quad_reductions_pct": [
+            45.10235177991877,
+            22.614495481362574,
+            35.24949655753583,
+            36.46040526460761
+          ]
+        },
+        "cycles": {
+          "median_reduction_pct": 37.635844030375466,
+          "all4_quad_reductions_pct": [
+            39.86330001517917,
+            36.03487551846698,
+            38.94231903145639,
+            36.32936902929455
+          ]
+        }
+      }
+    }
+  ]
+}

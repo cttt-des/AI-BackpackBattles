@@ -1,0 +1,40 @@
+{
+  "workspace": "D:\\CodexNativeBuilds\\work\\__main__-main-a818f2e1686a",
+  "archive": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\build_storage\\archive\\__main__-main-a818f2e1686a",
+  "preserved": [
+    {
+      "path": ".native_owner.json",
+      "sha256": "f5d26d9c1a8a0e0e4051614992d9404dadf808c9898e233bbc94e1852e738897",
+      "bytes": 45
+    },
+    {
+      "path": "timeline-affected-fkuhzv27/delay.cpp",
+      "sha256": "cb3c5b145b06a4cb297327e114295148e95e03a8cbc5a7a13c8b05979fba40f4",
+      "bytes": 6382
+    },
+    {
+      "path": "timeline-affected-fkuhzv27/legacy_motion.cpp",
+      "sha256": "1ffec229c1a6411ca078c9883b583ffc9a3dd1fa4e382c716454285948bb7be1",
+      "bytes": 13749
+    },
+    {
+      "path": "timeline-affected-fkuhzv27/local_delay.hpp",
+      "sha256": "002740989a75fc0de3560cf51280c57ec4c6b253cc30cfa2fbd2fb6a730e9909",
+      "bytes": 3150
+    },
+    {
+      "path": "timeline-affected-fkuhzv27/local_motion.hpp",
+      "sha256": "6235ceeada05040c54b4ac24c058975ddbac5073100f989c57a4cddf5076bba5",
+      "bytes": 7443
+    },
+    {
+      "path": "timeline-affected-fkuhzv27/timeline_step.cpp",
+      "sha256": "af5d2d46b7004847ef78dab10437d742a552cab3e525fc320c1972ca74e190a4",
+      "bytes": 11621
+    }
+  ],
+  "total_bytes": 28831051,
+  "discarded_rebuildable_bytes": 28788661,
+  "cleanup_complete": true,
+  "cleanup_access_retries": 0
+}

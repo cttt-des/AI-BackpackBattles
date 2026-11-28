@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "regression_confirmed": true,
+  "dll_sha256": "ce196849addca6a9ae3f48626cbbadd665ffd1171ccb3979df64aea3843ba180",
+  "source_sha256": "2f1b4b4214d0024b2834e874c2fa25e7a1216b95ec6a52c434315cef462799e5",
+  "raw_sha256": "73a4e88ba7a62988e13ff3cb641ac9a75de964329154035345f83dbd906d296c",
+  "semantic_cases": 6,
+  "mismatches": 4
+}

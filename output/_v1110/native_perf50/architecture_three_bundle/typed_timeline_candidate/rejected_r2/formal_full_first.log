@@ -1,0 +1,31 @@
+native_host_phases_reuse_0 862 strict passes {'motion_entries': 332770, 'typed_visual_steps': 223374, 'typed_charge_steps': 0, 'delay_entries': 1632710}
+native_host_phases_reuse_1 785 strict passes {'motion_entries': 255638, 'typed_visual_steps': 172401, 'typed_charge_steps': 0, 'delay_entries': 0}
+native_host_phases_reuse_2 518 strict passes {'motion_entries': 459207, 'typed_visual_steps': 299664, 'typed_charge_steps': 0, 'delay_entries': 689524}
+native_host_phases_reuse_3 264 strict passes {'motion_entries': 180186, 'typed_visual_steps': 116333, 'typed_charge_steps': 0, 'delay_entries': 183390}
+native_host_phases_observed_base_current 124 strict passes {'motion_entries': 128244, 'typed_visual_steps': 83901, 'typed_charge_steps': 0, 'delay_entries': 202973}
+native_host_phases_reuse_4 22 strict passes {'motion_entries': 10852, 'typed_visual_steps': 7356, 'typed_charge_steps': 0, 'delay_entries': 68766}
+native_host_rng_phases_new_expand 19 strict passes {'motion_entries': 9355, 'typed_visual_steps': 6237, 'typed_charge_steps': 0, 'delay_entries': 32119}
+native_host_phases_observed_base_last 8 strict passes {'motion_entries': 15827, 'typed_visual_steps': 10486, 'typed_charge_steps': 0, 'delay_entries': 41874}
+native_host_phases_reuse_5 1 strict passes {'motion_entries': 53, 'typed_visual_steps': 33, 'typed_charge_steps': 0, 'delay_entries': 116}
+native_host_phases_reuse_6 1 strict passes {'motion_entries': 173, 'typed_visual_steps': 114, 'typed_charge_steps': 0, 'delay_entries': 1081}
+base {'expected': 914, 'recorded': 914, 'verified': 914, 'passed': 914, 'winner_mismatch': 0}
+expand {'expected': 1690, 'recorded': 1690, 'verified': 1690, 'passed': 1690, 'winner_mismatch': 0}
+{
+  "baseline_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "candidate_dll_sha256": "21587f76d82cb4ab182ef4e52a10a7d24ffac677242c59fbfb59bf3f028aabed",
+  "runtime_data_sha256": "55bdd068cf3308547de78b45abbed4bf4f57e8253fbec82313a99578defa00ae",
+  "unchanged_cpp_event_streams": 2604,
+  "cohorts": {
+    "base": 914,
+    "expand": 1690
+  },
+  "ordered_case_and_cpp_event_hashes_sha256": "b8066c9224bc418923c62f5a3dafb8912100b21bb0026c3b13669872f90e2f54"
+}
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_timeline_full.py", line 29, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_timeline_full.py", line 24, in main
+    counts={key:sum(r['counts'][key] for _,r in results) for key in ['motion_entries','typed_visual_steps','typed_charge_steps','delay_entries']};assert all(v>0 for v in counts.values())
+                                                                                                                                                         ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

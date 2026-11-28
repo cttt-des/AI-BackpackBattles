@@ -1,0 +1,4 @@
+Building complete20 instrumentation units with original FP flags; max2 jobs
+Build scheduling: frontend=1, LTO=1 (available 1.23 GiB)
+lto-wrapper.exe: warning: using serial compilation of 470 LTRANS jobs
+lto-wrapper.exe: note: see the '-flto' option documentation for more information

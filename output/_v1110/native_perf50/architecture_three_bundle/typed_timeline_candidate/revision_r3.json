@@ -1,0 +1,7 @@
+{
+  "reason": "Accept real derived receivers only when cached charge method is the identical CoreItem implementation; overridden methods fall back",
+  "actual_CEA_row_probe_receipt_sha256": "61e48d0f77e7cf4d724948dba6a9a0984999c690b086ebcfadb75a46f939bef2",
+  "normal_real200_coverage_required_before_PGO": true,
+  "FP_math_and_callback_tail_unchanged": true,
+  "no_AB_before_revision": true
+}

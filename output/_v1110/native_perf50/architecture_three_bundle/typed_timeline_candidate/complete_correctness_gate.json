@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "dll_sha256": "e772a89eb1fb5b429f12f556837205d6328c31eae718aaff5358498091b2ffd3",
+  "optimization_enabled_full2604": true,
+  "all_original_strict_event_receipts_retained": true,
+  "coverage": {
+    "motion_entries": 5564319,
+    "typed_visual_steps": 919899,
+    "typed_charge_steps": 4172014,
+    "delay_entries": 2852553
+  },
+  "full_gate_sha256": "1839a96f2995d63a43d07e9e2a2c304a7beaee41c9d75704c3e2d8853f6093db",
+  "events_sha256": "5a0c82ff0f83545ce24bec8fe19cd5792a85f25fee71339be4e628c2e6921f38",
+  "directed_receipt_sha256": "781d4078f3140bccd2123b240b4fac0b57f94f85beb01cedb82e4090695ebe88",
+  "container_receipt_sha256": "0c6b58ec56010820257d052aee36bdd3b1331c55803ac29b8467b054a46c1ed8",
+  "cached_row_proof_sha256": "5feac0e623f4d2ad37337e8aa18758bbeb8d6a1ae08075ae81152bc226af1a57",
+  "no_second_fallback_only_full_corpus": true
+}

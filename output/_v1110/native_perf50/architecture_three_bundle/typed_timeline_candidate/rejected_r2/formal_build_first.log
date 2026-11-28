@@ -1,0 +1,13 @@
+Building complete20 instrumentation units with original FP flags; max2 jobs
+Build scheduling: frontend=1, LTO=1 (available 2.65 GiB)
+lto-wrapper.exe: warning: using serial compilation of 470 LTRANS jobs
+lto-wrapper.exe: note: see the '-flto' option documentation for more information
+Built D:\CodexNativeBuilds\work\__main__-formal-20d88623d923\timeline-formal-rnuii1nf\objects\instrumented.dll (compiled 20/20, linked 20 objs) in 1788.35s
+Collecting new18 profiles from the corrected source
+instrumented.dll: 61.74 replays/s; 14.64 s of combat on average; 1f00611ee50c
+instrumented.dll: 34.08 replays/s; 16.11 s of combat on average; 2e74b45caa87
+instrumented.dll: 34.49 fights/s; 5.50 CPU s; 83.4 MiB peak; 88dda4dce54d
+Building corrected PGO release
+Build scheduling: frontend=1, LTO=3 (available 3.51 GiB)
+Built D:\CodexNativeBuilds\work\__main__-formal-20d88623d923\timeline-formal-rnuii1nf\objects\release.dll (compiled 18/20, linked 20 objs) in 685.80s
+Corrected release ready 21587f76d82cb4ab182ef4e52a10a7d24ffac677242c59fbfb59bf3f028aabed

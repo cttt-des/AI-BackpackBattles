@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "baseline_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "baseline_source_receipt": "native_perf50/frame_guard_reuse_bundle/source_before_build.json",
+  "parent_backup_commit": "710e7602a4ed886432a34f6a8be3c0b7c7a64c01",
+  "previous_goal_completion_sha256": "48de89aaa13208b20ffbcdececf9c3d3de528d0d8ff5b6c4ba5903127a4f97f0",
+  "previous_regression": {
+    "cpu_time_increase_pct": 40.53164070255087,
+    "wall_time_increase_pct": 40.8306228085445,
+    "root": "Repeated per-attempt certificates and short-plan preparation"
+  },
+  "baseline_profile_sha256": "6d559fc43aa0a848e01f6b49db011ad7082a60738d91f2161e653d89f5a65130",
+  "baseline_fixed200_receipt_sha256": "68275344e943f8f8dee8707e0d34ca5256a7777d23e1c5d89466ffb6da9e788f",
+  "staged_entries_sha256": "9004b334d00c4fe822ee441e8b35581cca23767f63a09725e820431593b259b2",
+  "head": "0dcd3e5c8bc4beccc98b3dfded633b852f5d725d",
+  "no_new_branches": true,
+  "source_optimization_not_started_before_assessment": true,
+  "verification_policy": {
+    "deduplicate_by_source_DLL_fixture_flags_SHA": true,
+    "baseline_expected_outputs_reused_when_fixture_contract_unchanged": true,
+    "affected_directed_tests_only": true,
+    "full2604_once_per_release_candidate_DLL": true,
+    "no_identical_DLL_pre_post_install_corpus_reruns": true,
+    "install_by_verified_hash_and_source_manifest": true,
+    "no_per_small_change_backup": true,
+    "retain_all_first_samples": true,
+    "load20_extrapolation_allowed": true,
+    "final_AA_calibrated_AB_required": true
+  },
+  "build_policy": {
+    "disposable_D_scopes": true,
+    "no_cross_round_objects": true,
+    "max_workers": 3,
+    "priority": "BelowNormal",
+    "reserve_memory_GiB": 2,
+    "full_PGO_only_after_low_cost_evidence": true
+  },
+  "directions": [
+    {
+      "id": "phase_plan",
+      "priority": 1,
+      "title": "Reuse proven active-entry graph for a persistent single-frame numeric phase plan",
+      "existing": "Active cooldown cache already hits384800/386704 phases; do not rebuild graph proof",
+      "component_upper_bound_pct": 8.2528,
+      "upper_bound_is_not_expected_gain": true,
+      "pilot": "Production-DLL helper versus a fused no-callback phase, plus amortized build/invalidation cost",
+      "budget": "One small executable first; no full DLL/PGO before benefit and coverage budget",
+      "go": "Affected-segment reduction times measured coverage plausibly exceeds calibrated whole-workload noise, with original math and callback boundaries",
+      "stop": "Existing guards already cheap, proof/entry-maintenance exceeds saved work, or supported coverage too low",
+      "semantic_risk": "Same-frame callback changes and gem/override/unknown fallback; no future FP precomputation"
+    },
+    {
+      "id": "exact_deadlines",
+      "priority": 2,
+      "title": "Local due-frontier scheduling with mathematically exact repeated-countdown advancement",
+      "existing": "Use existing timer/cooldown watch; no second full-scene certificate each frame",
+      "component_upper_bound_pct": 33.482,
+      "upper_bound_is_not_expected_gain": true,
+      "pilot": "IEEE-754 range proof and C++ differential arithmetic harness before scheduler integration",
+      "budget": "Isolated math/cost probe; integration only if the number of operations truly decreases",
+      "go": "Exact values/flags and phase-aware observer materialization proven, cached invalidations amortize",
+      "stop": "Requires per-frame graph scans, per-step work hidden inside jump, or cannot preserve observer/frontier semantics",
+      "semantic_risk": "Rounding, signed zero, flags, blocked/first epochs, original same-frame phase order; no blanket N*delta"
+    },
+    {
+      "id": "typed_timeline",
+      "priority": 3,
+      "title": "Persistent typed decoding for motion/delayed-call timeline entries",
+      "existing": "Integer queue indices already optimized; target repeated record decoding/dispatch, not skip visual/RNG state",
+      "component_upper_bound_pct": null,
+      "upper_bound_note": "Motion leaf1.51%, charge path1.33%, character motion0.86%, idle1.13%, native delay0.73%; overlapping call stacks must be union-counted before coding",
+      "pilot": "Extract actual original record formats and callbacks; one entry-decoder/direct-step cost probe",
+      "budget": "No full scene rewrite; reject if remaining exclusive work is below useful gain",
+      "go": "Typed entries amortize creation cost while preserving each original FP32/FP64 step and completion callback order",
+      "stop": "Already-lowered code removes most cost or decoding cache invalidates too often",
+      "semantic_risk": "Live queue edits, held-array snapshots, completion callbacks, float32 rounding and RNG order"
+    }
+  ],
+  "rejected_repeats": [
+    "New generic method table: production already has row->methods[slot]",
+    "Arena reuse: already persistent bump blocks",
+    "Another field-reordering experiment: previous calibrated AB inconclusive",
+    "Scalar dictionary/RNG helpers alone: historical small/negative gains",
+    "Treat trigger-chain42.9% as dispatch-removable cost: exclusive generic dispatch only5.415%"
+  ]
+}

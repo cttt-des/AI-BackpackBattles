@@ -1,0 +1,15 @@
+{
+  "workspace": "D:\\CodexNativeBuilds\\work\\timeline_round-normal-2a6bc0461bf1",
+  "archive": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\build_storage\\archive\\timeline_round-normal-2a6bc0461bf1",
+  "preserved": [
+    {
+      "path": ".native_owner.json",
+      "sha256": "3dfd0ead4ab7020af803806db2af9764c8775af927f3443c6f770173f4dc95c5",
+      "bytes": 45
+    }
+  ],
+  "total_bytes": 45,
+  "discarded_rebuildable_bytes": 0,
+  "cleanup_complete": true,
+  "cleanup_access_retries": 0
+}

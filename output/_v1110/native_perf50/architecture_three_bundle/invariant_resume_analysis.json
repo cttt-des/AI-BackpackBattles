@@ -1,0 +1,117 @@
+{
+  "raw_sha256": "e62d2afcc996282f7a201385f6ce49975fa1263ac5cd794bcfbea8abe8a5c090",
+  "receipt_sha256": "2c44ebb2b45b3099b6a61f5603245a963d90725f2b16bf74ae8c1bc7c8689baa",
+  "all_samples_retained": true,
+  "statistic": "median of 4 time-bracketed geometric contrasts",
+  "not_formal_workload_AB": true,
+  "rows": [
+    {
+      "group": {
+        "period": 0
+      },
+      "reference": "A",
+      "candidate": "B",
+      "metrics": {
+        "wall_s": {
+          "median_reduction_pct": 10.309165191094255,
+          "all4_quad_reductions_pct": [
+            44.68281830776413,
+            -50.40640195784019,
+            30.13010966201547,
+            -9.51177927982696
+          ]
+        },
+        "cycles": {
+          "median_reduction_pct": 13.70093809461369,
+          "all4_quad_reductions_pct": [
+            30.461615248498497,
+            -6.373216988903985,
+            25.733549766158603,
+            1.6683264230687778
+          ]
+        }
+      }
+    },
+    {
+      "group": {
+        "period": 1
+      },
+      "reference": "A",
+      "candidate": "B",
+      "metrics": {
+        "wall_s": {
+          "median_reduction_pct": -31.900033794587245,
+          "all4_quad_reductions_pct": [
+            -30.04358127859319,
+            -38.52639901363189,
+            -33.7564863105813,
+            -13.316093055457333
+          ]
+        },
+        "cycles": {
+          "median_reduction_pct": -32.21202840819211,
+          "all4_quad_reductions_pct": [
+            -30.65834401592018,
+            -38.02589414466322,
+            -33.76571280046405,
+            -10.078626273148572
+          ]
+        }
+      }
+    },
+    {
+      "group": {
+        "period": 8
+      },
+      "reference": "A",
+      "candidate": "B",
+      "metrics": {
+        "wall_s": {
+          "median_reduction_pct": 8.369348694487156,
+          "all4_quad_reductions_pct": [
+            2.348395514264856,
+            11.17918598208838,
+            12.701554555322437,
+            5.559511406885931
+          ]
+        },
+        "cycles": {
+          "median_reduction_pct": 7.094269959168787,
+          "all4_quad_reductions_pct": [
+            6.9759208444823635,
+            11.328074316823233,
+            7.144999227404581,
+            7.043540690932993
+          ]
+        }
+      }
+    },
+    {
+      "group": {
+        "period": 128
+      },
+      "reference": "A",
+      "candidate": "B",
+      "metrics": {
+        "wall_s": {
+          "median_reduction_pct": 10.471064956658216,
+          "all4_quad_reductions_pct": [
+            0.1917191943591412,
+            5.576160367886929,
+            22.21380965041535,
+            15.365969545429504
+          ]
+        },
+        "cycles": {
+          "median_reduction_pct": 15.88851190515528,
+          "all4_quad_reductions_pct": [
+            11.139235182326013,
+            7.423532261235676,
+            20.637788627984545,
+            20.843166802046966
+          ]
+        }
+      }
+    }
+  ]
+}

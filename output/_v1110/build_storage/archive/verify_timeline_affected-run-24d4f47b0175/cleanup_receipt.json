@@ -1,0 +1,15 @@
+{
+  "workspace": "D:\\CodexNativeBuilds\\work\\verify_timeline_affected-run-24d4f47b0175",
+  "archive": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\build_storage\\archive\\verify_timeline_affected-run-24d4f47b0175",
+  "preserved": [
+    {
+      "path": ".native_owner.json",
+      "sha256": "fa43f839af316c1022b3d68a9dea8ebc53d13dca48452449573d93bf085a71ee",
+      "bytes": 44
+    }
+  ],
+  "total_bytes": 44,
+  "discarded_rebuildable_bytes": 0,
+  "cleanup_complete": true,
+  "cleanup_access_retries": 0
+}

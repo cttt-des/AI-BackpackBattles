@@ -1,0 +1,11 @@
+{
+  "selected": "Live typed timeline entry qualification and exact original per-step FP32 lowering",
+  "frozen_AB_protocol_sha256": "7ccd99d086f59acac38e69b95e305b44d16f77d52565cea829df8dcc6d3dd921",
+  "no_persistent_raw_operand_cache": true,
+  "callbacks_and_live_queue_tail_preserved": true,
+  "screen_only_projected_whole_gain_pct": [
+    2,
+    3
+  ],
+  "normal_full20_before_fresh_full_PGO": true
+}

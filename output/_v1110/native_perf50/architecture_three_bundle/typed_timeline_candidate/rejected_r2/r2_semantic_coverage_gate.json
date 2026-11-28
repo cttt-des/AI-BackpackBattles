@@ -1,0 +1,26 @@
+{
+  "semantic_passed": true,
+  "cases": 2604,
+  "ordered_eventroot": "b8066c9224bc418923c62f5a3dafb8912100b21bb0026c3b13669872f90e2f54",
+  "coverage_gate_passed": false,
+  "coverage": {
+    "motion_entries": 1392305,
+    "typed_visual_steps": 919899,
+    "typed_charge_steps": 0,
+    "delay_entries": 2852553
+  },
+  "coverage_receipts": [
+    "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_timeline_typed_21587f76_host_phases_observed_base_current\\cpp\\timeline_coverage.json",
+    "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_timeline_typed_21587f76_host_phases_observed_base_last\\timeline_coverage.json",
+    "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_timeline_typed_21587f76_host_phases_reuse_0\\timeline_coverage.json",
+    "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_timeline_typed_21587f76_host_phases_reuse_1\\timeline_coverage.json",
+    "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_timeline_typed_21587f76_host_phases_reuse_2\\timeline_coverage.json",
+    "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_timeline_typed_21587f76_host_phases_reuse_3\\timeline_coverage.json",
+    "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_timeline_typed_21587f76_host_phases_reuse_4\\timeline_coverage.json",
+    "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_timeline_typed_21587f76_host_phases_reuse_5\\timeline_coverage.json",
+    "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_timeline_typed_21587f76_host_phases_reuse_6\\timeline_coverage.json",
+    "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_timeline_typed_21587f76_host_rng_phases_new_expand\\timeline_coverage.json"
+  ],
+  "reason": "Exact CoreItem metadata rejected real derived item receivers although their cached method slot has the identical CoreItem implementation",
+  "no_AB_samples": true
+}

@@ -1,0 +1,15 @@
+{
+  "workspace": "D:\\CodexNativeBuilds\\work\\probe_architecture_resume-delay-eebe3164a192",
+  "archive": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\build_storage\\archive\\probe_architecture_resume-delay-eebe3164a192",
+  "preserved": [
+    {
+      "path": ".native_owner.json",
+      "sha256": "2bb834d3ff8ea608fd86bc48f3ff9aba90913d203eef0da8990fe0cb03405d77",
+      "bytes": 44
+    }
+  ],
+  "total_bytes": 44,
+  "discarded_rebuildable_bytes": 0,
+  "cleanup_complete": true,
+  "cleanup_access_retries": 0
+}

@@ -1,0 +1,235 @@
+{
+  "workspace": "D:\\CodexNativeBuilds\\work\\__main__-formal-70c1c0fc286d",
+  "archive": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\build_storage\\archive\\__main__-formal-70c1c0fc286d",
+  "preserved": [
+    {
+      "path": ".native_owner.json",
+      "sha256": "9f780d8343e40f949c3655dcd52314f9fe9231d9be5a3aec7ba6f790f69cdd1c",
+      "bytes": 45
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/instrumented.build_schedule.json",
+      "sha256": "558986f0305222699f35da49e1ab34978bca081051c6404c21e7147d23807579",
+      "bytes": 4125
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/instrumented_exports.def",
+      "sha256": "e423396108ebb4715027961b75cd39624f918586711b1c65ac472e305d67eadb",
+      "bytes": 1582
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/libgdcore.dll.ltrans.mk",
+      "sha256": "2a5f3a96c971ded8ce1944b38143b190d7a37463334c27b3aa006a67f537b146",
+      "bytes": 643141
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/libgdcore.dll.wpa.args.0",
+      "sha256": "245304d9124eeb1782d7d16bd2ca5ad4a275d8182850e37eecdba598e2b0a5f1",
+      "bytes": 1911
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/D~/CodexNativeBuilds/work/__main__-formal-70c1c0fc286d/timeline-formal-46b4se3x/objects/engine_wrapper.gcda",
+      "sha256": "ac178769123f990aefc55932812144cc314cd383bbc8424ae76ea3ed0f118574",
+      "bytes": 34220
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/D~/CodexNativeBuilds/work/__main__-formal-70c1c0fc286d/timeline-formal-46b4se3x/objects/gd_rt.gcda",
+      "sha256": "76472c93ff7129527605bb99a413cd043491ffa123ff974b5a4f7b02ce553035",
+      "bytes": 537764
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/D~/CodexNativeBuilds/work/__main__-formal-70c1c0fc286d/timeline-formal-46b4se3x/objects/shard_00.gcda",
+      "sha256": "83cd8458823bb770012ae8edb7de8cc0edf91243ee99298699addf8375647ad3",
+      "bytes": 426996
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/D~/CodexNativeBuilds/work/__main__-formal-70c1c0fc286d/timeline-formal-46b4se3x/objects/shard_01.gcda",
+      "sha256": "4fd5f882c79f66be0dc6ac3b1f326bcff0dc2f6cf562739957d526cc45b2d126",
+      "bytes": 189156
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/D~/CodexNativeBuilds/work/__main__-formal-70c1c0fc286d/timeline-formal-46b4se3x/objects/shard_02.gcda",
+      "sha256": "6c55eb0813ae1e0f3762ead4d65fec0e4129343a7e42550a207b0db35c5c6871",
+      "bytes": 273068
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/D~/CodexNativeBuilds/work/__main__-formal-70c1c0fc286d/timeline-formal-46b4se3x/objects/shard_03.gcda",
+      "sha256": "f64e7ee241e2d40a956b63d2139e51214be19d41d935fbfd4e0ea3609a7dfce1",
+      "bytes": 189324
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/D~/CodexNativeBuilds/work/__main__-formal-70c1c0fc286d/timeline-formal-46b4se3x/objects/shard_04.gcda",
+      "sha256": "b9ca3bf359ca283dac509e7b7bd61b9facb185099690b31e4ca9b44466872333",
+      "bytes": 161540
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/D~/CodexNativeBuilds/work/__main__-formal-70c1c0fc286d/timeline-formal-46b4se3x/objects/shard_05.gcda",
+      "sha256": "18ee0b01eecf84f88b1fb1a96f09cbb633e17e8a456fbd5f67fd59874c526ab7",
+      "bytes": 176188
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/D~/CodexNativeBuilds/work/__main__-formal-70c1c0fc286d/timeline-formal-46b4se3x/objects/shard_06.gcda",
+      "sha256": "2545ece39f111c6517480ad4ebbdf48c65d2302cbad4c8e7c8682a6273d50e5a",
+      "bytes": 171944
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/D~/CodexNativeBuilds/work/__main__-formal-70c1c0fc286d/timeline-formal-46b4se3x/objects/shard_07.gcda",
+      "sha256": "7e9e580c47ece5cb8adf30eb2769947b5362aff133b14b7b3e8b83a66a246b22",
+      "bytes": 184652
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/D~/CodexNativeBuilds/work/__main__-formal-70c1c0fc286d/timeline-formal-46b4se3x/objects/shard_08.gcda",
+      "sha256": "e53d5d4906ffb6555513f568a8c5fbeeb72e919032399a1c01c9e9607784d511",
+      "bytes": 147456
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/D~/CodexNativeBuilds/work/__main__-formal-70c1c0fc286d/timeline-formal-46b4se3x/objects/shard_09.gcda",
+      "sha256": "7888ee3a17c6709689b25ebcaf7a54e629977f8ebe34eb69683a44cb1c7ebd0b",
+      "bytes": 125352
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/D~/CodexNativeBuilds/work/__main__-formal-70c1c0fc286d/timeline-formal-46b4se3x/objects/shard_10.gcda",
+      "sha256": "64f49ac429a0630557edcf06ae0b1cb9bc8555fc4ce9d6ab5028150c78f200cf",
+      "bytes": 193460
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/D~/CodexNativeBuilds/work/__main__-formal-70c1c0fc286d/timeline-formal-46b4se3x/objects/shard_11.gcda",
+      "sha256": "8abb649c505cbd384e56d62451da67a1f796517152c88bdbd41a29b26bd87409",
+      "bytes": 134164
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/D~/CodexNativeBuilds/work/__main__-formal-70c1c0fc286d/timeline-formal-46b4se3x/objects/shard_12.gcda",
+      "sha256": "61ae5b6d96723a77f2906e18ee09eee98a6fc8220d5e94410f26401783c6eae3",
+      "bytes": 196908
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/D~/CodexNativeBuilds/work/__main__-formal-70c1c0fc286d/timeline-formal-46b4se3x/objects/shard_13.gcda",
+      "sha256": "20f96655e624baab0155ff32ad24ea032401499a78b858ddc893dc0d83a1ddde",
+      "bytes": 157588
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/D~/CodexNativeBuilds/work/__main__-formal-70c1c0fc286d/timeline-formal-46b4se3x/objects/shard_14.gcda",
+      "sha256": "465dbcc830bcbdf620fdb5e937a52f256de792d3a8d114c8c69e95d80082459f",
+      "bytes": 143764
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/D~/CodexNativeBuilds/work/__main__-formal-70c1c0fc286d/timeline-formal-46b4se3x/objects/shard_15.gcda",
+      "sha256": "0534eeacdae0aa2f0c154bb8afbe3f13a01f7aff020b10b1b163111d7d64abfc",
+      "bytes": 160544
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/engine_wrapper.gcda",
+      "sha256": "ac178769123f990aefc55932812144cc314cd383bbc8424ae76ea3ed0f118574",
+      "bytes": 34220
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/gd_rt.gcda",
+      "sha256": "76472c93ff7129527605bb99a413cd043491ffa123ff974b5a4f7b02ce553035",
+      "bytes": 537764
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/shard_00.gcda",
+      "sha256": "83cd8458823bb770012ae8edb7de8cc0edf91243ee99298699addf8375647ad3",
+      "bytes": 426996
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/shard_01.gcda",
+      "sha256": "4fd5f882c79f66be0dc6ac3b1f326bcff0dc2f6cf562739957d526cc45b2d126",
+      "bytes": 189156
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/shard_02.gcda",
+      "sha256": "6c55eb0813ae1e0f3762ead4d65fec0e4129343a7e42550a207b0db35c5c6871",
+      "bytes": 273068
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/shard_03.gcda",
+      "sha256": "f64e7ee241e2d40a956b63d2139e51214be19d41d935fbfd4e0ea3609a7dfce1",
+      "bytes": 189324
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/shard_04.gcda",
+      "sha256": "b9ca3bf359ca283dac509e7b7bd61b9facb185099690b31e4ca9b44466872333",
+      "bytes": 161540
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/shard_05.gcda",
+      "sha256": "18ee0b01eecf84f88b1fb1a96f09cbb633e17e8a456fbd5f67fd59874c526ab7",
+      "bytes": 176188
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/shard_06.gcda",
+      "sha256": "2545ece39f111c6517480ad4ebbdf48c65d2302cbad4c8e7c8682a6273d50e5a",
+      "bytes": 171944
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/shard_07.gcda",
+      "sha256": "7e9e580c47ece5cb8adf30eb2769947b5362aff133b14b7b3e8b83a66a246b22",
+      "bytes": 184652
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/shard_08.gcda",
+      "sha256": "e53d5d4906ffb6555513f568a8c5fbeeb72e919032399a1c01c9e9607784d511",
+      "bytes": 147456
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/shard_09.gcda",
+      "sha256": "7888ee3a17c6709689b25ebcaf7a54e629977f8ebe34eb69683a44cb1c7ebd0b",
+      "bytes": 125352
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/shard_10.gcda",
+      "sha256": "64f49ac429a0630557edcf06ae0b1cb9bc8555fc4ce9d6ab5028150c78f200cf",
+      "bytes": 193460
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/shard_11.gcda",
+      "sha256": "8abb649c505cbd384e56d62451da67a1f796517152c88bdbd41a29b26bd87409",
+      "bytes": 134164
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/shard_12.gcda",
+      "sha256": "61ae5b6d96723a77f2906e18ee09eee98a6fc8220d5e94410f26401783c6eae3",
+      "bytes": 196908
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/shard_13.gcda",
+      "sha256": "20f96655e624baab0155ff32ad24ea032401499a78b858ddc893dc0d83a1ddde",
+      "bytes": 157588
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/shard_14.gcda",
+      "sha256": "465dbcc830bcbdf620fdb5e937a52f256de792d3a8d114c8c69e95d80082459f",
+      "bytes": 143764
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/pgo/shard_15.gcda",
+      "sha256": "0534eeacdae0aa2f0c154bb8afbe3f13a01f7aff020b10b1b163111d7d64abfc",
+      "bytes": 160544
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/release.build_schedule.json",
+      "sha256": "73d58ce1d226c6dc5bbc470cc903ea2d56c7601858ce083206d7c2cf30534713",
+      "bytes": 4024
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/replays.json",
+      "sha256": "4dcaee2a5ba6b2f01d6fbd361d5475442a1dfe99c730ad047690024ef76a9efd",
+      "bytes": 6632
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/smoke.json",
+      "sha256": "32387e05ffb6a385d6c26e45a07c392f46e6d194b84816287e52485b1333f4d9",
+      "bytes": 997
+    },
+    {
+      "path": "timeline-formal-46b4se3x/objects/training.json",
+      "sha256": "06ca4d0e8aa9b6f760f4a74b62bc84790b689c43cd9fb91fc7586e6fa18eb231",
+      "bytes": 857
+    }
+  ],
+  "total_bytes": 184327200,
+  "discarded_rebuildable_bytes": 176455710,
+  "cleanup_complete": true,
+  "cleanup_access_retries": 0
+}
